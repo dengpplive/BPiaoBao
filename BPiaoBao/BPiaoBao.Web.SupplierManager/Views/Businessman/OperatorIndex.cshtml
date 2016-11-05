@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "OperatorIndex";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css" />
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <div>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" code="10" plain="true" data-bind="click: $root.open">新增员工</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" code="11" plain="true" data-bind="click: $root.editClick">更新</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-disable" code="12" plain="true" data-bind="click:function(){ $root.SetStatus(1)}">冻结</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-enable" code="10010102" plain="true" data-bind="click:function(){ $root.SetStatus(0)}">启用</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" code="11" plain="true" data-bind="click: $root.resetPass">重置密码</a>
+            </div>
+
+            <div style="margin: 10px;">
+                <div class="m_search"> 
+                    账号：<input type="text" data-bind="value: $root.searchForm.account" class="inputStyle" />
+                    姓名：<input type="text" data-bind="value: $root.searchForm.realName" class="inputStyle" />
+                    联系方式：<input type="text" data-bind="value: $root.searchForm.phone" class="inputStyle" />
+                    状态：<select class="inputStyle" data-bind="value: $root.searchForm.status">
+                           <option value="">---全部---</option>
+                           <option value="0">正常</option>
+                           <option value="1">冻结</option>
+                       </select>
+                    角色：
+                    <select data-bind="options:roleList,optionsValue:'ID',optionsText:'RoleName',optionsCaption:'---全部---',value:$root.searchForm.roleId" style="width: 200px; height: 24px;"> </select>
+                </div>
+                <div class="m_search"><a href="#" class="easyui-linkbutton" code="15" iconcls="icon-search" data-bind="click: $root.searchClick" style="height:22px; line-height:22px;">查询</a></div>
+            </div>
+            <div class="both"></div>
+        </div>
+        <table id="MainTable" data-bind="datagrid: grid" title="员工管理">
+            <thead>
+                <tr>
+                    <th data-options="field:'Account',width:100">账号</th>
+                    <th data-options="field:'Realname',width:100">姓名</th>
+                    <th data-options="field:'Phone',width:80">联系电话</th>
+                    <th data-options="field:'OperatorState',width:80">状态</th>
+                    <th data-options="field:'CreateDate',width:200">创建时间</th>
+                    <th data-options="field:'RoleName',width:120,formatter:ConvertRole">角色</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@Html.Partial("AddOperator")
+@Html.Partial("OperatorRole")
+@section scripts{
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript">
+        function ConvertRole(value, row) {
+            var flag = row["IsAdmin"];
+            if (flag) {
+
+                return "<a href='javascript:void(0)'   onclick='vm.openRoleWindow(" + row["RoleID"] + ","+row["IsAdmin"]+")'>超级管理员</a>";
+            }
+            return "<a href='javascript:void(0)' onclick='vm.openRoleWindow(" + row["RoleID"] + "," + row["IsAdmin"] + ")'>" + value + "</a>";;
+
+        } 
+
+        var BuyerIndexVM = CC.Create(BaseVM, function(data) {
+            this.editForm = ko.mapping.fromJS(data.editForm);
+            this.urls = data.urls;
+            delete this.editForm.__ko_mapping__;
+            this.grid.pagination = false;
+            var $this = this;
+            this.ajax({
+                url: $this.urls.getRoleList,
+                type: 'post',
+                dataType: 'json'
+            }, function(r, s) {
+                $.each(r, function() {
+                    $this.roleList.push({ ID: this.ID, RoleName: this.RoleName });
+                });
+            });
+        }, {
+            action: ko.observable('add'),
+            isAdmin: ko.observable(false),
+            editForm: null,
+            roleList: ko.observableArray(),
+            roleForm: {
+                RoleName: ko.observable(""),
+                Description: ko.observable("")
+            },
+            open: function() {
+                this.action('add');
+                $('#AddOperatorDialog').dialog('open');
+            },
+            openRoleWindow: function (rowId, isAdmin) {
+                if (isAdmin == true) {
+                    this.alert("超级管理员角色不能查看");
+                    return;
+                }
+                var self = this;
+                $("#authGrid").tree({
+                    onLoadSuccess: function() {
+                        self.ajax({
+                            url: self.urls.getRoleInfo,
+                            type: 'POST',
+                            dataType: 'json',
+                            data: { id: rowId }
+                        }, function(response, status) {
+                            ko.mapping.fromJS(response, ko.mapping.fromJS(self.editForm));
+                            var array = [];
+                            if (response.AuthNodes != null) {
+                                array = response.AuthNodes.split(',');
+                                for (var i = 0; i < array.length; i++) {
+                                    var node = $('#authGrid').tree('find', array[i]);
+                                    $('#authGrid').tree('check', node.target);
+                                     
+                                }
+                            }
+                            var s = $("#authGrid span.tree-checkbox");
+                            for (var em in s) {
+                                var m = s[em];
+                                if (m.className == "tree-checkbox tree-checkbox0") {
+                                    m.className = "";
+                                } else  {
+                                    m.className = "tree-checkbox tree-dnd-yes";
+                                }
+                            }
+                             
+                            self.roleForm.RoleName(response.RoleName);
+                            self.roleForm.Description(response.Description);
+                            $('#OperatorRoleDialog').dialog('open');
+                          
+                        });
+                    }
+                });
+
+            },
+            clearClick: function() {
+                this.clearForm(this.editForm);
+                $('#AddOperatorDialog').dialog('close');
+            },
+            addClick: function() {
+                $('#AddOperatorDialog').mask('正在提交数据...');
+                this.ajax({
+                    url: this.urls.add,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(ko.toJS(this.editForm))
+                }, function() {
+                    $('#AddOperatorDialog').unmask();
+                    $('#AddOperatorDialog').dialog('close');
+                    this.clearForm(this.editForm);
+                    this.grid.datagrid('reload');
+                }, function() {
+                    $('#AddOperatorDialog').unmask();
+                });
+            },
+            saveClick: function() {
+                $('#OperatorForm').submit();
+            },
+            resetPass: function() {
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    this.alert('请选择行编辑');
+                    return;
+                }
+                this.ajax({
+                    url: this.urls.reset,
+                    type: 'GET',
+                    data: { Id: row["Id"] }
+                }, function() {
+                    this.alert('重置成功');
+                });
+            },
+            editClick: function() {
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    this.alert('请选择行编辑');
+                    return;
+                }
+                this.clearForm(this.editForm);
+                this.action('edit');
+                this.isAdmin(row["IsAdmin"]);
+                this.ajax({
+                    url: this.urls.editinfo,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: row["Id"] }
+                }, function(response, status) {
+                    ko.mapping.fromJS(response, ko.mapping.fromJS(this.editForm));
+                    $('#AddOperatorDialog').dialog('open');
+                });
+            },
+            SetStatus: function(status) {
+                var $this = this;
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    this.alert('请选择行编辑');
+                    return;
+                }
+                $('body').mask('正在提交数据...');
+                this.confirm('确定此操作吗?', function() {
+                    $this.ajax({
+                        url: $this.urls.setenable,
+                        type: 'POST',
+                        data: { id: row["Id"], status: status }
+                    }, function() {
+                        $this.grid.datagrid('reload');
+                        $('body').unmask();
+                    });
+                });
+            }
+
+        });
+        var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+        ko.applyBindings(vm);
+        $(function() {
+            $('#OperatorForm').validate({
+                submitHandler: function() {
+                    vm.addClick();
+                }
+            })
+        })
+    </script>
+}

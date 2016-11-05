@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "SMSChargeSetList";
+}
+
+<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: OpenChargeSetAddWindow">新 增</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<table id="dg" title="短信费用设置">
+    <thead>
+        <tr style="background-color: #daeef5">
+            <th data-options="field:'ID', width:120, formatter: searchViewModel.operationColumnFormatter.Handle">基本操作</th>
+            <th data-options="field:'Price',width:100">单价(元)</th>
+            <th data-options="field:'TotalPrice',width:100">总价(元)</th>
+            <th data-options="field:'Count',width:100">数量(条)</th>
+        </tr>
+    </thead>
+</table>
+<div id="ChargeSetWindow" class="easyui-window" title="新增费用设置" data-options="minimizable:false,model:true,collapsible:false" style="padding: 10px 15px; width:600px;height:auto;">
+    <div>
+        <table>
+
+            <tr>
+                <td width="60px">单价：</td>
+                <td>
+                    <input type="text" name="textfield" class="inputStyle" data-bind="value: ChargeSetDto.Price" />(元)
+                </td>
+            </tr>
+            <tr>
+                <td>数量：</td>
+                <td>
+                     <input type="text" name="textfield" class="inputStyle" data-bind="value: ChargeSetDto.Count" />(条)
+                </td>
+            </tr>
+
+            <tr>
+                
+                <td colspan="2" style="text-align:center">
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: saveChargeSet">保存</a>&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: closeChargeSetAddWindow">取消</a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts{
+<script type="text/javascript">
+    $(function () {
+        searchViewModel = {
+            $ChargeSetDataGrid: null,
+            $ChargeSetWindow: null,
+            queryUrl: '@Url.Action("GetSmsChargeSetList")',
+            init: function () {
+                this.$ChargeSetWindow = $("#ChargeSetWindow").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                this.$ChargeSetDataGrid = $('#dg').datagrid({
+                    rownumbers: false,
+                    singleSelect: true,
+                    autoRowHeight: false,
+                    pagination: true,
+                    pageSize: 10,
+                    toolbar: '#mainContent',
+                    fit: true,
+                    url: searchViewModel.queryUrl
+                });
+            },
+            search: function () {
+                this.$ChargeSetDataGrid.datagrid("load");
+            },
+            operationColumnFormatter: {
+                Handle: function (value, row, rowIndex) {
+                    var tempStr = "<a href='javascript:searchViewModel.openModifyDialog(\"" + value + "\")'  >修改</a>&nbsp;|&nbsp;";
+                    //if (row.State == 0) {
+                    //    tempStr += "<a href='javascript:searchViewModel.EnableAndDisable(\"" + value + "\")'  >启用</a>&nbsp;|&nbsp;";
+                    //} else {
+                    //    tempStr += "<a href='javascript:searchViewModel.EnableAndDisable(\"" + value + "\")'  >禁用</a>&nbsp;|&nbsp;";
+                    //}
+                    tempStr += "<a href='javascript:searchViewModel.DeleteSmsTemplate(\"" + value + "\")'  >删除</a>";
+                    return tempStr;
+                }
+            },
+            isModify: ko.observable(true),
+            DeleteSmsTemplate: function (id) {
+                $.messager.confirm("提示", "确定删除？", function (r) {
+                    if (r) {
+                        $.post('@Url.Action("DeleteSmsChargeSet")', { id: id }, function () {
+                            searchViewModel.search();
+                        });
+                    }
+                });
+            },
+            ChargeSetDto: {
+                ID: ko.observable(),
+                Price: ko.observable(),
+                Count: ko.observable()
+            },
+            closeChargeSetAddWindow: function () {
+                searchViewModel.$ChargeSetWindow.window("close");
+            },
+            OpenChargeSetAddWindow: function () {
+                searchViewModel.isModify(true);
+                searchViewModel.ChargeSetDto.Price(null).Count(null);
+                searchViewModel.$ChargeSetWindow.window("setTitle", "新增费用设置");
+                searchViewModel.$ChargeSetWindow.window("open");
+            },
+            openModifyDialog: function (id) {
+                searchViewModel.isModify(false);
+                var self = this;
+                $.post('@Url.Action("GetSmsChargeSetById")',{id:id}, function (data) {
+                    searchViewModel.map(JSON.parse(data), searchViewModel.ChargeSetDto);
+                    searchViewModel.$ChargeSetWindow.window("setTitle", "修改费用设置");
+                    searchViewModel.$ChargeSetWindow.window("open");
+                });
+            },
+            saveChargeSet: function () {
+                var ChargeSetDto = ko.toJS(searchViewModel.ChargeSetDto);
+                var chargecount = ChargeSetDto.Count;
+                if (ChargeSetDto.Price == undefined || ChargeSetDto.Price == '') {
+                    $.messager.alert("提示", "请输入单价！", 'info');
+                    return;
+                } else {
+                    if (isNaN(ChargeSetDto.Price)) {
+                        $.messager.alert("提示", "单价必须为数字！", 'info');
+                        return;
+                    }
+                }
+                if (chargecount == undefined || chargecount == '') {
+                    $.messager.alert("提示", "请输入短信条数！", 'info');
+                    return;
+                } else {
+                    if (!(/^[0-9]*[1-9][0-9]*$/.test($.trim(chargecount))) || parseFloat($.trim(chargecount)) <= 0) {
+                        $.messager.alert('提示', "短信条数必须为大于0的整数", "info");
+                        return false;
+                    }
+                }
+                $.ajax({
+                    url: searchViewModel.isModify() == true ? '@Url.Action("AddSmsChargeSet")' : '@Url.Action("EditSmsChargeSet")',
+                    type: 'POST',
+                    data: ChargeSetDto
+                }).done(function (e,s) {
+                    searchViewModel.closeChargeSetAddWindow();
+                    searchViewModel.search();
+                }).fail(function (e) {
+                    var obj = JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                });
+            },
+            map: function (obj, obserableObj) {
+                for (var prop in obserableObj) {
+                    if (obserableObj.hasOwnProperty(prop)) {
+                        if (typeof obserableObj[prop] === "function")
+                            obserableObj[prop](obj ? obj[prop] : undefined);
+                        else if (typeof obserableObj[prop] === "object")
+                            searchViewModel.map(obj ? obj[prop] : {}, obserableObj[prop]);
+                    }
+                }
+            }
+        }
+        searchViewModel.init();
+        ko.applyBindings(searchViewModel);
+    });
+</script>
+    }

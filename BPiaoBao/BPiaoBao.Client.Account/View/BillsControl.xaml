@@ -1,0 +1,87 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="BPiaoBao.Client.Account.View.BillsControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="431.667" d:DesignWidth="1024">
+	<UserControl.Resources>		
+		<DataTemplate x:Key="operationTemplate">
+			<StackPanel>
+				<Button Content="消费明细" Width="50" Margin="0,0,0,10" Style="{StaticResource LinkBtn}" Command="{Binding DataContext.BillDetailCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" HorizontalAlignment="Left"/>
+				<Button Content="还款明细" Width="50" Style="{StaticResource LinkBtn}"  Command="{Binding DataContext.BillRePayDetailCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" HorizontalAlignment="Left"/>
+			</StackPanel>
+		</DataTemplate>
+	</UserControl.Resources>
+	<UserControl.DataContext>
+		<ViewModel:BillsViewModel/>
+	</UserControl.DataContext>
+	<Grid Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="41"/>
+			<RowDefinition Height="Auto" MinHeight="65"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid Background="{StaticResource HeadBg1}">
+			<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0">
+				<TextBlock TextWrapping="Wrap" Text="全部账单明细" d:LayoutOverrides="Width" VerticalAlignment="Center" Style="{DynamicResource Head2TextBlock}"/>
+				<!--<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="40,0,0,0"><Run Text="充值总金额："/><Run Foreground="#FFFF4E00" FontSize="14.667" Text="￥12312312312"/></TextBlock>-->
+			</StackPanel>
+		</Grid>
+		<Grid Grid.Row="1">
+			<Border Grid.ColumnSpan="2" BorderThickness="2" Background="{StaticResource BlueBorderFillBrush}" Margin="20,10" BorderBrush="{StaticResource BlueBorderBrush}">
+				<WrapPanel VerticalAlignment="Center">
+                    <StackPanel  HorizontalAlignment="Left" Orientation="Horizontal">
+					<TextBlock TextWrapping="Wrap" Text="账单状态：" VerticalAlignment="Center" Margin="12,0,0,0"/>
+					<ComboBox ItemsSource="{Binding AllStatus}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height ="22" Width="110"/>
+					<TextBlock TextWrapping="Wrap" Text="账单日期：" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                        <DatePicker VerticalAlignment="Center"  SelectedDate="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height ="22" Width="110"/>
+					<TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Margin="4,4.081" Width="6" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                        <DatePicker VerticalAlignment="Center"  SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height ="22" Width="110"/>
+					<Button Content="查询" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource OkButton}"  Command="{Binding QueryCommand, Mode=OneWay}" Margin="20,0,0,0" >
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+					<Button Content="导出Excel" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource CancelButton}"  Command="{Binding ExportCommand}" Foreground="{StaticResource HeavyBlueForeground}" Margin="10,0,0,0" />
+                    </StackPanel>
+                </WrapPanel>
+			</Border>
+		</Grid>
+		<Grid Grid.Row="2">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto" MinHeight="40"/>
+			</Grid.RowDefinitions>
+			<DataGrid Margin="20,10" BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding Bills}" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="65" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+				<DataGrid.Columns>
+					<DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="账单日期" Binding="{Binding CreateDate, StringFormat=yyyy-MM-dd}"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="账期" Binding="{Binding CreditDayStr}"/>
+					<DataGridTextColumn Width="*" Binding="{Binding Amount}" Header="消费金额" Foreground="{StaticResource OrangeForeground}"/>
+					<DataGridTextColumn Width="*" Binding="{Binding FeeAmount}" Header="利息"/>
+					<DataGridTextColumn Width="*" Binding="{Binding LateAmount}" Header="滞纳金" Foreground="{StaticResource OrangeForeground}"/>
+					<DataGridTextColumn Width="*" Binding="{Binding RepayAmount,StringFormat={}{0:f2}}" Header="已还金额"/>
+					<DataGridTextColumn Width="*" Binding="{Binding ShouldRepayAmount,StringFormat={}{0:f2}}" Header="应还金额"/>
+					<DataGridTextColumn Width="*" Binding="{Binding Status}"  Header="账单状态" Foreground="{StaticResource GrayForeground}"/>
+					<DataGridTemplateColumn Width="*" Header="操作" CellTemplate="{StaticResource operationTemplate}"/>
+				</DataGrid.Columns>
+			</DataGrid>
+			<WPFSpark:SprocketControl Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+			<UIExt:Pagination Grid.Row="1" d:LayoutOverrides="Width, Height" VerticalAlignment="Top"
+				PageSize="{Binding PageSize}" 
+				CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay}"
+				TotalCount="{Binding TotalCount, Mode=TwoWay}" Margin="20,0" >
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="PageChanged">
+						<i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</UIExt:Pagination>
+		</Grid>
+		
+            
+	</Grid>
+</UserControl>

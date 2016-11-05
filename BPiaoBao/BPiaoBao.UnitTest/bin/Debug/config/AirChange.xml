@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="gb2312"?>
+<ArrayOfAirChangTimeOut xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <AirChangTimeOut>
+        <QTStartTime>00:00:00</QTStartTime>
+        <QTEndTime>23:00:00</QTEndTime>
+        <TimeOut>00:10:00</TimeOut>
+    </AirChangTimeOut>
+</ArrayOfAirChangTimeOut>

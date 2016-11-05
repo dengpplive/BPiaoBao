@@ -1,0 +1,420 @@
+﻿@{
+    ViewBag.Title = "运营商详细信息";
+}
+<div id="BCenter">
+<div class="filterbg">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="117" class="tdtitle td_noboder">
+                <h3>商户信息</h3>
+            </td>
+            <td width="49" class="td_noboder fontcolor4">商户号:</td>
+            <td width="196" class="td_noboder" data-bind="text: Model.Code"></td>
+            <td width="59" class="td_noboder fontcolor4">商户名称:</td>
+            <td width="207" class="td_noboder" data-bind="text: Model.Name"></td>
+            <td width="63" class="td_noboder fontcolor4">创建时间:</td>
+            <td class="td_noboder" data-bind="text: Model.CreateTime"></td>
+            <td class="td_noboder"><a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-white-edit" data-bind="click: OpenUpdatePayPwdDialog">修改支付密码</a></td>
+        </tr>
+    </table>
+</div>
+<div class="tableShow">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bussine">
+        <tr>
+            <td width="125" height="40" class="tdtitle td_noboder">
+                <h3>基本信息</h3>
+            </td>
+            <td width="52" height="40" class="fontcolor4">联系人:</td>
+            <td width="210" height="40">
+                <input type="text" name="textfield"  class="inputStyle" data-bind="value: Model.ContactWay.Contact, visible: Status()" />
+                <span data-bind="text: Model.ContactWay.Contact, visible: !Status()">&nbsp;</span>
+            </td>
+            <td width="58" height="40" class="fontcolor4">联系电话:</td>
+            <td width="223" height="40">
+                <span data-bind="text: Model.ContactWay.Tel, visible: !Status()">&nbsp;</span>
+                <input type="text" name="textfield2" class="inputStyle" data-bind="value: Model.ContactWay.Tel, visible: Status()" /></td>
+            <td width="56" height="40" class="fontcolor4">联系地址:</td>
+            <td height="40">
+                <span data-bind="text: Model.ContactWay.Address, visible: !Status()">&nbsp;</span>
+                <input type="text" name="textfield3" class="inputStyle" data-bind="value: Model.ContactWay.Address, visible: Status()" />
+            </td>
+        </tr>
+        <tr class="linglei">
+            <td height="40"></td>
+            <td height="40" valign="top" class="fontcolor4">标签:</td>
+            <td height="40" colspan="5" style="vertical-align: top;">
+                <span data-bind="text: Model.Label, visible: !Status()">&nbsp;</span>
+                <textarea name="textarea" id="textarea" cols="45" rows="3" style="width: 694px; line-height: 20px;" data-bind="value: Model.Label, visible: Status()"></textarea>
+            </td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bussine bussine2">
+        <tr>
+            <td width="125" height="40" class="tdtitle td_noboder">
+                <h3>上下班时间设置</h3>
+            </td>
+            <td height="40" colspan="2" class="fontcolor4"><strong>工作日上下班时间</strong></td>
+        </tr>
+        <!-- ko template:{name:'Time',data:Model.NormalWork} -->
+        <!-- /ko -->
+        <tr>
+            <td height="40" class="tdtitle td_noboder"></td>
+            <td height="40" colspan="2" class="fontcolor4"><strong>周末上下班时间</strong></td>
+        </tr>
+        <!-- ko template:{name:'Time',data:Model.RestWork} -->
+        <!-- /ko -->
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bussine bussine2">
+        <tr>
+            <td width="125" height="40" class="tdtitle td_noboder">
+                <h3>配置设置</h3>
+            </td>
+            <td height="40" class="fontcolor4"><a href="#" class="add_a" data-bind=" click: AddPid, visible: $root.Status()">添加设置</a></td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bussine" data-bind="foreach: Model.Pids">
+        <tr>
+            <td width="125" height="40" class="tdtitle td_noboder">
+                <h3>&nbsp;</h3>
+            </td>
+            <td width="57" height="40" class="fontcolor4">IP:</td>
+            <td width="208" height="40">
+                <span data-bind="text: IP, visible: !$root.Status()">&nbsp;</span>
+                <input type="text" name="textfield" id="textfield" class="inputStyle" data-bind="value: IP, visible: $root.Status()" />
+            </td>
+            <td width="41" height="40" class="fontcolor4">端口:</td>
+            <td width="204" height="40">
+                <span data-bind="text: Port, visible: !$root.Status()">&nbsp;</span>
+                <input type="text" name="textfield2" id="textfield2" class="inputStyle" data-bind="value: Port, visible: $root.Status()" /></td>
+            <td width="55" height="40" class="fontcolor4">Office号:</td>
+            <td width="152" height="40">
+                <span data-bind="text: Office, visible: !$root.Status()">&nbsp;</span>
+                <input type="text" name="textfield3" id="textfield3" class="inputStyle" data-bind="value: Office, visible: $root.Status()" /></td>
+            <td><a href="#" class="detelbtn" data-bind="visible: $root.Status(),   click: $parent.RemovePid">删除</a></td>
+        </tr>
+    </table>
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bussine bussine2">
+        <tr>
+            <td width="125" height="40" class="tdtitle td_noboder">
+                <h3>航空公司使用Office</h3>
+            </td>
+            <td height="40" class="fontcolor4"><a href="#" class="add_a" data-bind=" click: AddCarrierSettings, visible: $root.Status()">添加</a></td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bussine" data-bind="foreach: Model.CarrierSettings">
+        <tr>
+            <td width="125" height="40" class="tdtitle td_noboder">
+                <h3>&nbsp;</h3>
+            </td>
+            <td width="57" height="40" class="fontcolor4">航空公司:</td>
+            <td width="158" height="40">
+                <span data-bind="text: CarrayCode, visible: !$root.Status()">&nbsp;</span>
+                <select  data-bind="options: $root.AllAirCode, optionsValue: 'AirCode', optionsText: 'AirName', value: CarrayCode, visible: $root.Status()"></select>
+            </td>
+            <td width="100" height="40" class="fontcolor4">预定编码Office:</td>
+            <td width="154" height="40">
+                <span data-bind="text: YDOffice, visible: !$root.Status()">&nbsp;</span>
+                <input type="text" name="textfield2" id="textfield2" class="inputStyle" data-bind="value: YDOffice, visible: $root.Status()" /></td>
+            
+            <td width="70" height="40" class="fontcolor4">出票Office:</td>
+            <td width="152" height="40">
+                <span data-bind="text: CPOffice, visible: !$root.Status()">&nbsp;</span>
+                <input type="text" name="textfield3" id="textfield3" class="inputStyle" data-bind="value: CPOffice, visible: $root.Status()" /></td>
+            <td width="55" height="40" class="fontcolor4">打票机号:</td>
+            <td width="152" height="40">
+                <span data-bind="text: PrintNo, visible: !$root.Status()">&nbsp;</span>
+                <input type="text" name="textfield3" id="textfield3" class="inputStyle" data-bind="value: PrintNo, visible: $root.Status()" /></td>
+            <td><a href="#" class="detelbtn" data-bind="visible: $root.Status(), click: $parent.RemoveCarrierSettings">删除</a></td>
+        </tr>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="bussine bussine3">
+        <tr>
+            <td width="125" height="40" class="tdtitle td_noboder">
+                <h3>&nbsp;</h3>
+            </td>
+            <td height="40" class="fontcolor4">
+                <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: Save, visible: Status()" style="color:#fff;padding:0 15px;">保存</a>
+                <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: Edit, visible: !Status()" style="color:#fff;padding:0 15px;">更新</a>
+            </td>
+        </tr>
+    </table>
+</div>
+</div>
+<div id="UpdatePayPwdDialog" class="easyui-dialog" title="修改支付密码"
+    data-options="modal:true,closed:true,buttons:'#UpdatePayPwdDialog-buttons'"
+    style="width: 350px; height: auto; padding: 10px 15px;">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+        <tr>
+            <td width="30%" height="45" align="right">新支付密码：</td>
+            <td height="45">
+                <input type="password" class="inputStyle" data-bind="value: ModifyPwd.newPwd" />
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" height="45" align="right">确认支付密码：</td>
+            <td height="45">
+                <input type="password" class="inputStyle" data-bind="value: ModifyPwd.onceNewPwd" />
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" height="45" align="right">短信验证码：</td>
+            <td height="45">
+                <input type="text" class="inputStyle" data-bind="value: ModifyPwd.smsCode" style="width: 60px;" /> 
+                <button  data-bind="click: GetSMSValidate" id="getSmsA" style="border:1px solid #71b5eb; background: #bbdefa; padding:2px 5px 3px 5px;">获取</button>
+            </td>
+        </tr>
+    </table>
+
+
+
+</div>
+
+<div id="UpdatePayPwdDialog-buttons" style="text-align: center; padding: 10px 0px;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: UpdatePayPwd">确定</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="javascript: $('#UpdatePayPwdDialog').dialog('close')">取消</a>
+</div>
+
+<script type="text/html" id="Time">
+    <tr>
+        <td width="126" height="40" class="tdtitle td_noboder">
+            <h3>&nbsp;</h3>
+        </td>
+        <td width="80" height="40" class="fontcolor4">星期设置:</td>
+        <td height="40">
+            <table width="600" class="fuxuan">
+                <tr>
+                    <td width="18">
+                        <input type="checkbox" value="1" data-bind="checked: KOWeekDay, enable: $root.Status()" />
+                    </td>
+                    <td width="56">星期一</td>
+                    <td width="18">
+                        <input type="checkbox" value="2" data-bind="checked: KOWeekDay, enable: $root.Status()" />
+                    </td>
+                    <td width="54">星期二</td>
+                    <td width="18">
+                        <input type="checkbox" value="3" data-bind="checked: KOWeekDay, enable: $root.Status()" />
+                    </td>
+                    <td width="53">星期三</td>
+                    <td width="18">
+                        <input type="checkbox" value="4" data-bind="checked: KOWeekDay, enable: $root.Status()" />
+                    </td>
+                    <td width="50">星期四</td>
+                    <td width="18">
+                        <input type="checkbox" value="5" data-bind="checked: KOWeekDay, enable: $root.Status()" />
+                    </td>
+                    <td width="48">星期五</td>
+                    <td width="19">
+                        <input type="checkbox" value="6" data-bind="checked: KOWeekDay, enable: $root.Status()" />
+                    </td>
+                    <td width="47">星期六</td>
+                    <td width="19">
+                        <input type="checkbox" value="7" data-bind="checked: KOWeekDay, enable: $root.Status()" />
+                    </td>
+                    <td width="104">星期七</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td width="126" height="40" style="border: 0px;"></td>
+        <td width="80" height="40" class="fontcolor4">上下班时间:</td>
+        <td height="40">&nbsp;&nbsp;&nbsp;
+            <input class="easyui-my97" style="width: 80px" data-options="dateFmt:'HH:mm',readOnly:true,autoUpdateOnChanged:false" data-bind="my97value: WorkOnLineTime, visible: $root.Status()" />
+            <span data-bind="text: WorkOnLineTime, visible: !$root.Status()"></span>
+            -
+            <input class="easyui-my97" style="width: 80px" data-options="dateFmt:'HH:mm',readOnly:true,autoUpdateOnChanged:false" data-bind="my97value: WorkUnLineTime, visible: $root.Status()" />
+            <span data-bind="text: WorkUnLineTime, visible: !$root.Status()"></span>
+        </td>
+    </tr>
+    <tr class="linglei2">
+        <td width="126" height="40" style="border: 0px;"></td>
+        <td width="80" height="40" class="fontcolor4">业务处理时间:</td>
+        <td height="40">&nbsp;&nbsp;&nbsp;
+            <input class="easyui-my97" style="width: 80px" data-options="dateFmt:'HH:mm',readOnly:true,autoUpdateOnChanged:false" data-bind="my97value: ServiceOnLineTime, visible: $root.Status()" />
+            <span data-bind="text: ServiceOnLineTime, visible: !$root.Status()"></span>
+            -
+            <input class="easyui-my97" style="width: 80px" data-options="dateFmt:'HH:mm',readOnly:true,autoUpdateOnChanged:false" data-bind="my97value: ServiceUnLineTime, visible: $root.Status()" />
+            <span data-bind="text: ServiceUnLineTime, visible: !$root.Status()"></span>
+        </td>
+    </tr>
+
+</script>
+@section scripts{
+    <script type="text/javascript" src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            var DataModel=@(Html.Raw(ExpandTypeConvert.ToJson(Model)));
+            var MineViewModel = {
+                Model: ko.mapping.fromJS(DataModel.DataObject),
+                Status: ko.observable(false),
+                ModifyPwd: {
+                    newPwd: ko.observable(),
+                    onceNewPwd: ko.observable(),
+                    smsCode: ko.observable()
+                },
+                AllAirCode:ko.mapping.fromJS(DataModel.CarrayCodeModel),// ko.observableArray([{AirCode:'ALL',AirName:'ALL-所有航空公司'}]),
+                OpenUpdatePayPwdDialog: function () {
+                    $("#UpdatePayPwdDialog").dialog("open");
+                },
+                UpdatePayPwd: function () {
+                    var self = this;
+                    if (this.ModifyPwd.newPwd() == null || this.ModifyPwd.newPwd() == "") {
+                        window.parent.$.messager.alert('提示', "请输入支付密码", 'warning');
+                        return;
+                    }
+                    if (this.ModifyPwd.newPwd().length < 6) {
+                        window.parent.$.messager.alert('提示', "支付密码最少6位", 'warning');
+                        return;
+                    }
+                    if (this.ModifyPwd.onceNewPwd() == null || this.ModifyPwd.onceNewPwd() == "") {
+                        window.parent.$.messager.alert('提示', "请再次输入支付密码", 'warning');
+                        return;
+                    }
+                    if (this.ModifyPwd.newPwd() != this.ModifyPwd.onceNewPwd()) {
+                        window.parent.$.messager.alert('提示', "再次输入支付密码不一致", 'warning');
+                        return;
+                    }
+                    if (this.ModifyPwd.smsCode() == null || this.ModifyPwd.smsCode() == "") {
+                        window.parent.$.messager.alert('提示', "请输入短信验证码", 'warning');
+                        return;
+                    }
+                    $("#UpdatePayPwdDialog").mask("正在提交数据...");
+                    $.ajax({
+                        url: '/Businessman/UpdatePayPwd',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(ko.toJS(this.ModifyPwd)),
+                        success: function (res) {
+                            $("#UpdatePayPwdDialog").unmask();
+                            res = JSON.parse(res);
+                            if (res.Success == 1) {
+                                self.ModifyPwd.newPwd("");
+                                self.ModifyPwd.onceNewPwd("");
+                                self.ModifyPwd.smcCode("");
+                                $("#UpdatePayPwdDialog").dialog("close");
+                            } else {
+
+                                window.parent.$.messager.alert('提示', res.Message, "error");
+                            }
+                        },
+                        error: function (e) {
+                            $("#UpdatePayPwdDialog").unmask(); 
+                            var obj = JSON.parse(e.responseText);
+                            window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                        }
+                    });
+                },
+                GetSMSValidate: function () {
+
+                    $.ajax({
+                        url: '/Businessman/GetSMSValidate',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        success: function (res) {
+                            res = JSON.parse(res);
+                            if (res.Success == 0) {
+                                window.parent.$.messager.alert('提示', res.Message);
+                            }
+                        },
+                        error: function (e) {
+                            var obj = JSON.parse(e.responseText);
+                            window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error'); 
+                        }
+                    });
+                    var time = 300;
+                    var timeInterval = setInterval(function () {
+                        time--;
+                        $("#getSmsA").html(time + "秒后重新获取");
+                        $("#getSmsA").attr("disabled", true);
+                        if (time == 0) {
+                            clearInterval(timeInterval);
+                            $("#getSmsA").html("获取");
+                            $("#getSmsA").removeAttr("disabled");
+                        }
+                    }, 1000);
+                },
+                Edit: function () {
+                    this.Status(true);
+                    $.parser.parse($("#Work"));
+                },
+                Save: function () {
+                    $('#BCenter').mask('正在保存数据...');
+                    $.ajax({
+                        url: '/Businessman/SubmitCarrier',
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(ko.toJS(this.Model))
+                    }).done(function () {
+                        $('#BCenter').unmask()
+                        MineViewModel.Status(false)
+                    }).fail(function (e) {
+                        $('#BCenter').unmask();
+                        window.parent.$.messager.alert('提示', e.responseText, 'info');
+                    });
+                },
+                AddPid: function () {
+                    this.Model.Pids.push({
+                        IP: ko.observable(),
+                        Port: ko.observable(),
+                        Office: ko.observable()
+                    })
+                },
+                AddCarrierSettings:function(){
+                    this.Model.CarrierSettings.push({
+                        CarrayCode: ko.observable(),
+                        YDOffice: ko.observable(),
+                        CPOffice: ko.observable(),
+                        PrintNo:ko.observable()
+                    })
+                },
+                RemovePid: function () {
+                    MineViewModel.Model.Pids.remove(this);
+                },
+                RemoveCarrierSettings:function(){
+                    MineViewModel.Model.CarrierSettings.remove(this);
+                },
+                Init: function () {
+                    this.Model.NormalWork.KOWeekDay = ko.observableArray(this.Model.NormalWork.WeekDay().split(','));
+                    this.Model.RestWork.KOWeekDay = ko.observableArray(this.Model.RestWork.WeekDay().split(','));
+
+                    this.Model.NormalWork.KOWeekDay.subscribe(function (newValue) {
+                        removeSameValue(newValue, MineViewModel.Model.RestWork.KOWeekDay)
+                        MineViewModel.Model.NormalWork.WeekDay(newValue.join(','));
+                    });
+                    this.Model.RestWork.KOWeekDay.subscribe(function (newValue) {
+                        removeSameValue(newValue, MineViewModel.Model.NormalWork.KOWeekDay)
+                        MineViewModel.Model.RestWork.WeekDay(newValue.join(','));
+                    });
+                   
+                }
+            }
+            MineViewModel.Init();
+            ko.applyBindings(MineViewModel);
+        });
+
+        
+        // ko.observableArray移除arr中已有的元素
+        function removeSameValue(arr, obsArr){
+            if(arr==null||obsArr==null){
+                return;
+            }
+            var la = arr.length;
+            var rArr = obsArr();
+            var lb = rArr.length;
+            for (var i = 0; i < la; i++) {
+                for(var j=0;j<lb;j++){
+                    if(arr[i]==rArr[j])
+                    {
+                        obsArr.remove(rArr[j]);
+                    }
+                }
+            }
+        }
+    </script>
+}
+

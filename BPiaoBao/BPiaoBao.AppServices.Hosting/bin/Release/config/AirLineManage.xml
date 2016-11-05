@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="gb2312"?>
+<ArrayOfAirLine xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <AirLine>
+        <Id>2</Id>
+        <CarrayCode>MU</CarrayCode>
+        <CarrayName>东方航空</CarrayName>
+        <CarrayAbbreviation>东航</CarrayAbbreviation>
+        <BSPStatus>true</BSPStatus>
+        <B2BStatus>true</B2BStatus>
+        <AriLineType>国内</AriLineType>
+        <AriLineStatus>true</AriLineStatus>
+    </AirLine>
+    <AirLine>
+        <Id>4</Id>
+        <CarrayCode>ZH</CarrayCode>
+        <CarrayName>xxx</CarrayName>
+        <CarrayAbbreviation>x</CarrayAbbreviation>
+        <BSPStatus>true</BSPStatus>
+        <B2BStatus>false</B2BStatus>
+        <AriLineType>国际</AriLineType>
+        <AriLineStatus>false</AriLineStatus>
+    </AirLine>
+</ArrayOfAirLine>

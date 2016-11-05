@@ -1,0 +1,6 @@
+异常信息:索引超出范围。必须为非负值并小于集合大小。
+参数名: index   在 System.ThrowHelper.ThrowArgumentOutOfRangeException()
+   在 System.Collections.Generic.List`1.get_Item(Int32 index)
+   在 BPiaoBao.AppServices.DomesticTicket.PidService.SendQT() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\DomesticTicket\PidService.cs:行号 945
+END=====================================
+

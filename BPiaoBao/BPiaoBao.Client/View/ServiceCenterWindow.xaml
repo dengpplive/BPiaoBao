@@ -1,0 +1,117 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:BPiaoBao_Client_ViewModel="clr-namespace:BPiaoBao.Client.ViewModel" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" mc:Ignorable="d" x:Class="BPiaoBao.Client.View.ServiceCenterWindow"
+        Title="客服中心" Height="559" Width="594" WindowStartupLocation="CenterOwner" d:DataContext="{d:DesignData /SampleData/ServiceCenterViewModelSampleData.xaml}">
+	<Window.Resources>
+		<Style x:Key="qqListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+			<Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+			<Setter Property="Padding" Value="2,0,0,0"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type ListBoxItem}">
+						<Border x:Name="Bd" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" Height="34" BorderThickness="0,0,0,1" BorderBrush="#FFE9E9E9">
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="0.793*"/>
+									<ColumnDefinition Width="67"/>
+								</Grid.ColumnDefinitions>
+								<TextBlock HorizontalAlignment="Left" Text="{Binding Name}" VerticalAlignment="Center" Margin="20,0,0,0" MaxWidth="100" TextTrimming="CharacterEllipsis" ToolTip="{Binding Name}"/>
+								<Button Width="Auto" Grid.Column="1" Height="Auto"  Command="{Binding DataContext.OpenQQCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding QQ}" Style="{StaticResource ImageBtn}">
+									<Image HorizontalAlignment="Left" Height="21" Source="{Binding QQStateImage}" ToolTip="{Binding QQ}" Stretch="Fill" VerticalAlignment="Center" Width="21" />
+								</Button>
+							</Grid>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsSelected" Value="true">
+								<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+							</Trigger>
+							<MultiTrigger>
+								<MultiTrigger.Conditions>
+									<Condition Property="IsSelected" Value="true"/>
+									<Condition Property="Selector.IsSelectionActive" Value="false"/>
+								</MultiTrigger.Conditions>
+								<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+							</MultiTrigger>
+							<Trigger Property="IsEnabled" Value="false">
+								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<DataTemplate x:Key="DataTemplate1">
+			<StackPanel>
+						<TextBlock TextWrapping="Wrap" Text="{Binding Key}" Margin="0,15,0,10"/>
+						<Border Width="308" Height="44" HorizontalAlignment="Left" Background="#FFF3F3F3" BorderBrush="#FFA4CDED" BorderThickness="1">
+							<TextBlock TextWrapping="Wrap" Text="{Binding Value}" VerticalAlignment="Center" FontSize="21.333" Margin="18,0,0,0"/>
+						</Border>
+			</StackPanel>
+		</DataTemplate>
+		<DataTemplate x:Key="DataTemplate2">
+			<TextBlock TextWrapping="Wrap" Margin="0,7.5" FontSize="13.333">
+				<Run Text="{Binding Key}" />
+				<Run Text="{Binding Value}" />
+			</TextBlock>
+		</DataTemplate>
+	</Window.Resources>
+	<Window.Style>
+		<StaticResource ResourceKey="CustomWindowStyle"/>
+	</Window.Style>
+	<Window.DataContext>
+		<BPiaoBao_Client_ViewModel:ServiceCenterViewModel/>
+	</Window.DataContext>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="200"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="103"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid Margin="0" Background="#FFF5F6FA">
+				<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+					<StackPanel Orientation="Horizontal">
+						<Image Height="20" Source="/BPiaoBao.Client;component/Images/tel.png" Stretch="Fill" Width="20"/>
+						<TextBlock TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="13.333" Margin="8,0,0,0" VerticalAlignment="Center" Text="客服服务"/>
+					</StackPanel>
+					<Border Background="#FF2F8EE2" CornerRadius="3" Margin="0,5,0,0" >
+						<TextBlock TextWrapping="Wrap" Text="{Binding Customer.CustomPhone}" Foreground="White" Margin="6,0" HorizontalAlignment="Center" FontSize="24"/>
+					</Border>
+				</StackPanel>
+			</Grid>
+			<Border Margin="0" Grid.Row="1" BorderThickness="0,1" BorderBrush="#FFDDE0E7" Background="#FFF5F6FA">
+				<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="16,0,0,0">
+					<Image Height="20" Source="/BPiaoBao.Client;component/Images/blackQQ.png" Stretch="Fill" Width="20" Margin="0,0,10,0" HorizontalAlignment="Center"/>
+					<TextBlock TextWrapping="Wrap" Text="在线业务咨询" VerticalAlignment="Center" FontSize="13.333"/>
+				</StackPanel>
+			</Border>
+			<ListBox Grid.Row="2" BorderThickness="0" Background="#FFF5F6FA" ItemContainerStyle="{StaticResource qqListBoxItemStyle}" ItemsSource="{Binding Ushers}"/>
+		</Grid>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="54"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition MinHeight="100" Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Border BorderBrush="#FFDFDFDF" BorderThickness="0,1" Grid.Row="1" Grid.RowSpan="2" Margin="20,0,13,10">
+				<ScrollViewer VerticalScrollBarVisibility="Auto">
+					<ItemsControl ItemTemplate="{DynamicResource DataTemplate1}" ItemsSource="{Binding Customer.HotlinePhone}" />				
+				</ScrollViewer>				
+			</Border>
+			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="欢迎咨询客服热线，我们将竭诚为您解答疑问" VerticalAlignment="Bottom" FontSize="14.667" Margin="22,0,0,13"/>
+			<!--<StackPanel Grid.Row="2" Margin="25,0,0,10" Visibility="Collapsed">
+				<ItemsControl ItemTemplate="{DynamicResource DataTemplate2}" ItemsSource="{Binding Customer.LinkMethod}" Margin="0,5,0,0" />
+			</StackPanel>-->
+		</Grid>        
+		<WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Grid.ColumnSpan="2" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>        
+	</Grid>
+</Window>

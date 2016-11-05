@@ -1,0 +1,862 @@
+Start====================================================================
+记录时间:2014-11-24 09:39:23.351
+内容: 参数:_517Accout=kjtadmin
+ _517Password=mypb2013
+ _517Ag=3ec367a33bd448d7a8817d2b243c64ae
+ IsLowerPrice=0
+ PNRContent= 1.张三 JVN2J9   2.  HU7147 F   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI513722198911054516/P1   6.OSI HU CTCM13629244039/P1 7.OSI HU CTCT15528305255    8.RMK CA/MKW4GY 9.CTU186   
+>PAT:A  01 F FARE:CNY4320.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:4440.00 SFC:01    SFN:01   
+
+ 开始解析时间:2014-11-24 09:39:16.674
+解析结束时间:2014-11-24 09:39:16.675
+ 解析参数:RTCon= 1.张三 JVN2J9   2.  HU7147 F   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI513722198911054516/P1   6.OSI HU CTCM13629244039/P1 7.OSI HU CTCT15528305255    8.RMK CA/MKW4GY 9.CTU186   
+ PatCon=>PAT:A  01 F FARE:CNY4320.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:4440.00 SFC:01    SFN:01
+ Pnr=JVN2J9
+ Msg=
+  开始获取政策时间:2014-11-24 09:39:16.693
+结束获取政策时间:2014-11-24 09:39:23.305
+开始过滤政策时间:2014-11-24 09:39:23.305
+返回结果:XML=<_517><Policy><ID>1</ID><PolicyID>13993912</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>F</Space><TravelType>单程/往返</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition>改签即收回代理费</CPCondition><EffectDate>2014-10-31T00:00:00+08:00</EffectDate><ExpirationDate>2017-11-01T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>4363</ZFFee><PMFee>4320.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark>改签即收回代理费</Remark><Office>SZV118</Office></Policy><Policy><ID>2</ID><PolicyID>14371442</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>2</FlightType><Flight>496/495</Flight><Space>F</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition>改签即收回代理费</CPCondition><EffectDate>2014-01-01T00:00:00+08:00</EffectDate><ExpirationDate>2015-02-28T23:59:59+08:00</ExpirationDate><GYOnlineTime>08:00-23:59</GYOnlineTime><GYOutlineTime>08:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>4363</ZFFee><PMFee>4320.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>08:00-23:59</GYFPTime><GYFPTimeNew>08:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark>改签即收回代理费</Remark><Office>wux111</Office></Policy><Policy><ID>3</ID><PolicyID>8525427</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>F</Space><TravelType>单程/往返</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2013-10-11T00:00:00+08:00</EffectDate><ExpirationDate>2015-10-31T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>4363</ZFFee><PMFee>4320.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>tao218</Office></Policy><Policy><ID>4</ID><PolicyID>13754251</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>F</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2015-01-01T00:00:00+08:00</EffectDate><ExpirationDate>2015-03-31T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>4363</ZFFee><PMFee>4320.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>SYX128</Office></Policy><Policy><ID>5</ID><PolicyID>9867799</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>F</Space><TravelType>单程/往返</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2013-07-17T00:00:00+08:00</EffectDate><ExpirationDate>2015-12-31T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>4363</ZFFee><PMFee>4320.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>300</ChupPiaoXiaolu><Remark /><Office>TAO218</Office></Policy><Policy><ID>6</ID><PolicyID>8617214</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>F</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>1.7</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2013-11-04T00:00:00+08:00</EffectDate><ExpirationDate>2027-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>4367</ZFFee><PMFee>4320.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>URC221</Office></Policy><Policy><ID>7</ID><PolicyID>8632248</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>F</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>1.7</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2013-11-06T00:00:00+08:00</EffectDate><ExpirationDate>2017-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>4367</ZFFee><PMFee>4320.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>URC221</Office></Policy><_x0035_17><Pnr>JVN2J9</Pnr><Status>T</Status><Message>获取政策成功</Message><PnrType>1</PnrType><SeatPrice>4320.00</SeatPrice><ABFare>50.00</ABFare><RQFare>70.00</RQFare><TotalPrice>4440.00</TotalPrice><INFSeatPrice>0</INFSeatPrice><INFABFare>0</INFABFare><INFRQFare>0</INFRQFare><INFTotalPrice>0</INFTotalPrice></_x0035_17></_517>
+返回结果:表名:Policy第1行数据:
+ID=1
+PolicyID=13993912
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=F
+TravelType=单程/往返
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=改签即收回代理费
+EffectDate=2014/10/31 0:00:00
+ExpirationDate=2017/11/1 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=4363
+PMFee=4320.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=改签即收回代理费
+Office=SZV118
+
+表名:Policy第2行数据:
+ID=2
+PolicyID=14371442
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=2
+Flight=496/495
+Space=F
+TravelType=单程
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=改签即收回代理费
+EffectDate=2014/1/1 0:00:00
+ExpirationDate=2015/2/28 23:59:59
+GYOnlineTime=08:00-23:59
+GYOutlineTime=08:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=4363
+PMFee=4320.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=08:00-23:59
+GYFPTimeNew=08:00-23:59
+ChupPiaoXiaolu=20
+Remark=改签即收回代理费
+Office=wux111
+
+表名:Policy第3行数据:
+ID=3
+PolicyID=8525427
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=F
+TravelType=单程/往返
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2013/10/11 0:00:00
+ExpirationDate=2015/10/31 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=4363
+PMFee=4320.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=tao218
+
+表名:Policy第4行数据:
+ID=4
+PolicyID=13754251
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=F
+TravelType=单程
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2015/1/1 0:00:00
+ExpirationDate=2015/3/31 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=4363
+PMFee=4320.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=SYX128
+
+表名:Policy第5行数据:
+ID=5
+PolicyID=9867799
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=F
+TravelType=单程/往返
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2013/7/17 0:00:00
+ExpirationDate=2015/12/31 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=4363
+PMFee=4320.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=300
+Remark=
+Office=TAO218
+
+表名:Policy第6行数据:
+ID=6
+PolicyID=8617214
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=F
+TravelType=单程
+PolicyType=2
+Policy=1.7
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2013/11/4 0:00:00
+ExpirationDate=2027/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=4367
+PMFee=4320.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=URC221
+
+表名:Policy第7行数据:
+ID=7
+PolicyID=8632248
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=F
+TravelType=单程
+PolicyType=2
+Policy=1.7
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2013/11/6 0:00:00
+ExpirationDate=2017/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=4367
+PMFee=4320.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=URC221
+
+表名:517第1行数据:
+Pnr=JVN2J9
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=4320.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=4440.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:39:23.351
+
+End=====================================================================
+
+Start====================================================================
+记录时间:2014-11-24 09:47:15.678
+内容: 参数:_517Accout=kjtadmin
+ _517Password=mypb2013
+ _517Ag=3ec367a33bd448d7a8817d2b243c64ae
+ IsLowerPrice=0
+ PNRContent= 1.杨发兵 HD2HXX 2.  3U8737 E   SU30NOV  CTUCAN HK1   0700 0920          E T1--  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0700/30NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.OSI 3U CTCM15928636274/P1 7.OSI 3U CTCT15928636274    8.RMK CA/MKW78M 9.CTU186   
+>PAT:A  01 E FARE:CNY650.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:770.00   SFC:01    SFN:01   
+
+ 开始解析时间:2014-11-24 09:45:21.913
+解析结束时间:2014-11-24 09:45:21.914
+ 解析参数:RTCon= 1.杨发兵 HD2HXX 2.  3U8737 E   SU30NOV  CTUCAN HK1   0700 0920          E T1--  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0700/30NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.OSI 3U CTCM15928636274/P1 7.OSI 3U CTCT15928636274    8.RMK CA/MKW78M 9.CTU186   
+ PatCon=>PAT:A  01 E FARE:CNY650.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:770.00   SFC:01    SFN:01
+ Pnr=HD2HXX
+ Msg=
+  开始获取政策时间:2014-11-24 09:45:27.722
+结束获取政策时间:2014-11-24 09:45:30.507
+开始过滤政策时间:2014-11-24 09:45:36.291
+ 解析参数:RTCon= 1.杨发兵 HD2HXX 2.  3U8737 E   SU30NOV  CTUCAN HK1   0700 0920          E T1--  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0700/30NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.OSI 3U CTCM15928636274/P1 7.OSI 3U CTCT15928636274    8.RMK CA/MKW78M 9.CTU186   
+ PatCon=>PAT:A  01 E FARE:CNY650.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:770.00   SFC:01    SFN:01
+ Pnr=HD2HXX
+ Msg=
+  开始获取政策时间:2014-11-24 09:47:12.635
+结束获取政策时间:2014-11-24 09:47:13.951
+开始过滤政策时间:2014-11-24 09:47:13.951
+返回结果:XML=<_517><Policy><ID>1</ID><PolicyID>14380789</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>1</FlightType><Flight>8881/8547/8895/8891/8961/8647/8731/8737/8701/8797/8657/8653/8654/8877/8927/8919</Flight><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>9.9</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-20T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>08:00-23:00</GYOnlineTime><GYOutlineTime>08:00-22:30</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>706</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>08:00-23:00</GYFPTime><GYFPTimeNew>08:00-22:30</GYFPTimeNew><ChupPiaoXiaolu>140</ChupPiaoXiaolu><Remark /><Office>ctu389</Office></Policy><Policy><ID>2</ID><PolicyID>14398731</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>1</FlightType><Flight>8881/8547/8895/8891/8737/8731/8701/8797/8657</Flight><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>9.6</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-21T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>708</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>CTU185</Office></Policy><Policy><ID>3</ID><PolicyID>13905730</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>0</FlightType><Flight /><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>7.7</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-01T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>08:00-21:45</GYOnlineTime><GYOutlineTime>08:00-21:45</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>720</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>CTU318</Office></Policy><Policy><ID>4</ID><PolicyID>12362003</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>0</FlightType><Flight /><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>7.4</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-01T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>722</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>CTU293</Office></Policy><Policy><ID>5</ID><PolicyID>14217058</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>2</FlightType><Flight>8969/8563/8897/8905/8813/8555/8771/8985/8531</Flight><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>7.3</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-09T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>08:00-23:50</GYOnlineTime><GYOutlineTime>08:00-23:50</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>723</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>08:00-23:50</GYFPTime><GYFPTimeNew>08:00-23:50</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>CTU212</Office></Policy><Policy><ID>6</ID><PolicyID>14215725</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>2</FlightType><Flight>8969/8563/8897/8905/8813/8555/8771/8985/8531</Flight><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>7.3</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-09T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>08:00-23:50</GYOnlineTime><GYOutlineTime>08:00-23:50</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>723</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>08:00-23:50</GYFPTime><GYFPTimeNew>08:00-23:50</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>CTU212</Office></Policy><Policy><ID>7</ID><PolicyID>13931199</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>0</FlightType><Flight /><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>7.2</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-01T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>08:00-22:30</GYOnlineTime><GYOutlineTime>08:00-22:30</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>724</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>300</ChupPiaoXiaolu><Remark /><Office>ctu295</Office></Policy><Policy><ID>8</ID><PolicyID>13534861</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>0</FlightType><Flight /><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>5</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-01T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>738</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>tao218</Office></Policy><Policy><ID>9</ID><PolicyID>13534809</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>0</FlightType><Flight /><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>5</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-01T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>738</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>tao218</Office></Policy><Policy><ID>10</ID><PolicyID>14098796</PolicyID><CarryCode>3U</CarryCode><FromCity>CTU</FromCity><ToCity>CAN</ToCity><FlightType>1</FlightType><Flight>8737/8731</Flight><Space>E</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>4.9</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2014-11-04T00:00:00+08:00</EffectDate><ExpirationDate>2014-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>739</ZFFee><PMFee>650.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>SHA666</Office></Policy><_x0035_17><Pnr>HD2HXX</Pnr><Status>T</Status><Message>获取政策成功</Message><PnrType>1</PnrType><SeatPrice>650.00</SeatPrice><ABFare>50.00</ABFare><RQFare>70.00</RQFare><TotalPrice>770.00</TotalPrice><INFSeatPrice>0</INFSeatPrice><INFABFare>0</INFABFare><INFRQFare>0</INFRQFare><INFTotalPrice>0</INFTotalPrice></_x0035_17></_517>
+返回结果:表名:Policy第1行数据:
+ID=1
+PolicyID=14380789
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=1
+Flight=8881/8547/8895/8891/8961/8647/8731/8737/8701/8797/8657/8653/8654/8877/8927/8919
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=9.9
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/20 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=08:00-23:00
+GYOutlineTime=08:00-22:30
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=706
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=08:00-23:00
+GYFPTimeNew=08:00-22:30
+ChupPiaoXiaolu=140
+Remark=
+Office=ctu389
+
+表名:Policy第2行数据:
+ID=2
+PolicyID=14398731
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=1
+Flight=8881/8547/8895/8891/8737/8731/8701/8797/8657
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=9.6
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/21 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=708
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=CTU185
+
+表名:Policy第3行数据:
+ID=3
+PolicyID=13905730
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=0
+Flight=
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=7.7
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/1 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=08:00-21:45
+GYOutlineTime=08:00-21:45
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=720
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=CTU318
+
+表名:Policy第4行数据:
+ID=4
+PolicyID=12362003
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=0
+Flight=
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=7.4
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/1 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=722
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=CTU293
+
+表名:Policy第5行数据:
+ID=5
+PolicyID=14217058
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=2
+Flight=8969/8563/8897/8905/8813/8555/8771/8985/8531
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=7.3
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/9 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=08:00-23:50
+GYOutlineTime=08:00-23:50
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=723
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=08:00-23:50
+GYFPTimeNew=08:00-23:50
+ChupPiaoXiaolu=20
+Remark=
+Office=CTU212
+
+表名:Policy第6行数据:
+ID=6
+PolicyID=14215725
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=2
+Flight=8969/8563/8897/8905/8813/8555/8771/8985/8531
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=7.3
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/9 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=08:00-23:50
+GYOutlineTime=08:00-23:50
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=723
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=08:00-23:50
+GYFPTimeNew=08:00-23:50
+ChupPiaoXiaolu=20
+Remark=
+Office=CTU212
+
+表名:Policy第7行数据:
+ID=7
+PolicyID=13931199
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=0
+Flight=
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=7.2
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/1 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=08:00-22:30
+GYOutlineTime=08:00-22:30
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=724
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=300
+Remark=
+Office=ctu295
+
+表名:Policy第8行数据:
+ID=8
+PolicyID=13534861
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=0
+Flight=
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=5
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/1 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=738
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=tao218
+
+表名:Policy第9行数据:
+ID=9
+PolicyID=13534809
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=0
+Flight=
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=5
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/1 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=738
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=tao218
+
+表名:Policy第10行数据:
+ID=10
+PolicyID=14098796
+CarryCode=3U
+FromCity=CTU
+ToCity=CAN
+FlightType=1
+Flight=8737/8731
+Space=E
+TravelType=单程
+PolicyType=2
+Policy=4.9
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2014/11/4 0:00:00
+ExpirationDate=2014/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=739
+PMFee=650.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=SHA666
+
+表名:517第1行数据:
+Pnr=HD2HXX
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=650.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=770.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:47:15.678
+
+End=====================================================================
+
+Start====================================================================
+记录时间:2014-11-24 09:54:17.704
+内容: 参数:_517Accout=kjtadmin
+ _517Password=mypb2013
+ _517Ag=3ec367a33bd448d7a8817d2b243c64ae
+ IsLowerPrice=0
+ PNRContent= 1.张三 JQ8GD9   2.  HU7147 Y   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI51372119861127852/P1    6.OSI HU CTCM18602808274/P1 7.OSI HU CTCT15528305255    8.RMK CA/MDVLQR 9.CTU186   
+>PAT:A  01 Y FARE:CNY1440.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1560.00 SFC:01    SFN:01   
+
+ 开始解析时间:2014-11-24 09:54:16.241
+解析结束时间:2014-11-24 09:54:16.241
+ 解析参数:RTCon= 1.张三 JQ8GD9   2.  HU7147 Y   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI51372119861127852/P1    6.OSI HU CTCM18602808274/P1 7.OSI HU CTCT15528305255    8.RMK CA/MDVLQR 9.CTU186   
+ PatCon=>PAT:A  01 Y FARE:CNY1440.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1560.00 SFC:01    SFN:01
+ Pnr=JQ8GD9
+ Msg=
+  开始获取政策时间:2014-11-24 09:54:16.258
+结束获取政策时间:2014-11-24 09:54:17.701
+开始过滤政策时间:2014-11-24 09:54:17.701
+返回结果:XML=<_517><Policy><ID>1</ID><PolicyID>11339032</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>Y</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>2.1</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition>改签即收回代理费</CPCondition><EffectDate>2014-06-18T00:00:00+08:00</EffectDate><ExpirationDate>2020-06-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>07:00-23:30</GYOnlineTime><GYOutlineTime>07:00-23:30</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>1530</ZFFee><PMFee>1440.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>07:00-23:30</GYFPTime><GYFPTimeNew>07:00-23:30</GYFPTimeNew><ChupPiaoXiaolu>120</ChupPiaoXiaolu><Remark>改签即收回代理费</Remark><Office>HFE161</Office></Policy><Policy><ID>2</ID><PolicyID>14371442</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>2</FlightType><Flight>496/495</Flight><Space>Y</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition>改签即收回代理费</CPCondition><EffectDate>2014-01-01T00:00:00+08:00</EffectDate><ExpirationDate>2015-02-28T23:59:59+08:00</ExpirationDate><GYOnlineTime>08:00-23:59</GYOnlineTime><GYOutlineTime>08:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>1535</ZFFee><PMFee>1440.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>08:00-23:59</GYFPTime><GYFPTimeNew>08:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark>改签即收回代理费</Remark><Office>wux111</Office></Policy><Policy><ID>3</ID><PolicyID>13993912</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>Y</Space><TravelType>单程/往返</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition>改签即收回代理费</CPCondition><EffectDate>2014-10-31T00:00:00+08:00</EffectDate><ExpirationDate>2017-11-01T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>1535</ZFFee><PMFee>1440.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark>改签即收回代理费</Remark><Office>SZV118</Office></Policy><Policy><ID>4</ID><PolicyID>8525427</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>Y</Space><TravelType>单程/往返</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2013-10-11T00:00:00+08:00</EffectDate><ExpirationDate>2015-10-31T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>1535</ZFFee><PMFee>1440.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>tao218</Office></Policy><Policy><ID>5</ID><PolicyID>13754251</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>Y</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2015-01-01T00:00:00+08:00</EffectDate><ExpirationDate>2015-03-31T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>1535</ZFFee><PMFee>1440.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>SYX128</Office></Policy><Policy><ID>6</ID><PolicyID>9867799</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>Y</Space><TravelType>单程/往返</TravelType><PolicyType>2</PolicyType><Policy>1.8</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2013-07-17T00:00:00+08:00</EffectDate><ExpirationDate>2015-12-31T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>1535</ZFFee><PMFee>1440.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>300</ChupPiaoXiaolu><Remark /><Office>TAO218</Office></Policy><Policy><ID>7</ID><PolicyID>8617214</PolicyID><CarryCode>HU</CarryCode><FromCity>PEK</FromCity><ToCity>CTU</ToCity><FlightType>0</FlightType><Flight /><Space>Y</Space><TravelType>单程</TravelType><PolicyType>2</PolicyType><Policy>1.7</Policy><ScheduleConstraints>1/2/3/4/5/6/7</ScheduleConstraints><CPCondition /><EffectDate>2013-11-04T00:00:00+08:00</EffectDate><ExpirationDate>2027-11-30T23:59:59+08:00</ExpirationDate><GYOnlineTime>00:00-23:59</GYOnlineTime><GYOutlineTime>00:00-23:59</GYOutlineTime><IsSp>0</IsSp><IsChangePNRCP>False</IsChangePNRCP><PolicyChildID /><ZFFee>1536</ZFFee><PMFee>1440.00</PMFee><ABFee>50.00</ABFee><FuelFee>70</FuelFee><GYFPTime>00:00-23:59</GYFPTime><GYFPTimeNew>00:00-23:59</GYFPTimeNew><ChupPiaoXiaolu>20</ChupPiaoXiaolu><Remark /><Office>URC221</Office></Policy><_x0035_17><Pnr>JQ8GD9</Pnr><Status>T</Status><Message>获取政策成功</Message><PnrType>1</PnrType><SeatPrice>1440.00</SeatPrice><ABFare>50.00</ABFare><RQFare>70.00</RQFare><TotalPrice>1560.00</TotalPrice><INFSeatPrice>0</INFSeatPrice><INFABFare>0</INFABFare><INFRQFare>0</INFRQFare><INFTotalPrice>0</INFTotalPrice></_x0035_17></_517>
+返回结果:表名:Policy第1行数据:
+ID=1
+PolicyID=11339032
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=Y
+TravelType=单程
+PolicyType=2
+Policy=2.1
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=改签即收回代理费
+EffectDate=2014/6/18 0:00:00
+ExpirationDate=2020/6/30 23:59:59
+GYOnlineTime=07:00-23:30
+GYOutlineTime=07:00-23:30
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=1530
+PMFee=1440.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=07:00-23:30
+GYFPTimeNew=07:00-23:30
+ChupPiaoXiaolu=120
+Remark=改签即收回代理费
+Office=HFE161
+
+表名:Policy第2行数据:
+ID=2
+PolicyID=14371442
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=2
+Flight=496/495
+Space=Y
+TravelType=单程
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=改签即收回代理费
+EffectDate=2014/1/1 0:00:00
+ExpirationDate=2015/2/28 23:59:59
+GYOnlineTime=08:00-23:59
+GYOutlineTime=08:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=1535
+PMFee=1440.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=08:00-23:59
+GYFPTimeNew=08:00-23:59
+ChupPiaoXiaolu=20
+Remark=改签即收回代理费
+Office=wux111
+
+表名:Policy第3行数据:
+ID=3
+PolicyID=13993912
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=Y
+TravelType=单程/往返
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=改签即收回代理费
+EffectDate=2014/10/31 0:00:00
+ExpirationDate=2017/11/1 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=1535
+PMFee=1440.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=改签即收回代理费
+Office=SZV118
+
+表名:Policy第4行数据:
+ID=4
+PolicyID=8525427
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=Y
+TravelType=单程/往返
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2013/10/11 0:00:00
+ExpirationDate=2015/10/31 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=1535
+PMFee=1440.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=tao218
+
+表名:Policy第5行数据:
+ID=5
+PolicyID=13754251
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=Y
+TravelType=单程
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2015/1/1 0:00:00
+ExpirationDate=2015/3/31 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=1535
+PMFee=1440.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=SYX128
+
+表名:Policy第6行数据:
+ID=6
+PolicyID=9867799
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=Y
+TravelType=单程/往返
+PolicyType=2
+Policy=1.8
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2013/7/17 0:00:00
+ExpirationDate=2015/12/31 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=1535
+PMFee=1440.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=300
+Remark=
+Office=TAO218
+
+表名:Policy第7行数据:
+ID=7
+PolicyID=8617214
+CarryCode=HU
+FromCity=PEK
+ToCity=CTU
+FlightType=0
+Flight=
+Space=Y
+TravelType=单程
+PolicyType=2
+Policy=1.7
+ScheduleConstraints=1/2/3/4/5/6/7
+CPCondition=
+EffectDate=2013/11/4 0:00:00
+ExpirationDate=2027/11/30 23:59:59
+GYOnlineTime=00:00-23:59
+GYOutlineTime=00:00-23:59
+IsSp=0
+IsChangePNRCP=False
+PolicyChildID=
+ZFFee=1536
+PMFee=1440.00
+ABFee=50.00
+FuelFee=70
+GYFPTime=00:00-23:59
+GYFPTimeNew=00:00-23:59
+ChupPiaoXiaolu=20
+Remark=
+Office=URC221
+
+表名:517第1行数据:
+Pnr=JQ8GD9
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=1440.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=1560.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:54:17.704
+
+End=====================================================================
+

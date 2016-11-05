@@ -1,0 +1,67 @@
+﻿<div id="AddBusinessmanDialog" class="easyui-dialog" title="新增商户" data-options="modal:true,closed:true,closable:false,buttons:'#AddBusinessmanDialog-buttons'" style="width: 400px; padding: 5px 15px 15px;">
+    <form id="businessmanForm">
+    <table class="editTable" width="100%">
+        <tr>
+            <td style="width:85px;">商户号：</td>
+            <td>
+                <input type="text" class="input required" data-msg-required="请输入商户号" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.Code, visible: $root.action() == 'add', uniqueName: true" />
+                <span data-bind="text: $root.editForm.Code, visible: $root.action() == 'edit'">&nbsp;</span>
+            </td>
+        </tr>
+        <tr>
+            <td>商户名称：</td>
+            <td>
+                <input type="text" class="input required" data-msg-required="请输入商户名称" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.Name, visible: $root.action() == 'add', uniqueName: true" />
+                <span data-bind="text: $root.editForm.Name, visible: $root.action() == 'edit'">&nbsp;</span>
+            </td>
+        </tr>
+        <tr>
+            <td>座机号码：</td>
+            <td>
+                <input type="text" class="input required" data-msg-required="请输入座机号码" style="width:200px; height:24px; line-height:24px;" data-bind="value: $root.editForm.Plane,uniqueName:true" />
+            </td>
+        </tr>
+        <tr>
+            <td>联系人：</td>
+            <td>
+                <input type="text" class="input required" data-msg-required="请输入联系人" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.ContactWay.Contact, uniqueName: true" />
+            </td>
+        </tr>
+        <tr>
+            <td>手机号码：</td>
+            <td>
+                <input type="text" class="input required" data-msg-required="请输入手机号码" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.ContactWay.Tel, uniqueName: true" />
+            </td>
+        </tr>
+        <tr>
+            <td>联系地址：</td>
+            <td>
+                <select data-bind="options: Province, optionsText: 'loca',value: selectedProvince, optionsCaption: '请选择...',uniqueName: true"></select>
+                <select class="required" data-msg-required="请选择省份城市" data-bind="options: City, optionsValue: function (item) { return item+''}, value: $root.editForm.ContactWay.City, optionsCaption: '请选择...', uniqueName: true"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>街道地址：</td>
+            <td>
+                <input type="text" class="input required" data-msg-required="请输入街道地址" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.ContactWay.Address,uniqueName: true" />
+            </td>
+        </tr>
+        <tr>
+            <td>客户经理:</td>
+            <td>
+                 <input type="text" class="input required" data-msg-required="请输入客户经理" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.ContactName, uniqueName: true" />
+            </td>
+        </tr>
+        <tr>
+            <td>客户经理手机：</td>
+            <td>
+                 <input type="text" class="input required" data-msg-required="请输入经理手机" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.Phone, uniqueName: true" />
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<div id="AddBusinessmanDialog-buttons" style="text-align: center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.addClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" data-bind="click: $root.clearClick">取消</a>
+</div>

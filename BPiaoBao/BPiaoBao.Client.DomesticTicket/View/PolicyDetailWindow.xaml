@@ -1,0 +1,363 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:uiExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"		
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:Converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+	xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
+    xmlns:Model="clr-namespace:BPiaoBao.Client.UIExt.Model;assembly=BPiaoBao.Client.UIExt" 
+	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	 xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+    xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" 
+    mc:Ignorable="d" x:Class="BPiaoBao.Client.DomesticTicket.View.PolicyDetailWindow"
+        Title="确认支付" Height="700" Width="1000" WindowStyle="None" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" d:DataContext="{d:DesignData /SampleData/PolicyDetailViewModelSampleData.xaml}" Closing="Window_Closing">
+    <Window.Resources>
+
+        <Converters:SettlementAmountConverter x:Key="SettlementAmountConverter"/>
+        <SolidColorBrush x:Key="CheckBoxStroke" Color="#8E8F8F"/>
+        <Style x:Key="CheckRadioFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle StrokeDashArray="1 2" StrokeThickness="1" Stroke="Black" SnapsToDevicePixels="true" Margin="14,0,0,0"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="#F4F4F4"/>
+            <Setter Property="BorderBrush" Value="{StaticResource CheckBoxStroke}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Themes:BulletChrome BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" IsChecked="{TemplateBinding IsChecked}" IsRound="true" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}"/>
+                            </BulletDecorator.Bullet>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked"/>
+                                    <VisualState x:Name="Unchecked">
+                                        <Storyboard>
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+                                                <EasingDoubleKeyFrame KeyTime="0" Value="0.49"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Indeterminate"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </BulletDecorator>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="HasContent" Value="true">
+                                <Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+                                <Setter Property="Padding" Value="4,0,0,0"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger>
+            <i:InvokeCommandAction Command="{Binding InitlizeCommand}"/>
+        </i:EventTrigger>
+        <ei:DataTrigger Binding="{Binding IsPaid}" Value="True">
+            <!--<ei:CallMethodAction MethodName="Close" />-->
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <Window.Style>
+        <StaticResource ResourceKey="CustomWindowStyle"/>
+    </Window.Style>
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="CashState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtCredit">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="CreditState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtCash">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtCredit">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="344"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border x:Name="bg" Grid.ColumnSpan="2" BorderThickness="0,0,0,1" BorderBrush="#FFE3E3E3" d:IsLocked="True" >
+            <Grid Background="#FFF7F8FA"/>
+        </Border>
+        <Grid Margin="0,0,0,1" d:IsLocked="True">
+            <Image Source="/BPiaoBao.Client.DomesticTicket;component/Image/ticket.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <Grid Grid.ColumnSpan="2" Margin="25,0,0,0" Grid.Column="1" ScrollViewer.VerticalScrollBarVisibility="Hidden" DataContext="{Binding Order}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="29"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding OldOrderId, StringFormat=成人订单号：\{0\}}" VerticalAlignment="Center" Padding="0,0,0,0" FontSize="16" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"
+                       Visibility="{Binding DataContext.IsShowOldOrderID,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <StackPanel Orientation="Horizontal" Grid.Row="1">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PnrCode, StringFormat=PNR编码：\{0\}}" VerticalAlignment="Center" FontSize="16"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding OrderId, StringFormat=订单号：\{0\}}" VerticalAlignment="Center" Padding="45,0,0,0" FontSize="16" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+            </StackPanel>
+            <Path Data="M1,64.5 L590.83333,63.166667" HorizontalAlignment="Left" Height="2.333" Grid.Row="2" Stretch="Fill" Stroke="#FF0F0E0E" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" StrokeDashArray="3" StrokeThickness="0.5" Margin="0,6,25,0">
+                <Path.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-180"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Path.RenderTransform>
+            </Path>
+            <ScrollViewer Grid.Row="2" Margin="0,21,0,0" HorizontalScrollBarVisibility="Hidden">
+                <Grid Height="259" Width="636">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="3" >
+                        <TextBlock TextWrapping="Wrap" Text="航班信息："/>
+                        <ItemsControl ItemsSource="{Binding SkyWays}" ItemTemplate="{StaticResource SkywayItemTemplate}"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Passengers, Converter={StaticResource PassengersConverter}, StringFormat=乘客信息：\{0\}}" VerticalAlignment="Top" Margin="0,12,0,0"/>
+                    <Button Content="购买航意险" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Width="70" Style="{StaticResource PayBtn}" Height="25" Command="{Binding DataContext.OpenPassengersCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"  
+                            Visibility="{Binding DataContext.IsOpenCurrenCarrierInsurance,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}"  />
+                    <!--<Button Grid.Column="1" Grid.Row="4" Style="{StaticResource LinkBtn}"  Content="航意保险协议" Margin="20,0,0,0" VerticalAlignment="Center" Width="80" Command="{Binding DataContext.QuickBackCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                            Visibility="{Binding DataContext.IsOpenCurrenCarrierInsurance,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}" />-->
+                    <TextBlock Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" Visibility="{Binding DataContext.IsShowCommissinInfo,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run Text="政策信息："/>
+                        <Run Text="返点 "/>
+                        <Run Foreground="#FFFD6C01" Text="{Binding Policy.Point, StringFormat=\{0:f1\}%}"/>
+						<Run Text="，"/>
+                        <Run Text="佣金 "/>
+                        <Run Foreground="#FFFD6C01" Text="{Binding Policy.Commission,StringFormat={}￥{0:f2}}">
+							<!--<MultiBinding Mode="OneWay" StringFormat="￥{0:f2}" Converter="{StaticResource CommissionConverter}">
+								<Binding Path="Policy" />
+								<Binding Path="Passengers[0].SeatPrice" />                                        
+							</MultiBinding>-->
+						</Run>
+                    </TextBlock>
+                    <StackPanel Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Visibility="{Binding DataContext.IsOpenRefundInsurance,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}" >
+                        <Button Content="购买极速退服务" HorizontalAlignment="Left" VerticalAlignment="Center" Width="90" Style="{StaticResource PayBtn}" Height="25" Command="{Binding DataContext.OpenPassengersCommand2, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                Visibility="{Binding DataContext.IsOpenRefundInsurance,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}" />
+                        <Button Style="{StaticResource LinkBtn}"  Content="极速退服务协议" VerticalAlignment="Center" Width="90" Command="{Binding DataContext.QuickBackCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                                Visibility="{Binding DataContext.IsOpenRefundInsurance,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}" />
+                    </StackPanel>
+                    <TextBlock Grid.Row="3" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" Visibility="{Binding DataContext.IsShowCommissinInfo,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run Text="票价金额：" />
+                        <Run Text=" "/>
+                        <Run Text="{Binding PayInfo.PayMoney, StringFormat=￥\{0:f2\}}" Foreground="#FFFD6C01"  ToolTip="包含极速退服务费在内"/>
+                        <!--<Run Text=" "/>
+                        <Run Text="{Binding Converter={StaticResource SettlementAmountConverter}, Mode=OneWay}"/>-->
+                    </TextBlock>
+                    <TextBlock Grid.Row="3" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" Visibility="{Binding DataContext.IsShowTicketPrice,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run Text="票价金额：" />
+                        <Run Text=" "/>
+                        <Run Text="{Binding PayInfo.PaidMoney, StringFormat=￥\{0:f2\}}" Foreground="#FFFD6C01" />
+                        <!--<Run Text=" "/>
+                        <Run Text="{Binding Converter={StaticResource SettlementAmountConverter}, Mode=OneWay}"/>-->
+                    </TextBlock>
+                    <TextBlock Grid.Row="4" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" >   
+                        <Run Text="航意保险金额：" />
+                        <Run Text=" "/>   
+                        <Run Text="{Binding DataContext.UnexpectedPrice,StringFormat=￥\{0:f2\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged ,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Foreground="#FFFD6C01" />
+                        <!--<Run Text=" "/>
+                        <Run Text="{Binding Converter={StaticResource SettlementAmountConverter}, Mode=OneWay}"/>-->
+                    </TextBlock>
+                    <TextBlock Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" >
+                        <Run Text="极速退服务费：" />
+                        <Run Text=" "/>
+                        <Run Text="{Binding DataContext.RefundSinglePrice, StringFormat=￥\{0:f2\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Foreground="#FFFD6C01" />
+                        <!--<Run Text=" "/>
+                        <Run Text="{Binding Converter={StaticResource SettlementAmountConverter}, Mode=OneWay}"/>-->
+                    </TextBlock>
+
+                    <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Orientation="Horizontal"   
+                                Visibility="{Binding DataContext.IsShowTimer,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}" >
+                        <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Text="支付倒计时:" Foreground="Red" FontSize="20" />
+                        <TextBlock x:Name="xLastTimes" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center"  Foreground="Red" FontSize="19" 
+                                   Text="{Binding DataContext.LastTimes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                        <TextBlock x:Name="xLastSeconds" HorizontalAlignment="Left" TextWrapping="NoWrap" VerticalAlignment="Center" Foreground="Red" FontSize="19"
+                                   Text="{Binding DataContext.LastSeconds,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                    </StackPanel>
+                    <TextBlock Grid.Row="6" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,10,0,0"     >
+                        <Run Text="结算金额：" />
+                        <Run Text=" "/>
+                        <Run Text="{Binding DataContext.SumPrice, StringFormat=￥\{0:f2\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" Foreground="#FFFD6C01" />
+                        <!--<Run Text=" "/>
+                        <Run Text="{Binding Converter={StaticResource SettlementAmountConverter}, Mode=OneWay}"/>-->
+                    </TextBlock>
+                </Grid>
+            </ScrollViewer>
+            <!--原始View-->
+            <!--<ScrollViewer Grid.Row="2" Margin="0,21,0,0" HorizontalScrollBarVisibility="Hidden" Visibility="Collapsed">-->
+                <!--<StackPanel Orientation="Vertical" Height="159" Width="600">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock TextWrapping="Wrap" Text="航班信息："/>
+                        <ItemsControl ItemsSource="{Binding SkyWays}" ItemTemplate="{StaticResource SkywayItemTemplate}"/>
+                    </StackPanel>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Passengers, Converter={StaticResource PassengersConverter}, StringFormat=乘客信息：\{0\}}" VerticalAlignment="Top" Margin="0,12,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" Visibility="{Binding DataContext.IsShowCommissinInfo,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run Text="政策信息："/>
+                        <Run Text="返点 "/>
+                        <Run Foreground="#FFFD6C01" Text="{Binding Policy.Point, StringFormat=\{0:f1\}%}"/>
+						<Run Text="，"/>
+                        <Run Text="佣金 "/>
+                        <Run Foreground="#FFFD6C01" Text="{Binding Policy.Commission,StringFormat={}￥{0:f2}}">-->
+							<!--<MultiBinding Mode="OneWay" StringFormat="￥{0:f2}" Converter="{StaticResource CommissionConverter}">
+								<Binding Path="Policy" />
+								<Binding Path="Passengers[0].SeatPrice" />                                        
+							</MultiBinding>-->
+						<!--</Run>
+                    </TextBlock>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" Visibility="{Binding DataContext.IsShowCommissinInfo,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run Text="支付金额：" />
+                        <Run Text=" "/>
+                        <Run Text="{Binding PayInfo.PayMoney, StringFormat=￥\{0:f2\}}" Foreground="#FFFD6C01" />-->
+                        <!--<Run Text=" "/>
+                        <Run Text="{Binding Converter={StaticResource SettlementAmountConverter}, Mode=OneWay}"/>-->
+                    <!--</TextBlock>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,12,0,0" Visibility="{Binding DataContext.IsShowTicketPrice,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Run Text="支付金额：" />
+                        <Run Text=" "/>
+                        <Run Text="{Binding PayInfo.PaidMoney, StringFormat=￥\{0:f2\}}" Foreground="#FFFD6C01" />-->
+                        <!--<Run Text=" "/>
+                        <Run Text="{Binding Converter={StaticResource SettlementAmountConverter}, Mode=OneWay}"/>-->
+                    <!--</TextBlock>
+                </StackPanel>-->
+            <!--</ScrollViewer>-->
+        </Grid>
+        <Border Grid.Row="1" BorderThickness="0,0,1,0" BorderBrush="#FFE3E3E3">
+            <Grid>
+                <Image Source="/BPiaoBao.Client.DomesticTicket;component/Image/ad.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+        </Border>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <TabControl Margin="10,25,10,10" FlowDirection="RightToLeft" ItemContainerStyle="{StaticResource PayTabItem}" BorderThickness="0" Background="#FFF7F8FA" SelectedIndex="2">
+                <TabItem Header="支付平台" Width="110" Height="30" FlowDirection="LeftToRight" Visibility="{Binding DataContext.IsShowPay,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid Margin="0,38,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="103*"/>
+                            <ColumnDefinition Width="437*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="选择支付平台：" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                        <ListBox x:Name="listBoxPlatform" DataContext="{Binding Source={StaticResource BankDataDataSource}}" ItemsSource="{Binding PayPlatforms}" Style="{StaticResource PayPlatformsListBoxStyle}" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource PlatformItemStyle}" BorderBrush="{x:Null}" Grid.Row="1" Grid.Column="1" />
+                        <Button Content="立即支付" HorizontalAlignment="Left" Margin="33,25,0,0" Grid.Row="2" VerticalAlignment="Top" Width="90" Style="{StaticResource PayBtn}" Height="28" Command="{Binding PayOrderByPlatformCommand}" CommandParameter="{Binding SelectedValue.Code, ElementName=listBoxPlatform}" Grid.Column="1"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="银行卡" Width="110" Height="30" FlowDirection="LeftToRight" Visibility="{Binding DataContext.IsShowPay,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <Grid Margin="0,5" VerticalAlignment="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="213*"/>
+                            <RowDefinition Height="50*"/>
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ListBox x:Name="listBox" DataContext="{Binding Source={StaticResource BankDataDataSource}}" ItemsSource="{Binding Banks}" Style="{StaticResource BankItemsControl}" BorderThickness="0" ItemContainerStyle="{DynamicResource PlatformItemStyle}" ScrollViewer.VerticalScrollBarVisibility="Disabled"  />
+                        </ScrollViewer>
+
+                        <Button Content="立即支付" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Style="{StaticResource PayBtn}" Height="28" Margin="10,11.867,0,0" Grid.Row="1" Command="{Binding PayOrderByBankCommand}" CommandParameter="{Binding SelectedValue.Code, ElementName=listBox}"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="账户支付" Width="110" Height="30" FlowDirection="LeftToRight">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="96"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="75" />
+                            <RowDefinition Height="40*" />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="75*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="选择账户：" VerticalAlignment="Center" Grid.Column="0"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <RadioButton x:Name="radioBtnCashbag" IsChecked="True" Background="#FF2E45AE" Style="{DynamicResource CashRadioButton}" Width="210">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <ei:GoToStateAction StateName="CashState"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </RadioButton>
+                            <RadioButton x:Name="radioBtnCredit" Margin="17,0,0,0" Style="{DynamicResource CreditRadioButton}" Width="210">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Checked">
+                                        <ei:GoToStateAction StateName="CreditState"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </RadioButton>
+                        </StackPanel>
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="当前余额：" VerticalAlignment="Center" Grid.Row="1"/>
+                        <WPFSpark:SprocketControl HorizontalAlignment="Left" Width="10" Height="10" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="9,0,0,0" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="支付密码：" VerticalAlignment="Center" Grid.Row="2"/>
+                        <TextBlock x:Name="txtCash" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="{Binding AccountInfo.ReadyInfo.ReadyBalance,StringFormat={}￥{0:f2}}" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{StaticResource OrangeForeground}"/>
+                        <TextBlock x:Name="txtCredit" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="{Binding AccountInfo.CreditInfo.CreditBalance,StringFormat={}￥{0:f2}}" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="{StaticResource OrangeForeground}" Background="#FFF5F6F8" Visibility="Collapsed"/>
+                        <Grid Grid.Column="1" Height="40" Margin="10,0,0,0" Grid.Row="2" VerticalAlignment="Center" >
+                            <PasswordBox x:Name="passwordBox" VerticalAlignment="Center" HorizontalAlignment="Left" Width="141"/>
+                            <!--<TextBlock TextWrapping="Wrap" Text="此密码为登录的支付密码，非该银行卡的取款密码" Foreground="{StaticResource GrayForeground}" FontSize="10.667" Margin="0,0,0,-6" VerticalAlignment="Bottom"/>-->
+                        </Grid>
+                        <StackPanel Grid.Column="1" Margin="10,20,0,0" Orientation="Horizontal" Grid.Row="3" d:LayoutOverrides="Height" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Content="立即支付" Click="Button_Click" VerticalAlignment="Center" Style="{StaticResource PayBtn}" Height="28" Width="90"/>
+                            <TextBlock x:Name="textBlock" TextWrapping="Wrap" VerticalAlignment="Center" Margin="20,0,0,0" Foreground="Green"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="选择支付方式" VerticalAlignment="Top" Margin="42,33.081,0,0"/>
+            <Path Data="M572.33333,56.333333 L463.16698,56.333333" Fill="#FFC9D6DC" HorizontalAlignment="Left" Height="4.904" Margin="11,56.38,0,0" Stretch="Fill" Stroke="#FFC9D6DC" VerticalAlignment="Top" Width="598"/>
+        </Grid>
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Grid.RowSpan="2" Grid.ColumnSpan="2" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,8 @@
+Start====================================================================
+时间:2014-11-24 09:53:32.801
+客户端IP:10.11.3.163:37839
+调用方法名:Destine_手机预定
+内容:   在 BPiaoBao.DomesticTicket.Domain.Services.FlightService.Destine(String code, DestineRequest destine) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.DomesticTicket.Domain\Services\FlightService.cs:行号 698
+   在 BPiaoBao.AppServices.DomesticTicket.OrderService.Destine(DestineRequest destine, EnumDestineSource destineSource) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\DomesticTicket\OrderService.cs:行号 131成人编码生成失败,原因如下:发送指令：NM1张三SS HU7147 Y 05FEB15 PEKCTU 1SSR FOID HU HK/NI51372119861127852/P1OSI HU CTCM18602808274/P1OSI HU CTCT 15528305255TKTL/0755/05FEB/CTU186@，接收返回信息失败，可能通讯断开...
+End=====================================================================
+

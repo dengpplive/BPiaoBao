@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A2F936A-7D1F-46E1-ADF8-E101573AA3E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.AppServices.ConsoContracts</RootNamespace>
+    <AssemblyName>BPiaoBao.AppServices.ConsoContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomesticTicket\DataObjects\ConsoDetailSaleOrder.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ConsoOrderCoordination.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ConsoOrderDataObject.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ConsoSaleOrderDataObject.cs" />
+    <Compile Include="DomesticTicket\DataObjects\RequestDeduction.cs" />
+    <Compile Include="DomesticTicket\DataObjects\RequestPartPolicy.cs" />
+    <Compile Include="DomesticTicket\DataObjects\RequestPolicy.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ResponseDeduction.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ResponseFullPolicy.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ResponseLocalPolicy.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ResponsePolicy.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ResponseSpecialPolicy.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ResponseTicket.cs" />
+    <Compile Include="DomesticTicket\DataObjects\ResponseTicketCount.cs" />
+    <Compile Include="DomesticTicket\DataObjects\SearchModel.cs" />
+    <Compile Include="DomesticTicket\IConsoDeductionGroupService.cs" />
+    <Compile Include="DomesticTicket\IConsoInsuranceService.cs" />
+    <Compile Include="DomesticTicket\IConsoLocalPolicyService.cs" />
+    <Compile Include="DomesticTicket\IConsoOrderService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemSetting\DataObjects\BusinessmanOperator.cs" />
+    <Compile Include="SystemSetting\DataObjects\BuyDetailDataObj.cs" />
+    <Compile Include="SystemSetting\DataObjects\CarrierDataObject.cs" />
+    <Compile Include="SystemSetting\DataObjects\CarrierSettingDataObject.cs" />
+    <Compile Include="SystemSetting\DataObjects\CurrentUserInfo.cs" />
+    <Compile Include="SystemSetting\DataObjects\DefaultPolicy.cs" />
+    <Compile Include="SystemSetting\DataObjects\GiveDetailDataObj.cs" />
+    <Compile Include="SystemSetting\DataObjects\LabelDataObject.cs" />
+    <Compile Include="SystemSetting\DataObjects\NoticeAttachmentDataDto.cs" />
+    <Compile Include="SystemSetting\DataObjects\NoticeDataObj.cs" />
+    <Compile Include="SystemSetting\DataObjects\PagedList.cs" />
+    <Compile Include="SystemSetting\DataObjects\RechargeDataObject.cs" />
+    <Compile Include="SystemSetting\DataObjects\RequestNoticeDto.cs" />
+    <Compile Include="SystemSetting\DataObjects\RequestOperator.cs" />
+    <Compile Include="SystemSetting\DataObjects\RequestBusinessman.cs" />
+    <Compile Include="SystemSetting\DataObjects\ResponseBusinessman.cs" />
+    <Compile Include="SystemSetting\DataObjects\ResponseDetailBusinessman.cs" />
+    <Compile Include="SystemSetting\DataObjects\ResponseOperator.cs" />
+    <Compile Include="SystemSetting\DataObjects\ResponseRole.cs" />
+    <Compile Include="SystemSetting\DataObjects\ResponseSmsTemplate.cs" />
+    <Compile Include="SystemSetting\DataObjects\SampleBuyer.cs" />
+    <Compile Include="SystemSetting\DataObjects\SendDetailDataObj.cs" />
+    <Compile Include="SystemSetting\DataObjects\SMSChargeSetDataObj.cs" />
+    <Compile Include="SystemSetting\DataObjects\SmsTemplateDataObject.cs" />
+    <Compile Include="SystemSetting\IConsoBusinessmanService.cs" />
+    <Compile Include="SystemSetting\IConsoLoginService.cs" />
+    <Compile Include="SystemSetting\IConsoNoticeService.cs" />
+    <Compile Include="SystemSetting\IConsoSMSService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,250 @@
+Start====================================================================
+时间:2014-11-24 09:27:34.623
+客户端IP:10.11.3.163:52004
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=610000-0001 
+ Tel=15528305255
+航段1:
+CarrayCode=3U
+FlightNumber=8548
+StartDate=2015/1/15 6:25:00
+EndDate=2015/1/15 9:35:00
+Seat=G
+FromCityCode=PEK
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=70.13999938964844
+FlightModel=321
+TaxFee=0
+RQFee=0
+SeatPrice=0
+PolicySpecialType=Normal
+SpecialPrice=0
+SpecialTax=0
+SpecialFuelFee=0
+SpecialYPrice=0
+乘客1:
+PassengerName=张三
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=513722198911054516
+ChdBirthday=0001/1/1 0:00:00
+LinkPhone=13629244039
+Birth=null
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=ctu186
+时间1:2014-11-24 09:27:28.926
+时间2:2014-11-24 09:27:34.600
+结果:
+ 成人Pnr=JNL3N2 PNRContent= 1.张三 JNL3N2   2.  3U8548 G   TH15JAN  PEKCTU HK1   0625 0935          E T3T1  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0625/15JAN/CTU186  5.SSR FOID 3U HK1 NI513722198911054516/P1   6.OSI 3U CTCM13629244039/P1 7.OSI 3U CTCT15528305255    8.RMK CA/NJY6TH 9.CTU186    
+ PATContent=>PAT:A  01 G FARE:CNY1010.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1130.00 SFC:01    SFN:01   
+时间3:2014-11-24 09:27:34.623
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-24 09:28:56.435
+客户端IP:10.11.3.163:33113
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=610000-0001 
+ Tel=15528305255
+航段1:
+CarrayCode=3U
+FlightNumber=8548
+StartDate=2015/1/15 6:25:00
+EndDate=2015/1/15 9:35:00
+Seat=G
+FromCityCode=PEK
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=70.13999938964844
+FlightModel=321
+TaxFee=0
+RQFee=0
+SeatPrice=0
+PolicySpecialType=Normal
+SpecialPrice=0
+SpecialTax=0
+SpecialFuelFee=0
+SpecialYPrice=0
+乘客1:
+PassengerName=张三
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=513722198911054516
+ChdBirthday=0001/1/1 0:00:00
+LinkPhone=13629244039
+Birth=null
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=ctu186
+时间1:2014-11-24 09:28:47.890
+时间2:2014-11-24 09:28:56.434
+结果:
+ 成人Pnr=HD23RN PNRContent= 1.张三 HD23RN   2.  3U8548 G   TH15JAN  PEKCTU HK1   0625 0935          E T3T1  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0625/15JAN/CTU186  5.SSR FOID 3U HK1 NI513722198911054516/P1   6.SSR ADTK 1E BY CTU01DEC14/0928 OR CXL 3U8548 G15JAN   7.OSI 3U CTCM13629244039/P1 8.OSI 3U CTCT15528305255    9.RMK CA/MCL7HJ10.CTU186    
+ PATContent=>PAT:A  01 G FARE:CNY1010.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1130.00 SFC:01    SFN:01   
+时间3:2014-11-24 09:28:56.435
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-24 09:39:16.295
+客户端IP:10.11.3.163:57162
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=610000-0001 
+ Tel=15528305255
+航段1:
+CarrayCode=HU
+FlightNumber=7147
+StartDate=2015/2/5 7:55:00
+EndDate=2015/2/5 10:55:00
+Seat=F
+FromCityCode=PEK
+ToCityCode=CTU
+FromTerminal=T1
+ToTerminal=T2
+Discount=300.0
+FlightModel=333
+TaxFee=0
+RQFee=0
+SeatPrice=0
+PolicySpecialType=Normal
+SpecialPrice=0
+SpecialTax=0
+SpecialFuelFee=0
+SpecialYPrice=0
+乘客1:
+PassengerName=张三
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=513722198911054516
+ChdBirthday=0001/1/1 0:00:00
+LinkPhone=13629244039
+Birth=null
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=ctu186
+时间1:2014-11-24 09:39:13.482
+时间2:2014-11-24 09:39:16.284
+结果:
+ 成人Pnr=JVN2J9 PNRContent= 1.张三 JVN2J9   2.  HU7147 F   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI513722198911054516/P1   6.OSI HU CTCM13629244039/P1 7.OSI HU CTCT15528305255    8.RMK CA/MKW4GY 9.CTU186    
+ PATContent=>PAT:A  01 F FARE:CNY4320.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:4440.00 SFC:01    SFN:01   
+时间3:2014-11-24 09:39:16.295
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-24 09:45:15.210
+客户端IP:127.0.0.1:1628
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=003 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8737
+StartDate=2014/11/30 7:00:00
+EndDate=2014/11/30 9:20:00
+Seat=E
+FromCityCode=CTU
+ToCityCode=CAN
+FromTerminal=T1
+ToTerminal=--
+Discount=50.0000
+FlightModel=321
+TaxFee=50
+RQFee=70.0
+SeatPrice=650.00
+PolicySpecialType=Normal
+SpecialPrice=650.00
+SpecialTax=50
+SpecialFuelFee=70.0
+SpecialYPrice=1300.00
+乘客1:
+PassengerName=杨发兵
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/24 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-24 09:45:12.964
+时间2:2014-11-24 09:45:15.200
+结果:
+ 成人Pnr=HD2HXX PNRContent= 1.杨发兵 HD2HXX 2.  3U8737 E   SU30NOV  CTUCAN HK1   0700 0920          E T1--  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0700/30NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.OSI 3U CTCM15928636274/P1 7.OSI 3U CTCT15928636274    8.RMK CA/MKW78M 9.CTU186    
+ PATContent=>PAT:A  01 E FARE:CNY650.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:770.00   SFC:01    SFN:01   
+时间3:2014-11-24 09:45:15.210
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-24 09:54:15.758
+客户端IP:10.11.3.163:37839
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=003 
+ Tel=15528305255
+航段1:
+CarrayCode=HU
+FlightNumber=7147
+StartDate=2015/2/5 7:55:00
+EndDate=2015/2/5 10:55:00
+Seat=Y
+FromCityCode=PEK
+ToCityCode=CTU
+FromTerminal=T1
+ToTerminal=T2
+Discount=100.0
+FlightModel=333
+TaxFee=0
+RQFee=0
+SeatPrice=0
+PolicySpecialType=Normal
+SpecialPrice=0
+SpecialTax=0
+SpecialFuelFee=0
+SpecialYPrice=0
+乘客1:
+PassengerName=张三
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=51372119861127852
+ChdBirthday=0001/1/1 0:00:00
+LinkPhone=18602808274
+Birth=null
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-24 09:54:12.768
+时间2:2014-11-24 09:54:15.751
+结果:
+ 成人Pnr=JQ8GD9 PNRContent= 1.张三 JQ8GD9   2.  HU7147 Y   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI51372119861127852/P1    6.OSI HU CTCM18602808274/P1 7.OSI HU CTCT15528305255    8.RMK CA/MDVLQR 9.CTU186    
+ PATContent=>PAT:A  01 Y FARE:CNY1440.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1560.00 SFC:01    SFN:01   
+时间3:2014-11-24 09:54:15.758
+
+
+End=====================================================================
+

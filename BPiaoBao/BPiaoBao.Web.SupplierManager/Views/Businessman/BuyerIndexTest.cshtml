@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "采购商";
+   
+    
+}
+
+<table id="tg"></table>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $("#tg").treegrid({
+                url: '/Businessman/test',
+                fit: true,
+                checkbox: true,
+                singleSelect: false,
+                idField: 'id',
+                treeField: 'name',
+                columns: [[
+                    {
+                        title: '模块', field: 'name'
+                    },
+                    { checkbox: true,field:'id' },
+                    {
+                        title: '功能点', field: 'item',
+                        formatter: function (value) {
+                            if (value) {
+                                var s = '';
+                                $.each(value, function (i, n) {
+                                    s += '<input type="checkbox" value="' + n.id + '">' + n.name + '&nbsp;&nbsp;';
+                                })
+                                return s;
+                            }
+                        }
+                    }
+                ]]
+            })
+        });
+    </script>
+}
+

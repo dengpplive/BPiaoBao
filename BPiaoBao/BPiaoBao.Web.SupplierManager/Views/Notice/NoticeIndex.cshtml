@@ -1,0 +1,315 @@
+﻿@{
+    ViewBag.Title = "NoticeIndex";
+}
+<style>
+    .filterbg table tr td{ border:0px; padding-bottom:0px;
+    }
+
+</style>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="mainContent">
+            <div class="filterbg" style="border:0px;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="40">标题：</td>
+                        <td width="150">
+                            <input type="text" name="textfield" class="inputStyle" data-bind="value: queryCond.Title" /></td>
+
+                        <td width="40">状态：</td>
+                        <td width="60">
+                            <select id="Coordination_DIV_Type" data-bind="value: queryCond.State">
+                                <option value="-1">全部</option>
+                                <option value="true">有效</option>
+                                <option value="false">无效</option>
+                            </select></td>
+                        <td>
+                            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: search" style="padding:0px 10px; color:#fff;">查询</a>
+                            <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: AddNoticeModel.OpenNoticeAddPage" style="padding:0px 15px; color:#fff;">发布公告</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <table id="dg" title="公告列表" class="dgShow">
+            <thead>
+                <tr style="background-color: #daeef5">
+                    <th data-options="field:'ID', width:120, formatter: searchViewModel.operationColumnFormatter.Handle">基本操作</th>
+                    <th data-options="field:'Code',width:140">商户号</th>
+                    <th data-options="field:'Title',width:150">标题</th>
+                    @*<th data-options="field:'Contents',width:500">内容</th>*@
+                    <th data-options="field:'NoticeShowType',width:150,formatter:searchViewModel.operationColumnFormatter.NoticeShowType">可见类型</th>
+                    <th data-options="field:'NoticeType',width:150,formatter:searchViewModel.operationColumnFormatter.NoticeType">公告类型</th>
+                    <th data-options="field:'State',width:80,formatter:searchViewModel.operationColumnFormatter.IsEnable">公告状态</th>
+                    <th data-options="field:'CreateTime',width:80">发布时间</th>
+                    <th data-options="field:'CreateName',width:100">发布人</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div id="AddNoticeWindow" class="easyui-window" title="发布公告" data-options="resizable:false,maximizable:false,minimizable:false,model:true,collapsible:false,maximized: true,draggable: false" style="padding: 10px 15px; width: 600px; height: auto;">
+    <div>
+        <table>
+
+            <tr>
+                <td width="60px">标题：</td>
+                <td>
+                    <input type="text" name="textfield" class="inputStyle" maxlength="50" data-bind="value: NoticeDto.Title" />
+                </td>
+            </tr>
+            <tr>
+                <td>内容：</td>
+                <td>
+                    <textarea id="NoticeContent" data-bind="value: NoticeDto.Contents" maxlength="1000" rows="5" cols="50"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>有效日期：</td>
+                <td>
+                    <input id="CreateStartTime" class="my97value inputStyle22" data-options="maxDate:'#F{$dp.$D(\'CreateEndTime\')}'" data-bind="my97value: NoticeDto.EffectiveStartTime" />-
+                    <input id="CreateEndTime" class="my97value inputStyle22" data-options="minDate:'#F{$dp.$D(\'CreateStartTime\')}'" data-bind="my97value: NoticeDto.EffectiveEndTime" />
+                </td>
+            </tr>
+            <tr>
+                <td>公告类型：</td>
+                <td>
+                    <input type="checkbox" value="0" data-bind="checked: AddNoticeModel.NoticeTypeArray" />滚动
+                    <input type="checkbox" value="1" data-bind="checked: AddNoticeModel.NoticeTypeArray" />强制弹出
+                    <input type="checkbox" value="2" data-bind="checked: AddNoticeModel.NoticeTypeArray" />登录弹出
+                </td>
+            </tr>
+            <tr>
+                <td>公告附件：</td>
+                <td>
+                    <div id="fileQueue"></div>
+                    <input type="file" name="uploadify" id="uploadify" />
+
+                </td>
+
+            </tr>
+            <tr id="trAttachment">
+                <td colspan="2" width="300px">
+                    <ul data-bind="foreach:NoticeDto.NoticeAttachments">
+                        <li>
+                            <span data-bind="text:Name"></span>
+                            <a href="#" data-bind="click:AddNoticeModel.DeleteNoticeAttachMent">删除</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center">
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: saveNotice" style="padding:0px 10px; color:#fff;">保存</a>&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: closeNoticeAddWindow" style="padding:0px 10px; color:#fff;">取消</a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <link href="~/Content/uploadify/uploadify.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.uploadify.js"></script>
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            searchViewModel = {
+                $DataGrid: null,
+                $AddNoticeWindow: null,
+                queryUrl: '@Url.Action("GetNoticeList")',
+            queryCond: {
+                Title: ko.observable(),
+                State: ko.observable(),
+                StartTime: ko.observable(),
+                EndTime: ko.observable()
+            },
+            lastQueryCond: {},
+            isModify: ko.observable(false),
+            init: function () {
+                this.$AddNoticeWindow = $("#AddNoticeWindow").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                this.$DataGrid = $('#dg').datagrid({
+                    rownumbers: false,
+                    singleSelect: true,
+                    autoRowHeight: false,
+                    pagination: true,
+                    nowrap: false,
+                    pageSize: 10,
+                    toolbar: '#mainContent',
+                    fit: true,
+                    url: searchViewModel.queryUrl,
+                    queryParams: this.lastQueryCond
+                });
+                ko.applyBindings(searchViewModel, $("#mainContent")[0]);
+            },
+            search: function () {
+                this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                this.$DataGrid.datagrid("load", this.lastQueryCond);
+            },
+            EnableAndDisable: function (id) {
+                $.messager.confirm("提示", "是否确认此操作？", function (r) {
+                    if (r) {
+                        $.post('@Url.Action("NoticeEnableOrDisable")', { Id: id }, function () {
+                            searchViewModel.search();
+                        });
+                    }
+                });
+            },
+            DeleteNotice: function (id) {
+                $.messager.confirm("提示", "是否确认删除？", function (r) {
+                    if (r) {
+                        $.post('@Url.Action("DeleteNotice")', { Id: id }, function () {
+                            searchViewModel.search();
+                        });
+                    }
+                });
+            },
+            operationColumnFormatter: {
+                Handle: function (value, row, rowIndex) {
+                    var tempStr = "<a href='javascript:AddNoticeModel.openModifyDialog(\"" + value + "\")'  >修改</a>&nbsp;|&nbsp;";
+                    if (row.State == 0) {
+                        tempStr += "<a href='javascript:searchViewModel.EnableAndDisable(\"" + value + "\")'  >启用</a>&nbsp;|&nbsp;";
+                    } else {
+                        tempStr += "<a href='javascript:searchViewModel.EnableAndDisable(\"" + value + "\")'  >禁用</a>&nbsp;|&nbsp;";
+                    }
+                    tempStr += "<a href='javascript:searchViewModel.DeleteNotice(\"" + value + "\")'  >删除</a>";
+                    return tempStr;
+                },
+                IsEnable: function (value, row, rowIndex) {
+                    return str = row.State == 1 ? "有效" : "无效";
+                },
+                NoticeType: function (value, row, rowIndex) {
+                    return str = value.replace('0', '滚动').replace('1', '强制弹出').replace('2', '登录弹出');
+                },
+                NoticeShowType: function (value, row, rowIndex) {
+                    return str = value.replace('0', '买票宝').replace('1', '运营商').replace('2', '代理人');
+                }
+            }
+        };
+        AddNoticeModel = {
+            init: function () {
+                $("#uploadify").uploadify({
+                    width: 80,
+                    height: 20,
+                    buttonText: '添加附件',
+                    //removeCompleted: false,
+                    swf: '@Url.Content("~/Content/uploadify/uploadify.swf")',
+                    fileSizeLimit: '4MB',
+                    uploader: '@Url.Action("FileUpload")',
+                    queueSizeLimit: 5,
+                    uploadLimit: 10,
+                    onCancel: function (file) {
+
+                    },
+                    onUploadSuccess: function (file, data, response) {
+
+                        var data = JSON.parse(data);
+                        if (data.Success) {
+                            AddNoticeModel.NoticeDto.NoticeAttachments.push({ Name: file.name, Url: data.Url });
+                        } else {
+                            alert(data.Message);
+                        }
+                    },
+
+                });
+                CKEDITOR.replace("NoticeContent");
+
+                ko.applyBindings(AddNoticeModel, $("#AddNoticeWindow")[0]);
+            },
+            NoticeShowTypeArray: ko.observableArray(),
+            NoticeTypeArray: ko.observableArray(["0", "1", "2"]),
+            NoticeDto: {
+                ID: ko.observable(),
+                State: ko.observable(),
+                Title: ko.observable(),
+                Contents: ko.observable(),
+                NoticeType: ko.observableArray(),
+                NoticeShowType: ko.observableArray(),
+                EffectiveStartTime: ko.observable(),
+                EffectiveEndTime: ko.observable(),
+                NoticeAttachments: ko.observableArray([{ Name: ko.observable(), Url: ko.observable() }])
+
+            },
+            DeleteNoticeAttachMent: function () {
+                AddNoticeModel.NoticeDto.NoticeAttachments.remove(this);
+            },
+            OpenNoticeAddPage: function () {
+                searchViewModel.isModify(false);
+                $("#trAttachment").hide();
+                CKEDITOR.instances.NoticeContent.setData('');
+                AddNoticeModel.NoticeDto.NoticeAttachments.removeAll();
+                AddNoticeModel.NoticeDto.NoticeAttachments.push({ Name: ko.observable(), Url: ko.observable() });
+                AddNoticeModel.NoticeDto.ID(null).Title(null).EffectiveStartTime(null).EffectiveEndTime(null);
+                AddNoticeModel.NoticeShowTypeArray([]).NoticeTypeArray(["0", "1", "2"]);
+                searchViewModel.$AddNoticeWindow.window("setTitle", "发布公告");
+                searchViewModel.$AddNoticeWindow.window("open");
+            },
+            openModifyDialog: function (id) {
+                searchViewModel.isModify(true);
+                $("#trAttachment").show();
+                $.post('@Url.Action("GetNoticeinfoById")', { Id: id }, function (data) {
+                    var data = JSON.parse(data);
+                    data.EffectiveStartTime = data.EffectiveStartTime.split(' ')[0];
+                    data.EffectiveEndTime = data.EffectiveEndTime.split(' ')[0];
+                    AddNoticeModel.map(data, AddNoticeModel.NoticeDto);
+                    CKEDITOR.instances.NoticeContent.setData(data.Contents);
+                    if (AddNoticeModel.NoticeDto.NoticeType() != null && AddNoticeModel.NoticeDto.NoticeType() != '') {
+                        AddNoticeModel.NoticeTypeArray(AddNoticeModel.NoticeDto.NoticeType().split(','));
+                    }
+                    searchViewModel.$AddNoticeWindow.window("setTitle", "修改公告");
+                    searchViewModel.$AddNoticeWindow.window("open");
+                });
+            },
+            closeNoticeAddWindow: function () {
+                searchViewModel.$AddNoticeWindow.window("close");
+            },
+            saveNotice: function () {
+                AddNoticeModel.NoticeDto.NoticeType(AddNoticeModel.NoticeTypeArray().join(','));
+                AddNoticeModel.NoticeDto.Contents = CKEDITOR.instances.NoticeContent.getData();
+                var noticeDto = ko.toJS(AddNoticeModel.NoticeDto);
+                if (noticeDto.Title == undefined || noticeDto.Title == '') {
+                    $.messager.alert("提示", "请输入标题！", 'info');
+                    return;
+                }
+                if (noticeDto.Contents == undefined || noticeDto.Contents == '') {
+                    $.messager.alert("提示", "请输入内容！", 'info');
+                    return;
+                }
+                if (noticeDto.EffectiveStartTime == undefined || noticeDto.EffectiveStartTime == '' || noticeDto.EffectiveEndTime == undefined || noticeDto.EffectiveEndTime == '') {
+                    $.messager.alert("提示", "请选择时间！", 'info');
+                    return;
+                }
+                $.ajax({
+                    url: searchViewModel.isModify() == false ? '@Url.Action("AddNotice")' : '@Url.Action("ModifyNotice")',
+                    dataType: 'json',
+                    type: 'POST',
+                    contentType: "application/json",
+                    cache: false,
+                    data: JSON.stringify(noticeDto)
+                }).done(function (e, s) {
+                    AddNoticeModel.closeNoticeAddWindow();
+                    searchViewModel.search();
+                }).fail(function (e) {
+                    var obj = JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                });
+            },
+            map: function (obj, obserableObj) {
+                for (var prop in obserableObj) {
+                    if (obserableObj.hasOwnProperty(prop)) {
+                        if (typeof obserableObj[prop] === "function")
+                            obserableObj[prop](obj ? obj[prop] : undefined);
+                        else if (typeof obserableObj[prop] === "object")
+                            AddNoticeModel.map(obj ? obj[prop] : {}, obserableObj[prop]);
+                    }
+                }
+            }
+        };
+        searchViewModel.init();
+        AddNoticeModel.init();
+    });
+    </script>
+}

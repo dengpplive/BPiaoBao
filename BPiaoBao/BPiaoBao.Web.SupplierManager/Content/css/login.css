@@ -1,0 +1,39 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{ margin:0px; padding:0px;}
+body{ font-family:"microsoft yahei"; font-size:12px; color:#333; background:url(../images/loginbgl.jpg) 0 0 repeat-x #ecf1f5;}
+img{ border:0px;}
+a{ text-decoration:none; color:#333;}
+ul li{ list-style:none;}
+i{ font-style:normal;}
+
+.mian{ width:980px; height:auto; margin:0px auto; background:url(../images/loginbg2.jpg) 0 0 no-repeat; overflow:hidden;}
+.logo{ width:417px; height:60px;  font-size:30px; margin-top:150px; margin-left:250px; padding-top:10px; line-height:45px;}
+.content{ width:980px; height:300px; background:url(../images/loginbg.jpg) 0 -10px no-repeat; margin-top:20px;padding-top:60px; }
+.content table{ margin-left:280px; font-size:13px;}
+.content table tr td input.inputstyle{ width:280px; height:26px; line-height:26px;text-indent:3px;}
+.content table tr td input.Captcha{ width:100px; display:block; float:left}
+.checkboxstyle{ padding-left:5px;}
+.Captcha2{ width:80px; height:28px; line-height:28px; border:1px solid #567ca7; float:left; margin-left:5px;}
+a.astlyle{ line-height:28px; margin-left:5px; display:block; float:left; color:#06C;}
+a.astlyle:hover{ color:#f20; text-decoration:underline;}
+
+.submit{ width:123px; height:35px; line-height:35px; border:none; cursor:pointer; color:#fff; text-align:center; background:url(../images/loginbtnbg.png) 0 0 no-repeat; display:block;}
+.submit:hover{ background:url(../images/loginbtnbg.png) 0 -35px;}
+
+.content p{ text-align:center; margin-top:60px; color:#888;}
+.content p a{ color:#666;}
+.content p a:hover{ color:#f10;}
+
+
+
+
+
+
+
+
+
+
+
+
+

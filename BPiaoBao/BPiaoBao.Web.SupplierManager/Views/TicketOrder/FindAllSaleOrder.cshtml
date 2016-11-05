@@ -1,0 +1,210 @@
+﻿@{
+    ViewBag.Title = "售后订单综合查询";
+}
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <table>
+                <tr>
+                    <td>
+                        <div style="clear: both;">
+                            <div class="search">
+                                <div class="left">订单号：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.OrderID" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">PNR：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.PNR" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">乘机人：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.PassengerName" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">商户号：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.BusinessmanCode" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">交易号：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.PaySerialNumber" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">状态:</div>
+                                <div class="right">
+                                    <select data-bind="options: TfgProcessStatus, optionsValue: 'Value', optionsText: 'Description', value: searchForm.ProcessStatus, optionsCaption: '请选择...'" style="width: 150px;"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 150px; text-align: center; vertical-align: middle;">
+                        <button type="button" class="btnsearch" data-bind="click: searchClick">查询</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table data-bind="datagrid: grid">
+            <thead data-options="frozen:true">
+                <tr>
+                    <th data-options="field:'xx',width:60,align:'center',title:'操作',formatter:Handles"></th>
+                    <th data-options="field:'BusinessmanCode',width:80,title:'商户号',formatter:formatterCode"></th>
+                    <th data-options="field:'OrderId',width:145,title:'原订单号',formatter:OldOrderId"></th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th data-options="field:'AfterSaleType',width:60,title:'申请类型',formatter:formatType"></th>
+                    <th data-options="field:'PlatformCode',width:65,title:'政策来源',formatter:function(val,row){return EnumPolicySourceType[row.Order.Policy.PolicySourceType].Description+'<br/>'+row.Order.Policy.PolicyType;}"></th>
+                    <th data-options="field:'Money',width:50,title:'产生金额'"></th>
+                    <th data-options="field:'TotalMoney',width:50,title:'总金额'"></th>
+                    <th data-options="field:'ProcessStatus',width:60,title:'处理状态',formatter:function(val){return SpShow(EnumTfgProcessStatus[val].Description,',');}"></th>
+                    <th data-options="field:'LockCurrentAccount',width:60,title:'锁定帐号'"></th>
+                    <th data-options="field:'CreateTime',width:70,title:'申请时间',formatter:function(val){return SpShow(val,' ')}"></th>
+                    <th data-options="field:'PassengerName',width:60,title:'乘机人',formatter:formmaterPassenger"></th>
+                    <th data-options="field:'StartDateTime',width:70,title:'乘机时间',formatter:formmaterPassengTime"></th>
+                    <th data-options="field:'Travel',width:60,title:'航程',formatter:formatterTravel"></th>
+                    <th data-options="field:'FlightNum',width:60,title:'航班号',formatter:formatterFlightNum"></th>
+                    <th data-options="field:'IssueTicketTime',width:70,title:'出票日期',formatter:function(val,row){ return SpShow(row.Order.IssueTicketTime,' ');}"></th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div class="easyui-dialog" id="showdetail_dialog" title="&nbsp;&nbsp;订单处理详情" data-options="modal:true,closed:true,draggable:false,maximized:true" style="padding: 5px 15px;">
+    <div id="Content"></div>
+</div>
+@Html.Partial("Coordination")
+<div class="easyui-dialog" id="BuyerDetail" title="商户信息" data-options="modal:true,closed:true" style="width: 400px;padding: 10px 10px 15px;">
+    <div id="Detail"></div>
+</div>
+<div id="OldOrderDetail_Window" class="easyui-window" title="订单详情" data-options="modal:true,closed:true,draggable:false,maximized:true,collapsible:false"  style="width: 1050px; height: 500px; padding: 10px 15px;">
+    <div id="orderContent"></div>
+</div>
+@section scripts{
+
+    <script type="text/javascript">
+        function Handles(val, row) {
+            var html = "<a href='javascript:void(0)' onclick='vm.ShowDetailClick(\"" + row.Id + "\")' class='m_blue'>详情</a>";
+            var style = '';
+            if (row.IsCoorCompleted == true)
+                style = 'style="color:#0ece5f;font-weight: bold;"';
+            else if (row.IsCoorCompleted == false)
+                style = 'style="color:red;font-weight: bold;"';
+            html += '<br/><a href="javascript:void(0)" ' + style + ' onclick="vm.AddCoordinationClick(\'' + row.Order.OrderId + '\',\'' + row.Order.PnrCode + '\',' + row.Id + ')" style="color:#3ca8e8;font-weight: bold;">协调</a>';
+            return html;
+        }
+        function ShowBuyer(code) {
+            $('#Detail').load('/TicketOrder/GetBuyerInfo', { code: code }, function () {
+                $('#BuyerDetail').dialog('open');
+            });
+        }
+        function formatType(val, row) {
+            if (val == "退票")
+                return val + '<br/><font color="red">(' + (row.IsVoluntary == true ? '自愿' : '非自愿') + ')</font>';
+            return val;
+        }
+        function formatterCode(val, row) {
+            if (row.Order.BusinessmanCode != null && row.Order.BusinessmanCode != '')
+                return "<a href='javascript:void(0)' onclick='ShowBuyer(\"" + row.Order.BusinessmanCode + "\")'>" + row.Order.BusinessmanCode + "</a>";
+            return '';
+        }
+        function formmaterPassenger(val, row) {
+            var passengerNames = '';
+            for (var i = 0; i < row.Passenger.length; i++) {
+                passengerNames += row.Passenger[i].PassengerName + '<br/>';
+            }
+            return passengerNames;
+        }
+        function formmaterPassengTime(val, row) {
+            var _time = '';
+            for (var i = 0; i < row.Order.SkyWays.length; i++) {
+                _time += SpShow(row.Order.SkyWays[i].StartDateTime, ' ') + '<br/>';
+            }
+            return _time;
+        }
+        function formatterTravel(val, row) {
+            var _travel = '';
+            for (var i = 0; i < row.Order.SkyWays.length; i++) {
+                _travel += row.Order.SkyWays[i].FromCityCode + row.Order.SkyWays[i].ToCityCode + '<br/>';
+            }
+            return _travel;
+        }
+        function formatterFlightNum(val, row) {
+            var _flightNum = '';
+            for (var i = 0; i < row.Order.SkyWays.length; i++) {
+                _flightNum += row.Order.SkyWays[i].CarrayCode + row.Order.SkyWays[i].FlightNumber + '<br/>';
+            }
+            return _flightNum;
+        }
+        function OldOrderId(val, row) {
+            var  str = "<a href='javascript:vm.openOldOrderDetail(\"" + row.Order.OrderId + "\")'>" + row.Order.OrderId + "</a><br/>" + row.Order.PnrCode;
+            if (row.Order.OrderType == 1)
+                str += '<br/><span class="m_child">儿童</span>';
+            else if (row.Order.OrderType == 2)
+                str += '<br/><span class="m_baby">婴儿</span>';
+            return str;
+        }
+        var SaleOrderVM = CC.Create(BaseVM, function (data) {
+            this.grid.title = "售后订单综合查询";
+            this.CoordinationForm = {
+                orderid: ko.observable(),
+                pnr: ko.observable(),
+                saleorderid:ko.observable(),
+                IsCompleted: ko.observable(),
+                Type: ko.observable(),
+                Content: ko.observable(),
+                SaveCoordinationClick: function () {
+                    $('#coordination_dialog').mask('正在提交保存数据...');
+                    vm.ajax({
+                        url: vm.urls._addcoordination,
+                        type: 'post',
+                        data: { saleorderid: vm.CoordinationForm.saleorderid(), isCompleted: vm.CoordinationForm.IsCompleted(), Type: vm.CoordinationForm.Type(), Content: vm.CoordinationForm.Content() }
+                    }, function () {
+                        $('#coordinationGrid').datagrid('reload');
+                        vm.CoordinationForm.Type('出票').Content('').IsCompleted('true');
+                        $('#coordination_dialog').unmask();
+                    }, function () {
+                        $('#coordination_dialog').unmask();
+                    });
+                }
+            };
+        }, {
+            CoordinationForm:null,
+            TfgProcessStatus: ko.observableArray(EnumTfgProcessStatus),
+            AddCoordinationClick: function (orderid, pnr,saleorderid) {
+                var $this = this;
+                $('#coordination_dialog').dialog('open');
+                $this.CoordinationForm.orderid(orderid).saleorderid(saleorderid).pnr(pnr).Type('出票').Content('').IsCompleted('true');
+                $('#coordinationGrid').datagrid({
+                    url: $this.urls._getcoordination,
+                    queryParams: { saleorderid: saleorderid }
+                });
+            },
+            ShowDetailClick: function (saleorderid) {
+                $('#showdetail_dialog').dialog('open').mask('正在加载...')
+                $('#Content').load('/TicketOrder/SaleOrderDetail', { saleorderid: saleorderid, isProcess: -1 }, function () {
+                    $.parser.parse('#Content');
+                    $('#showdetail_dialog').unmask();
+                });
+            },
+            openOldOrderDetail: function (orderID) {
+                $('#OldOrderDetail_Window').dialog('open').mask('正在家在...');
+                $('#orderContent').load('/TicketOrder/OrderDetail',{OrderId:orderID},function(){
+                    $('#OldOrderDetail_Window').unmask();
+                });
+            }
+        });
+        var vm = new SaleOrderVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+        ko.applyBindings(vm);
+    </script>
+}

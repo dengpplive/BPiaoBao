@@ -1,0 +1,107 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.TPOS.ViewModel" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" x:Class="BPiaoBao.Client.TPOS.View.MerchantManager" 
+             mc:Ignorable="d" 
+             d:DesignHeight="483.5" d:DesignWidth="624" d:DataContext="{d:DesignData /SampleData/MerchantManagerViewModelSampleData.xaml}">
+    <UserControl.Resources>
+        <DataTemplate x:Key="MerchantNameDataTemplate">
+            <Grid>
+                <Button Content="{Binding BusinessmanName}" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{DynamicResource LinkBtn}" Command="{Binding DataContext.DetailCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="BankDataTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding BankName}" />
+                <TextBlock Text="{Binding CardNo, Converter={StaticResource BankCardConverter}}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="operationDataTemplate">
+            <StackPanel>
+                <DockPanel HorizontalAlignment="Center" Height="Auto" VerticalAlignment="Stretch" Width="60" Margin="0,3,0,0" >
+                    <Button Content="修改" Width="Auto" Style="{StaticResource LinkBtn}" Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                    <Button Content="删除" HorizontalAlignment="Right" Style="{StaticResource LinkBtn}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                </DockPanel>
+                <Button Content="分配POS机" Width="75" Style="{StaticResource LinkBtn}" VerticalAlignment="Center" Margin="0,3" Command="{Binding DataContext.AssignCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger>
+            <i:InvokeCommandAction Command="{Binding PageLoadCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.DataContext>
+        <ViewModel:MerchantManagerViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource HeadBg2}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" Text="POS商户信息" VerticalAlignment="Top" Style="{DynamicResource Head2TextBlock}"/>
+            <Button Grid.Column="1" Style="{DynamicResource AddBtn}" Margin="10,6.582,20,6.582" VerticalAlignment="Center" HorizontalAlignment="Left" Height="21.836" Width="78" Command="{Binding AddCommand, Mode=OneWay}">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="5,2" d:IsLocked="True">
+                    <Image Source="Images/Merchant/addico.png" Stretch="None" Height="15" Width="15"/>
+                    <TextBlock TextWrapping="Wrap" Text="添加商户" Margin="3,0,0,0"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+
+        <Border BorderBrush="#FFD1DFEB" BorderThickness="2" Grid.Row="1" Margin="20,15,20,0" VerticalAlignment="Top" Background="#FFF4F8FA" Padding="0,15" Height="55.837">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="67"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="104"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition/>
+
+                </Grid.ColumnDefinitions>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="商户名：" VerticalAlignment="Top" Margin="15,3,0,0" Height="16" Width="48"/>
+                <TextBox Grid.Column="1" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BlueTextBoxStyle}" Height="21.837" Text="{Binding InputName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="POS机编号：" VerticalAlignment="Center" Margin="0,3,0,3.001" Height="15.836" Grid.Column="2" Width="72.05" Visibility="Collapsed"/>
+                <TextBox Grid.Column="3" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BlueTextBoxStyle}" Height="21.837" Text="{Binding InputPosNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Visibility="Collapsed"/>
+                <Button Content="查询" Grid.Column="2" HorizontalAlignment="Left" Margin="15,0,0,0" Style="{DynamicResource QueryBtn}" Padding="10,1" Width="46" Command="{Binding QueryCommand, Mode=OneWay}" />
+            </Grid>
+        </Border>
+        <Grid Margin="20,15,20,0" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="79*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <DataGrid ItemsSource="{Binding Merchants}" BorderThickness="0" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="POS商户名" Width="*" CellTemplate="{StaticResource MerchantNameDataTemplate}" ClipboardContentBinding="{Binding BusinessmanName}"/>
+                    <DataGridTextColumn Binding="{Binding TotalPosCount}" Header="POS机数" Width="*"/>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="POS编号" Width="*" Visibility="Collapsed"/>
+                    <DataGridTextColumn Binding="{Binding PosRate, Converter={StaticResource PercentageConverter}, StringFormat=\{0:F2\}}" Header="POS费率" Width="*"/>
+                    <DataGridTemplateColumn ClipboardContentBinding="{Binding CardNo}" Header="银行卡信息" Width="*" CellTemplate="{StaticResource BankDataTemplate}" />
+                    <DataGridTextColumn Binding="{Binding CreateTime,StringFormat=yyyy-MM-dd HH:mm:ss}" Header="添加日期" Width="*"/>
+                    <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="操作" Width="*" CellTemplate="{StaticResource operationDataTemplate}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <UIExt:Pagination Grid.Row="1" VerticalAlignment="Center"
+				PageSize="{Binding PageSize}" 
+				CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay}"
+				TotalCount="{Binding TotalCount, Mode=TwoWay}" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </UIExt:Pagination>
+        </Grid>
+
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" Grid.RowSpan="3" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+    </Grid>
+</UserControl>

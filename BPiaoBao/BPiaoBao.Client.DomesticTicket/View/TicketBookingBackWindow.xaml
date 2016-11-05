@@ -1,0 +1,431 @@
+﻿<Window x:Class="BPiaoBao.Client.DomesticTicket.View.TicketBookingBackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+         mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="900" Width="1200" Height="600"
+             xmlns:converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+       xmlns:viewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel"
+       xmlns:view="clr-namespace:BPiaoBao.Client.DomesticTicket.View"
+       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+       Title="机票预订"
+      Style="{DynamicResource CustomWindowStyle}" WindowStartupLocation="CenterScreen"  >
+    <Window.DataContext>
+        <viewModel:TicketBookingBackViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <converters:NotBooleanConverter x:Key="NotBooleanConverter" />
+        <converters:SpecialBooleanToVisibilityConverter x:Key="SpecialBooleanToVisibilityConverter" />
+        <converters:NotBooleanToVisibilityConverter x:Key="NotBooleanToVisibilityConverter" />
+        <converters:ShowGridHeaderTextConverter x:Key="ShowGridHeaderTextConverter"/>
+        <converters:AirlineLogoConverter x:Key="AirlineLogoConverter"/>
+        <converters:ShowStatusConverter x:Key="ShowStatusConverter"/>
+        <converters:DecimalConverter x:Key="DecimalConverter"/>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="{x:Static DataGrid.FocusBorderBrushKey}" Color="#FF000000"/>
+        <DataTemplate x:Key="timeDataTemplate">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Orientation="Horizontal" Margin="0,0,0,2">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding StartDateTime, StringFormat=HH:mm}" Width="Auto"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding FromAirPortrName}" Width="Auto" Margin="5,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding FromTerminal}" Width="Auto" Margin="0,0,10,0"/>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Orientation="Horizontal" Grid.Row="1">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ToDateTime, StringFormat=HH:mm}" Width="Auto" Height="15.24" Foreground="#FF666666"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ToAirPortrName}" Width="Auto" Height="15.24" Foreground="#FF666666" Margin="5,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ToTerminal}" Width="Auto" Height="15.24" Foreground="#FF666666" Margin="0,0,10,0"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="CommissionDataTemplate">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding DataContext.IsShowCommissionColumn,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}, Converter={StaticResource ShowStatusConverter}}">
+
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DefaultSite.Commission,StringFormat=￥\{0:f0\}}" Foreground="#FF666666"/>
+
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="CommissionDataTemplatePop">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Visibility="{Binding DataContext.IsShowCommissionColumn,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}">
+
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Commission,StringFormat=￥\{0:f0\}}" Foreground="#FF666666"/>
+
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="seatDataTemplate">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="True" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DefaultSite.SeatCode}" Height="Auto"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DefaultSite.Discount, StringFormat=/\{0:N0\}折,Converter={StaticResource DecimalConverter}}" Foreground="#FF666666"/>
+                    <TextBlock TextWrapping="Wrap" Text="/剩余"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding DefaultSite.SeatCount}" Foreground="#FFFF4200" Margin="1,0"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="seatDataTemplatePop">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock TextWrapping="Wrap" Text="{Binding SeatCode}" Height="Auto"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding Discount, StringFormat=/\{0:N0\}折,Converter={StaticResource DecimalConverter}}" Foreground="#FF666666"/>
+                <TextBlock TextWrapping="Wrap" Text="/剩余"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding SeatCount}" Foreground="#FFFF4200" Margin="1,0"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="{ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle x:Name="Border" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" SnapsToDevicePixels="True"/>
+                            <Polygon x:Name="Arrow" Fill="Black" HorizontalAlignment="Right" Margin="8,8,3,3" Opacity="0.15" Points="0,10 10,10 10,0" Stretch="Uniform" VerticalAlignment="Bottom"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Stroke" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Fill" TargetName="Border" Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Visibility" TargetName="Arrow" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="operationDataTemplate">
+            <StackPanel VerticalAlignment="Center" DataContext="{Binding}">
+                <Button Content="预订机票"  BorderThickness="0" Padding="4" 
+					HorizontalAlignment="Center"   
+					VerticalAlignment="Center" 
+					Width="100"
+					Background="#FFF06F34" Foreground="White"  Command="{Binding DataContext.BookingCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}" CommandParameter="{Binding Mode=OneWay}">
+
+                </Button>
+                <ComboBox Margin="2" HorizontalAlignment="Left" Tag="▼更多舱位"  VerticalAlignment="Top" Width="100" Style="{DynamicResource ComboBoxStyle1}" FlowDirection="RightToLeft">
+
+
+                </ComboBox>
+
+            </StackPanel>
+        </DataTemplate>
+
+
+
+        <DataTemplate x:Key="flightInfoDataTemplate">
+            <StackPanel Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                <Image Height="23" Width="26" Stretch="None" VerticalAlignment="Center" HorizontalAlignment="Left" Source="{Binding CarrayCode, Converter={StaticResource AirlineLogoConverter}}" Margin="0,0,5,0"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding CarrayShortName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Run Text="{Binding CarrayCode}" ></Run>
+                    <Run Text="{Binding FlightNumber}" ></Run>
+                </TextBlock>
+                <!--<TextBlock TextWrapping="Wrap" Text="{Binding CarrayCode}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding FlightNumber}" VerticalAlignment="Center" HorizontalAlignment="Left"/>-->
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FeeDataTemplate">
+            <StackPanel Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                <TextBlock Text="{Binding TaxFee, StringFormat=￥\{0:f2\}}" Foreground="#FFFF4200" ToolTip="机建" />
+                <TextBlock Text="{Binding RQFee, StringFormat=￥\{0:f2\}}" Foreground="#FFFF4200"  ToolTip="燃油" />
+                <!--<TextBlock><Run Text="{Binding TaxFee, StringFormat=￥\{0:f2\}}" />
+                    <Run Text="/" /><Run Text="{Binding RQFee, StringFormat=￥\{0:f2\}}" /></TextBlock>-->
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="operationDataTemplatePop">
+            <StackPanel VerticalAlignment="Center">
+                <Button Content="预订机票"  BorderThickness="0" Padding="4" 
+					HorizontalAlignment="Center"   
+					VerticalAlignment="Center" 
+					Width="100"
+					Background="#FFF06F34" Foreground="White"  Command="{Binding DataContext.BookingSubCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}" CommandParameter="{Binding Path=., Mode=OneWay}">
+
+                </Button>
+
+
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="QueryPolicyCommissionTemplate">
+            <Grid>
+                <StackPanel HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding DefaultSite.PolicyPoint, StringFormat=\{0:f2\}%/}" VerticalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"  Text="{Binding DefaultSite.Commission, StringFormat=￥\{0:f0\}}" VerticalAlignment="Center" Foreground="#FFFB6D00" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="QueryPolicyCommissionTemplatePop">
+            <Grid>
+                <StackPanel HorizontalAlignment="Left" Height="Auto" VerticalAlignment="Top" Width="Auto" Orientation="Horizontal" Visibility="{Binding DataContext.IsShowCommissionColumn,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}">
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding PolicyPoint, StringFormat=\{0:f2\}%/}" VerticalAlignment="Center"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"  Text="{Binding Commission, StringFormat=￥\{0:f0\}}" VerticalAlignment="Center" Foreground="#FFFB6D00" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="SeatPriceTemplatePop">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="True" d:DesignWidth="421.475" d:DesignHeight="132" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock x:Name="popSeatPrice" TextWrapping="Wrap" Text="{Binding SeatPrice, StringFormat=￥\{0:f2\}}" Foreground="#FFFF4200" FontSize="16"  Margin="0,0,5,0"
+                               Visibility="{Binding .,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource NotBooleanToVisibilityConverter}}" VerticalAlignment="Center"/>
+                    <Button x:Name="popGetSpecialBtn" Content="获取价格" BorderThickness="0" Padding="1" Width="60" Background="#FFF06F34" Foreground="White" Margin="0,0,5,0"
+                            Command="{Binding DataContext.GetSpecialFromSiteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}" CommandParameter="{Binding ., Mode=OneWay}"
+                            Visibility="{Binding .,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter}}" VerticalAlignment="Center"
+                            IsEnabled="False">
+                    </Button>
+                    <Button Content="无运价" BorderThickness="0" Padding="1" Width="60" Background="#FFF06F34" Foreground="White" IsEnabled="False"  Margin="0,0,5,0"
+                            Visibility="{Binding .,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter},ConverterParameter=0}" VerticalAlignment="Center"/>
+                    <Image Stretch="Fill"  VerticalAlignment="Top" HorizontalAlignment="Left" Source="../Image/tejia_r.png" Visibility="{Binding PolicySpecialType,Converter={StaticResource SpecialBooleanToVisibilityConverter}}"/>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="TicketPriceTemplate">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="True" d:DesignWidth="421.475" d:DesignHeight="123" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock x:Name="ticketPrice" TextWrapping="Wrap" Text="{Binding DefaultSite.TicketPrice, StringFormat=￥\{0:f2\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFFF4200" FontSize="20"
+                               Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource NotBooleanToVisibilityConverter}}"/>
+                    <TextBlock TextWrapping="Wrap" Text="--" Foreground="#FFFF4200" FontSize="18"
+                               Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter}}"/>
+                    <Button Content="无运价" BorderThickness="0" Padding="1" Width="72" Height="24" Background="#bcbcbc" Foreground="White" IsEnabled="False" 
+                            Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter},ConverterParameter=0}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="TicketPriceTemplatePop">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="True" d:DesignWidth="421.475" d:DesignHeight="123" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock x:Name="ticketPrice" TextWrapping="Wrap" Text="{Binding TicketPrice, StringFormat=￥\{0:f2\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFFF4200" FontSize="20"
+                               Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource NotBooleanToVisibilityConverter}}"/>
+                    <TextBlock TextWrapping="Wrap" Text="--" Foreground="#FFFF4200" FontSize="18"
+                               Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter}}"/>
+                    <Button Content="无运价" BorderThickness="0" Padding="1" Width="72" Height="24" Background="#bcbcbc" Foreground="White" IsEnabled="False" 
+                            Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter},ConverterParameter=0}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <ControlTemplate x:Key="ComboBoxTemplate" TargetType="{x:Type ComboBox}">
+            <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition MinWidth="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}" Width="0"/>
+                </Grid.ColumnDefinitions>
+                <Popup x:Name="PART_Popup" AllowsTransparency="true" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" PopupAnimation="{DynamicResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" Placement="Bottom">
+                    <Border FlowDirection="LeftToRight" x:Name="dropDownBorder" Padding="3" BorderBrush="#FF3B75F1" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                        <DataGrid BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding SiteList}"  
+                          AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" 
+                          MinRowHeight="40" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column"   Width="800"
+                          IsReadOnly="True"  AlternationCount="1" AlternatingRowBackground="#FFF4F4F4" Margin="10,0"
+                          VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="机建/燃油"  Width="*"    CellTemplate="{StaticResource FeeDataTemplate}"/>
+                                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="舱位/折扣/座位" Width="*" CellTemplate="{StaticResource seatDataTemplatePop}"/>
+                                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="舱位价" Width="*" CellTemplate="{StaticResource SeatPriceTemplatePop}"/>
+                                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="票面价" Width="*" CellTemplate="{StaticResource TicketPriceTemplatePop}"/>
+                                <!--<DataGridTextColumn MinWidth="100"  Binding="{Binding SeatPrice,StringFormat={}￥{0:f2}}" Header="舱位价" Width="*" Foreground="#FFFF4200"/>-->
+                                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" MinWidth="100" Width="*"   Header="返点/佣金" CellTemplate="{StaticResource QueryPolicyCommissionTemplatePop}"/>
+                                <DataGridTemplateColumn MinWidth="100" Header="操作" Width="*" CellTemplate="{StaticResource operationDataTemplatePop}"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Border>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeave">
+                            <i:InvokeCommandAction Command="{Binding DataContext.LeaveCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Popup>
+                <Border>
+                    <CheckBox  Style="{DynamicResource CheckBoxStyle1}" Content="{TemplateBinding Tag}" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"/>
+
+                </Border>
+
+            </Grid>
+            <ControlTemplate.Triggers>
+
+                <Trigger Property="HasItems" Value="false">
+                    <Setter Property="Height" TargetName="dropDownBorder" Value="220"/>
+                </Trigger>
+                <Trigger Property="HasItems" Value="true">
+                    <Setter Property="Height" TargetName="dropDownBorder" Value="Auto"/>
+                    <Setter Property="Width" TargetName="dropDownBorder" Value="Auto"/>
+                </Trigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding IsSiteListChanged}" Value="True"></Condition>
+                    </MultiDataTrigger.Conditions>
+                    <Setter Property="IsOpen"  TargetName="PART_Popup" Value="True"/>
+                </MultiDataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+
+        <Style x:Key="ComboBoxStyle1" TargetType="{x:Type ComboBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template" Value="{StaticResource ComboBoxTemplate}"/>
+
+        </Style>
+
+
+        <Style x:Key="CheckBoxStyle1" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+
+                            <Border x:Name="bdExtend" Padding="3">
+                                <TextBlock x:Name="textBlock" TextWrapping="Wrap" Margin="0,0,0,0" Foreground="#FF0074FF" Width="Auto" FlowDirection="RightToLeft"  Text="{TemplateBinding Content}" HorizontalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="BorderBrush" TargetName="bdExtend" Value="White"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="BorderBrush" TargetName="bdExtend" Value="#FF3B75F1"/>
+                                <Setter Property="BorderThickness" TargetName="bdExtend" Value="1,1,1,1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DataTemplate x:Key="StopTextTemplate">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding StopText,Mode=TwoWay}">
+                <TextBlock.ToolTip>
+                    <ToolTip Width="250"  Height="220">
+                        <StackPanel Margin="10">
+                            <TextBlock Margin="5"><Run Text="航班号："/>
+                                <Run Text="{Binding LegStopModel.FlightCodeNumber,Mode=TwoWay}"/></TextBlock>
+
+                            <TextBlock Margin="5"><Run Text="出发时间："/>
+                                <Run Text="{Binding LegStopModel.StartDate,Mode=TwoWay}"/></TextBlock>
+
+                            <TextBlock Margin="5"><Run Text="到达时间："/>
+                                <Run Text="{Binding LegStopModel.ToDate,Mode=TwoWay}"/></TextBlock>
+
+                            <TextBlock Margin="5"><Run Text="出发城市："/>
+                                <Run Text="{Binding LegStopModel.FromCity,Mode=TwoWay}"/></TextBlock>
+
+                            <TextBlock Margin="5"><Run Text="到达城市："/>
+                                <Run Text="{Binding LegStopModel.ToCity,Mode=TwoWay}"/></TextBlock>
+
+                            <TextBlock Margin="5" Foreground="Red"><Run Text="经停城市："/>
+                                <Run  Text="{Binding LegStopModel.MiddleCity,Mode=TwoWay}"/></TextBlock>
+
+                            <TextBlock Margin="5" Foreground="Red"><Run Text="经停时间："/>
+                                <Run Text="{Binding LegStopModel.MiddleDate,Mode=TwoWay}"/></TextBlock>
+                        </StackPanel>
+                    </ToolTip>
+                </TextBlock.ToolTip>
+                  <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="ToolTipOpening"> 
+                                <i:InvokeCommandAction  Command="{Binding DataContext.QueryStopTextRemarkCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}" CommandParameter="{Binding Path=., Mode=OneWay}"/>
+                            </i:EventTrigger> 
+                        </i:Interaction.Triggers>
+            </TextBlock>
+        </DataTemplate>
+        <DataTemplate x:Key="SeatPriceTemplate">
+            <Border BorderBrush="{TemplateBinding Control.BorderBrush}" BorderThickness="{TemplateBinding Control.BorderThickness}" Background="{TemplateBinding Control.Background}" SnapsToDevicePixels="True" d:DesignWidth="421.475" d:DesignHeight="123" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
+                        <TextBlock x:Name="seatPrice" TextWrapping="Wrap" Text="{Binding DefaultSite.SeatPrice, StringFormat=￥\{0:f2\},Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="#FFFF4200" FontSize="16" Margin="0,0,5,0"
+                               Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource NotBooleanToVisibilityConverter}}" VerticalAlignment="Center"/>
+                        <Button x:Name="getSpecialBtn" Content="获取价格" BorderThickness="0" Padding="1" Width="72" Height="24" Background="#65b3f5" Foreground="White" Margin="0,0,5,0" VerticalAlignment="Center"
+                            Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter}}" 
+                            Command="{Binding DataContext.GetSpecialFromModelCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:TicketBookingBackWindow}}}" CommandParameter="{Binding ., Mode=OneWay}"
+                            IsEnabled="False">
+                        </Button>
+                        <Button Content="无运价" BorderThickness="0" Padding="1" Width="72" Height="24" Background="#bcbcbc" Foreground="White" IsEnabled="False"  Margin="0,0,5,0" VerticalAlignment="Center"
+                            Visibility="{Binding Path=.,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,Converter={StaticResource SpecialBooleanToVisibilityConverter},ConverterParameter=0}" />
+                        <Image Stretch="Fill" Height="Auto" VerticalAlignment="Center" HorizontalAlignment="Left" Source="../Image/tejia_r.png"  Visibility="{Binding DefaultSite.PolicySpecialType,Converter={StaticResource SpecialBooleanToVisibilityConverter}}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+    </Window.Resources>
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="FocusState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFAAAAAA"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="UnfocusState"/>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="PopupStateGroup">
+                <VisualStateGroup.Transitions>
+                    <VisualTransition GeneratedDuration="0"/>
+                </VisualStateGroup.Transitions>
+                <VisualState x:Name="OpenState"/>
+                <VisualState x:Name="NormalState">
+                    <Storyboard>
+                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="overlay">
+                            <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                        </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <DataGrid x:Name="dg"  BorderThickness="0"   ItemsSource="{Binding FlightInfoModels}" ScrollViewer.CanContentScroll="True" 
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                          AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" 
+                          MinRowHeight="65" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column"  
+                          IsReadOnly="True"  AlternationCount="1" AlternatingRowBackground="#FFF4F4F4" 
+                          VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn   Header="航班信息" MinWidth="80" Width="80"  CellTemplate="{StaticResource flightInfoDataTemplate}" SortMemberPath="SkyWay.CarrayCode"/>
+                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" MinWidth="170"  Header="起降时间/机场 " Width="*" CellTemplate="{StaticResource timeDataTemplate}"/>
+                <DataGridTemplateColumn Header="机建/燃油"  MinWidth="120"  Width="*" CellTemplate="{StaticResource FeeDataTemplate}"/>
+                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="舱位/折扣/座位" Width="*" CellTemplate="{StaticResource seatDataTemplate}"/>
+                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" MinWidth="160" Header="舱位价" Width="*" CellTemplate="{StaticResource SeatPriceTemplate}"/>
+                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Header="票面价" Width="*" CellTemplate="{StaticResource TicketPriceTemplate}"/>
+                <!--<DataGridTextColumn Binding="{Binding DefaultSite.SeatPrice,StringFormat={}￥{0:f2}}" MinWidth="120"  Header="舱位价" Width="*" Foreground="#FFFF4200"/>
+                <DataGridTextColumn Binding="{Binding DefaultSite.TicketPrice,StringFormat={}￥{0:f2}}" MinWidth="120"  Header="票面价" Width="*" Foreground="#FFFF4200"/>-->
+                <DataGridTextColumn Binding="{Binding Model}" Header="机型" MinWidth="50" Width="*"  />
+                <!--<DataGridTextColumn Binding="{Binding DefaultSite.PolicyPoint}" Header="政策点数" MinWidth="80" Width="*" />
+
+                <DataGridTextColumn  Binding="{Binding DefaultSite.Commission,StringFormat=￥\{0:f2\}}"  Header="佣金"  Width="*"  />-->
+                <!--<DataGridTextColumn Binding="{Binding StopText}" Header="经停" MinWidth="70" Width="70" />-->
+                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" MinWidth="70" Width="*"   Header="经停" CellTemplate="{StaticResource StopTextTemplate}"/>
+                <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" MinWidth="100" Width="*"   Header="返点/佣金" CellTemplate="{StaticResource QueryPolicyCommissionTemplate}"/>
+
+                <DataGridTemplateColumn Header="操作" Width="*" CellTemplate="{StaticResource operationDataTemplate}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>

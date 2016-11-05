@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>knockout.pager</id>
+    <version>1.0.2.30</version>
+    <authors>Nathan J. Robinson</authors>
+    <owners>Nathan J. Robinson</owners>
+    <licenseUrl>https://github.com/nathanrobinson/knockout.pager/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/nathanrobinson/knockout.pager/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A paged foreach binding for knockout</description>
+    <releaseNotes />
+    <tags>knockout paged paging pager template html javascript</tags>
+    <dependencies>
+      <dependency id="knockoutjs" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,1306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AlreadyDisposalSynchronizationNew_All">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datetime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNew_AllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AlreadyDisposalSynchronizationNew_AllResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNew_All_V2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datetime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNew_All_V2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AlreadyDisposalSynchronizationNew_All_V2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNew_All_GZip">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datetime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNew_All_GZipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AlreadyDisposalSynchronizationNew_All_GZipResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNewSpecial_All">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datetime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNewSpecial_AllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AlreadyDisposalSynchronizationNewSpecial_AllResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNewFD_All">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datetime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AlreadyDisposalSynchronizationNewFD_AllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AlreadyDisposalSynchronizationNewFD_AllResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPExactitude">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tocity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Airco" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="airNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Airbunk" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="airtime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPExactitudeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SPExactitudeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlantPriceData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZKId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AirCo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CW" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IsSpecial" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPlantPriceDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPlantPriceDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeletePolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="datetime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeletePolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeletePolicyResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPbyPNRNote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pnrCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isSpecial" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="pnrInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SPbyPNRNoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SPbyPNRNoteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatOrderNewByPNRNote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pnrCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pnrInfo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatOrderNewByPNRNoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatOrderNewByPNRNoteResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatOrderNew_ByPNRNoteV2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pnrCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userRtInfo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IshPNR" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatOrderNew_ByPNRNoteV2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatOrderNew_ByPNRNoteV2Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatOrderNew_ByPNRNoteV3">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pnrCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userRtInfo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IshPNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LinkMan" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LinkPhone" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatOrderNew_ByPNRNoteV3Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatOrderNew_ByPNRNoteV3Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="returnOrderOutTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderguid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="outremark" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="returnOrderOutTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="returnOrderOutTicketResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCHDPnr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fromcitys" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tocitys" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Dates" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToTimes" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CabinSeats" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OpportunityForPeople" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NoDocuments" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Airlines" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FlightNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="birthdays" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateCHDPnrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateCHDPnrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderNewByCHD">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="chdPnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="adultOrderGuid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="A1" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderNewByCHDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderNewByCHDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderPayOutTicketAndPly">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ordertime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderPayOutTicketAndPlyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderPayOutTicketAndPlyResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaySignOn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emAccount" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PaySignOnResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PaySignOnResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutomatismPay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderguid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="payAccount" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutomatismPayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutomatismPayResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWhyByOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWhyByOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWhyByOrderResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderRGIInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="porderguid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="whyId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderRGIInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderRGIInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnTicekNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReturnTicekNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnTicekNoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderGuidRGIDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderGuidRGIDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderGuidRGIDetailsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelOrderNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelOrderNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelOrderNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="returnOrderState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="returnOrderStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="returnOrderStateResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderGuidPayOutTicketAndPly">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="orderguid" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OrderGuidPayOutTicketAndPlyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderGuidPayOutTicketAndPlyResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AlreadyDisposalSynchronizationNew_AllSoapIn">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNew_All" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNew_AllSoapOut">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNew_AllResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNew_All_V2SoapIn">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNew_All_V2" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNew_All_V2SoapOut">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNew_All_V2Response" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNew_All_GZipSoapIn">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNew_All_GZip" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNew_All_GZipSoapOut">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNew_All_GZipResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNewSpecial_AllSoapIn">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNewSpecial_All" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNewSpecial_AllSoapOut">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNewSpecial_AllResponse" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNewFD_AllSoapIn">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNewFD_All" />
+  </wsdl:message>
+  <wsdl:message name="AlreadyDisposalSynchronizationNewFD_AllSoapOut">
+    <wsdl:part name="parameters" element="tns:AlreadyDisposalSynchronizationNewFD_AllResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPExactitudeSoapIn">
+    <wsdl:part name="parameters" element="tns:SPExactitude" />
+  </wsdl:message>
+  <wsdl:message name="SPExactitudeSoapOut">
+    <wsdl:part name="parameters" element="tns:SPExactitudeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPlantPriceDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPlantPriceData" />
+  </wsdl:message>
+  <wsdl:message name="GetPlantPriceDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPlantPriceDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeletePolicySoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeletePolicy" />
+  </wsdl:message>
+  <wsdl:message name="GetDeletePolicySoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeletePolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="SPbyPNRNoteSoapIn">
+    <wsdl:part name="parameters" element="tns:SPbyPNRNote" />
+  </wsdl:message>
+  <wsdl:message name="SPbyPNRNoteSoapOut">
+    <wsdl:part name="parameters" element="tns:SPbyPNRNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatOrderNewByPNRNoteSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatOrderNewByPNRNote" />
+  </wsdl:message>
+  <wsdl:message name="CreatOrderNewByPNRNoteSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatOrderNewByPNRNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatOrderNew_ByPNRNoteV2SoapIn">
+    <wsdl:part name="parameters" element="tns:CreatOrderNew_ByPNRNoteV2" />
+  </wsdl:message>
+  <wsdl:message name="CreatOrderNew_ByPNRNoteV2SoapOut">
+    <wsdl:part name="parameters" element="tns:CreatOrderNew_ByPNRNoteV2Response" />
+  </wsdl:message>
+  <wsdl:message name="CreatOrderNew_ByPNRNoteV3SoapIn">
+    <wsdl:part name="parameters" element="tns:CreatOrderNew_ByPNRNoteV3" />
+  </wsdl:message>
+  <wsdl:message name="CreatOrderNew_ByPNRNoteV3SoapOut">
+    <wsdl:part name="parameters" element="tns:CreatOrderNew_ByPNRNoteV3Response" />
+  </wsdl:message>
+  <wsdl:message name="returnOrderOutTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:returnOrderOutTicket" />
+  </wsdl:message>
+  <wsdl:message name="returnOrderOutTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:returnOrderOutTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateCHDPnrSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateCHDPnr" />
+  </wsdl:message>
+  <wsdl:message name="CreateCHDPnrSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateCHDPnrResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderNewByCHDSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrderNewByCHD" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderNewByCHDSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderNewByCHDResponse" />
+  </wsdl:message>
+  <wsdl:message name="OrderPayOutTicketAndPlySoapIn">
+    <wsdl:part name="parameters" element="tns:OrderPayOutTicketAndPly" />
+  </wsdl:message>
+  <wsdl:message name="OrderPayOutTicketAndPlySoapOut">
+    <wsdl:part name="parameters" element="tns:OrderPayOutTicketAndPlyResponse" />
+  </wsdl:message>
+  <wsdl:message name="PaySignOnSoapIn">
+    <wsdl:part name="parameters" element="tns:PaySignOn" />
+  </wsdl:message>
+  <wsdl:message name="PaySignOnSoapOut">
+    <wsdl:part name="parameters" element="tns:PaySignOnResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutomatismPaySoapIn">
+    <wsdl:part name="parameters" element="tns:AutomatismPay" />
+  </wsdl:message>
+  <wsdl:message name="AutomatismPaySoapOut">
+    <wsdl:part name="parameters" element="tns:AutomatismPayResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWhyByOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWhyByOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetWhyByOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWhyByOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="OrderRGIInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:OrderRGIInfo" />
+  </wsdl:message>
+  <wsdl:message name="OrderRGIInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:OrderRGIInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnTicekNoSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnTicekNo" />
+  </wsdl:message>
+  <wsdl:message name="ReturnTicekNoSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnTicekNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="OrderGuidRGIDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:OrderGuidRGIDetails" />
+  </wsdl:message>
+  <wsdl:message name="OrderGuidRGIDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:OrderGuidRGIDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderNewSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelOrderNew" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderNewSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelOrderNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="returnOrderStateSoapIn">
+    <wsdl:part name="parameters" element="tns:returnOrderState" />
+  </wsdl:message>
+  <wsdl:message name="returnOrderStateSoapOut">
+    <wsdl:part name="parameters" element="tns:returnOrderStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="OrderGuidPayOutTicketAndPlySoapIn">
+    <wsdl:part name="parameters" element="tns:OrderGuidPayOutTicketAndPly" />
+  </wsdl:message>
+  <wsdl:message name="OrderGuidPayOutTicketAndPlySoapOut">
+    <wsdl:part name="parameters" element="tns:OrderGuidPayOutTicketAndPlyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="W8000YServiceSoap">
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All">
+      <wsdl:input message="tns:AlreadyDisposalSynchronizationNew_AllSoapIn" />
+      <wsdl:output message="tns:AlreadyDisposalSynchronizationNew_AllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All_V2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;8000YI取所有政策，同步更新，此接口新增政策出票有效期数据返回。&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:AlreadyDisposalSynchronizationNew_All_V2SoapIn" />
+      <wsdl:output message="tns:AlreadyDisposalSynchronizationNew_All_V2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All_GZip">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;8000YI获取所有政策，同步更新 [返回GZip压缩后的数据]&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:AlreadyDisposalSynchronizationNew_All_GZipSoapIn" />
+      <wsdl:output message="tns:AlreadyDisposalSynchronizationNew_All_GZipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNewSpecial_All">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;8000YI高返政策同步更新&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:AlreadyDisposalSynchronizationNewSpecial_AllSoapIn" />
+      <wsdl:output message="tns:AlreadyDisposalSynchronizationNewSpecial_AllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNewFD_All">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;8000YI直降 政策同步更新&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:AlreadyDisposalSynchronizationNewFD_AllSoapIn" />
+      <wsdl:output message="tns:AlreadyDisposalSynchronizationNewFD_AllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPExactitude">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;根据航班信息精确获取政策(实时数据)&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:SPExactitudeSoapIn" />
+      <wsdl:output message="tns:SPExactitudeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlantPriceData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;查询航司对应舱位折扣及运价，平台不保证运价的准确性&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetPlantPriceDataSoapIn" />
+      <wsdl:output message="tns:GetPlantPriceDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeletePolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;获取删除的政策&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetDeletePolicySoapIn" />
+      <wsdl:output message="tns:GetDeletePolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SPbyPNRNote">
+      <wsdl:input message="tns:SPbyPNRNoteSoapIn" />
+      <wsdl:output message="tns:SPbyPNRNoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNewByPNRNote">
+      <wsdl:input message="tns:CreatOrderNewByPNRNoteSoapIn" />
+      <wsdl:output message="tns:CreatOrderNewByPNRNoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNew_ByPNRNoteV2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;根据PNR编码信息产生订单&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:CreatOrderNew_ByPNRNoteV2SoapIn" />
+      <wsdl:output message="tns:CreatOrderNew_ByPNRNoteV2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNew_ByPNRNoteV3">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;根据PNR编码信息产生订单&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:CreatOrderNew_ByPNRNoteV3SoapIn" />
+      <wsdl:output message="tns:CreatOrderNew_ByPNRNoteV3SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="returnOrderOutTicket">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;申请返回订单&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:returnOrderOutTicketSoapIn" />
+      <wsdl:output message="tns:returnOrderOutTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateCHDPnr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;创建儿童编码PNR&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:CreateCHDPnrSoapIn" />
+      <wsdl:output message="tns:CreateCHDPnrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderNewByCHD">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font style="color:red;"&gt;创建儿童订单&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderNewByCHDSoapIn" />
+      <wsdl:output message="tns:CreateOrderNewByCHDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderPayOutTicketAndPly">
+      <wsdl:input message="tns:OrderPayOutTicketAndPlySoapIn" />
+      <wsdl:output message="tns:OrderPayOutTicketAndPlySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PaySignOn">
+      <wsdl:input message="tns:PaySignOnSoapIn" />
+      <wsdl:output message="tns:PaySignOnSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AutomatismPay">
+      <wsdl:input message="tns:AutomatismPaySoapIn" />
+      <wsdl:output message="tns:AutomatismPaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWhyByOrder">
+      <wsdl:input message="tns:GetWhyByOrderSoapIn" />
+      <wsdl:output message="tns:GetWhyByOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderRGIInfo">
+      <wsdl:input message="tns:OrderRGIInfoSoapIn" />
+      <wsdl:output message="tns:OrderRGIInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnTicekNo">
+      <wsdl:input message="tns:ReturnTicekNoSoapIn" />
+      <wsdl:output message="tns:ReturnTicekNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderGuidRGIDetails">
+      <wsdl:input message="tns:OrderGuidRGIDetailsSoapIn" />
+      <wsdl:output message="tns:OrderGuidRGIDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrderNew">
+      <wsdl:input message="tns:CancelOrderNewSoapIn" />
+      <wsdl:output message="tns:CancelOrderNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="returnOrderState">
+      <wsdl:input message="tns:returnOrderStateSoapIn" />
+      <wsdl:output message="tns:returnOrderStateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OrderGuidPayOutTicketAndPly">
+      <wsdl:input message="tns:OrderGuidPayOutTicketAndPlySoapIn" />
+      <wsdl:output message="tns:OrderGuidPayOutTicketAndPlySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="W8000YServiceSoap" type="tns:W8000YServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All">
+      <soap:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNew_All" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All_V2">
+      <soap:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNew_All_V2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All_GZip">
+      <soap:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNew_All_GZip" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNewSpecial_All">
+      <soap:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNewSpecial_All" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNewFD_All">
+      <soap:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNewFD_All" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPExactitude">
+      <soap:operation soapAction="http://tempuri.org/SPExactitude" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlantPriceData">
+      <soap:operation soapAction="http://tempuri.org/GetPlantPriceData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeletePolicy">
+      <soap:operation soapAction="http://tempuri.org/GetDeletePolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPbyPNRNote">
+      <soap:operation soapAction="http://tempuri.org/SPbyPNRNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNewByPNRNote">
+      <soap:operation soapAction="http://tempuri.org/CreatOrderNewByPNRNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNew_ByPNRNoteV2">
+      <soap:operation soapAction="http://tempuri.org/CreatOrderNew_ByPNRNoteV2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNew_ByPNRNoteV3">
+      <soap:operation soapAction="http://tempuri.org/CreatOrderNew_ByPNRNoteV3" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnOrderOutTicket">
+      <soap:operation soapAction="http://tempuri.org/returnOrderOutTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCHDPnr">
+      <soap:operation soapAction="http://tempuri.org/CreateCHDPnr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderNewByCHD">
+      <soap:operation soapAction="http://tempuri.org/CreateOrderNewByCHD" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderPayOutTicketAndPly">
+      <soap:operation soapAction="http://tempuri.org/OrderPayOutTicketAndPly" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaySignOn">
+      <soap:operation soapAction="http://tempuri.org/PaySignOn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutomatismPay">
+      <soap:operation soapAction="http://tempuri.org/AutomatismPay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWhyByOrder">
+      <soap:operation soapAction="http://tempuri.org/GetWhyByOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderRGIInfo">
+      <soap:operation soapAction="http://tempuri.org/OrderRGIInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnTicekNo">
+      <soap:operation soapAction="http://tempuri.org/ReturnTicekNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderGuidRGIDetails">
+      <soap:operation soapAction="http://tempuri.org/OrderGuidRGIDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrderNew">
+      <soap:operation soapAction="http://tempuri.org/CancelOrderNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnOrderState">
+      <soap:operation soapAction="http://tempuri.org/returnOrderState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderGuidPayOutTicketAndPly">
+      <soap:operation soapAction="http://tempuri.org/OrderGuidPayOutTicketAndPly" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="W8000YServiceSoap12" type="tns:W8000YServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All">
+      <soap12:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNew_All" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All_V2">
+      <soap12:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNew_All_V2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNew_All_GZip">
+      <soap12:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNew_All_GZip" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNewSpecial_All">
+      <soap12:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNewSpecial_All" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AlreadyDisposalSynchronizationNewFD_All">
+      <soap12:operation soapAction="http://tempuri.org/AlreadyDisposalSynchronizationNewFD_All" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPExactitude">
+      <soap12:operation soapAction="http://tempuri.org/SPExactitude" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlantPriceData">
+      <soap12:operation soapAction="http://tempuri.org/GetPlantPriceData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeletePolicy">
+      <soap12:operation soapAction="http://tempuri.org/GetDeletePolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SPbyPNRNote">
+      <soap12:operation soapAction="http://tempuri.org/SPbyPNRNote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNewByPNRNote">
+      <soap12:operation soapAction="http://tempuri.org/CreatOrderNewByPNRNote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNew_ByPNRNoteV2">
+      <soap12:operation soapAction="http://tempuri.org/CreatOrderNew_ByPNRNoteV2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatOrderNew_ByPNRNoteV3">
+      <soap12:operation soapAction="http://tempuri.org/CreatOrderNew_ByPNRNoteV3" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnOrderOutTicket">
+      <soap12:operation soapAction="http://tempuri.org/returnOrderOutTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateCHDPnr">
+      <soap12:operation soapAction="http://tempuri.org/CreateCHDPnr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderNewByCHD">
+      <soap12:operation soapAction="http://tempuri.org/CreateOrderNewByCHD" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderPayOutTicketAndPly">
+      <soap12:operation soapAction="http://tempuri.org/OrderPayOutTicketAndPly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PaySignOn">
+      <soap12:operation soapAction="http://tempuri.org/PaySignOn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AutomatismPay">
+      <soap12:operation soapAction="http://tempuri.org/AutomatismPay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWhyByOrder">
+      <soap12:operation soapAction="http://tempuri.org/GetWhyByOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderRGIInfo">
+      <soap12:operation soapAction="http://tempuri.org/OrderRGIInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnTicekNo">
+      <soap12:operation soapAction="http://tempuri.org/ReturnTicekNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderGuidRGIDetails">
+      <soap12:operation soapAction="http://tempuri.org/OrderGuidRGIDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrderNew">
+      <soap12:operation soapAction="http://tempuri.org/CancelOrderNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="returnOrderState">
+      <soap12:operation soapAction="http://tempuri.org/returnOrderState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OrderGuidPayOutTicketAndPly">
+      <soap12:operation soapAction="http://tempuri.org/OrderGuidPayOutTicketAndPly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="W8000YService">
+    <wsdl:port name="W8000YServiceSoap" binding="tns:W8000YServiceSoap">
+      <soap:address location="http://210.14.138.26:117/W8000YService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="W8000YServiceSoap12" binding="tns:W8000YServiceSoap12">
+      <soap12:address location="http://210.14.138.26:117/W8000YService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

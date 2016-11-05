@@ -1,0 +1,389 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD879B19-5A18-488F-BDDD-2D6C7F0834CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.DomesticTicket.EFRepository</RootNamespace>
+    <AssemblyName>BPiaoBao.DomesticTicket.EFRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AfterSaleOrderRepository.cs" />
+    <Compile Include="AriChangeRepository.cs" />
+    <Compile Include="BaseRepository.cs" />
+    <Compile Include="DeductionRepository.cs" />
+    <Compile Include="FrePasserRepository.cs" />
+    <Compile Include="InsuranceConfigRepository.cs" />
+    <Compile Include="InsuranceDepositLogRepository.cs" />
+    <Compile Include="InsuranceOrderRepository.cs" />
+    <Compile Include="InsurancePurchaseByBussinessmanRepository.cs" />
+    <Compile Include="InsurancesMap\InsuranceConfigMap.cs" />
+    <Compile Include="InsurancesMap\InsuranceDepositLogMap.cs" />
+    <Compile Include="InsurancesMap\InsuranceOrderMap.cs" />
+    <Compile Include="InsurancesMap\InsurancePurchaseByBussinessmanMap.cs" />
+    <Compile Include="InsurancesMap\InsuranceRecordMap.cs" />
+    <Compile Include="LocalPolicyRepository.cs" />
+    <Compile Include="Migrations\201406170705183_InitialCreate.cs" />
+    <Compile Include="Migrations\201406170705183_InitialCreate.Designer.cs">
+      <DependentUpon>201406170705183_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407150320214_201407151115.cs" />
+    <Compile Include="Migrations\201407150320214_201407151115.Designer.cs">
+      <DependentUpon>201407150320214_201407151115.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407160219083_201407161016.cs" />
+    <Compile Include="Migrations\201407160219083_201407161016.Designer.cs">
+      <DependentUpon>201407160219083_201407161016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407160827132_201407161616.cs" />
+    <Compile Include="Migrations\201407160827132_201407161616.Designer.cs">
+      <DependentUpon>201407160827132_201407161616.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407171003264_201407171802.cs" />
+    <Compile Include="Migrations\201407171003264_201407171802.Designer.cs">
+      <DependentUpon>201407171003264_201407171802.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407240726012_201407241525.cs" />
+    <Compile Include="Migrations\201407240726012_201407241525.Designer.cs">
+      <DependentUpon>201407240726012_201407241525.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407240731537_201407241528.cs" />
+    <Compile Include="Migrations\201407240731537_201407241528.Designer.cs">
+      <DependentUpon>201407240731537_201407241528.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407240812400_201407241612.cs" />
+    <Compile Include="Migrations\201407240812400_201407241612.Designer.cs">
+      <DependentUpon>201407240812400_201407241612.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407250403553_201407251158.cs" />
+    <Compile Include="Migrations\201407250403553_201407251158.Designer.cs">
+      <DependentUpon>201407250403553_201407251158.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407280123128_201407280922.cs" />
+    <Compile Include="Migrations\201407280123128_201407280922.Designer.cs">
+      <DependentUpon>201407280123128_201407280922.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407280316038_201407281115.cs" />
+    <Compile Include="Migrations\201407280316038_201407281115.Designer.cs">
+      <DependentUpon>201407280316038_201407281115.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407290202140_201407290959.cs" />
+    <Compile Include="Migrations\201407290202140_201407290959.Designer.cs">
+      <DependentUpon>201407290202140_201407290959.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407290824414_201407291623.cs" />
+    <Compile Include="Migrations\201407290824414_201407291623.Designer.cs">
+      <DependentUpon>201407290824414_201407291623.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407310152216_201407310951.cs" />
+    <Compile Include="Migrations\201407310152216_201407310951.Designer.cs">
+      <DependentUpon>201407310152216_201407310951.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408120948479_201408121750.cs" />
+    <Compile Include="Migrations\201408120948479_201408121750.Designer.cs">
+      <DependentUpon>201408120948479_201408121750.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408251004141_201408251757.cs" />
+    <Compile Include="Migrations\201408251004141_201408251757.Designer.cs">
+      <DependentUpon>201408251004141_201408251757.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408280123520_201408280923.cs" />
+    <Compile Include="Migrations\201408280123520_201408280923.Designer.cs">
+      <DependentUpon>201408280123520_201408280923.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409150228140_201409151026.cs" />
+    <Compile Include="Migrations\201409150228140_201409151026.Designer.cs">
+      <DependentUpon>201409150228140_201409151026.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409160143594_201409160943.cs" />
+    <Compile Include="Migrations\201409160143594_201409160943.Designer.cs">
+      <DependentUpon>201409160143594_201409160943.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409160804526_201409161543.cs" />
+    <Compile Include="Migrations\201409160804526_201409161543.Designer.cs">
+      <DependentUpon>201409160804526_201409161543.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409170453287_201409171248.cs" />
+    <Compile Include="Migrations\201409170453287_201409171248.Designer.cs">
+      <DependentUpon>201409170453287_201409171248.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409170958194_201409171748.cs" />
+    <Compile Include="Migrations\201409170958194_201409171748.Designer.cs">
+      <DependentUpon>201409170958194_201409171748.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201409180115246_201409180914.cs" />
+    <Compile Include="Migrations\201409180115246_201409180914.Designer.cs">
+      <DependentUpon>201409180115246_201409180914.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410090823015_201410091622.cs" />
+    <Compile Include="Migrations\201410090823015_201410091622.Designer.cs">
+      <DependentUpon>201410090823015_201410091622.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410150709172_201410151507.cs" />
+    <Compile Include="Migrations\201410150709172_201410151507.Designer.cs">
+      <DependentUpon>201410150709172_201410151507.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410240307208_201410241107.cs" />
+    <Compile Include="Migrations\201410240307208_201410241107.Designer.cs">
+      <DependentUpon>201410240307208_201410241107.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410270557559_201410271357.cs" />
+    <Compile Include="Migrations\201410270557559_201410271357.Designer.cs">
+      <DependentUpon>201410270557559_201410271357.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410280824313_201410281616.cs" />
+    <Compile Include="Migrations\201410280824313_201410281616.Designer.cs">
+      <DependentUpon>201410280824313_201410281616.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201410291004072_201410291801.cs" />
+    <Compile Include="Migrations\201410291004072_201410291801.Designer.cs">
+      <DependentUpon>201410291004072_201410291801.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411050353563_201411051147.cs" />
+    <Compile Include="Migrations\201411050353563_201411051147.Designer.cs">
+      <DependentUpon>201411050353563_201411051147.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411070346468_201411071154.cs" />
+    <Compile Include="Migrations\201411070346468_201411071154.Designer.cs">
+      <DependentUpon>201411070346468_201411071154.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411120227454_201411121024.cs" />
+    <Compile Include="Migrations\201411120227454_201411121024.Designer.cs">
+      <DependentUpon>201411120227454_201411121024.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411120818485_201411121614.cs" />
+    <Compile Include="Migrations\201411120818485_201411121614.Designer.cs">
+      <DependentUpon>201411120818485_201411121614.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411190241471_201411191041.cs" />
+    <Compile Include="Migrations\201411190241471_201411191041.Designer.cs">
+      <DependentUpon>201411190241471_201411191041.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411250830364_201411251630.cs" />
+    <Compile Include="Migrations\201411250830364_201411251630.Designer.cs">
+      <DependentUpon>201411250830364_201411251630.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="OrderRepository.cs" />
+    <Compile Include="OrdersMap\AdjustDetailMap.cs" />
+    <Compile Include="OrdersMap\AfterSaleOrderMap.cs" />
+    <Compile Include="OrdersMap\AfterSalePassengerMap.cs" />
+    <Compile Include="OrdersMap\AfterSaleSkyWayMap.cs" />
+    <Compile Include="OrdersMap\AnnulOrderMap.cs" />
+    <Compile Include="OrdersMap\AirChangeMap.cs" />
+    <Compile Include="OrdersMap\BounceLineMap.cs" />
+    <Compile Include="OrdersMap\BounceOrderMap.cs" />
+    <Compile Include="OrdersMap\CoordinationLogMap.cs" />
+    <Compile Include="OrdersMap\DeductionDetailMap.cs" />
+    <Compile Include="OrdersMap\DeductionGroupMap.cs" />
+    <Compile Include="OrdersMap\DeductionRuleMap.cs" />
+    <Compile Include="OrdersMap\FrePasserMap.cs" />
+    <Compile Include="OrdersMap\LocalPolicyMap.cs" />
+    <Compile Include="OrdersMap\OrderLogMap.cs" />
+    <Compile Include="OrdersMap\OrderMap.cs" />
+    <Compile Include="OrdersMap\OrderPayMap.cs" />
+    <Compile Include="OrdersMap\PassengerMap.cs" />
+    <Compile Include="OrdersMap\PayBillDetailMap.cs" />
+    <Compile Include="OrdersMap\PlatformRefundOrderMap.cs" />
+    <Compile Include="OrdersMap\PointGroupMap.cs" />
+    <Compile Include="OrdersMap\PolicyMap.cs" />
+    <Compile Include="OrdersMap\SkyWayMap.cs" />
+    <Compile Include="OrdersMap\TicketCarrierMap.cs" />
+    <Compile Include="OrdersMap\TicketMap.cs" />
+    <Compile Include="OrdersMap\TicketSumMap.cs" />
+    <Compile Include="OrdersMap\TicketConsoMap.cs" />
+    <Compile Include="OrdersMap\TravelGrantRecordMap.cs" />
+    <Compile Include="OrdersMap\TravelPaperLogMap.cs" />
+    <Compile Include="OrdersMap\TravelPaperMap.cs" />
+    <Compile Include="OrdersMap\PlatformPointGroupRuleMap.cs" />
+    <Compile Include="PlatformPointGroupRepository.cs" />
+    <Compile Include="PlatformRefundOrderRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RefundReasonRepository.cs" />
+    <Compile Include="TicketDbContext.cs" />
+    <Compile Include="TicketSumRepository.cs" />
+    <Compile Include="TravelGrantRecordRepository.cs" />
+    <Compile Include="TravelPaperRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Domain\BPiaoBao.DomesticTicket.Domain.csproj">
+      <Project>{d90805ce-cee6-42a5-87c2-ebf6ecfa94e2}</Project>
+      <Name>BPiaoBao.DomesticTicket.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework.EFRepository\JoveZhao.Framework.EFRepository.csproj">
+      <Project>{be77c3cc-e8a9-444f-9dea-a8f047a050eb}</Project>
+      <Name>JoveZhao.Framework.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201406170705183_InitialCreate.resx">
+      <DependentUpon>201406170705183_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407150320214_201407151115.resx">
+      <DependentUpon>201407150320214_201407151115.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407160219083_201407161016.resx">
+      <DependentUpon>201407160219083_201407161016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407160827132_201407161616.resx">
+      <DependentUpon>201407160827132_201407161616.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407171003264_201407171802.resx">
+      <DependentUpon>201407171003264_201407171802.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407240726012_201407241525.resx">
+      <DependentUpon>201407240726012_201407241525.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407240731537_201407241528.resx">
+      <DependentUpon>201407240731537_201407241528.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407240812400_201407241612.resx">
+      <DependentUpon>201407240812400_201407241612.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407250403553_201407251158.resx">
+      <DependentUpon>201407250403553_201407251158.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407280123128_201407280922.resx">
+      <DependentUpon>201407280123128_201407280922.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407280316038_201407281115.resx">
+      <DependentUpon>201407280316038_201407281115.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407290202140_201407290959.resx">
+      <DependentUpon>201407290202140_201407290959.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407290824414_201407291623.resx">
+      <DependentUpon>201407290824414_201407291623.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407310152216_201407310951.resx">
+      <DependentUpon>201407310152216_201407310951.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408120948479_201408121750.resx">
+      <DependentUpon>201408120948479_201408121750.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408251004141_201408251757.resx">
+      <DependentUpon>201408251004141_201408251757.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408280123520_201408280923.resx">
+      <DependentUpon>201408280123520_201408280923.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409150228140_201409151026.resx">
+      <DependentUpon>201409150228140_201409151026.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409160143594_201409160943.resx">
+      <DependentUpon>201409160143594_201409160943.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409160804526_201409161543.resx">
+      <DependentUpon>201409160804526_201409161543.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409170453287_201409171248.resx">
+      <DependentUpon>201409170453287_201409171248.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409170958194_201409171748.resx">
+      <DependentUpon>201409170958194_201409171748.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409180115246_201409180914.resx">
+      <DependentUpon>201409180115246_201409180914.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410090823015_201410091622.resx">
+      <DependentUpon>201410090823015_201410091622.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410150709172_201410151507.resx">
+      <DependentUpon>201410150709172_201410151507.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410240307208_201410241107.resx">
+      <DependentUpon>201410240307208_201410241107.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410270557559_201410271357.resx">
+      <DependentUpon>201410270557559_201410271357.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410280824313_201410281616.resx">
+      <DependentUpon>201410280824313_201410281616.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201410291004072_201410291801.resx">
+      <DependentUpon>201410291004072_201410291801.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411050353563_201411051147.resx">
+      <DependentUpon>201411050353563_201411051147.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411070346468_201411071154.resx">
+      <DependentUpon>201411070346468_201411071154.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411120227454_201411121024.resx">
+      <DependentUpon>201411120227454_201411121024.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411120818485_201411121614.resx">
+      <DependentUpon>201411120818485_201411121614.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411190241471_201411191041.resx">
+      <DependentUpon>201411190241471_201411191041.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411250830364_201411251630.resx">
+      <DependentUpon>201411250830364_201411251630.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

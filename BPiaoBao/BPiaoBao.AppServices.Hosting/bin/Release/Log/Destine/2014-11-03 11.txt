@@ -1,0 +1,68 @@
+Start====================================================================
+时间:2014-11-03 11:11:29.309
+客户端IP:127.0.0.1:55565
+调用方法名:Destine
+内容:预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8555
+StartDate=2014/11/27 7:05:00
+EndDate=2014/11/27 8:25:00
+Seat=B
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=0
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=0
+PolicySpecialType=DynamicSpecial
+SpecialPrice=0
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8804
+StartDate=2014/11/27 21:35:00
+EndDate=2014/11/27 23:15:00
+Seat=Y
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=100.0000
+FlightModel=319
+TaxFee=50
+RQFee=50.0
+SeatPrice=630.00
+PolicySpecialType=Normal
+SpecialPrice=630.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 11:11:24.579
+时间2:2014-11-03 11:11:29.222
+结果:
+ 成人Pnr=HM3VBQ PNRContent= 1.杨关 HM3VBQ   2.  3U8555 B   TH27NOV  CTUXIY HK1   0705 0825          E T1T3  3.  3U8804 Y   TH27NOV  XIYCTU HK1   2135 2315          E T3T1  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/0705/27NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.SSR ADTK 1E BY CTU10NOV14/1111 OR CXL 3U8555 B27NOV   8.OSI 3U CTCM15928636274/P1 9.OSI 3U CTCT15928636274   10.RMK CA/NB8XJS11.CTU186    
+ PATContent=没有符合条件的运价, 请使用手工处理  
+时间3:2014-11-03 11:11:29.230
+异常信息:成人编码HM3VBQ 没有P到价格信息！错误信息:没有符合条件的运价, 请使用手工处理  
+End=====================================================================
+

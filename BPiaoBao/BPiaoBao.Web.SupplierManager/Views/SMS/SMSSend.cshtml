@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "SMSSend";
+}
+
+<div id="SmsSendWindow">
+    <div>
+        <table style="margin:10px 0 0 20px;">
+            <tr>
+                <td width="60px">手机号码：</td>
+                <td>
+                    <textarea name="textfield" data-bind="value: SmsSendDto.ReceiveNum" maxlength="500" rows="5" cols="50" style="height:24px;line-height:24px;text-indent:5px;"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td><div style="margin-top:8px;">短信内容：</div></td>
+                <td>
+                    <div style="margin-top:8px;"><textarea name="textfield" data-bind="value: SmsSendDto.Content" rows="10" maxlength="500" cols="50"></textarea></div>
+                </td>
+            </tr>
+
+            <tr>
+                
+                <td colspan="2" style="text-align:center;">
+                    <div style="margin-top:8px;"><a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: $root.Send">发送</a></div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts{
+<script type="text/javascript">
+    $(function () {
+        searchViewModel = {
+            $ChargeSetWindow: null,
+            SmsSendDto:{
+                ReceiveNum: ko.observable(),
+                Content: ko.observable()
+            },
+            Send: function () {
+                var SmsSendDto = ko.toJS(searchViewModel.SmsSendDto);
+                var phoneno = SmsSendDto.ReceiveNum;
+                if (!(/^1[358]\d{9}|[,]$/.test($.trim(phoneno)))) {
+                    $.messager.alert('提示', "手机号格式错误", "info");
+                    return false;
+                }
+                if (SmsSendDto.Content == undefined || SmsSendDto.Content == '') {
+                    $.messager.alert('提示', "发送内容不能为空", "info");
+                    return false;
+                }
+                $.ajax({
+                    url: '@Url.Action("Send")',
+                    type: 'POST',
+                    data: SmsSendDto
+                }).done(function (e, s) {
+                    $.messager.alert('提示', e, 'info');
+                }).fail(function (e) {
+                    var obj = JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                });
+            }
+        }
+        ko.applyBindings(searchViewModel);
+    });
+</script>
+    }

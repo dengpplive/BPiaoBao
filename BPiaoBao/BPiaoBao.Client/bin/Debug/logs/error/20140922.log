@@ -1,0 +1,4 @@
+2014-09-22 18:31:57,248 - 手机号码不能重复：13000000000
+System.Exception: 手机号码不能重复：13000000000
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.Check() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 760
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.ExecuteOkCommandCommand() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 558

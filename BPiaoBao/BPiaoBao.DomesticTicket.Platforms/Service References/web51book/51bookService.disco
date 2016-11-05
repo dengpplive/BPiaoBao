@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://210.14.138.26:113/51bookService.asmx?wsdl" docRef="http://210.14.138.26:113/51bookService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://210.14.138.26:113/51bookService.asmx" xmlns:q1="http://203.88.210.234:113/" binding="q1:_51bookServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://210.14.138.26:113/51bookService.asmx" xmlns:q2="http://203.88.210.234:113/" binding="q2:_51bookServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

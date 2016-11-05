@@ -1,0 +1,329 @@
+﻿<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="62" valign="bottom" class="tdtitle td_noboder">
+                    <h3>结算</h3>
+                </td>
+                <td width="342" valign="bottom" class="td_noboder">余额：
+                    <span class="td_noboder fontcolor">￥
+                        <i class="fontsize" data-bind="text:$root.readyBalance"></i>
+                    </span><font color="#888888">（结算现金账户余额到银行卡）</font>
+                </td>
+                <td width="12" valign="bottom" class="td_noboder"><font color="#cccccc">|</font></td>
+                <td width="718" valign="bottom" class="td_noboder">
+                    <a href="javascript:void(0)" class="jilu" onclick="withdrawLog()">最近结算记录</a>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="tableShow">
+        <div style="padding-bottom: 10px; font-weight: bold; border-bottom: 1px solid #e5e5e5; margin-bottom: 35px;">结算方式</div>
+        <div class="tixianTable">
+            <table width="0%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="68" class="fontcolor3">转入卡号：</td>
+                    <td width="215">
+                        <select name="bankCard" id="bankCard" style="width: 210px; height: 25px; line-height: 25px;" data-bind="options: $root.bankCards,optionsText: 'NameCardNoShow',optionsValue:'BankId',value: $root.cashOutParas.bankId"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="fontcolor3">结算金额：</td>
+                    <td>
+                        <input id="money" type="text" style="height: 24px;" data-bind="value:$root.cashOutParas.money" class="easyui-numberbox" min="0" precision="2" />
+                        元
+                    </td>
+                </tr>
+                <tr>
+                    <td class="fontcolor3">到账时间：</td>
+                    <td>
+                        <table width="200">
+                            <tr>
+                                <td>
+                                    <label data-bind="visible:$root.FeeRuleInfo.TodayEnable">
+                                        <input type="radio" name="rdToAccount" value="0" id="RadioGroup2_0" data-bind="checked:$root.cashOutParas.isNextDayToAccount" />
+                                        当日到账
+                                    </label>
+                                </td>
+                                <td>
+                                    <label data-bind="visible:$root.FeeRuleInfo.MorrowEnable">
+                                        <input type="radio" name="rdToAccount" value="1" id="RadioGroup2_1" data-bind="checked:$root.cashOutParas.isNextDayToAccount" />
+                                        次日到账
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="fontcolor3">手  续  费：</td>
+                    <td><i data-bind="text:$root.feeAmount"></i>元&nbsp;&nbsp;
+                        <button id="btn_question">?</button></td>
+                </tr>
+                <tr>
+                    <td class="fontcolor3">支付密码：</td>
+                    <td>
+                        <input id="pwd" type="password" style="height: 26px; line-height: 26px; background: #f8fbfe; border: 1px solid #a9b9c8;" data-bind="value:$root.cashOutParas.password" /></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td style="height: 80px;">
+                        <a class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick="DoWithDraw();return false;">确定</a>&nbsp;&nbsp;<a href="javascript:history.back()" class="easyui-linkbutton" data-options="toggle:true,group:'g1'">返 回</a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="addCard">
+            <a href="javascript:void(0)" onclick="$('#AddBankCardDialog').window('open')">添加银行卡</a>
+        </div>
+    </div>
+</div>
+<div id="ruleGrid" style="position:absolute;display:none; font-size:14px; padding:10px; border:1px solid #494848; background-color:#E4E4E4;" >
+    <table style="width:600px; border-collapse:collapse; border:1px solid  #494848;">
+        <caption style="text-align:left; font-size:16px;">收费标准</caption>
+        <thead>
+            <tr style="background-color:#E2E9F3; height:20px;">
+                <th style="text-align:left;">到账时间</th>
+                <th style="text-align:left;">服务费</th>
+                <th style="text-align:left;">服务费下限(元/笔)</th>
+                <th style="text-align:left;">服务费上限(元/笔)</th>
+                <th style="text-align:left;">每笔结算限额</th>
+                <th style="text-align:left;">当天结算限额</th>
+            </tr>
+        </thead>
+       <tbody>
+            <tr data-bind="visible:$root.FeeRuleInfo.TodayEnable">
+                <td style="text-align:left;">当日</td>
+                <td style="text-align:left;" data-bind="text:$root.TodayDayWithdrawRate"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.TodayWithdrawRateType==1?$root.FeeRuleInfo.TodayEachFeeAmountMin:'__'"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.TodayWithdrawRateType==1?$root.FeeRuleInfo.TodayEachFeeAmountMax:'__'"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.TodayEachAmount"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.TodayDayAmount"></td>
+            </tr>
+            <tr data-bind="visible:$root.FeeRuleInfo.MorrowEnable">
+                <td style="text-align:left;">次日</td>
+                <td style="text-align:left;" data-bind="text:$root.MorrowWithdrawRate"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.MorrowWithdrawRateType==1?$root.FeeRuleInfo.MorrowEachFeeAmountMin:'__'"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.MorrowWithdrawRateType==1?$root.FeeRuleInfo.MorrowEachFeeAmountMax:'__'"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.MorrowEachAmount"></td>
+                <td style="text-align:left;" data-bind="text:$root.FeeRuleInfo.MorrowDayAmount"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+@Html.Partial("AddBankCard")
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+      
+        vm.readyBalance = ko.mapping.fromJS(Fromdata.readyBalance.toFixed(2));
+        vm.otherParas = ko.mapping.fromJS(Fromdata.otherParas);
+        vm.FeeRuleInfo=Fromdata.feeRuleInfo;
+        vm.TodayDayWithdrawRate=vm.FeeRuleInfo.TodayWithdrawRateType==1?vm.FeeRuleInfo.TodayEachRate*100+'%':vm.FeeRuleInfo.TodayEachFeeAmount+'元/笔';
+        vm.MorrowWithdrawRate=vm.FeeRuleInfo.MorrowWithdrawRateType==1?vm.FeeRuleInfo.MorrowEachRate*100+'%':vm.FeeRuleInfo.MorrowEachFeeAmount+'元/笔';
+        delete vm.otherParas.__ko_mapping__;
+        vm.cashOutParas = ko.mapping.fromJS(Fromdata.cashOutParas);
+        vm.bankCards = ko.observableArray([]);
+        vm.city = ko.observableArray([]);
+        //  vm.availableMoney = ko.observable();
+        //最高提现金额
+        vm.feeAmount = ko.observable();
+        //手续费
+
+        vm.editForm = ko.mapping.fromJS(Fromdata.editForm);
+
+        ko.applyBindings(vm);
+        getBankCardDropList();
+        //    getAvailableMoney();
+        $("#btn_question").mouseover(function(){
+            var p=$(this).position();
+            $('#ruleGrid').css({left:p.left+10,top:p.top+10}).show();
+        }).mouseout(function(){
+            $('#ruleGrid').hide();
+        });
+        /*
+        跳转到提现记录页面
+        */
+
+        function withdrawLog() {
+            location.href = Fromdata.urls.withdrawLog;
+        }
+
+        function getAvailableMoney() {//可提取的金额 ，暂时没有调用
+            //var isNextDay = $('input:radio[name="rdToAccount"]:checked').val();
+            var isNextDay = vm.cashOutParas.isNextDayToAccount();
+            $.get(Fromdata.urls.getAvailableMoney, { "isNextDayToAccout": isNextDay }, function(res) {
+                vm.availableMoney(res);
+            });
+        }
+
+        function getFeeAmount() {
+            //var isNextDay = $('input:radio[name="rdToAccount"]:checked').val();
+            var isNextDay = vm.cashOutParas.isNextDayToAccount();
+            var money = vm.cashOutParas.money();
+            if (money == null || money == "" || money == 0) {
+                vm.feeAmount(0);
+                return;
+            }
+            $.get(Fromdata.urls.getFeeAmount, { "money": money, "isNextDayToAccout": isNextDay ,date:new Date()}, function(res) {
+                vm.feeAmount(res);
+
+            });
+        }
+
+
+        function DoWithDraw() {
+            var bankId = $.trim(vm.cashOutParas.bankId());
+            var money = $.trim(vm.cashOutParas.money());
+            var amoney = vm.readyBalance();
+            var fmoney = vm.feeAmount();
+            if (bankId == "") {
+                window.parent.$.messager.alert("提示", "请选择银行卡","warning");
+                return;
+            }
+            if (money==""||parseFloat(money)==0){
+                window.parent.$.messager.alert("提示", "请输入结算金额","warning");
+                return;
+            }
+            if (parseFloat(money) > parseFloat(amoney)) {
+                window.parent.$.messager.alert("提示", "您最高可结算金额：" + amoney + "元","warning");
+                return;
+            }
+            if (parseFloat(money) - parseFloat(fmoney) <= 0) {
+                window.parent.$.messager.alert("提示", "结算金额不能小于或等于手续费","warning");
+                return;
+            }
+            if (vm.cashOutParas.password() == "") {
+                window.parent.$.messager.alert("提示", "请输入支付密码","warning");
+                return;
+            }
+            $("#mainContent").mask("正在提交数据...");
+            //提现
+            $.ajax({
+                url: Fromdata.urls.cashOut,
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(ko.toJS(vm.cashOutParas)),
+                success: function(result) {
+                    $("#mainContent").unmask();
+                    window.parent.$.messager.alert("提示", result.Message,"info");
+                    if (result.Success == 1) {
+                        location.reload();
+                    }
+
+                },
+                error:function(e) {
+                    $("#mainContent").unmask();
+                    var obj =JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                }
+            });
+
+        }
+
+        $("#money").bind("change", function() {
+            getFeeAmount();
+        });
+
+        $('input:radio[name="rdToAccount"]').each(function() {
+            $(this).bind("click", function() {
+                getFeeAmount();
+            });
+        });
+        
+        /*
+        省市联动事件
+        */
+        $("#selPro").bind("change", function() {
+            getCitys();
+        });
+        function getCitys() {
+            $("#AddBankCardDialog").mask("正在获取数据...");
+            var text = $("#selPro option:selected").text();
+            $.getJSON(Fromdata.urls.getCity, { 'areaName': text }, function(res) {
+                vm.city(res);
+                $("#AddBankCardDialog").unmask();
+            });
+        }
+        /*
+        添加银行
+        */
+
+        function addBankCard() {
+            var reg = new RegExp("^[0-9]*$");
+            if (vm.editForm.Name() == null||vm.editForm.Name()=="") {
+                window.parent.$.messager.alert('提示', "银行名称不能够为空","warning");
+                return;
+            }
+            if (vm.editForm.CardNo() == null||vm.editForm.CardNo()=="") {
+                window.parent.$.messager.alert('提示', "银行卡号不能够为空","warning");
+                return;
+            }
+            if (!reg.test(vm.editForm.CardNo())) {
+                window.parent.$.messager.alert('提示', "请输入正确的银行卡号","warning");
+                return;
+            }else if ($.trim(vm.editForm.CardNo()).length<6) {
+                window.parent.$.messager.alert('提示', "请输入正确的银行卡号","warning");
+                return;
+            }
+            if (vm.editForm.City() == null) {
+                window.parent.$.messager.alert('提示', "开户行城市信息不能够为空","warning");
+                return;
+            }
+            if (vm.editForm.BankBranch() == null||vm.editForm.BankBranch()=="") {
+                window.parent.$.messager.alert('提示', "开户行信息不能够为空","warning");
+                return;
+            }
+            $("#AddBankCardDialog").mask("正在提交数据...");
+            $.ajax({
+                url: Fromdata.urls.addBankCard,
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(ko.toJS(vm.editForm)),
+                success: function(result) {
+                    $("#AddBankCardDialog").unmask();
+                    result = JSON.parse(result);
+                    if (result.Success == 1) {
+                        getBankCardDropList(); 
+                        vm.editForm.BankBranch("");
+                        vm.editForm.CardNo("");
+                        InitTextTip();
+                        $('#AddBankCardDialog').dialog('close');
+                    } else {
+                        window.parent.$.messager.alert("提示", result.Message,"error");
+                    }
+                },
+                error:function(e) {
+                    $("#AddBankCardDialog").unmask();
+                    var obj =JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error');
+                }
+            });
+        }
+
+        /*获取我的银行管理下拉列表
+        */
+
+        function getBankCardDropList() {
+            $("#mainContent").mask("正在获取数据...");
+            $.getJSON(Fromdata.urls.queryBankCards, {time:new Date().getTime()}, function(res) {
+                vm.bankCards(res);
+                getCitys();
+                $("#mainContent").unmask();
+            });
+        }
+        function InitTextTip() {
+            $("#CardNo").watermark("请输入您的卡号", { useNative: false });
+            $("#BankBranch").watermark("请输入开户行信息", { useNative: false });
+        }
+
+        InitTextTip();
+    </script>
+}

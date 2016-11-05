@@ -1,0 +1,100 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="BPiaoBao.Client.Account.View.BillDetailControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="539" d:DesignWidth="682">
+	<!--<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/BPiaoBao.Client.Account;component/ProjectDataSources.xaml"/>
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+	</UserControl.Resources>-->
+	<UserControl.DataContext>
+        <Binding Mode="OneWay" Path="BillDetail" Source="{StaticResource AccountVMLocatorDataSource}"/>
+	</UserControl.DataContext>
+	<Grid Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="60"/>
+			<RowDefinition Height="41"/>
+			<RowDefinition Height="Auto" MinHeight="65"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		
+		<Grid Background="{StaticResource HeadBg1}">
+			<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0">
+				<!--<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="40,0,0,0"><Run Text="充值总金额："/><Run Foreground="#FFFF4E00" FontSize="14.667" Text="￥12312312312"/></TextBlock>-->
+				<TextBlock TextWrapping="Wrap" Text="消费记录" d:LayoutOverrides="Width" VerticalAlignment="Center" Style="{DynamicResource HeadTextBlock}"/>
+			</StackPanel>
+		</Grid>
+		<Border Grid.Row="1" Style="{DynamicResource Head2BorderStyle}" >
+			<Grid Background="{StaticResource HeadBg3}">
+				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="消费明细" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0" Style="{DynamicResource Head2TextBlock}"/>
+			</Grid>
+		</Border>
+		<Grid Grid.Row="2">
+			<Border Grid.ColumnSpan="2" BorderThickness="2" Background="{StaticResource BlueBorderFillBrush}" Margin="20,10" BorderBrush="{StaticResource BlueBorderBrush}">
+				<WrapPanel VerticalAlignment="Center">
+					<StackPanel Height="24" Orientation="Horizontal" Margin="20,5,0,5" VerticalAlignment="Center">
+						<TextBlock TextWrapping="Wrap" Text="账单日期：" VerticalAlignment="Center" Margin="0,4.081"/>
+						<DatePicker VerticalAlignment="Center"  SelectedDate="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0" Width="110" />
+						<TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Margin="4,4.081" Width="6" Style="{DynamicResource HorizontalLineTextBlock}"/>
+						<DatePicker VerticalAlignment="Center"  SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" />
+					</StackPanel>
+					<StackPanel Height="24" Orientation="Horizontal" Margin="20,5,0,5" VerticalAlignment="Center">
+						<TextBlock TextWrapping="Wrap" Text="消费金额：" VerticalAlignment="Center" Margin="0,5"/>
+						<xctk:DecimalUpDown Value="{Binding AmountMin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" Margin="5,0,0,0" />
+						<TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Margin="4,4.081" Width="6" Style="{DynamicResource HorizontalLineTextBlock}"/>
+						<xctk:DecimalUpDown Margin="0" Value="{Binding AmountMax, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100" />
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" Margin="20,5,0,5" VerticalAlignment="Center">
+						<TextBlock TextWrapping="Wrap" Text="交易号：" VerticalAlignment="Center"/>
+                        <TextBox Height="21" TextWrapping="Wrap" Width="240" Text="{Binding OutTradeNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="20,5,0,5">
+						<Button Content="查询" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource OkButton}"  Command="{Binding QueryCommand, Mode=OneWay}" Margin="0" >
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+						<Button Command="{Binding ExportCommand}" Content="导出Excel" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource CancelButton}" Foreground="{StaticResource HeavyBlueForeground}" Margin="10,0,0,0"  />
+					</StackPanel>
+				</WrapPanel>
+			</Border>
+		</Grid>
+		<Grid Grid.Row="3">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto" MinHeight="40"/>
+			</Grid.RowDefinitions>
+			<DataGrid Margin="20,10" BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding BillDetailList}" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="38" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+				<DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Binding="{Binding CreateDate, StringFormat=yyyy-MM-dd HH:mm:ss}" Header="交易时间" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Binding="{Binding OutTradeNo}" Header="交易号" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Binding="{Binding OutOrderNo}" Header="订单号" />
+					<DataGridTextColumn Width="*" Binding="{Binding Amount,StringFormat={}{0:f2}}" Header="消费金额"/>
+					<DataGridTextColumn Width="*" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding BillDate, StringFormat=yyyy-MM-dd}" Header="账单日期" />
+					<DataGridTextColumn Width="*" Binding="{Binding Notes}" Header="产品名称"/>					
+				</DataGrid.Columns>
+			</DataGrid>
+			<WPFSpark:SprocketControl Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+			<UIExt:Pagination Grid.Row="1" VerticalAlignment="Top"
+				PageSize="{Binding PageSize}" 
+				CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay}"
+				TotalCount="{Binding TotalCount, Mode=TwoWay}" Margin="20,0" >
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="PageChanged">
+						<i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</UIExt:Pagination>
+		</Grid>
+		
+            
+	</Grid>
+</UserControl>

@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="BPiaoBao.Client.SystemSetting.View.OperatorManager"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:BPiaoBao.Client.SystemSetting.ViewModel"
+             xmlns:WPFpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+             xmlns:convert="clr-namespace:BPiaoBao.Client.SystemSetting.View.Converter"
+             mc:Ignorable="d" d:DesignHeight="443" Background="White" d:DataContext="{d:DesignData /SampleData/OperatorViewModelSampleData.xaml}" >
+    <UserControl.DataContext>
+        <vm:OperatorViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <convert:OperatorStateConvert x:Key="OperatorState"/>
+        <convert:OperatorActionConvert x:Key="OperatorAction"/>
+        <convert:IsWaitConverter x:Key="IsWait"/>
+
+        <Style x:Key="BlueTextBlock" TargetType="{x:Type TextBlock}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#7690A9"/>
+        </Style>
+
+        <Style x:Key="GrayTextBox" TargetType="{x:Type TextBox}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="BorderBrush" Value="#B4BEC0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="#FFFFFF"/>
+        </Style>
+
+        <DataTemplate x:Key="ActionTemplate">
+            <WrapPanel HorizontalAlignment="Center" Orientation="Horizontal" Visibility="{Binding DataContext.ShowHidden, Converter={StaticResource IsWait}, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" VerticalAlignment="Center" >
+                <Button Content="{Binding OperatorState, Converter={StaticResource OperatorAction}}" CommandParameter="{Binding}" Command="{Binding DataContext.ActiveCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Margin="0,5,5,5" Width="40"/>
+                <Button CommandParameter="{Binding}" Command="{Binding DataContext.UpdateCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Margin="0,5,5,5" Width="40" Content="修改"/>
+                <!--<Button Content="删除" CommandParameter="{Binding}" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Width="40" Margin="0,5"/>-->
+                <Button CommandParameter="{Binding}" Command="{Binding DataContext.ResetPswCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" Margin="0,5,5,5"  Content="重置密码"/>
+
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="PwdTemplate">
+            <TextBlock Text="******"/>
+        </DataTemplate>
+    </UserControl.Resources>
+    <DockPanel>
+        <Border DockPanel.Dock="Top" Height="38" Background="{DynamicResource HeadBg2}">
+            <TextBlock FontWeight="Bold" Margin="25,10,10,10" ToolTip="{Binding ShowHidden}" HorizontalAlignment="Left" VerticalAlignment="Center" Text="员工管理"/>
+        </Border>
+        <Grid Margin="25,10,25,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="96"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border BorderThickness="1" Margin="0,0,0,10" BorderBrush="#D2E0EB" Background="#F4F8FB">
+                <Grid Margin="25,0,25,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="46"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="#E4EBF3"  BorderThickness="0,0,0,1" Height="46" VerticalAlignment="Center"  HorizontalAlignment="Stretch">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                            <TextBlock Text="真实姓名：" Style="{StaticResource BlueTextBlock}" Foreground="Black"/>
+                            <TextBox Style="{StaticResource GrayTextBox}" Margin="0,0,20,0"  Width="115" Text="{Binding SearchRealName}" VerticalContentAlignment="Center"/>
+                            <TextBlock Text="帐号：" Style="{StaticResource BlueTextBlock}" Foreground="Black"/>
+                            <TextBox Style="{StaticResource GrayTextBox}"  Margin="0,0,20,0"  Width="115" Text="{Binding SearchAccount}" VerticalContentAlignment="Center"/>
+                            <TextBlock  Text="状 态：" Style="{StaticResource BlueTextBlock}" Foreground="Black"/>
+                            <ComboBox Height="24" ItemsSource="{Binding OperatorStateList}"  DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedOperatorStatus,Mode=TwoWay}" Background="#FFFFFF" VerticalAlignment="Center" Margin="0,0,20,0"  Width="115" VerticalContentAlignment="Center"/>
+                            <Button Content=" 查 询 " BorderThickness="0" Style="{StaticResource QueryBtn}" Command="{Binding QueryCommand}" Height="24" Width="60"/>
+                        </StackPanel>
+                    </Border>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" Visibility="{Binding ShowHidden, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Text="你还可以进行员工新增操作! " Foreground="#FF999999" VerticalAlignment="Center"/>
+                        <Button Content="+添加员工" Width="72" Command="{Binding AddOperatorCommand}" Height="24" Style="{StaticResource AddBtn}" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <DataGrid Grid.Row="1" ItemsSource="{Binding OpList}"
+                      AutoGenerateColumns="False" Foreground="Black" RowDetailsVisibilityMode="Visible" 
+                      BorderThickness="0" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" RowHeight="50" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FFE0E0E0" IsReadOnly="True" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="真实姓名" Binding="{Binding Realname}" ClipboardContentBinding="{x:Null}"/>
+                    <DataGridTextColumn Width="*" Header="联系电话" Binding="{Binding Phone}" ClipboardContentBinding="{x:Null}" />
+                    <DataGridTextColumn Width="*" Header="联系手机" Binding="{Binding Tel}" ClipboardContentBinding="{x:Null}" />
+                    <DataGridTextColumn Width="*" Header="帐号" Binding="{Binding Account}" ClipboardContentBinding="{x:Null}"/>
+                    <DataGridTemplateColumn Width="*" Header="密码" ClipboardContentBinding="{x:Null}" CellTemplate="{StaticResource PwdTemplate}"/>
+                    <DataGridTextColumn Width="0.65*" Header="状态" Binding="{Binding OperatorState,Converter={StaticResource OperatorState}}" ClipboardContentBinding="{x:Null}"/>
+                    <DataGridTextColumn Width="*" Header="创建时间" Binding="{Binding CreateDate,StringFormat='yyyy-MM-dd'}" ClipboardContentBinding="{x:Null}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTemplateColumn MinWidth="210" Header="操作" ClipboardContentBinding="{x:Null}" CellTemplate="{StaticResource ActionTemplate}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <WPFpark:SprocketControl Grid.Row="1" Width="100" Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsBusy,Converter={StaticResource BooleanToVisibilityConverter}}" Panel.ZIndex="1"/>
+        </Grid>
+    </DockPanel>
+</UserControl>

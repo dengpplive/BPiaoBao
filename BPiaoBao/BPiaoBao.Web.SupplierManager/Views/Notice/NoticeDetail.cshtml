@@ -1,0 +1,40 @@
+﻿@model BPiaoBao.AppServices.ConsoContracts.SystemSetting.DataObjects.NoticeDataObj
+
+@{
+    Layout = null;
+}
+<style>
+    .new_ulstyle  li{ line-height:24px;
+    }
+        .new_ulstyle li a { color:#0094ff; 
+        }
+        .new_ulstyle li a:hover { color:#333; text-decoration:underline;
+        }
+</style>
+<table id="NoticeDetailDialog" style="width: 900px; height: 600px; margin: 0 auto;">
+    <tr>
+        <td style="text-align:center; font-size:16px; font-weight:bold;">@Model.Title</td>
+    </tr>
+    <tr>
+        <td><div style=" line-height:22px; text-indent:2em;">@Html.Raw(Model.Contents)</div></td>
+    </tr>
+    <tr>
+        <td style="text-align: right;">@Model.CreateTime</td>
+    </tr>
+    <tr>
+        <td>
+            <ul class="new_ulstyle">
+            @for (int i = 0; i < Model.NoticeAttachments.Count; i++)
+            {
+               <li><span style=" padding-right:10px;">@Model.NoticeAttachments[i].Name</span><a href="@Model.NoticeAttachments[i].Url">下载</a></li>
+            }
+           </ul>
+        </td>
+    </tr>
+
+</table>
+<script type="text/javascript">
+    $(function () {
+        $("#NoticeDetailDialog a").attr('target', '_blank');
+    })
+</script>

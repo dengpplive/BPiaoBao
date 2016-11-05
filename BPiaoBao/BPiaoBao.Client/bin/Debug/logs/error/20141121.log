@@ -1,0 +1,58 @@
+2014-11-21 15:34:36,833 - 成人编码生成失败,原因如下:发送指令：NM1蓝和革SS 3U8555 Y 30NOV14 CTUXIY 1SSR FOID 3U HK/NI231283198712023596/P1OSI 3U CTCM13689023172/P1OSI 3U CTCT15528305255TKTL/0705/30NOV/CTU186@，接收返回信息失败，可能通讯断开...
+System.ServiceModel.FaultException: 成人编码生成失败,原因如下:发送指令：NM1蓝和革SS 3U8555 Y 30NOV14 CTUXIY 1SSR FOID 3U HK/NI231283198712023596/P1OSI 3U CTCM13689023172/P1OSI 3U CTCT15528305255TKTL/0705/30NOV/CTU186@，接收返回信息失败，可能通讯断开...
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass26.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 642
+2014-11-21 15:40:10,617 - 成人编码生成失败,原因如下:发送指令：NM1蓝和革SS 3U8555 Y 30NOV14 CTUXIY 1SSR FOID 3U HK/NI231283198712023596/P1OSI 3U CTCM13689023172/P1OSI 3U CTCT15528305255TKTL/0705/30NOV/CTU186@，接收返回信息失败，可能通讯断开...
+System.ServiceModel.FaultException: 成人编码生成失败,原因如下:发送指令：NM1蓝和革SS 3U8555 Y 30NOV14 CTUXIY 1SSR FOID 3U HK/NI231283198712023596/P1OSI 3U CTCM13689023172/P1OSI 3U CTCT15528305255TKTL/0705/30NOV/CTU186@，接收返回信息失败，可能通讯断开...
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass26.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 642
+2014-11-21 15:43:07,305 - 商户不存在
+System.ServiceModel.FaultException: 商户不存在
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.Cashbag.IAccountService.GetBankListInfo()
+   在 BPiaoBao.Client.UIExt.Model.BankData.<>c__DisplayClass3.<GetBanks>b__1(IAccountService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Model\BankData.cs:行号 54
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-21 15:43:19,061 - 商户不存在
+System.ServiceModel.FaultException: 商户不存在
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.Cashbag.IAccountService.GetAccountInfo()
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.PolicyDetailViewModel.<ExecuteInitlizeCommand>b__65(IAccountService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\PolicyDetailViewModel.cs:行号 1562
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55

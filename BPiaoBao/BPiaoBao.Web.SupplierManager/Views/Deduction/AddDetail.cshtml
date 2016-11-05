@@ -1,0 +1,65 @@
+﻿<div id="AddDetailDialog" class="easyui-dialog" title="新增扣点组规则" data-options="iconCls:'icon-add',closable:false,modal:true,closed:true,buttons:'#AddDetailDialog-buttons'" style="width: 380px; height: 450px; padding: 5px;">
+    <table class="editTable">
+        <tr>
+            <td>承运人：</td>
+            <td>
+                <select data-bind="options: $root.allAirCode, optionsValue: 'AirCode', optionsText: 'AirName', value: $root.ruleDetail.CarrCode, optionsCation: '请选择...'"></select>
+            </td>
+        </tr>
+        <tr>
+            <td>类型：</td>
+            <td>
+                <input type="radio" name="DeductionType" value="Local" data-bind="checked: $root.ruleDetail.DeductionType" id="local" /><label for="local">本地</label>
+                <input type="radio" name="DeductionType" value="Interface" data-bind="checked: $root.ruleDetail.DeductionType" id="interface" /><label for="interface">接口</label>
+                <input type="radio" name="DeductionType" value="Share" data-bind="checked: $root.ruleDetail.DeductionType" id="share" /><label for="share">共享</label>
+            </td>
+        </tr>
+        <tr>
+            <td>有效时间：</td>
+            <td>
+                <input type="text" id="startTime" class="easyui-my97" style="width: 105px;" data-bind="my97value: $root.ruleDetail.StartTime" />-
+                <input type="text" id="endTime" class="easyui-my97" style="width: 105px;" data-bind="my97value: $root.ruleDetail.EndTime" data-options="{minDate:'#F{$dp.$D(\'startTime\')}'}" />
+            </td>
+        </tr>
+        <tr>
+            <td>调整:</td>
+            <td><a href="javascript:void(0)" iconcls="icon-sys-badd" class="easyui-linkbutton" data-bind="click: $root.addRule">添加</a></td>
+        </tr>
+    </table>
+    <!-- ko foreach:$root.ruleDetail.AdjustDetails -->
+    <table style="border:1px solid #CAD9E0; background-color:#F5F6F8; width:344px; margin-bottom:5px;">
+        <colgroup>
+            <col width="60" />
+            <col width="250" />
+            <col width="30" />
+        </colgroup>
+        <tr>
+            <td>范　围：</td>
+            <td>
+                <input type="text" class="input" style="width:105px;" data-bind="value: StartPoint" />-<input class="input" style="width:105px;" type="text" data-bind="    value: EndPoint" />
+            </td>
+            <td>
+                <a href="javascript:void(0)" class="icon-sys-delete" style="width:20px; height:20px; text-align:right;" data-bind="click: $root.removeRule">&nbsp;&nbsp;</a>
+            </td>
+        </tr>
+        <tr>
+            <td>方　式：</td>
+            <td colspan="2">
+                <input type="radio" value="Lrish" data-bind="checked: AdjustType, attr: { 'name': 'AdjustType' + $index() }" /><label>扣点</label>
+                <input type="radio" value="Leave" data-bind="checked: AdjustType, attr: { 'name': 'AdjustType' + $index() }" /><label>留点</label>
+                <input type="radio" value="Compensation" data-bind="checked: AdjustType, attr: { 'name': 'AdjustType' + $index() }" /><label>补点</label>
+            </td>
+        </tr>
+        <tr>
+            <td>点　数：</td>
+            <td colspan="2">
+                <input type="text" style="width:220px;" class="input" data-bind="value: Point" />
+            </td>
+        </tr>
+    </table>
+    <!--  /ko -->
+</div>
+<div id="AddDetailDialog-buttons" style=" text-align:center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.saveDetail">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" data-bind="click: $root.closeDetail">取消</a>
+</div>

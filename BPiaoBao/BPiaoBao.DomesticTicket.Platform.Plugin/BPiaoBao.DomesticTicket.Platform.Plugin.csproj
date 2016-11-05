@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F1C58E54-417F-4A65-A13E-E872841C544E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.DomesticTicket.Platform.Plugin</RootNamespace>
+    <AssemblyName>BPiaoBao.DomesticTicket.Platform.Plugin</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BasePlatform.cs" />
+    <Compile Include="EnumPaidMethod.cs" />
+    <Compile Include="IPlatformNotify.cs" />
+    <Compile Include="IPlatform.cs" />
+    <Compile Include="MessageMap\_517NotifyMessage.cs" />
+    <Compile Include="NotifyEvent.cs" />
+    <Compile Include="NotifyObserver.cs" />
+    <Compile Include="PlatformAttribute.cs" />
+    <Compile Include="PlatformConfigurationSection.cs" />
+    <Compile Include="PlatformFactory.cs" />
+    <Compile Include="PlatformOrder.cs" />
+    <Compile Include="PlatformPolicy.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartAndEndTime.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PnrAnalysis\PnrAnalysis.csproj">
+      <Project>{8b4c3980-a7b8-4a81-8df2-cffa576fe414}</Project>
+      <Name>PnrAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

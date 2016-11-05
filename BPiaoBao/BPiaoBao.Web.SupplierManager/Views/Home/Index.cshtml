@@ -1,0 +1,232 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>卖票宝后台管理</title>
+    @Styles.Render("~/easyui/css")
+    @Styles.Render("~/Content/css")
+    <style>
+        .loadmask {
+    z-index: 100;
+    position: absolute;
+    top:0;
+    left:0;
+    -moz-opacity: 1;
+    opacity: 1;
+    filter: alpha(opacity=100);
+    background-color: #CCC;
+    width: 100%;
+    height: 100%;
+    zoom: 1;
+}
+    </style>
+</head>
+<body>
+    
+    <div class="ui-layout-north header"> 
+        <div class="ui-layout-west logo"></div>
+        <div class="ui-layout-center nav">
+            <ul class="ulnav" data-bind="foreach: topmodule">
+                <!-- ko if:$index()==0 -->
+                <li class="firstli"></li>
+                <!-- /ko -->
+                <li><span data-bind="css: { 'selected': Code == $root.selected() }"><a href="#" hidefocus="hideFocus" data-bind="css:Icon,text: Name, click: function () { $root.selectedClick(Code) }"></a></span></li>
+            </ul>
+        </div>
+        <div class="ui-layout-east admin" style="text-align:right; padding-right:32px;">
+            @Html.Partial("ChangePassword")
+            <a href="#" class="admin_a"><span data-bind="text: businessmanName">&nbsp;</span>(<span data-bind="text: operatorName"></span>)</a>,&nbsp;欢迎回来!&nbsp;&nbsp;
+            <a href="#" onclick="$('#PasswordDialog').dialog('open')">修改密码</a><i style="padding:0px 15px;">|</i> @Html.ActionLink("退出", "Exit", "Home") 
+        </div>
+    </div>
+    <div class="ui-layout-west leftbar" style="background: #e5eaee; border-right: 1px solid #d1d1d1;">
+        <h4 data-bind="text: leftmenu().Name"></h4>
+        <ul data-bind="foreach: leftmenu().Menus">
+            <li>
+                <a href="javascript:void(0)" hidefocus="hideFocus" data-bind="text: Name, css: { 'listyle': !Url }, attr: { 'url': Url }"></a>
+                <ul data-bind="foreach: Menus">
+                    <li>
+                        <a href="javascript:void(0)" hidefocus="hideFocus" data-bind="text: Name, attr: { 'url': Url }"></a>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="ui-layout-center rightbar" id="MainDiv">
+        <div class="ui-layout-north breadNav"><a href="javascript:void(0)" data-bind="text:leftmenu().Name"></a>>><span id="spanText" style="color:#007ABE;"></span></div>
+        <iframe class="ui-layout-center" id="MainFrame" scrolling="auto" frameborder="0" marginheight="0" marginwidth="0" style="width: 100%; height: 100%; padding:0 0 0 0px;"></iframe>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/layout")
+    @Scripts.Render("~/bundles/common") 
+    @Scripts.Render("~/bundles/jqueryplus")
+    <script src="~/Scripts/jquery.signalR-2.1.0.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script type="text/javascript">
+
+        function Action(command) {
+            var url = "";
+            switch (command) {
+                case 0:
+                    url = "/TicketOrder/OrderIndex"
+                    break;
+                case 1:
+                    url = "/TicketOrder/SaleOrderIndex";
+                    break;
+                case 2:
+                    url = "/Notice/NoticeList";
+                    break;
+                default:
+                    url = "/TicketOrder/OrderIndex";
+            }
+            $("#MainFrame").attr("src", url + "?_time=" + new Date().toString());
+        }
+        function ViewModel(data) {
+            var self = this;
+            self.topmodule = data.topmodule;
+            self.selected = ko.observable(data.selected);
+            self.leftmenu = ko.observable(data.leftmenu[0]);
+            self.selectedClick = function (code) {
+                self.selected(code);
+            }
+            self.businessmanName = data.Businessman.BusinessmanName;
+            self.operatorName = data.Businessman.OperatorName;
+            self.selected.subscribe(function (newValue) {
+                $.each(data.leftmenu, function (i, n) {
+                    if (newValue == n.Code) {
+                        self.leftmenu(n);
+                    }
+                })
+                $("div.leftbar").find("a.listyle").siblings("ul").slideUp("0");
+            });
+        }
+        function ShowDiv() {
+           // $("#Loading").show();
+            $("#MainDiv").mask("正在加载页面...");
+        }
+        function HideDiv() {
+            //$("#Loading").hide();
+            $("#MainDiv").unmask();
+        }
+        function changePwd()
+        {
+            var oldPwd = $('#oldPwd').val();
+            var newPwd = $('#newPwd').val();
+            var confirmPwd = $('#confirmPwd').val();
+            if (oldPwd == '') {
+                $.messager.alert('提示', '请输入原密码', 'info');
+                $('#oldPwd').focus();
+                return;
+            }
+            if (newPwd == '')
+            {
+                $.messager.alert('提示', '请输入新密码', 'info');
+                $('#newPwd').focus();
+                return;
+            }
+            if (confirmPwd == '') {
+                $.messager.alert('提示', '请输入确认密码', 'info');
+                $('#confirmPwd').focus();
+                return;
+            }
+            if (newPwd != '' && confirmPwd != '' && newPwd != confirmPwd) {
+                $('#tipmsg').text('密码输入不一致');
+                return;
+            } else {
+                $('#tipmsg').text('');
+            }
+            $.ajax({
+                url: '/Home/ChangePwd',
+                type: 'POST',
+                data: $('#CTable :input').serialize()
+            }).done(function () {
+                $('#PasswordDialog').dialog('close');
+            }).fail(function (e) {
+                var obj = JSON.parse(e.responseText);
+                window.parent.$.messager.alert('提示', obj.ErrorMsg, 'info');
+            });
+        }
+        $(function () {
+            window.menus =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model))
+             ko.applyBindings(new ViewModel(window.menus));
+            $("#newPwd,#confirmPwd").blur(function () {
+                var newPwd = $('#newPwd').val();
+                var confirmPwd = $('#confirmPwd').val();
+                if (newPwd != '' && confirmPwd != '' && newPwd != confirmPwd) {
+                    $('#tipmsg').text('密码输入不一致');
+                } else {
+                    $('#tipmsg').text('');
+                }
+            })
+            $("div.leftbar").find("a.listyle").siblings("ul").css("display","none");
+            $("div.leftbar").delegate("ul li a.listyle", "click", function () {
+                if ($(this).hasClass("selected")) {
+                    $(this).removeClass("selected").siblings("ul").slideUp(100);
+                } else {
+                    $(this).addClass("selected").siblings("ul").slideDown(100);
+                    $(this).parent().siblings("li").find("a.listyle").removeClass("selected").siblings("ul").slideUp("10");
+                }
+                //$(this).siblings("ul").slideToggle();
+                //$(this).parent().siblings("li").find("a.listyle").siblings("ul").slideUp("0");
+            }).delegate("a[class!='listyle']", "click", function () {
+                if (!$(this).hasClass("listyle")) {
+                    ShowDiv();
+                    $("#spanText").text($(this).text());
+                    var timespan = new Date().toString();
+                    $("#MainFrame").attr("src", $(this).attr("url") + "?_time=" + timespan);
+                }
+            })
+            $("div.admin").hover(function () {
+                $(this).children("ul").slideDown(100);
+            }, function () {
+                $(this).children("ul").slideUp(100);
+            })
+            $('body').layout({
+                applyDefaultStyles: false,
+                north__closable: false,
+                north__resizable: false,
+                north__size: 85,
+                spacing_open: 0,
+                spacing_closed: 0,
+                west__closable: false,
+                west__resizable: false,
+                west__size: 150,
+                center__childOptions: {
+                    north__closable: false,
+                    north__resizable: false,
+                    spacing_open: 0,
+                    spacing_closed: 0,
+                    north__size: 35
+                },
+                north__childOptions: {
+                    west__size: 260,
+                    east__size: 350
+                }
+            });
+
+            //signalr
+            var message = $.connection.messageRemind;
+            message.client.Remind = function (command, title, msg) {
+                var localmsg = '<a href="javascript:void(0)" onclick="Action('+command+')">'+msg+'</a>';
+                $.messager.show({
+                    title: title,
+                    msg: localmsg,
+                    timeout:0,
+                    showType: 'slide'
+                })
+            }
+            $.connection.hub.start().done(function () {
+                message.server.joinRoom(menus.Businessman.Code);
+            });
+        })
+    </script> 
+</body>
+</html>

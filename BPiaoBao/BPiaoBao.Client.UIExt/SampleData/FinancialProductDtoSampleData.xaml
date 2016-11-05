@@ -1,0 +1,5 @@
+﻿<Cashbag:FinancialProductDto xmlns:Cashbag="clr-namespace:BPiaoBao.AppServices.DataContracts.Cashbag;assembly=BPiaoBao.AppServices.DataContracts" xmlns:System="clr-namespace:System;assembly=mscorlib" Abstract="Cras vestibulum adipiscing class" CreateDate="01/09/2014 18:00:57" Description="Curabitur curae aliquam integer" Day="18" EndDate="01/09/2014 18:00:57" IconUrl="Aenean nam" InterestRate="Donec duis sed nunc"  Name="Parturient quisque maecenas dis praesent" ProductId="Phasellus etiam" ValidDate="Vestibulum vivamus mauris">
+	<Cashbag:FinancialProductDto.ReturnRate>
+		<System:Decimal/>
+	</Cashbag:FinancialProductDto.ReturnRate>
+</Cashbag:FinancialProductDto>

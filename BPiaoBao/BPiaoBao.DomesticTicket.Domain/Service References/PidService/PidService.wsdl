@@ -1,0 +1,1178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="QueryFlight">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fromcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tocitycode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="flyDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="A1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="A2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryFlightResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryFlightResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryFlightData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="fromcode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tocitycode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="flyDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="A1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="A2" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QueryFlightDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryFlightDataResult" type="tns:FlightData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="FlightData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:ArrayOfFlightDataRow" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFlightDataRow">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FlightDataRow" nillable="true" type="tns:FlightDataRow" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FlightDataRow">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Guid" type="s1:guid" />
+          <s:element minOccurs="0" maxOccurs="1" name="CarrCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FlightNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Space" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartCityCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToCityCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartTime" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndTime" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FareFee" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Mileage" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ABFee" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FuelAdultFee" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FuelChildFee" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="DiscountRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TickNum" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Carrier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToCity" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="XSFee" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="DishonoredBillPrescript" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LogChangePrescript" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpCabinPrescript" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SJFee" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="OldPolicy" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="GYPolicy" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="FXPolicy" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicySource" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PolicyType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsStop" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReturnMoney" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpecialType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dterm" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aterm" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsLowerOpen" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PointType" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PMFee" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="A24" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsShareFlight" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PatContent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CHDPatContent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChdToAdultPatCon" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsChangePnr" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromAirPortName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ToAirPortName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TJIsGetPrice" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PnrIsExistClient">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Pnr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PnrIsExistClientResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PnrIsExistClientResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelPnr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Pnr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelPnrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CancelPnrResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SplitPnr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Pnr" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="SplitPCount" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="SplitPNames" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TicketNumber" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SplitPnrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SplitPnrResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthToOffice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Pnr" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AuthOffice" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthToOfficeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AuthToOfficeResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPidServerIP">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPidServerIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPidServerIPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPidRemoteSkRmPort">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPidRemoteSkRmPortResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPidRemoteSkRmPortResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIPByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserPwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIPByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIPByUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfoByUserNamePwd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserPwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserInfoByUserNamePwdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserInfoByUserNamePwdResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_FlowRechargeList">
+        <s:complexType />
+      </s:element>
+      <s:element name="Get_FlowRechargeListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_FlowRechargeListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_UserFlowRecharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_UserFlowRechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_UserFlowRechargeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_Office">
+        <s:complexType />
+      </s:element>
+      <s:element name="Get_OfficeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_OfficeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_OriginalConfigInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Office" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Get_OriginalConfigInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Get_OriginalConfigInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_PNRInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDPwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Port" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PNRSource" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_PNRInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Add_PNRInfoResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Flight_AddPNR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FDAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FDPwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Port" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Office" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PNRSource" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Flight_AddPNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Flight_AddPNRResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPnrByUserId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPnrByUserIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPnrByUserIdResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_Base_FlowRechargeRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Customer_Id" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserAccount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IP" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Port" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Flow" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="RechargeMoney" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Add_Base_FlowRechargeRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Add_Base_FlowRechargeRecordResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlowRechargeRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlowRechargeRecordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFlowRechargeRecordResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlowRechargeRecordByOrderId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OrderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFlowRechargeRecordByOrderIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFlowRechargeRecordByOrderIdResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FlowRechargeNotify">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FlowPayNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Remark" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FlowRechargeNotifyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FlowRechargeNotifyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPayRechargeUrl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OrderId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPayRechargeUrlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPayRechargeUrlResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAutoUpdateData">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetAutoUpdateDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAutoUpdateDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="QueryFlightSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryFlight" />
+  </wsdl:message>
+  <wsdl:message name="QueryFlightSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryFlightResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryFlightDataSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryFlightData" />
+  </wsdl:message>
+  <wsdl:message name="QueryFlightDataSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryFlightDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="PnrIsExistClientSoapIn">
+    <wsdl:part name="parameters" element="tns:PnrIsExistClient" />
+  </wsdl:message>
+  <wsdl:message name="PnrIsExistClientSoapOut">
+    <wsdl:part name="parameters" element="tns:PnrIsExistClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelPnrSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelPnr" />
+  </wsdl:message>
+  <wsdl:message name="CancelPnrSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelPnrResponse" />
+  </wsdl:message>
+  <wsdl:message name="SplitPnrSoapIn">
+    <wsdl:part name="parameters" element="tns:SplitPnr" />
+  </wsdl:message>
+  <wsdl:message name="SplitPnrSoapOut">
+    <wsdl:part name="parameters" element="tns:SplitPnrResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthToOfficeSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthToOffice" />
+  </wsdl:message>
+  <wsdl:message name="AuthToOfficeSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthToOfficeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPidServerIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPidServerIP" />
+  </wsdl:message>
+  <wsdl:message name="GetPidServerIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPidServerIPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPidRemoteSkRmPortSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPidRemoteSkRmPort" />
+  </wsdl:message>
+  <wsdl:message name="GetPidRemoteSkRmPortSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPidRemoteSkRmPortResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIPByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIPByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetIPByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIPByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoByUserNamePwdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserInfoByUserNamePwd" />
+  </wsdl:message>
+  <wsdl:message name="GetUserInfoByUserNamePwdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserInfoByUserNamePwdResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_FlowRechargeListSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_FlowRechargeList" />
+  </wsdl:message>
+  <wsdl:message name="Get_FlowRechargeListSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_FlowRechargeListResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_UserFlowRechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_UserFlowRecharge" />
+  </wsdl:message>
+  <wsdl:message name="Get_UserFlowRechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_UserFlowRechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_OfficeSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_Office" />
+  </wsdl:message>
+  <wsdl:message name="Get_OfficeSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_OfficeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Get_OriginalConfigInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:Get_OriginalConfigInfo" />
+  </wsdl:message>
+  <wsdl:message name="Get_OriginalConfigInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:Get_OriginalConfigInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Add_PNRInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:Add_PNRInfo" />
+  </wsdl:message>
+  <wsdl:message name="Add_PNRInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:Add_PNRInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="Flight_AddPNRSoapIn">
+    <wsdl:part name="parameters" element="tns:Flight_AddPNR" />
+  </wsdl:message>
+  <wsdl:message name="Flight_AddPNRSoapOut">
+    <wsdl:part name="parameters" element="tns:Flight_AddPNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPnrByUserIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPnrByUserId" />
+  </wsdl:message>
+  <wsdl:message name="GetPnrByUserIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPnrByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="Add_Base_FlowRechargeRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:Add_Base_FlowRechargeRecord" />
+  </wsdl:message>
+  <wsdl:message name="Add_Base_FlowRechargeRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:Add_Base_FlowRechargeRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFlowRechargeRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFlowRechargeRecord" />
+  </wsdl:message>
+  <wsdl:message name="GetFlowRechargeRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFlowRechargeRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFlowRechargeRecordByOrderIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFlowRechargeRecordByOrderId" />
+  </wsdl:message>
+  <wsdl:message name="GetFlowRechargeRecordByOrderIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFlowRechargeRecordByOrderIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="FlowRechargeNotifySoapIn">
+    <wsdl:part name="parameters" element="tns:FlowRechargeNotify" />
+  </wsdl:message>
+  <wsdl:message name="FlowRechargeNotifySoapOut">
+    <wsdl:part name="parameters" element="tns:FlowRechargeNotifyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPayRechargeUrlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPayRechargeUrl" />
+  </wsdl:message>
+  <wsdl:message name="GetPayRechargeUrlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPayRechargeUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoUpdateDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAutoUpdateData" />
+  </wsdl:message>
+  <wsdl:message name="GetAutoUpdateDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAutoUpdateDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PidServiceSoap">
+    <wsdl:operation name="QueryFlight">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;查航班（只有基础数据）&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:QueryFlightSoapIn" />
+      <wsdl:output message="tns:QueryFlightSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryFlightData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;查航班返回实体（只有基础数据）&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:QueryFlightDataSoapIn" />
+      <wsdl:output message="tns:QueryFlightDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PnrIsExistClient">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;传入编码是否是客户端生成的&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:PnrIsExistClientSoapIn" />
+      <wsdl:output message="tns:PnrIsExistClientSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelPnr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;取消客户端生成的编码&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:CancelPnrSoapIn" />
+      <wsdl:output message="tns:CancelPnrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SplitPnr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;分离客户端生成的编码&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:SplitPnrSoapIn" />
+      <wsdl:output message="tns:SplitPnrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthToOffice">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;客户端生成的编码为指定Office授权&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:AuthToOfficeSoapIn" />
+      <wsdl:output message="tns:AuthToOfficeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPidServerIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取PID服务所在IP和端口&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetPidServerIPSoapIn" />
+      <wsdl:output message="tns:GetPidServerIPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPidRemoteSkRmPort">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取PID服务监听端口Socket和remoting端口&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetPidRemoteSkRmPortSoapIn" />
+      <wsdl:output message="tns:GetPidRemoteSkRmPortSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIPByUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;根据用户名获取连接的IP和端口&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetIPByUserSoapIn" />
+      <wsdl:output message="tns:GetIPByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByUserNamePwd">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;根据用户名密码获取用户信息&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetUserInfoByUserNamePwdSoapIn" />
+      <wsdl:output message="tns:GetUserInfoByUserNamePwdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_FlowRechargeList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取指令流量列表&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Get_FlowRechargeListSoapIn" />
+      <wsdl:output message="tns:Get_FlowRechargeListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_UserFlowRecharge">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取用户流量&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Get_UserFlowRechargeSoapIn" />
+      <wsdl:output message="tns:Get_UserFlowRechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_Office">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取原始配置的Office&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Get_OfficeSoapIn" />
+      <wsdl:output message="tns:Get_OfficeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Get_OriginalConfigInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;Office号获取可用配置信息&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Get_OriginalConfigInfoSoapIn" />
+      <wsdl:output message="tns:Get_OriginalConfigInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Add_PNRInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;记录编码&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Add_PNRInfoSoapIn" />
+      <wsdl:output message="tns:Add_PNRInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Flight_AddPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;客户端查航班预订编码&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Flight_AddPNRSoapIn" />
+      <wsdl:output message="tns:Flight_AddPNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPnrByUserId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取该用户生成的所有PNR&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetPnrByUserIdSoapIn" />
+      <wsdl:output message="tns:GetPnrByUserIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Add_Base_FlowRechargeRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;添加充值记录&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:Add_Base_FlowRechargeRecordSoapIn" />
+      <wsdl:output message="tns:Add_Base_FlowRechargeRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowRechargeRecord">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取用户的充值记录&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetFlowRechargeRecordSoapIn" />
+      <wsdl:output message="tns:GetFlowRechargeRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowRechargeRecordByOrderId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取用户的单条充值记录&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetFlowRechargeRecordByOrderIdSoapIn" />
+      <wsdl:output message="tns:GetFlowRechargeRecordByOrderIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FlowRechargeNotify">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;流量充值通知&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:FlowRechargeNotifySoapIn" />
+      <wsdl:output message="tns:FlowRechargeNotifySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPayRechargeUrl">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取支付充值链接地址&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetPayRechargeUrlSoapIn" />
+      <wsdl:output message="tns:GetPayRechargeUrlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoUpdateData">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">&lt;font color="red"&gt;获取升级程序数据&lt;/font&gt;</wsdl:documentation>
+      <wsdl:input message="tns:GetAutoUpdateDataSoapIn" />
+      <wsdl:output message="tns:GetAutoUpdateDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PidServiceSoap" type="tns:PidServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="QueryFlight">
+      <soap:operation soapAction="http://tempuri.org/QueryFlight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryFlightData">
+      <soap:operation soapAction="http://tempuri.org/QueryFlightData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PnrIsExistClient">
+      <soap:operation soapAction="http://tempuri.org/PnrIsExistClient" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPnr">
+      <soap:operation soapAction="http://tempuri.org/CancelPnr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SplitPnr">
+      <soap:operation soapAction="http://tempuri.org/SplitPnr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthToOffice">
+      <soap:operation soapAction="http://tempuri.org/AuthToOffice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPidServerIP">
+      <soap:operation soapAction="http://tempuri.org/GetPidServerIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPidRemoteSkRmPort">
+      <soap:operation soapAction="http://tempuri.org/GetPidRemoteSkRmPort" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIPByUser">
+      <soap:operation soapAction="http://tempuri.org/GetIPByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByUserNamePwd">
+      <soap:operation soapAction="http://tempuri.org/GetUserInfoByUserNamePwd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_FlowRechargeList">
+      <soap:operation soapAction="http://tempuri.org/Get_FlowRechargeList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_UserFlowRecharge">
+      <soap:operation soapAction="http://tempuri.org/Get_UserFlowRecharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Office">
+      <soap:operation soapAction="http://tempuri.org/Get_Office" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_OriginalConfigInfo">
+      <soap:operation soapAction="http://tempuri.org/Get_OriginalConfigInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_PNRInfo">
+      <soap:operation soapAction="http://tempuri.org/Add_PNRInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Flight_AddPNR">
+      <soap:operation soapAction="http://tempuri.org/Flight_AddPNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPnrByUserId">
+      <soap:operation soapAction="http://tempuri.org/GetPnrByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_Base_FlowRechargeRecord">
+      <soap:operation soapAction="http://tempuri.org/Add_Base_FlowRechargeRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowRechargeRecord">
+      <soap:operation soapAction="http://tempuri.org/GetFlowRechargeRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowRechargeRecordByOrderId">
+      <soap:operation soapAction="http://tempuri.org/GetFlowRechargeRecordByOrderId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FlowRechargeNotify">
+      <soap:operation soapAction="http://tempuri.org/FlowRechargeNotify" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayRechargeUrl">
+      <soap:operation soapAction="http://tempuri.org/GetPayRechargeUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoUpdateData">
+      <soap:operation soapAction="http://tempuri.org/GetAutoUpdateData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PidServiceSoap12" type="tns:PidServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="QueryFlight">
+      <soap12:operation soapAction="http://tempuri.org/QueryFlight" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryFlightData">
+      <soap12:operation soapAction="http://tempuri.org/QueryFlightData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PnrIsExistClient">
+      <soap12:operation soapAction="http://tempuri.org/PnrIsExistClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelPnr">
+      <soap12:operation soapAction="http://tempuri.org/CancelPnr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SplitPnr">
+      <soap12:operation soapAction="http://tempuri.org/SplitPnr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthToOffice">
+      <soap12:operation soapAction="http://tempuri.org/AuthToOffice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPidServerIP">
+      <soap12:operation soapAction="http://tempuri.org/GetPidServerIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPidRemoteSkRmPort">
+      <soap12:operation soapAction="http://tempuri.org/GetPidRemoteSkRmPort" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIPByUser">
+      <soap12:operation soapAction="http://tempuri.org/GetIPByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfoByUserNamePwd">
+      <soap12:operation soapAction="http://tempuri.org/GetUserInfoByUserNamePwd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_FlowRechargeList">
+      <soap12:operation soapAction="http://tempuri.org/Get_FlowRechargeList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_UserFlowRecharge">
+      <soap12:operation soapAction="http://tempuri.org/Get_UserFlowRecharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_Office">
+      <soap12:operation soapAction="http://tempuri.org/Get_Office" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Get_OriginalConfigInfo">
+      <soap12:operation soapAction="http://tempuri.org/Get_OriginalConfigInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_PNRInfo">
+      <soap12:operation soapAction="http://tempuri.org/Add_PNRInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Flight_AddPNR">
+      <soap12:operation soapAction="http://tempuri.org/Flight_AddPNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPnrByUserId">
+      <soap12:operation soapAction="http://tempuri.org/GetPnrByUserId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Add_Base_FlowRechargeRecord">
+      <soap12:operation soapAction="http://tempuri.org/Add_Base_FlowRechargeRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowRechargeRecord">
+      <soap12:operation soapAction="http://tempuri.org/GetFlowRechargeRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFlowRechargeRecordByOrderId">
+      <soap12:operation soapAction="http://tempuri.org/GetFlowRechargeRecordByOrderId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FlowRechargeNotify">
+      <soap12:operation soapAction="http://tempuri.org/FlowRechargeNotify" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPayRechargeUrl">
+      <soap12:operation soapAction="http://tempuri.org/GetPayRechargeUrl" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAutoUpdateData">
+      <soap12:operation soapAction="http://tempuri.org/GetAutoUpdateData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PidService">
+    <wsdl:port name="PidServiceSoap" binding="tns:PidServiceSoap">
+      <soap:address location="http://210.14.138.30:991/PidService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PidServiceSoap12" binding="tns:PidServiceSoap12">
+      <soap12:address location="http://210.14.138.30:991/PidService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

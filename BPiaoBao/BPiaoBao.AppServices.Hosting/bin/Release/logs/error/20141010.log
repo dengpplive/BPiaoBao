@@ -1,0 +1,6 @@
+2014-10-10 15:07:54,208 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 79

@@ -1,0 +1,14 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ViewModel="clr-namespace:BPiaoBao.Client.TPOS.ViewModel" 
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:local="clr-namespace:BPiaoBao.Client.TPOS.View" x:Class="BPiaoBao.Client.TPOS.View.MerchantAddWindow"
+        Title="添加商户" Height="697" Width="652" Style="{StaticResource CustomWindowStyle}" WindowStartupLocation="CenterOwner">
+	<Window.DataContext>
+		<ViewModel:MerchantAddEditViewModel/>
+	</Window.DataContext>   
+    <ScrollViewer>
+        <local:MerchantEditInfoControl Tag="添加POS商户"/>
+	</ScrollViewer>
+</Window>

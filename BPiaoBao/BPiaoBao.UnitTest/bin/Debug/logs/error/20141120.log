@@ -1,0 +1,48 @@
+2014-11-20 14:37:16,959 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-20 15:07:47,947 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-20 15:08:49,768 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-20 15:13:20,731 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-20 15:14:25,686 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-20 15:27:50,278 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-20 15:39:54,228 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-20 16:10:31,578 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95

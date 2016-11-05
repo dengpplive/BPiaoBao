@@ -1,0 +1,29 @@
+﻿<Window x:Class="BPiaoBao.Client.TPOS.View.POSLogWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+        WindowStartupLocation="CenterOwner"
+        Title="分配日志" Height="289" Width="519" Style="{DynamicResource CustomWindowStyle}">
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition/>
+    	</Grid.RowDefinitions>
+    	<StackPanel Margin="30,20,0,10" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="POS机编号：" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding InputPos}" VerticalAlignment="Top" FontWeight="Bold"/>
+        
+    	</StackPanel>
+        <Grid Grid.Row="1" Margin="30,10,30,0">
+            <WPFSpark:SprocketControl  Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <DataGrid BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding PosAssignLogs}"  AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="65" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding OperateTime,StringFormat=yyyy-MM-dd HH:mm:ss}" Width="*" Header="操作时间"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding Operater}" Width="*" Header="操作者"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding Content}" Width="*" Header="内容"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </Grid>
+</Window>

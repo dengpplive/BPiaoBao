@@ -1,0 +1,8 @@
+Start====================================================================
+时间:2014-11-28 10:44:52.925
+客户端IP:127.0.0.1:50614
+调用方法名:Destine_白屏预定
+内容:   在 BPiaoBao.DomesticTicket.Domain.Services.FlightService.Destine(String code, DestineRequest destine) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.DomesticTicket.Domain\Services\FlightService.cs:行号 698
+   在 BPiaoBao.AppServices.DomesticTicket.OrderService.Destine(DestineRequest destine, EnumDestineSource destineSource) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\DomesticTicket\OrderService.cs:行号 136与航信连接失败，请重新预订！错误信息:由于目标计算机积极拒绝，无法连接。 210.14.138.30:2237
+End=====================================================================
+

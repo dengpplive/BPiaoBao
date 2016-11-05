@@ -1,0 +1,54 @@
+﻿<ViewModel:ServiceCenterViewModel xmlns:ViewModel="clr-namespace:BPiaoBao.Client.ViewModel" xmlns:SystemSetting="clr-namespace:BPiaoBao.AppServices.DataContracts.SystemSetting;assembly=BPiaoBao.AppServices.DataContracts" IsInDesignMode="False" IsInDesignModeStatic="True" IsBusy="True">
+	<ViewModel:ServiceCenterViewModel.Customer>
+		<SystemSetting:CustomerDto CustomPhone="Non cubilia facilisi class curae">
+			<SystemSetting:CustomerDto.AdvisoryQQ>
+				<SystemSetting:KeyAndValueDto Key="Nam class" Value="Aenean aliquam maecenas"/>
+				<SystemSetting:KeyAndValueDto Key="Curabitur integer curae" Value="Quisque phasellus sed vivamus"/>
+				<SystemSetting:KeyAndValueDto Key="Mauris praesent cras dis" Value="Aliquam accumsan donec duis est"/>
+				<SystemSetting:KeyAndValueDto Key="Vestibulum aliquet consequat etiam" Value="Adipiscing parturient nunc"/>
+				<SystemSetting:KeyAndValueDto Key="Fusce blandit vestibulum bibendum" Value="Convallis dictumst lorem eleifend amet"/>
+				<SystemSetting:KeyAndValueDto Key="Ante vestibulum" Value="Morbi adipiscing nulla facilisi"/>
+				<SystemSetting:KeyAndValueDto Key="Commodo faucibus nullam" Value="Aptent auctor conubia hac"/>
+				<SystemSetting:KeyAndValueDto Key="Arcu dignissim" Value="Proin cubilia"/>
+				<SystemSetting:KeyAndValueDto Key="Dapibus leo elementum habitant" Value="Augue inceptos facilisis congue"/>
+				<SystemSetting:KeyAndValueDto Key="Parturient vestibulum fermentum" Value="Dolor interdum"/>
+			</SystemSetting:CustomerDto.AdvisoryQQ>
+			<SystemSetting:CustomerDto.HotlinePhone>
+				<SystemSetting:KeyAndValueDto Key="Fringilla cursus" Value="Dictum habitasse fames lobortis mus"/>
+				<SystemSetting:KeyAndValueDto Key="Felis hendrerit ipsum vestibulum" Value="Nec adipiscing lectus egestas nascetur"/>
+				<SystemSetting:KeyAndValueDto Key="Diam libero eget" Value="Ligula elit enim erat parturient"/>
+				<SystemSetting:KeyAndValueDto Key="Euismod vestibulum justo litora feugiat" Value="Lacus pharetra"/>
+				<SystemSetting:KeyAndValueDto Key="Placerat lorem pulvinar" Value="Sagittis vestibulum non eros"/>
+				<SystemSetting:KeyAndValueDto Key="Himenaeos per magna massa imperdiet" Value="Senectus malesuada gravida luctus"/>
+				<SystemSetting:KeyAndValueDto Key="Nibh nisi penatibus porttitor iaculis" Value="Sociosqu adipiscing lacinia suscipit"/>
+				<SystemSetting:KeyAndValueDto Key="Nisl laoreet metus" Value="Magnis mattis natoque torquent"/>
+				<SystemSetting:KeyAndValueDto Key="Mauris ultrices" Value="Morbi tincidunt"/>
+				<SystemSetting:KeyAndValueDto Key="Nunc tristique posuere potenti parturient" Value="Pretium odio orci"/>
+			</SystemSetting:CustomerDto.HotlinePhone>
+			<SystemSetting:CustomerDto.LinkMethod>
+				<SystemSetting:KeyAndValueDto Key="Vestibulum mollis rhoncus sed vestibulum" Value="Sodales sem neque"/>
+				<SystemSetting:KeyAndValueDto Key="Ultricies viverra sit vel" Value="Montes nam sed venenatis"/>
+				<SystemSetting:KeyAndValueDto Key="Aliquam adipiscing nostra vehicula" Value="Volutpat integer netus"/>
+				<SystemSetting:KeyAndValueDto Key="Parturient ornare vulputate" Value="Pede platea quisque"/>
+				<SystemSetting:KeyAndValueDto Key="Nulla curabitur dis primis" Value="Phasellus maecenas"/>
+				<SystemSetting:KeyAndValueDto Key="Quam praesent" Value="Rutrum porta consequat purus risus"/>
+				<SystemSetting:KeyAndValueDto Key="Vestibulum vestibulum accumsan" Value="Velit sapien est convallis"/>
+				<SystemSetting:KeyAndValueDto Key="Dignissim adipiscing hac leo" Value="Vivamus semper"/>
+				<SystemSetting:KeyAndValueDto Key="Vitae mus aliquam aliquet quis" Value="Sociis bibendum dictumst blandit"/>
+				<SystemSetting:KeyAndValueDto Key="Eleifend nec commodo" Value="Conubia taciti elementum urna"/>
+			</SystemSetting:CustomerDto.LinkMethod>
+		</SystemSetting:CustomerDto>
+	</ViewModel:ServiceCenterViewModel.Customer>
+	<ViewModel:ServiceCenterViewModel.Ushers>
+		<ViewModel:Usher Name="Dapibus tellus donec" QQStateImage="Cras tempor per egestas facilisis" QQ="Etiam faucibus parturient vestibulum fusce"/>
+		<ViewModel:Usher Name="Lorem duis sed fermentum nunc" QQStateImage="Tempus euismod feugiat" QQ="Tortor amet habitant fringilla"/>
+		<ViewModel:Usher Name="Habitasse gravida vestibulum iaculis adipiscing" QQStateImage="Lacinia turpis ante" QQ="Arcu hendrerit inceptos"/>
+		<ViewModel:Usher Name="Diam varius himenaeos aenean sem" QQStateImage="Parturient eget sit" QQ="Vel laoreet elit enim"/>
+		<ViewModel:Usher Name="Interdum nam" QQStateImage="Erat morbi eros" QQ="Imperdiet lobortis sed nibh nascetur"/>
+		<ViewModel:Usher Name="Mauris natoque nullam" QQStateImage="Pharetra nulla aptent nisi posuere" QQ="Malesuada nisl"/>
+		<ViewModel:Usher Name="Potenti auctor vestibulum congue proin" QQStateImage="Dis cursus placerat" QQ="Nunc odio pretium orci"/>
+		<ViewModel:Usher Name="Rhoncus dictum augue lectus" QQStateImage="Pulvinar pede" QQ="Quam dolor libero"/>
+		<ViewModel:Usher Name="Sagittis ligula" QQStateImage="Sodales est quis" QQ="Vestibulum litora"/>
+		<ViewModel:Usher Name="Viverra penatibus" QQStateImage="Porttitor aliquam" QQ="Senectus hac sociosqu urna cras"/>
+	</ViewModel:ServiceCenterViewModel.Ushers>
+</ViewModel:ServiceCenterViewModel>

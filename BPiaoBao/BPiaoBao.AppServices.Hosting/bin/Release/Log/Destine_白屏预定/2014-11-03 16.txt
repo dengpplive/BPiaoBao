@@ -1,0 +1,8 @@
+Start====================================================================
+时间:2014-11-03 16:02:17.504
+客户端IP:127.0.0.1:58363
+调用方法名:Destine_白屏预定
+内容:   在 BPiaoBao.DomesticTicket.Domain.Services.FlightService.Destine(String code, DestineRequest destine) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.DomesticTicket.Domain\Services\FlightService.cs:行号 688
+   在 BPiaoBao.AppServices.DomesticTicket.OrderService.Destine(DestineRequest destine, EnumDestineSource destineSource) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\DomesticTicket\OrderService.cs:行号 130成人编码JX80LG 没有P到价格信息！错误信息:没有符合条件的运价, 请使用手工处理  
+End=====================================================================
+

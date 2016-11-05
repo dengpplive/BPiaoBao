@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D7B7F59F-D2D3-477C-9C7F-9C9F0E6793ED}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <AssemblyName>ConsoleApplication1</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientInterpector.cs" />
+    <Compile Include="ExtClientBehavior.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.ConsoContracts\BPiaoBao.AppServices.ConsoContracts.csproj">
+      <Project>{8A2F936A-7D1F-46E1-ADF8-E101573AA3E4}</Project>
+      <Name>BPiaoBao.AppServices.ConsoContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Contracts\BPiaoBao.AppServices.Contracts.csproj">
+      <Project>{e892d14e-df51-47e9-9865-e7269ea15013}</Project>
+      <Name>BPiaoBao.AppServices.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-C8CB-4B83-8786-EFF3B70007CC}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Hosting\BPiaoBao.AppServices.Hosting.csproj">
+      <Project>{73FA4CBE-6279-47DD-9728-A53BE04B72C8}</Project>
+      <Name>BPiaoBao.AppServices.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Appservices.StationContracts\BPiaoBao.AppServices.StationContracts.csproj">
+      <Project>{D8721BE3-0B6C-4128-956A-28D817EF9286}</Project>
+      <Name>BPiaoBao.AppServices.StationContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices\BPiaoBao.AppServices.csproj">
+      <Project>{0831ACE7-562B-4820-9665-18C363F46974}</Project>
+      <Name>BPiaoBao.AppServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.UIExt\BPiaoBao.Client.UIExt.csproj">
+      <Project>{5928C486-5249-4BE4-ACB3-11718060C66C}</Project>
+      <Name>BPiaoBao.Client.UIExt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{F01EA778-D03F-44B3-BA3C-998AF3758DC7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

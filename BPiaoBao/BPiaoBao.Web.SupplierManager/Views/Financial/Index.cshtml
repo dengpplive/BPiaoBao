@@ -1,0 +1,204 @@
+﻿<div class="easyui-layout" data-options="fit:true">
+    <div class="filterbg" data-options="region:'north',border:0">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="84" valign="bottom" class="tdtitle td_noboder"><h3>理财账户</h3></td>
+                <td width="100" valign="bottom">理财产品总额：<span class="td_noboder fontcolor">￥<i class="fontsize" data-bind="text:$root.financialMoney"></i></span></td>
+                <td width="34" valign="bottom"><font color="#cccccc">|</font></td>
+                <td width="805" valign="bottom">
+                    <a href="javascript:void(0)" style="width:80px;" class="easyui-linkbutton" onclick="openFinancialIndex()" >我要理财</a>
+                    <a href="javascript:void(0)" class="jilu" style="margin-left:15px;" onclick="openFinancialLogPage()">理财记录</a>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdtitle td_noboder"></td>
+                <td colspan="3" class="td_noboder fontcolor2">该账户用于存储现已购买的理财产品，助您合理理财。</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="tableShow" data-options="region:'center',border:0">
+        @*<div class="titleStyle" style="margin-bottom:10px;"> <span>我的理财产品</span><a href="#">理财如何赚>></a></div>*@
+        <table id="MainTable" data-bind="datagrid:grid" title="我的理财产品">
+            <thead>
+                <tr>
+                    <th data-options="field:'ProductName',width:150">产品名称</th>
+                    <th data-options="field:'ReturnRate',width:100,formatter:rateFormater">年利率</th>
+                    <th data-options="field:'Day',width:80">周期(天)</th>
+                    <th data-options="field:'StarDate',width:120">生效日</th>
+                    <th data-options="field:'BuyDay',width:80">购买天数</th>
+                    <th data-options="field:'FinancialMoney',width:100">购买金额(元)</th>
+                    <th data-options="field:'PreProfit',width:80">预期收益(分)</th>
+                    <th data-options="field:'CanSettleInAdvance',width:80,formatter:canSettleFormater">是否支持提前转出</th> 
+                    <th data-options="field:'TradeID',width:120,formatter:opFormater">操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div id="inputPassword" class="easyui-dialog" title="转出" data-options="modal:true,closed:true,buttons:'#inputPassword-buttons'"
+     style="width:400px;height:auto;padding:10px 15px;">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td height="30" align="right" class="fontcolor3">产品名称：</td>
+            <td height="30" align="left">
+                <label data-bind="text:$root.outInfo.name"></label>
+            </td>
+        </tr>
+        <tr>
+            <td height="30" align="right" class="fontcolor3">购买金额：</td>
+            <td height="30" align="left">
+                <label data-bind="text:$root.outInfo.buyMoney"></label>元
+            </td>
+        </tr>
+        <tr>
+            <td height="30" align="right" class="fontcolor3">产品简介：</td>
+            <td height="30" align="left">
+                <label data-bind="text:$root.outInfo.description"></label>
+            </td>
+        </tr>
+        <tr>
+            <td height="30" colspan="2">
+                <div style="border-bottom: 1px gray dotted;" ></div>
+                </td>
+
+            </tr>
+<tr>
+    <td height="30" align="right" class="fontcolor3">正常转出收益：</td>
+    <td height="30" align="left">
+        <i class="i0" data-bind="text:$root.outInfo.normalProfit"></i>分
+    </td>
+</tr>
+<tr>
+    <td height="30" align="right" class="fontcolor3">提前转出收益：</td>
+    <td height="30" align="left">
+        <i class="i0" data-bind="text:$root.outInfo.profit"></i>分
+    </td>
+</tr>
+<tr>
+    <td height="40" align="right" class="fontcolor3">支付密码：</td>
+    <td height="40" align="left">
+        <input id="pwd" type="password" style="height:26px; line-height:26px; background:#f8fbfe; border:1px solid #a9b9c8;" />
+    </td>
+</tr>
+
+        </table>
+
+
+
+    </div>
+
+<div id="inputPassword-buttons" style="text-align:center; padding:10px 0px;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" onclick="abortFinancial()">确定</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="javascript: $('#inputPassword').dialog('close')">取消</a>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        vm.grid.pagination = false;
+        vm.financialMoney = ko.observable(Fromdata.financialMoney.toFixed(2));
+        vm.outInfo = {
+            name: ko.observable(),
+            buyMoney: ko.observable(0),
+            description: ko.observable(),
+            normalProfit: ko.observable(0),
+            profit: ko.observable(0)
+        };
+        ko.applyBindings(vm);
+
+        function openFinancialIndex() {
+            location.href = "/FinancialProduct/Index";
+        }
+
+        function openFinancialLogPage() {
+            location.href = Fromdata.urls.financialLogIndex;
+        }
+
+        function opFormater(value, row, index) {
+           // var rows = vm.grid.datagrid("getRows");
+            //rows[index]["CanSettleInAdvance"];
+
+            if (row["CanSettleInAdvance"] == false) {
+                return "";
+            }
+            return "<a  href=\"javascript:void(0)\" class='easyui-linkbutton l-btn' icon='icon-remove' class='easyui-linkbutton'  onclick='rollOut(" + value + "," + index + ")'><span class=\"l-btn-left\"><span class=\"l-btn-text\">转出</span></span></a> ";
+
+        }
+
+
+        function rateFormater(value) {
+            var rate = value * 100;
+            return "<font color='red'><b>" + rate + "%</b></font>";
+        }
+
+        function canSettleFormater(value) {
+            if (value) {
+                return "是";
+            } else {
+                return "否";
+            }
+        }
+
+        var tradeID = 0;
+        function rollOut(value, index) {
+            $('#inputPassword').dialog('open');
+            $("#pwd").val("");
+            tradeID = value;
+            var row = vm.grid.datagrid("getRows");
+            vm.outInfo.name(row[index]["ProductName"]);
+            vm.outInfo.buyMoney(row[index]["FinancialMoney"]);
+            vm.outInfo.normalProfit(row[index]["PreProfit"]);
+            $("#inputPassword").mask("正在获取数据...");
+            $.get(Fromdata.urls.querySingleProductInfo, { "productId": row[index]["ProductID"] }, function(res) {
+                res = JSON.parse(res); 
+                vm.outInfo.description(res.Description);
+                $.get(Fromdata.urls.queryExpectProfit, { "tradeId": row[index]["TradeID"] }, function(result) {
+                    result = JSON.parse(result);
+                    vm.outInfo.profit(result.Profit);
+                    vm.outInfo.normalProfit(result.NormalProfit);
+                    $("#inputPassword").unmask();
+                  
+                });
+            });
+            
+           
+        }
+
+        function abortFinancial() {
+            if ($("#pwd").val() == "") {
+                window.parent.$.messager.alert("提示", "请输入支付密码","warning");
+                return;
+            }
+            $("#inputPassword").mask("正在提交数据...");
+            $.ajax({
+                url: Fromdata.urls.abortFinancial, 
+                type: 'POST',
+                data: { "tradeID": tradeID, "pwd": $("#pwd").val() },
+                success: function(result) {
+                    $("#inputPassword").unmask();
+                    result = JSON.parse(result);
+                    if (result.Success == 1) {
+                        $.get(Fromdata.urls.getFinancialMoney, {"time": new Date().getTime() }, function(res) {
+                            res = JSON.parse(res);
+                            vm.financialMoney(res.toFixed(2));
+                        });
+                        $('#inputPassword').dialog('close');
+                        vm.grid.datagrid('load', ko.toJS(this.searchForm));
+                    } else {
+                        window.parent.$.messager.alert("提示", result.Message, "error");
+                    }
+
+                },
+                error: function (e) {
+                    $("#inputPassword").unmask();
+                    var obj =JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error');  
+                }
+            });
+            
+        }
+
+    </script>
+}

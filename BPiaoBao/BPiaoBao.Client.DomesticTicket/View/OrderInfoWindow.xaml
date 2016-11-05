@@ -1,0 +1,354 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+        xmlns:uiExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" 
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+        xmlns:viewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel"
+         xmlns:view="clr-namespace:BPiaoBao.Client.DomesticTicket.View"
+        xmlns:microsoftWindowsThemes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" 
+        x:Class="BPiaoBao.Client.DomesticTicket.View.OrderInfoWindow"
+		mc:Ignorable="d"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"  
+        Title="订单详情" Width="1224" WindowStyle="None" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterOwner" 
+        d:DesignHeight="1843"  
+        Height="662" Background="White">
+    <!--<Window.DataContext>
+        <viewModel:OrderInfoViewModel/>
+    </Window.DataContext>-->
+    <Window.Resources>
+        <converters:FlightConverter x:Key="FlightConverter"/>
+        <converters:OrderStatusConverter x:Key="OrderStatusConverter"/>
+        <converters:ShowPrintConverter x:Key="ShowPrintConverter"/>
+        <converters:ShowTripStatusConverter x:Key="ShowTripStatusConverter"/>
+        <converters:PayInfoConverter x:Key="PayInfoConverter"/>
+        <SolidColorBrush x:Key="borderBrush" Color="#FFDEDEDE"/>
+        <Style x:Key="grayTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="TextTrimming" Value="None"/>
+            <Setter Property="Foreground" Value="#FF979692"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style x:Key="blackTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="TextTrimming" Value="None"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" BasedOn="{x:Null}" TargetType="{x:Type TextBox}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="Validation.ErrorTemplate">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <DockPanel LastChildFill="True">
+                            <TextBlock DockPanel.Dock="Right"
+								VerticalAlignment="Center"
+								Foreground="Red" FontSize="14" FontWeight="Bold"
+								ToolTip="{Binding AdornedElement.(Validation.Errors)[0].ErrorContent, ElementName=adornerPlaceholder}"><Run Text="*"/></TextBlock>
+                            <Border BorderBrush="Red" BorderThickness="1" CornerRadius="3">
+                                <AdornedElementPlaceholder x:Name="adornerPlaceholder"/>
+                            </Border>
+                        </DockPanel>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <microsoftWindowsThemes:ListBoxChrome x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderFocused="{TemplateBinding IsKeyboardFocusWithin}" SnapsToDevicePixels="true">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="Focused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </microsoftWindowsThemes:ListBoxChrome>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+						Value="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource Self}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="CannotScorllDataGridStyle" TargetType="{x:Type DataGrid}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="#FF688CAF"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="ContextMenu" Value="{StaticResource copyMenu}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGrid}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            <ContentControl x:Name="DG_ScrollViewer" Focusable="false">
+                                <ContentControl.Template>
+                                    <ControlTemplate TargetType="{x:Type ContentControl}">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="Auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Button Command="{x:Static DataGrid.SelectAllCommand}" Focusable="false" Style="{DynamicResource {ComponentResourceKey ResourceId=DataGridSelectAllButtonStyle, TypeInTargetAssembly={x:Type DataGrid}}}" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.All}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                            <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" Grid.Column="1" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.ColumnSpan="2"/>
+                                            <ContentPresenter x:Name="PART_ScrollContentPresenter" Grid.ColumnSpan="2" Grid.Row="1"/>
+                                            <Grid Grid.Column="1" Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                            </Grid>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </ContentControl.Template>
+                                <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </ContentControl>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource HorizontalDashedBrush}"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="SelectionUnit" Value="Cell"/>
+            <Style.Triggers>
+                <Trigger Property="IsGrouping" Value="true">
+                    <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <DataTemplate x:Key="operationDataTemplate">
+            <StackPanel VerticalAlignment="Center"  Width="Auto">
+                <Button 
+                    Content="行程单" 
+                    Command="{Binding DataContext.OpenTravelCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:OrderInfoWindow}},Mode=OneWay}" 
+                    CommandParameter="{Binding Path=Id}"      
+                    Visibility="{Binding Path=DataContext.OrderDetail.OrderStatus,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:OrderInfoWindow}}, ConverterParameter=5, Converter={StaticResource ShowPrintConverter}, Mode=OneWay}">
+                </Button>
+                <Button  
+                    Content="购买保险" 
+                    Command="{Binding DataContext.OpenPassengersCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                    Visibility="{Binding DataContext.IsOpenCurrenCarrierInsurance,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}"  />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FromCityDataTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Run Text="{Binding FromCity}"/>
+                    <Run Text="{Binding FromTerminal}"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ToCityDataTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock  HorizontalAlignment="Left"  VerticalAlignment="Center">
+                    <Run Text="{Binding ToCity}"/>
+                    <Run Text="{Binding ToTerminal}"/>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Window.Style>
+        <StaticResource ResourceKey="CustomWindowStyle"/>
+    </Window.Style>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Height="35" Background="#FFDEE6EE">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="订单信息" VerticalAlignment="Center" Margin="24,9.163,0,10" Foreground="#FF0172D2" FontWeight="Bold"/>
+            </Grid>
+            <Border DataContext="{Binding OrderDetail}" Grid.Row="1" BorderBrush="{StaticResource borderBrush}" BorderThickness="1,0,0,1" Height="158" >
+                <Grid Background="#FFFEF9F3">
+                    <Grid Margin="86,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,4.707">
+                            <TextBlock TextWrapping="Wrap" Text="订单号：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBox IsReadOnly="True" Text="{Binding OrderId}" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="交易号：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBox Text="{Binding PayInfo.PaySerialNumber}" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="2" VerticalAlignment="Center" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="订单金额：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding PayInfo.PayMoney, StringFormat=￥\{0:f2\}}" Style="{StaticResource blackTextBlockStyle}" Foreground="{DynamicResource OrangeForeground}" ToolTip=""/>
+                            <!--<TextBlock Text="{Binding OrderMoney, StringFormat=￥\{0:f2\}}" Style="{StaticResource blackTextBlockStyle}" Foreground="{DynamicResource OrangeForeground}" />-->
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.ColumnSpan="1" VerticalAlignment="Center" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="政策备注：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Policy.Remark}" Style="{StaticResource blackTextBlockStyle}" ToolTip="{Binding Policy.Remark}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="政策类型：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Policy.PolicyType}" Style="{StaticResource blackTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Margin="0,7.707" Visibility="{Binding DataContext.IsShowOldOrderId,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}">
+                            <TextBlock TextWrapping="Wrap" Text="成人订单号：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBox Text="{Binding OldOrderId}" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="PNR编码：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBox IsReadOnly="True" Text="{Binding ShowPnrCode}" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="支付方式：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding PayInfo,Converter={StaticResource PayInfoConverter}}" Style="{StaticResource blackTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1" Grid.Row="2" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="政策点数：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Policy.Point}" Style="{StaticResource blackTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="订单状态：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding OrderStatus, ConverterParameter=all, Converter={StaticResource OrderStatusConverter}}" Foreground="{DynamicResource OrangeForeground}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="1" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="支付状态：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding PayInfo.PayStatus, Converter={StaticResource DescriptionConverter}}" Style="{StaticResource blackTextBlockStyle}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="2" Grid.Row="2" Margin="0,7.707">
+                            <TextBlock TextWrapping="Wrap" Text="退、改处理时间：" Style="{StaticResource grayTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Policy.TFGTime, StringFormat=yyyy-MM-dd HH:mm:ss}" Style="{StaticResource blackTextBlockStyle}" />
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Margin="0,7.707">
+                            <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,1" IsChecked="{Binding IsInsuranceRefund}" IsEnabled="False"/>
+                            <TextBlock TextWrapping="Wrap" Text="极速退" Style="{StaticResource grayTextBlockStyle}"/>
+                        </StackPanel>-->
+                    </Grid>
+                </Grid>
+            </Border>
+            <Grid DataContext="{Binding OrderDetail,Mode=TwoWay}" Grid.Row="2" Background="White" MinHeight="126">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="行程信息" VerticalAlignment="Center" Margin="24,10,0,10.163" Foreground="Black" FontWeight="Bold"/>
+                <DataGrid Margin="24,0,24,20" Grid.Row="1" ItemsSource="{Binding SkyWays}" MinRowHeight="38" VerticalScrollBarVisibility="Disabled" BorderThickness="1,1,1,0" HorizontalGridLinesBrush="#FF688CAF" Background="{x:Null}" Style="{DynamicResource CannotScorllDataGridStyle}">
+                    <DataGrid.Columns>
+                        <!--<DataGridTextColumn Width="*" Header="起飞城市" Binding="{Binding FromCity}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                        <DataGridTextColumn Width="*" Header="到达城市" Binding="{Binding ToCity}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />-->
+                        <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Width="*" Header="起飞城市" CellTemplate="{StaticResource FromCityDataTemplate}" />
+                        <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" Width="*" Header="到达城市" CellTemplate="{StaticResource ToCityDataTemplate}" />
+                        <DataGridTextColumn Width="*" Header="起飞日期" Binding="{Binding StartDateTime, StringFormat=yyyy-MM-dd HH:mm}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                        <DataGridTextColumn Width="*" Header="到达日期" Binding="{Binding ToDateTime, StringFormat=yyyy-MM-dd HH:mm}"  ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                        <DataGridTextColumn Width="*" Header="航空公司" Binding="{Binding CarrayCode}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                        <DataGridTextColumn Width="*" Header="航班号" Binding="{Binding FlightNumber}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                        <DataGridTextColumn Width="*" Header="舱位" Binding="{Binding Seat}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                       <DataGridTextColumn Width="*" Header="折扣" Binding="{Binding Discount,StringFormat=\{0:N0\}折}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                       </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Border DataContext="{Binding OrderDetail}" Grid.Row="3"  MinHeight="126" BorderThickness="0,1" BorderBrush="{DynamicResource borderBrush}">
+                <Grid Background="White" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="乘客信息" VerticalAlignment="Center" Margin="24,10,0,10.163" Foreground="Black" FontWeight="Bold"/>
+                    <Button Content="购买保险" Margin="1088,0,0,0.0" Width="80" Height="25" Command="{Binding DataContext.OpenPassengersCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" 
+                            Visibility="{Binding DataContext.IsOpenCurrenCarrierInsurance,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource BooleanToVisibilityConverter}}"  />
+                    <DataGrid x:Name="dg" Grid.Row="1" MinRowHeight="38" Margin="24,0,24,20" ItemsSource="{Binding Passengers}" BorderThickness="1,1,1,0" HorizontalGridLinesBrush="#FF688CAF" Style="{DynamicResource CannotScorllDataGridStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Width="*" Header="姓名" Binding="{Binding PassengerName}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="*" Header="类型" Binding="{Binding PassengerType, Converter={StaticResource DescriptionConverter}}"  ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="1.5*" Header="证件号" Binding="{Binding CardNo}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="1*" Header="手机号" Binding="{Binding Mobile}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="1.2*" Header="票号" Binding="{Binding TicketNumber}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="*" Header="舱位价" Binding="{Binding SeatPrice, StringFormat=￥\{0:f2\}}" Foreground="{DynamicResource OrangeForeground}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTemplateColumn Width="*"  Header="机建/燃油">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" HorizontalAlignment="Center" Width="Auto">
+                                            <TextBlock Foreground="#FFF95306"><Run Text="{Binding TaxFee, StringFormat=￥\{0:f2\}}" /><Run Text=" "/><Run Text="/" /><Run Text="{Binding RQFee, StringFormat=￥\{0:f2\}}" /></TextBlock>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <!--<DataGridTextColumn Width="*" Header="机建" Binding="{Binding TaxFee, StringFormat=￥\{0:f2\}}" Foreground="{DynamicResource OrangeForeground}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="*" Header="燃油" Binding="{Binding RQFee, StringFormat=￥\{0:f2\}}" Foreground="{DynamicResource OrangeForeground}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />-->
+                            <DataGridTextColumn Width="*" Header="极速退服务费" Binding="{Binding InsuranceRefunrPrice, StringFormat=￥\{0:f2\}}" Foreground="{DynamicResource OrangeForeground}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="*" Header="保险份数" Binding="{Binding BuyInsuranceCount}" Foreground="{DynamicResource OrangeForeground}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                            <DataGridTextColumn Width="*" Header="行程单状态" Binding="{Binding PassengerTripStatus,Converter={StaticResource ShowTripStatusConverter}}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                            <DataGridTemplateColumn Width="*" Header="操作" ><!--CellTemplate="{StaticResource operationDataTemplate}"-->
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button 
+                                            Content="行程单" 
+                                            Command="{Binding DataContext.OpenTravelCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:OrderInfoWindow}},Mode=OneWay}" 
+                                            CommandParameter="{Binding Path=Id}"      
+                                            Visibility="{Binding Path=DataContext.OrderDetail.OrderStatus,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:OrderInfoWindow}}, ConverterParameter=5, Converter={StaticResource ShowPrintConverter}, Mode=OneWay}">
+                                        </Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Border>
+            <Grid DataContext="{Binding OrderDetail}" Grid.Row="4" Background="White" MinHeight="126">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="36"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="操作日志" VerticalAlignment="Center" Margin="24,10,0,10.163" Foreground="Black" FontWeight="Bold"/>
+                <DataGrid CanUserSortColumns="False" Grid.Row="1" MinRowHeight="38" Margin="24,0,24,18" ItemsSource="{Binding OrderLogs}" HorizontalGridLinesBrush="#FF688CAF" BorderThickness="1,1,1,0" Style="{DynamicResource CannotScorllDataGridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="Auto" Header="操作时间" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding OperationDatetime, StringFormat=yyyy-MM-dd HH:mm:ss}" />
+                        <DataGridTextColumn Width="Auto" Header="操作人" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding OperationPerson}" />
+                        <DataGridTextColumn Width="Auto" Header="操作内容" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding OperationContent}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="100" Grid.RowSpan="7" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </Grid>
+    </ScrollViewer>
+</Window>

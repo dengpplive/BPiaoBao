@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="BPiaoBao.Client.Message.View.MessageControl"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:view="clr-namespace:BPiaoBao.Client.Message.View"
+             xmlns:uiExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt"
+             xmlns:converter="clr-namespace:BPiaoBao.Client.SystemSetting.View.Converter;assembly=BPiaoBao.Client.SystemSetting"
+             xmlns:viewModel="clr-namespace:BPiaoBao.Client.Message.ViewModel"
+             d:DesignHeight="300" d:DesignWidth="900" >
+    <UserControl.DataContext>
+        <viewModel:MessageViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <converter:NoticeTypeConverter x:Key="NoticeTypeConverter"/>
+        <converter:StateConverter x:Key="StateConverter"/>
+        <DataTemplate x:Key="TitleDataTemplate">
+            <StackPanel Orientation="Horizontal" Margin="10,2">
+                <TextBlock  HorizontalAlignment="Left"  VerticalAlignment="Center" Text="●"  Foreground="#ccc" Margin="10,0"></TextBlock>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding State,Converter={StaticResource StateConverter}}" Foreground="Red" Margin="0,0,10,0"></TextBlock>
+                <Button HorizontalAlignment="Left"  VerticalAlignment="Center" Content="{Binding Title}" Style ="{StaticResource LinkBtn}" Height="20"
+                Command="{Binding DataContext.ShowBulletinDetailsCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type view:MessageControl}}}" CommandParameter="{Binding Path=.,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"></Button>
+            </StackPanel>
+        </DataTemplate>
+        <Style TargetType="{x:Type DataGridColumnHeader}">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="FrameworkElement.Visibility" Value="Collapsed"/>
+        </Style>
+        <Style  TargetType="DataGridRow" x:Key="DateGridRowStyleNotice">
+            <Setter Property="Background" Value="white" />
+            <Setter Property="Height" Value="30"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="white"/>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="white"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="DataGridCell" x:Key="DataGridCellStyleNotice">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="DataGridCell">
+                        <TextBlock TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Center"  >
+                           <ContentPresenter />
+                        </TextBlock>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="White"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="50"/>
+            <!--<RowDefinition Height="Auto" MinHeight="50"/>-->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"  MinHeight="40"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{StaticResource HeadBg1}">
+            <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0">
+                <TextBlock TextWrapping="Wrap" Text="消息列表" VerticalAlignment="Center" Style="{DynamicResource HeadTextBlock}"/>
+            </StackPanel>
+        </Grid>
+        <!--<Border Grid.Row="1" Style="{DynamicResource Head2BorderStyle}" >
+            <Grid Background="{StaticResource HeadBg3}">
+                <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="0"  Height="30">
+                    <TextBlock TextWrapping="Wrap" Text="标题：" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                    <TextBox Height="23" TextWrapping="Wrap" Width="180" Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,0,10,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="发布日期：" VerticalAlignment="Center"/>
+                    <DatePicker VerticalAlignment="Center" Margin="0,0,10,0"  SelectedDate="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    <TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                    <DatePicker VerticalAlignment="Center" Margin="10,0,0,0"  SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
+                    <Button Content="查询" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource QueryBtn}" Margin="20,0,0,0" Command="{Binding QueryCommand}" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>-->
+        <Grid Grid.Row="1">
+            <DataGrid   CellStyle="{StaticResource DataGridCellStyleNotice}" RowStyle="{StaticResource DateGridRowStyleNotice}" CanUserSortColumns="False" Margin="20,10" BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding MyMessageModels}" AutoGenerateColumns="False" GridLinesVisibility="None" Background="{x:Null}" MinRowHeight="30" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="*"  Header="标题"     CellTemplate="{StaticResource TitleDataTemplate}"/>
+                    <DataGridTextColumn Header="发布时间" Width="*" Foreground="Gray" Binding="{Binding CreateTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <uiExt:Pagination Grid.Row="2" VerticalAlignment="Top" PageSize="{Binding PageSize}" CurrentPageIndex="{Binding CurrentPageIndex,Mode=TwoWay}" TotalCount="{Binding TotalCount,Mode=TwoWay}" Margin="20,0" >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PageChanged">
+                    <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </uiExt:Pagination>
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="100" Grid.RowSpan="3" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,67 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="BPiaoBao.Client.Account.View.PointExchangeLogControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="423" d:DesignWidth="626">
+	<UserControl.DataContext>
+		<ViewModel:PointExchangeLogViewModel/>
+	</UserControl.DataContext>
+	<Grid Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="60"/>
+			<RowDefinition Height="41"/>
+			<RowDefinition Height="0.834*"/>
+		</Grid.RowDefinitions>
+		<Grid Background="{StaticResource HeadBg1}">
+			<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0">
+				<TextBlock TextWrapping="Wrap" Text="积分兑换" d:LayoutOverrides="Width" VerticalAlignment="Center" Style="{DynamicResource HeadTextBlock}"/>
+				<!--<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="40,0,0,0"><Run Text="充值总金额："/><Run Foreground="#FFFF4E00" FontSize="14.667" Text="￥12312312312"/></TextBlock>-->
+			</StackPanel>
+		</Grid>
+		<Grid Grid.Row="1" Background="{StaticResource HeadBg3}">
+			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="记录明细" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0" Style="{DynamicResource Head2TextBlock}"/>
+			<StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,20,0">
+				<TextBlock TextWrapping="Wrap" Text="日期：" VerticalAlignment="Center"/>
+                <DatePicker VerticalAlignment="Center" Margin="0,0,10,0"  SelectedDate="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
+				<TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                <DatePicker VerticalAlignment="Center" Margin="10,0,0,0"  SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
+				<Button Content="查询" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource QueryBtn}" Margin="20,0,0,0"  Command="{Binding QueryCommand}" >
+					<i:Interaction.Triggers>
+						<i:EventTrigger EventName="Click">
+							<ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+						</i:EventTrigger>
+					</i:Interaction.Triggers>
+				</Button>
+			</StackPanel>
+		</Grid>
+		<Grid Grid.Row="2">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto" MinHeight="40"/>
+			</Grid.RowDefinitions>
+            <DataGrid CanUserSortColumns="False" Margin="20,10" BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding ScoreConvertLogs}" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="65" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+				<DataGrid.Columns>
+					<DataGridTextColumn Binding="{Binding CreateDate, StringFormat=yyyy-MM-dd HH:mm:ss}" Width="*" Header="兑换时间"/>					
+					<DataGridTextColumn Binding="{Binding PointAmount}"  Width="*"  Header="兑换积分"/>
+					<DataGridTextColumn  Binding="{Binding LeaveAmount}"  Width="*"  Header="剩余积分"/>
+				</DataGrid.Columns>
+			</DataGrid>
+			<WPFSpark:SprocketControl Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+			<UIExt:Pagination Grid.Row="1" d:LayoutOverrides="Width, Height" VerticalAlignment="Top"
+				PageSize="{Binding PageSize}" 
+				CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay}"
+				TotalCount="{Binding TotalCount, Mode=TwoWay}" >
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="PageChanged">
+						<i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</UIExt:Pagination>
+		</Grid>
+		
+            
+	</Grid>
+</UserControl>

@@ -1,0 +1,80 @@
+Start====================================================================
+时间:2014-11-28 10:46:00.117
+客户端IP:127.0.0.1:50614
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=003 
+ Tel=18628368729
+航段1:
+CarrayCode=EU
+FlightNumber=2741
+StartDate=2014/12/30 6:50:00
+EndDate=2014/12/30 8:25:00
+Seat=E
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T2
+ToTerminal=T3
+Discount=50.7900
+FlightModel=319
+TaxFee=50
+RQFee=40.0
+SeatPrice=320.00
+PolicySpecialType=Normal
+SpecialPrice=320.00
+SpecialTax=50
+SpecialFuelFee=40.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=王雪梅
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=510781198507053391
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=15928636274
+Birth=1985/7/5 0:00:00
+乘客2:
+PassengerName=王学超
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=520102197612302037
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=
+Birth=1976/12/30 0:00:00
+乘客3:
+PassengerName=高兵
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=622301198909107528
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=
+Birth=1989/9/10 0:00:00
+乘客4:
+PassengerName=张浩
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=520103196510255657
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=
+Birth=1965/10/25 0:00:00
+ ServerIP=210.14.138.27
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-28 10:45:57.028
+时间2:2014-11-28 10:46:00.000
+结果:
+ 成人Pnr=HYCE5L PNRContent= 1.高兵 2.王学超 3.王雪梅 4.张浩 HYCE5L  5.  EU2741 E   TU30DEC  CTUXIY HK4   0650 0825          E T2T3  6.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    7.TL/1245/28NOV/CTU186  8.SSR FOID EU HK1 NI520103196510255657/P4   9.SSR FOID EU HK1 NI622301198909107528/P1  10.SSR FOID EU HK1 NI520102197612302037/P2  11.SSR FOID EU HK1 NI510781198507053391/P3  12.OSI EU CTCM15928636274/P313.OSI EU CTCT18628368729   14.RMK CA/MXG3W515.CTU186    
+ PATContent=>PAT:A  01 E FARE:CNY320.00 TAX:CNY50.00 YQ:CNY40.00  TOTAL:410.00   SFC:01    SFN:01   
+时间3:2014-11-28 10:46:00.117
+
+
+End=====================================================================
+

@@ -1,0 +1,174 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div id="toolbar" style="padding:10px 0;">
+        <div style="padding:10px 0px; overflow:hidden;padding-left:4px;">
+            <div style="float:left">
+                <div class="m_search">
+                    商户类型:
+                    <select style="width:120px; height:22px" data-bind="value: $root.searchForm.BusinessmanType">
+                        <option value="">---全部---</option>
+                        <option value="Buyer">采购商</option>
+                        <option value="Supplier">供应商</option>
+                    </select>
+                </div>
+                <div class="m_search">商户号：<input type="text" data-bind="value: $root.searchForm.BusinessmanCode" class="inputStyle" /></div>
+                <div class="m_search">公司名称：<input type="text" data-bind="value: $root.searchForm.BusinessmanName" class="inputStyle" /></div>
+                <div class="m_search">查询时间:<input type="text" class="easyui-my97" id="myStart" data-bind="my97value:$root.searchForm.StartDateTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd\')}'}" />
+                到:<input type="text" class="easyui-my97" id="myEnd" data-bind="my97value:$root.searchForm.EndDateTime" data-options="{minDate:'#F{$dp.$D(\'myStart\')}'}" /></div>
+                <div class="m_search">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-white-export" style="overflow:hidden;margin-left: 20px;" onclick="exportExcel();">导出</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="tableShow" data-options="region:'center',border:0">
+        <table id="MainTable" title="用户行为" style="height:auto;" data-bind="datagrid: grid">
+            <thead>
+                <tr bgcolor="#daeef5">
+                    @*<th>日期</th>*@
+                    <th colspan="4">基本信息</th>
+                    <th>活跃状态</th>
+                    <th colspan="5">机票业务</th>
+                    <th colspan="2">理财业务</th>
+                    <th colspan="1">信用业务</th>
+                </tr>
+                <tr bgcolor="#daeef5">
+                    @*<th data-options="field:'OpDateTime',width:200,align:'center',formatter:formaterTime">查询日期</th>*@
+                    <th data-options="field:'ContactName',width:150,align:'center'">业务经理</th>
+                    @*<th data-options="field:'OperatorName',width:150,align:'center'">操作员</th>*@
+                    <th data-options="field:'BusinessmanCode',width:200,align:'center',formatter:formaterCode">商户号</th>
+                    <th data-options="field:'BusinessmanName',width:200,align:'center'">公司名称</th>
+                    <th data-options="field:'BusinessmanType',width:150,align:'center',formatter:formaterBuType">商户类型</th>
+                    <th data-options="field:'LoginCount',width:150,align:'center',sortable:true">登录次数</th>
+                    <th data-options="field:'QueryCount',width:150,align:'center',sortable:true">查询次数</th>
+                    <th data-options="field:'ImportCount',width:150,align:'center',sortable:true">导入次数</th>
+                    <th data-options="field:'OutTicketCount',width:150,align:'center',sortable:true">出票量</th>
+                    <th data-options="field:'BackTicketCount',width:150,align:'center',sortable:true">退票量</th>
+                    <th data-options="field:'AbolishTicketCount',width:150,align:'center',sortable:true">废票量</th>
+                    <th data-options="field:'AccessCount',width:150,align:'center',sortable:true">访问次数</th>
+                    <th data-options="field:'FinancingCount',width:150,align:'center',sortable:true">理财笔数</th>
+                    <th data-options="field:'UseCount',width:150,align:'center',sortable:true">使用次数</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div id="showInfoDialog" class="easyui-dialog" title="商户联系信息"
+     data-options="iconCls:'icon-add2',modal:true,closed:true,buttons:'#showInfoDialog-buttons'"
+     style="width:300px;height:auto;padding:10px 15px;">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="30%" height="45" align="right">商户号：</td>
+            <td height="45">
+                <label data-bind="text:$root.bussiness.Code"></label>
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" height="45" align="right">商户名称：</td>
+            <td height="45">
+                <label data-bind="text:$root.bussiness.Name"></label>
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" height="45" align="right">联系人：</td>
+            <td height="45">
+                <label data-bind="text:$root.bussiness.Contact"></label>
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" height="45" align="right">联系电话：</td>
+            <td height="45">
+                <label data-bind="text:$root.bussiness.Tel"></label>
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" height="45" align="right">地址：</td>
+            <td height="45">
+                <label data-bind="text:$root.bussiness.Address"></label>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="showInfoDialog-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript: $('#showInfoDialog').dialog('close')">关闭</a>
+</div>
+
+<style type="text/css">
+    .datagrid-cell-group {
+        line-height: 23px;
+        font-size: 14px;
+        font-weight: bold;
+        height: auto;
+    }
+</style>
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+                var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+                var vm = new ViewModel(Fromdata);
+        vm.grid.pageSize = 50;
+                vm.bussiness = {
+                    Code: ko.observable(),
+                    Name: ko.observable(),
+                    Contact:ko.observable(),
+                    Tel:ko.observable(),
+                    Address: ko.observable()
+                };
+                vm.grid.onDblClickRow = function(index,row) {
+                    showBussinessDetails( row["BusinessmanCode"]);
+
+                };
+                vm.queryClick = function(code) {
+                    showBussinessDetails(code);
+                };
+                ko.applyBindings(vm);
+
+        
+                function  exportExcel() {
+                    vm.exportClick("Excel2003");
+
+                }
+
+                function showBussinessDetails(code) {
+                    $.get(vm.urls.queryDeatils, { "code": code }, function(res) {
+                        res = JSON.parse(res);
+                        vm.bussiness.Code(res.Code);
+                        vm.bussiness.Name(res.Name);
+                        vm.bussiness.Contact(res.ContactWay.Contact);
+                        vm.bussiness.Tel(res.ContactWay.Tel);
+                        vm.bussiness.Address(res.ContactWay.Province+res.ContactWay.City+res.ContactWay.Address);
+
+                        $('#showInfoDialog').dialog('open');
+                    });
+                }
+
+                function formaterCode(value) {
+                    return "<a  href=\"javascript:void(0)\"  onclick='javascript: vm.queryClick(\"" + value + "\")'>" + value + "</a> ";
+                }
+
+                function formaterTime(value) {
+                    if (value == null || value == "") {
+                        return "";
+                    }
+                    value = value.split(' ');
+                    return value[0];
+                }
+
+                function formaterBuType(value) {
+                    if (value.toString().toLowerCase() == "buyer") {
+                        return "采购商";
+                    } else if (value.toString().toLowerCase() == "supplier") {
+                        return "供应商";
+                    } else if (value.toString().toLowerCase() == "carrier") {
+                        return "运营商";
+                    }
+                }
+    </script>
+}

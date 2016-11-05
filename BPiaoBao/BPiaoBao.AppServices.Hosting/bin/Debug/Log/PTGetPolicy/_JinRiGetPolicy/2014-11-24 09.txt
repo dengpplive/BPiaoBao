@@ -1,0 +1,1075 @@
+Start====================================================================
+记录时间:2014-11-24 09:27:36.658
+内容:开始解析时间:2014-11-24 09:27:35.669
+ 参数:_todayAccout=kjtadmin
+ _todayAccout2=kjtadmin01
+ IsLowerPrice=0
+ PNRContent= 1.张三 JNL3N2   2.  3U8548 G   TH15JAN  PEKCTU HK1   0625 0935          E T3T1  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0625/15JAN/CTU186  5.SSR FOID 3U HK1 NI513722198911054516/P1   6.OSI 3U CTCM13629244039/P1 7.OSI 3U CTCT15528305255    8.RMK CA/NJY6TH 9.CTU186   
+>PAT:A  01 G FARE:CNY1010.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1130.00 SFC:01    SFN:01   
+
+  解析参数:RTCon= 1.张三 JNL3N2   2.  3U8548 G   TH15JAN  PEKCTU HK1   0625 0935          E T3T1  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0625/15JAN/CTU186  5.SSR FOID 3U HK1 NI513722198911054516/P1   6.OSI 3U CTCM13629244039/P1 7.OSI 3U CTCT15528305255    8.RMK CA/NJY6TH 9.CTU186   
+ PatCon=>PAT:A  01 G FARE:CNY1010.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1130.00 SFC:01    SFN:01
+ Pnr=JNL3N2
+ Msg=
+   调用接口参数:PnrInfo=O|P|JNL3N2^F^NJY6TH|2015-01-15|PEK|北京|CTU|成都|3U8548^N||06:25|09:35|G|100||1010.00|120.00|1|张三|513722198911054516
+ 请求数据:xml=<?xml version="1.0" encoding="gb2312" ?><JIT-Policy-Request><Request username="kjtadmin" pnr="JNL3N2"  PnrInfo="O|P|JNL3N2^F^NJY6TH|2015-01-15|PEK|北京|CTU|成都|3U8548^N||06:25|09:35|G|100||1010.00|120.00|1|张三|513722198911054516"  PassengerType="A"  Amount="16" /></JIT-Policy-Request>
+返回结果:
+<?xml version="1.0" encoding="gb2312"?><JIT-Policy-Response PnrInfo="O|P|JNL3N2^F^NJY6TH|2015-01-15|PEK|北京|CTU|成都|3U8548^N||06:25|09:35|G|100||1010.00|120.00|1|张三|513722198911054516"><Response PolicyId="31587765" RateId="BtifrEcCB3s=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="5.5" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="08:30" WorkTimeEnd="23:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CAN445" RefundTimeBegin="08:30" RefundTimeEnd="23:00" LastModifyTime="2014/11/23 22:13:22" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="30911271" RateId="saWn1mPlV5k=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="5.4" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="08:00" WorkTimeEnd="23:59" Rewards="" Remark="签转、换开、跨月改期，收回代理费" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="HKG829/SZX396" RefundTimeBegin="08:00" RefundTimeEnd="23:30" LastModifyTime="2014/11/21 17:45:56" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="33021519" RateId="71k/7OH8eW4=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="4.6" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="00:00" WorkTimeEnd="23:59" Rewards="" Remark="跨月改期或签转至其他航空公司，需收回代理费" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="SYX128" RefundTimeBegin="07:00" RefundTimeEnd="23:30" LastModifyTime="2014/11/24 9:25:03" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="29135338" RateId="BtifrEcCB3s=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="4.5" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="08:30" WorkTimeEnd="23:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CAN445" RefundTimeBegin="08:30" RefundTimeEnd="23:00" LastModifyTime="2014/11/23 22:13:22" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="2209" RateId="cOlL5tF9kQE=" ScityE="" EcityE="" AirComE="3U/" NoAirComE="" PolicyType="" Cabin="" VoyageType="" UserType="" RateType="1" Discounts="3" Sdate="" Edate="" WorkTimeBegin="" WorkTimeEnd="" Rewards="" Remark="" ET="1" WP="" SP="2" XF="0" PromotionDiscount="0" NewRateNo="" OfficeNum="BJS415" RefundTimeBegin="" RefundTimeEnd="" LastModifyTime="" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /></JIT-Policy-Response>
+结束解析时间:2014-11-24 09:27:36.599
+开始获取政策时间:2014-11-24 09:27:36.599
+结束获取政策时间:2014-11-24 09:27:36.641
+开始过滤政策时间:2014-11-24 09:27:36.641
+返回结果:表名:Policy第1行数据:
+PolicyId=31587765
+RateId=BtifrEcCB3s=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=5.5
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=08:30
+WorkTimeEnd=23:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CAN445
+RefundTimeBegin=08:30
+RefundTimeEnd=23:00
+LastModifyTime=2014/11/23 22:13:22
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第2行数据:
+PolicyId=30911271
+RateId=saWn1mPlV5k=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=5.4
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=23:59
+Rewards=
+Remark=签转、换开、跨月改期，收回代理费
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=HKG829/SZX396
+RefundTimeBegin=08:00
+RefundTimeEnd=23:30
+LastModifyTime=2014/11/21 17:45:56
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第3行数据:
+PolicyId=33021519
+RateId=71k/7OH8eW4=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=4.6
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=00:00
+WorkTimeEnd=23:59
+Rewards=
+Remark=跨月改期或签转至其他航空公司，需收回代理费
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=SYX128
+RefundTimeBegin=07:00
+RefundTimeEnd=23:30
+LastModifyTime=2014/11/24 9:25:03
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第4行数据:
+PolicyId=29135338
+RateId=BtifrEcCB3s=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=4.5
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=08:30
+WorkTimeEnd=23:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CAN445
+RefundTimeBegin=08:30
+RefundTimeEnd=23:00
+LastModifyTime=2014/11/23 22:13:22
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Today第1行数据:
+Pnr=JNL3N2
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=1010.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=1130.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:27:36.655
+
+End=====================================================================
+
+Start====================================================================
+记录时间:2014-11-24 09:28:58.073
+内容:开始解析时间:2014-11-24 09:28:57.405
+ 参数:_todayAccout=kjtadmin
+ _todayAccout2=kjtadmin01
+ IsLowerPrice=0
+ PNRContent= 1.张三 HD23RN   2.  3U8548 G   TH15JAN  PEKCTU HK1   0625 0935          E T3T1  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0625/15JAN/CTU186  5.SSR FOID 3U HK1 NI513722198911054516/P1   6.SSR ADTK 1E BY CTU01DEC14/0928 OR CXL 3U8548 G15JAN   7.OSI 3U CTCM13629244039/P1 8.OSI 3U CTCT15528305255    9.RMK CA/MCL7HJ10.CTU186   
+>PAT:A  01 G FARE:CNY1010.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1130.00 SFC:01    SFN:01   
+
+  解析参数:RTCon= 1.张三 HD23RN   2.  3U8548 G   TH15JAN  PEKCTU HK1   0625 0935          E T3T1  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0625/15JAN/CTU186  5.SSR FOID 3U HK1 NI513722198911054516/P1   6.SSR ADTK 1E BY CTU01DEC14/0928 OR CXL 3U8548 G15JAN   7.OSI 3U CTCM13629244039/P1 8.OSI 3U CTCT15528305255    9.RMK CA/MCL7HJ10.CTU186   
+ PatCon=>PAT:A  01 G FARE:CNY1010.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1130.00 SFC:01    SFN:01
+ Pnr=HD23RN
+ Msg=
+   调用接口参数:PnrInfo=O|P|HD23RN^F^MCL7HJ|2015-01-15|PEK|北京|CTU|成都|3U8548^N||06:25|09:35|G|100||1010.00|120.00|1|张三|513722198911054516
+ 请求数据:xml=<?xml version="1.0" encoding="gb2312" ?><JIT-Policy-Request><Request username="kjtadmin" pnr="HD23RN"  PnrInfo="O|P|HD23RN^F^MCL7HJ|2015-01-15|PEK|北京|CTU|成都|3U8548^N||06:25|09:35|G|100||1010.00|120.00|1|张三|513722198911054516"  PassengerType="A"  Amount="16" /></JIT-Policy-Request>
+返回结果:
+<?xml version="1.0" encoding="gb2312"?><JIT-Policy-Response PnrInfo="O|P|HD23RN^F^MCL7HJ|2015-01-15|PEK|北京|CTU|成都|3U8548^N||06:25|09:35|G|100||1010.00|120.00|1|张三|513722198911054516"><Response PolicyId="31587765" RateId="BtifrEcCB3s=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="5.5" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="08:30" WorkTimeEnd="23:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CAN445" RefundTimeBegin="08:30" RefundTimeEnd="23:00" LastModifyTime="2014/11/23 22:13:22" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="30911271" RateId="saWn1mPlV5k=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="5.4" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="08:00" WorkTimeEnd="23:59" Rewards="" Remark="签转、换开、跨月改期，收回代理费" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="HKG829/SZX396" RefundTimeBegin="08:00" RefundTimeEnd="23:30" LastModifyTime="2014/11/21 17:45:56" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="33021519" RateId="71k/7OH8eW4=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="4.6" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="00:00" WorkTimeEnd="23:59" Rewards="" Remark="跨月改期或签转至其他航空公司，需收回代理费" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="SYX128" RefundTimeBegin="07:00" RefundTimeEnd="23:30" LastModifyTime="2014/11/24 9:25:03" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="29135338" RateId="BtifrEcCB3s=" ScityE="PEK" EcityE="CTU" AirComE="3U8548" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="4.5" Sdate="2015-01-01" Edate="2015-01-31" WorkTimeBegin="08:30" WorkTimeEnd="23:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CAN445" RefundTimeBegin="08:30" RefundTimeEnd="23:00" LastModifyTime="2014/11/23 22:13:22" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="2209" RateId="cOlL5tF9kQE=" ScityE="" EcityE="" AirComE="3U/" NoAirComE="" PolicyType="" Cabin="" VoyageType="" UserType="" RateType="1" Discounts="3" Sdate="" Edate="" WorkTimeBegin="" WorkTimeEnd="" Rewards="" Remark="" ET="1" WP="" SP="2" XF="0" PromotionDiscount="0" NewRateNo="" OfficeNum="BJS415" RefundTimeBegin="" RefundTimeEnd="" LastModifyTime="" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /></JIT-Policy-Response>
+结束解析时间:2014-11-24 09:28:58.071
+开始获取政策时间:2014-11-24 09:28:58.071
+结束获取政策时间:2014-11-24 09:28:58.072
+开始过滤政策时间:2014-11-24 09:28:58.072
+返回结果:表名:Policy第1行数据:
+PolicyId=31587765
+RateId=BtifrEcCB3s=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=5.5
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=08:30
+WorkTimeEnd=23:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CAN445
+RefundTimeBegin=08:30
+RefundTimeEnd=23:00
+LastModifyTime=2014/11/23 22:13:22
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第2行数据:
+PolicyId=30911271
+RateId=saWn1mPlV5k=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=5.4
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=23:59
+Rewards=
+Remark=签转、换开、跨月改期，收回代理费
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=HKG829/SZX396
+RefundTimeBegin=08:00
+RefundTimeEnd=23:30
+LastModifyTime=2014/11/21 17:45:56
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第3行数据:
+PolicyId=33021519
+RateId=71k/7OH8eW4=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=4.6
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=00:00
+WorkTimeEnd=23:59
+Rewards=
+Remark=跨月改期或签转至其他航空公司，需收回代理费
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=SYX128
+RefundTimeBegin=07:00
+RefundTimeEnd=23:30
+LastModifyTime=2014/11/24 9:25:03
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第4行数据:
+PolicyId=29135338
+RateId=BtifrEcCB3s=
+ScityE=PEK
+EcityE=CTU
+AirComE=3U8548
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=4.5
+Sdate=2015/1/1 0:00:00
+Edate=2015/1/31 0:00:00
+WorkTimeBegin=08:30
+WorkTimeEnd=23:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CAN445
+RefundTimeBegin=08:30
+RefundTimeEnd=23:00
+LastModifyTime=2014/11/23 22:13:22
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Today第1行数据:
+Pnr=HD23RN
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=1010.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=1130.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:28:58.073
+
+End=====================================================================
+
+Start====================================================================
+记录时间:2014-11-24 09:39:18.542
+内容:开始解析时间:2014-11-24 09:39:17.451
+ 参数:_todayAccout=kjtadmin
+ _todayAccout2=kjtadmin01
+ IsLowerPrice=0
+ PNRContent= 1.张三 JVN2J9   2.  HU7147 F   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI513722198911054516/P1   6.OSI HU CTCM13629244039/P1 7.OSI HU CTCT15528305255    8.RMK CA/MKW4GY 9.CTU186   
+>PAT:A  01 F FARE:CNY4320.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:4440.00 SFC:01    SFN:01   
+
+  解析参数:RTCon= 1.张三 JVN2J9   2.  HU7147 F   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI513722198911054516/P1   6.OSI HU CTCM13629244039/P1 7.OSI HU CTCT15528305255    8.RMK CA/MKW4GY 9.CTU186   
+ PatCon=>PAT:A  01 F FARE:CNY4320.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:4440.00 SFC:01    SFN:01
+ Pnr=JVN2J9
+ Msg=
+   调用接口参数:PnrInfo=O|P|JVN2J9^F^MKW4GY|2015-02-05|PEK|北京|CTU|成都|HU7147^N||07:55|10:55|F|100||4320.00|120.00|1|张三|513722198911054516
+ 请求数据:xml=<?xml version="1.0" encoding="gb2312" ?><JIT-Policy-Request><Request username="kjtadmin" pnr="JVN2J9"  PnrInfo="O|P|JVN2J9^F^MKW4GY|2015-02-05|PEK|北京|CTU|成都|HU7147^N||07:55|10:55|F|100||4320.00|120.00|1|张三|513722198911054516"  PassengerType="A"  Amount="16" /></JIT-Policy-Request>
+返回结果:
+<?xml version="1.0" encoding="gb2312"?><JIT-Policy-Response PnrInfo="O|P|JVN2J9^F^MKW4GY|2015-02-05|PEK|北京|CTU|成都|HU7147^N||07:55|10:55|F|100||4320.00|120.00|1|张三|513722198911054516"><Response PolicyId="32790926" RateId="cOlL5tF9kQE=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="F" VoyageType="0" UserType="0" RateType="0" Discounts="2" Sdate="2014-11-20" Edate="2016-03-31" WorkTimeBegin="00:00" WorkTimeEnd="23:59" Rewards="" Remark="" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="BJS415" RefundTimeBegin="00:00" RefundTimeEnd="23:30" LastModifyTime="2014/11/20 15:36:25" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="23785358" RateId="CjCAQ7rxYwM=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="F" VoyageType="0" UserType="0" RateType="0" Discounts="1.8" Sdate="2014-08-19" Edate="2015-03-31" WorkTimeBegin="08:30" WorkTimeEnd="21:30" Rewards="" Remark="" ET="1" WP="0" SP="6" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CAN824/BJS988" RefundTimeBegin="08:30" RefundTimeEnd="21:30" LastModifyTime="2014/11/24 9:05:33" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="25578141" RateId="XXdLocutGlE=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="F" VoyageType="0" UserType="0" RateType="0" Discounts="1.7" Sdate="2014-09-28" Edate="2016-12-31" WorkTimeBegin="08:00" WorkTimeEnd="22:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="1" PromotionDiscount="0.00" NewRateNo="" OfficeNum="LHW130/SZX521" RefundTimeBegin="08:00" RefundTimeEnd="22:00" LastModifyTime="2014/11/1 22:27:48" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="25578142" RateId="XXdLocutGlE=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="F" VoyageType="0" UserType="0" RateType="0" Discounts="1.7" Sdate="2014-09-28" Edate="2016-12-31" WorkTimeBegin="08:00" WorkTimeEnd="22:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="1" PromotionDiscount="0.00" NewRateNo="" OfficeNum="LHW130/SZX521" RefundTimeBegin="08:00" RefundTimeEnd="22:00" LastModifyTime="2014/11/1 22:27:48" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="2195" RateId="71k/7OH8eW4=" ScityE="" EcityE="" AirComE="HU" NoAirComE="" PolicyType="" Cabin="" VoyageType="" UserType="" RateType="1" Discounts="1.5" Sdate="" Edate="" WorkTimeBegin="" WorkTimeEnd="" Rewards="" Remark="" ET="1" WP="" SP="2" XF="0" PromotionDiscount="0" NewRateNo="" OfficeNum="SYX128" RefundTimeBegin="" RefundTimeEnd="" LastModifyTime="" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /></JIT-Policy-Response>
+结束解析时间:2014-11-24 09:39:18.531
+开始获取政策时间:2014-11-24 09:39:18.531
+结束获取政策时间:2014-11-24 09:39:18.537
+开始过滤政策时间:2014-11-24 09:39:18.537
+返回结果:表名:Policy第1行数据:
+PolicyId=32790926
+RateId=cOlL5tF9kQE=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=F
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=2
+Sdate=2014/11/20 0:00:00
+Edate=2016/3/31 0:00:00
+WorkTimeBegin=00:00
+WorkTimeEnd=23:59
+Rewards=
+Remark=
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=BJS415
+RefundTimeBegin=00:00
+RefundTimeEnd=23:30
+LastModifyTime=2014/11/20 15:36:25
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第2行数据:
+PolicyId=23785358
+RateId=CjCAQ7rxYwM=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=F
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=1.8
+Sdate=2014/8/19 0:00:00
+Edate=2015/3/31 0:00:00
+WorkTimeBegin=08:30
+WorkTimeEnd=21:30
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=6
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CAN824/BJS988
+RefundTimeBegin=08:30
+RefundTimeEnd=21:30
+LastModifyTime=2014/11/24 9:05:33
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第3行数据:
+PolicyId=25578141
+RateId=XXdLocutGlE=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=F
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=1.7
+Sdate=2014/9/28 0:00:00
+Edate=2016/12/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=22:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=1
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=LHW130/SZX521
+RefundTimeBegin=08:00
+RefundTimeEnd=22:00
+LastModifyTime=2014/11/1 22:27:48
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第4行数据:
+PolicyId=25578142
+RateId=XXdLocutGlE=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=F
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=1.7
+Sdate=2014/9/28 0:00:00
+Edate=2016/12/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=22:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=1
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=LHW130/SZX521
+RefundTimeBegin=08:00
+RefundTimeEnd=22:00
+LastModifyTime=2014/11/1 22:27:48
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Today第1行数据:
+Pnr=JVN2J9
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=4320.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=4440.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:39:18.541
+
+End=====================================================================
+
+Start====================================================================
+记录时间:2014-11-24 09:45:36.308
+内容:开始解析时间:2014-11-24 09:45:27.729
+ 参数:_todayAccout=kjtadmin
+ _todayAccout2=kjtadmin01
+ IsLowerPrice=0
+ PNRContent= 1.杨发兵 HD2HXX 2.  3U8737 E   SU30NOV  CTUCAN HK1   0700 0920          E T1--  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0700/30NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.OSI 3U CTCM15928636274/P1 7.OSI 3U CTCT15928636274    8.RMK CA/MKW78M 9.CTU186   
+>PAT:A  01 E FARE:CNY650.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:770.00   SFC:01    SFN:01   
+
+  解析参数:RTCon= 1.杨发兵 HD2HXX 2.  3U8737 E   SU30NOV  CTUCAN HK1   0700 0920          E T1--  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0700/30NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.OSI 3U CTCM15928636274/P1 7.OSI 3U CTCT15928636274    8.RMK CA/MKW78M 9.CTU186   
+ PatCon=>PAT:A  01 E FARE:CNY650.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:770.00   SFC:01    SFN:01
+ Pnr=HD2HXX
+ Msg=
+   调用接口参数:PnrInfo=O|P|HD2HXX^F^MKW78M|2014-11-30|CTU|成都|CAN|广州|3U8737^N||07:00|09:20|E|100||650.00|120.00|1|杨发兵|420821198710072018
+ 请求数据:xml=<?xml version="1.0" encoding="gb2312" ?><JIT-Policy-Request><Request username="kjtadmin" pnr="HD2HXX"  PnrInfo="O|P|HD2HXX^F^MKW78M|2014-11-30|CTU|成都|CAN|广州|3U8737^N||07:00|09:20|E|100||650.00|120.00|1|杨发兵|420821198710072018"  PassengerType="A"  Amount="16" /></JIT-Policy-Request>
+返回结果:
+<?xml version="1.0" encoding="gb2312"?><JIT-Policy-Response PnrInfo="O|P|HD2HXX^F^MKW78M|2014-11-30|CTU|成都|CAN|广州|3U8737^N||07:00|09:20|E|100||650.00|120.00|1|杨发兵|420821198710072018"><Response PolicyId="32788750" RateId="UwsQfxkLSHM=" ScityE="CTU" EcityE="CAN" AirComE="3U8737" NoAirComE="" PolicyType="" Cabin="E" VoyageType="0" UserType="0" RateType="0" Discounts="9.7" Sdate="2014-11-20" Edate="2014-11-30" WorkTimeBegin="08:00" WorkTimeEnd="23:00" Rewards="" Remark="" ET="1" WP="0" SP="5" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="ctu389" RefundTimeBegin="08:00" RefundTimeEnd="23:00" LastModifyTime="2014/11/22 12:46:20" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="32990098" RateId="bhaW26dUM6Y=" ScityE="CTU" EcityE="CAN" AirComE="3U8737" NoAirComE="" PolicyType="" Cabin="E" VoyageType="0" UserType="0" RateType="0" Discounts="9.6" Sdate="2014-11-21" Edate="2014-11-30" WorkTimeBegin="08:00" WorkTimeEnd="22:00" Rewards="" Remark="" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CTU185" RefundTimeBegin="08:00" RefundTimeEnd="22:00" LastModifyTime="2014/11/21 13:45:48" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="26241930" RateId="bhaW26dUM6Y=" ScityE="CTU" EcityE="CAN" AirComE="3U8737" NoAirComE="" PolicyType="" Cabin="E" VoyageType="0" UserType="0" RateType="0" Discounts="8" Sdate="2014-11-01" Edate="2014-11-30" WorkTimeBegin="08:00" WorkTimeEnd="22:00" Rewards="" Remark="" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CTU185" RefundTimeBegin="08:00" RefundTimeEnd="22:00" LastModifyTime="2014/11/18 15:28:13" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="28274962" RateId="pHVVtWJtjeY=" ScityE="CTU" EcityE="CAN" AirComE="3U8737" NoAirComE="" PolicyType="" Cabin="E" VoyageType="0" UserType="0" RateType="0" Discounts="7.8" Sdate="2014-11-01" Edate="2014-11-30" WorkTimeBegin="08:30" WorkTimeEnd="21:30" Rewards="" Remark="" ET="1" WP="0" SP="7" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CTU177/CTU343" RefundTimeBegin="08:30" RefundTimeEnd="21:30" LastModifyTime="2014/11/24 9:26:31" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="2209" RateId="cOlL5tF9kQE=" ScityE="" EcityE="" AirComE="3U/" NoAirComE="" PolicyType="" Cabin="" VoyageType="" UserType="" RateType="1" Discounts="3" Sdate="" Edate="" WorkTimeBegin="" WorkTimeEnd="" Rewards="" Remark="" ET="1" WP="" SP="2" XF="0" PromotionDiscount="0" NewRateNo="" OfficeNum="BJS415" RefundTimeBegin="" RefundTimeEnd="" LastModifyTime="" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /></JIT-Policy-Response>
+结束解析时间:2014-11-24 09:45:32.307
+开始获取政策时间:2014-11-24 09:45:32.307
+结束获取政策时间:2014-11-24 09:45:36.294
+开始过滤政策时间:2014-11-24 09:45:36.294
+返回结果:表名:Policy第1行数据:
+PolicyId=32788750
+RateId=UwsQfxkLSHM=
+ScityE=CTU
+EcityE=CAN
+AirComE=3U8737
+NoAirComE=
+PolicyType=
+Cabin=E
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=9.7
+Sdate=2014/11/20 0:00:00
+Edate=2014/11/30 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=23:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=5
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=ctu389
+RefundTimeBegin=08:00
+RefundTimeEnd=23:00
+LastModifyTime=2014/11/22 12:46:20
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第2行数据:
+PolicyId=32990098
+RateId=bhaW26dUM6Y=
+ScityE=CTU
+EcityE=CAN
+AirComE=3U8737
+NoAirComE=
+PolicyType=
+Cabin=E
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=9.6
+Sdate=2014/11/21 0:00:00
+Edate=2014/11/30 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=22:00
+Rewards=
+Remark=
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CTU185
+RefundTimeBegin=08:00
+RefundTimeEnd=22:00
+LastModifyTime=2014/11/21 13:45:48
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第3行数据:
+PolicyId=26241930
+RateId=bhaW26dUM6Y=
+ScityE=CTU
+EcityE=CAN
+AirComE=3U8737
+NoAirComE=
+PolicyType=
+Cabin=E
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=8
+Sdate=2014/11/1 0:00:00
+Edate=2014/11/30 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=22:00
+Rewards=
+Remark=
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CTU185
+RefundTimeBegin=08:00
+RefundTimeEnd=22:00
+LastModifyTime=2014/11/18 15:28:13
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第4行数据:
+PolicyId=28274962
+RateId=pHVVtWJtjeY=
+ScityE=CTU
+EcityE=CAN
+AirComE=3U8737
+NoAirComE=
+PolicyType=
+Cabin=E
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=7.8
+Sdate=2014/11/1 0:00:00
+Edate=2014/11/30 0:00:00
+WorkTimeBegin=08:30
+WorkTimeEnd=21:30
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=7
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CTU177/CTU343
+RefundTimeBegin=08:30
+RefundTimeEnd=21:30
+LastModifyTime=2014/11/24 9:26:31
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Today第1行数据:
+Pnr=HD2HXX
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=650.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=770.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:45:36.308
+
+End=====================================================================
+
+Start====================================================================
+记录时间:2014-11-24 09:54:17.534
+内容:开始解析时间:2014-11-24 09:54:16.671
+ 参数:_todayAccout=kjtadmin
+ _todayAccout2=kjtadmin01
+ IsLowerPrice=0
+ PNRContent= 1.张三 JQ8GD9   2.  HU7147 Y   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI51372119861127852/P1    6.OSI HU CTCM18602808274/P1 7.OSI HU CTCT15528305255    8.RMK CA/MDVLQR 9.CTU186   
+>PAT:A  01 Y FARE:CNY1440.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1560.00 SFC:01    SFN:01   
+
+  解析参数:RTCon= 1.张三 JQ8GD9   2.  HU7147 Y   TH05FEB  PEKCTU HK1   0755 1055          E T1T2  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0755/05FEB/CTU186  5.SSR FOID HU HK1 NI51372119861127852/P1    6.OSI HU CTCM18602808274/P1 7.OSI HU CTCT15528305255    8.RMK CA/MDVLQR 9.CTU186   
+ PatCon=>PAT:A  01 Y FARE:CNY1440.00 TAX:CNY50.00 YQ:CNY70.00  TOTAL:1560.00 SFC:01    SFN:01
+ Pnr=JQ8GD9
+ Msg=
+   调用接口参数:PnrInfo=O|P|JQ8GD9^F^MDVLQR|2015-02-05|PEK|北京|CTU|成都|HU7147^N||07:55|10:55|Y|100||1440.00|120.00|1|张三|51372119861127852
+ 请求数据:xml=<?xml version="1.0" encoding="gb2312" ?><JIT-Policy-Request><Request username="kjtadmin" pnr="JQ8GD9"  PnrInfo="O|P|JQ8GD9^F^MDVLQR|2015-02-05|PEK|北京|CTU|成都|HU7147^N||07:55|10:55|Y|100||1440.00|120.00|1|张三|51372119861127852"  PassengerType="A"  Amount="16" /></JIT-Policy-Request>
+返回结果:
+<?xml version="1.0" encoding="gb2312"?><JIT-Policy-Response PnrInfo="O|P|JQ8GD9^F^MDVLQR|2015-02-05|PEK|北京|CTU|成都|HU7147^N||07:55|10:55|Y|100||1440.00|120.00|1|张三|51372119861127852"><Response PolicyId="32790926" RateId="cOlL5tF9kQE=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="Y" VoyageType="0" UserType="0" RateType="0" Discounts="2" Sdate="2014-11-20" Edate="2016-03-31" WorkTimeBegin="00:00" WorkTimeEnd="23:59" Rewards="" Remark="" ET="3" WP="0" SP="2" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="BJS415" RefundTimeBegin="00:00" RefundTimeEnd="23:30" LastModifyTime="2014/11/20 15:36:25" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="23785358" RateId="CjCAQ7rxYwM=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="Y" VoyageType="0" UserType="0" RateType="0" Discounts="1.8" Sdate="2014-08-19" Edate="2015-03-31" WorkTimeBegin="08:30" WorkTimeEnd="21:30" Rewards="" Remark="" ET="1" WP="0" SP="6" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CAN824/BJS988" RefundTimeBegin="08:30" RefundTimeEnd="21:30" LastModifyTime="2014/11/24 9:05:33" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="25578141" RateId="XXdLocutGlE=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="Y" VoyageType="0" UserType="0" RateType="0" Discounts="1.7" Sdate="2014-09-28" Edate="2016-12-31" WorkTimeBegin="08:00" WorkTimeEnd="22:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="1" PromotionDiscount="0.00" NewRateNo="" OfficeNum="LHW130/SZX521" RefundTimeBegin="08:00" RefundTimeEnd="22:00" LastModifyTime="2014/11/1 22:27:48" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="25578142" RateId="XXdLocutGlE=" ScityE="PEK" EcityE="CTU" AirComE="HU7147" NoAirComE="" PolicyType="" Cabin="Y" VoyageType="0" UserType="0" RateType="0" Discounts="1.7" Sdate="2014-09-28" Edate="2016-12-31" WorkTimeBegin="08:00" WorkTimeEnd="22:00" Rewards="" Remark="" ET="1" WP="0" SP="2" XF="1" PromotionDiscount="0.00" NewRateNo="" OfficeNum="LHW130/SZX521" RefundTimeBegin="08:00" RefundTimeEnd="22:00" LastModifyTime="2014/11/1 22:27:48" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="2195" RateId="71k/7OH8eW4=" ScityE="" EcityE="" AirComE="HU" NoAirComE="" PolicyType="" Cabin="" VoyageType="" UserType="" RateType="1" Discounts="1.5" Sdate="" Edate="" WorkTimeBegin="" WorkTimeEnd="" Rewards="" Remark="" ET="1" WP="" SP="2" XF="0" PromotionDiscount="0" NewRateNo="" OfficeNum="SYX128" RefundTimeBegin="" RefundTimeEnd="" LastModifyTime="" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /></JIT-Policy-Response>
+结束解析时间:2014-11-24 09:54:17.520
+开始获取政策时间:2014-11-24 09:54:17.520
+结束获取政策时间:2014-11-24 09:54:17.526
+开始过滤政策时间:2014-11-24 09:54:17.526
+返回结果:表名:Policy第1行数据:
+PolicyId=32790926
+RateId=cOlL5tF9kQE=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=Y
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=2
+Sdate=2014/11/20 0:00:00
+Edate=2016/3/31 0:00:00
+WorkTimeBegin=00:00
+WorkTimeEnd=23:59
+Rewards=
+Remark=
+ET=3
+WP=0
+SP=2
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=BJS415
+RefundTimeBegin=00:00
+RefundTimeEnd=23:30
+LastModifyTime=2014/11/20 15:36:25
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第2行数据:
+PolicyId=23785358
+RateId=CjCAQ7rxYwM=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=Y
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=1.8
+Sdate=2014/8/19 0:00:00
+Edate=2015/3/31 0:00:00
+WorkTimeBegin=08:30
+WorkTimeEnd=21:30
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=6
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CAN824/BJS988
+RefundTimeBegin=08:30
+RefundTimeEnd=21:30
+LastModifyTime=2014/11/24 9:05:33
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第3行数据:
+PolicyId=25578141
+RateId=XXdLocutGlE=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=Y
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=1.7
+Sdate=2014/9/28 0:00:00
+Edate=2016/12/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=22:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=1
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=LHW130/SZX521
+RefundTimeBegin=08:00
+RefundTimeEnd=22:00
+LastModifyTime=2014/11/1 22:27:48
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第4行数据:
+PolicyId=25578142
+RateId=XXdLocutGlE=
+ScityE=PEK
+EcityE=CTU
+AirComE=HU7147
+NoAirComE=
+PolicyType=
+Cabin=Y
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=1.7
+Sdate=2014/9/28 0:00:00
+Edate=2016/12/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=22:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=2
+XF=1
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=LHW130/SZX521
+RefundTimeBegin=08:00
+RefundTimeEnd=22:00
+LastModifyTime=2014/11/1 22:27:48
+Return=
+Change=
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Today第1行数据:
+Pnr=JQ8GD9
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=1440.00
+ABFare=50.00
+RQFare=70.00
+TotalPrice=1560.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-24 09:54:17.532
+
+End=====================================================================
+

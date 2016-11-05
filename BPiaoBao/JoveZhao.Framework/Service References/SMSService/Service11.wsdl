@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="UpdateXMLNode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="nodeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nodeValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateXMLNodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateXMLNodeResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadXML">
+        <s:complexType />
+      </s:element>
+      <s:element name="ReadXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReadXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadXMLByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReadXMLByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReadXMLByNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FastSendSMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TargetNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MsgContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FastSendSMSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FastSendSMSResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBalanceCount">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBalanceCountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBalanceCountResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="int" type="s:int" />
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="UpdateXMLNodeSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateXMLNode" />
+  </wsdl:message>
+  <wsdl:message name="UpdateXMLNodeSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateXMLNodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:ReadXML" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:ReadXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:ReadXMLByName" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:ReadXMLByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="FastSendSMSSoapIn">
+    <wsdl:part name="parameters" element="tns:FastSendSMS" />
+  </wsdl:message>
+  <wsdl:message name="FastSendSMSSoapOut">
+    <wsdl:part name="parameters" element="tns:FastSendSMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceCountSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBalanceCount" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceCountSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBalanceCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateXMLNodeHttpGetIn">
+    <wsdl:part name="nodeName" type="s:string" />
+    <wsdl:part name="nodeValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateXMLNodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLHttpGetIn" />
+  <wsdl:message name="ReadXMLHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLByNameHttpGetIn">
+    <wsdl:part name="Name" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLByNameHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="FastSendSMSHttpGetIn">
+    <wsdl:part name="TargetNo" type="s:string" />
+    <wsdl:part name="MsgContent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FastSendSMSHttpGetOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceCountHttpGetIn" />
+  <wsdl:message name="GetBalanceCountHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateXMLNodeHttpPostIn">
+    <wsdl:part name="nodeName" type="s:string" />
+    <wsdl:part name="nodeValue" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateXMLNodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLHttpPostIn" />
+  <wsdl:message name="ReadXMLHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLByNameHttpPostIn">
+    <wsdl:part name="Name" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReadXMLByNameHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="FastSendSMSHttpPostIn">
+    <wsdl:part name="TargetNo" type="s:string" />
+    <wsdl:part name="MsgContent" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FastSendSMSHttpPostOut">
+    <wsdl:part name="Body" element="tns:int" />
+  </wsdl:message>
+  <wsdl:message name="GetBalanceCountHttpPostIn" />
+  <wsdl:message name="GetBalanceCountHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="UpdateXMLNode">
+      <wsdl:input message="tns:UpdateXMLNodeSoapIn" />
+      <wsdl:output message="tns:UpdateXMLNodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadXML">
+      <wsdl:input message="tns:ReadXMLSoapIn" />
+      <wsdl:output message="tns:ReadXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadXMLByName">
+      <wsdl:input message="tns:ReadXMLByNameSoapIn" />
+      <wsdl:output message="tns:ReadXMLByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FastSendSMS">
+      <wsdl:input message="tns:FastSendSMSSoapIn" />
+      <wsdl:output message="tns:FastSendSMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceCount">
+      <wsdl:input message="tns:GetBalanceCountSoapIn" />
+      <wsdl:output message="tns:GetBalanceCountSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpGet">
+    <wsdl:operation name="UpdateXMLNode">
+      <wsdl:input message="tns:UpdateXMLNodeHttpGetIn" />
+      <wsdl:output message="tns:UpdateXMLNodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadXML">
+      <wsdl:input message="tns:ReadXMLHttpGetIn" />
+      <wsdl:output message="tns:ReadXMLHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadXMLByName">
+      <wsdl:input message="tns:ReadXMLByNameHttpGetIn" />
+      <wsdl:output message="tns:ReadXMLByNameHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FastSendSMS">
+      <wsdl:input message="tns:FastSendSMSHttpGetIn" />
+      <wsdl:output message="tns:FastSendSMSHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceCount">
+      <wsdl:input message="tns:GetBalanceCountHttpGetIn" />
+      <wsdl:output message="tns:GetBalanceCountHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="Service1HttpPost">
+    <wsdl:operation name="UpdateXMLNode">
+      <wsdl:input message="tns:UpdateXMLNodeHttpPostIn" />
+      <wsdl:output message="tns:UpdateXMLNodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadXML">
+      <wsdl:input message="tns:ReadXMLHttpPostIn" />
+      <wsdl:output message="tns:ReadXMLHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReadXMLByName">
+      <wsdl:input message="tns:ReadXMLByNameHttpPostIn" />
+      <wsdl:output message="tns:ReadXMLByNameHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FastSendSMS">
+      <wsdl:input message="tns:FastSendSMSHttpPostIn" />
+      <wsdl:output message="tns:FastSendSMSHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceCount">
+      <wsdl:input message="tns:GetBalanceCountHttpPostIn" />
+      <wsdl:output message="tns:GetBalanceCountHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateXMLNode">
+      <soap:operation soapAction="http://tempuri.org/UpdateXMLNode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXML">
+      <soap:operation soapAction="http://tempuri.org/ReadXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXMLByName">
+      <soap:operation soapAction="http://tempuri.org/ReadXMLByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FastSendSMS">
+      <soap:operation soapAction="http://tempuri.org/FastSendSMS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceCount">
+      <soap:operation soapAction="http://tempuri.org/GetBalanceCount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UpdateXMLNode">
+      <soap12:operation soapAction="http://tempuri.org/UpdateXMLNode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXML">
+      <soap12:operation soapAction="http://tempuri.org/ReadXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXMLByName">
+      <soap12:operation soapAction="http://tempuri.org/ReadXMLByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FastSendSMS">
+      <soap12:operation soapAction="http://tempuri.org/FastSendSMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceCount">
+      <soap12:operation soapAction="http://tempuri.org/GetBalanceCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpGet" type="tns:Service1HttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="UpdateXMLNode">
+      <http:operation location="/UpdateXMLNode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXML">
+      <http:operation location="/ReadXML" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXMLByName">
+      <http:operation location="/ReadXMLByName" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FastSendSMS">
+      <http:operation location="/FastSendSMS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceCount">
+      <http:operation location="/GetBalanceCount" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1HttpPost" type="tns:Service1HttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="UpdateXMLNode">
+      <http:operation location="/UpdateXMLNode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXML">
+      <http:operation location="/ReadXML" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReadXMLByName">
+      <http:operation location="/ReadXMLByName" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FastSendSMS">
+      <http:operation location="/FastSendSMS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBalanceCount">
+      <http:operation location="/GetBalanceCount" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://10.11.5.250:8001/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://10.11.5.250:8001/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpGet" binding="tns:Service1HttpGet">
+      <http:address location="http://10.11.5.250:8001/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1HttpPost" binding="tns:Service1HttpPost">
+      <http:address location="http://10.11.5.250:8001/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

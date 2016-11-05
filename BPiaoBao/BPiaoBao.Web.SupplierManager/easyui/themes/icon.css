@@ -1,0 +1,143 @@
+.icon-blank{
+	background:url('icons/blank.gif') no-repeat center center;
+}
+.icon-add{
+	background:url('icons/edit_add.png') no-repeat center center;
+}
+.icon-add2{
+	background:url('icons/piliang.png') no-repeat center center; color:#006aa5;
+}
+.icon-edit{
+	background:url('icons/pencil.png') no-repeat center center;
+}
+.icon-remove{
+	background:url('icons/edit_remove.png') no-repeat center center;
+}
+.icon-save{
+	background:url('icons/filesave.png') no-repeat center center;
+}
+.icon-cut{
+	background:url('icons/cut.png') no-repeat center center;
+}
+.icon-ok{
+	background:url('icons/ok.png') no-repeat center center;
+}
+.icon-no{
+	background:url('icons/no.png') no-repeat center center;
+}
+.icon-cancel{
+	background:url('icons/cancel.png') no-repeat center center;
+}
+.icon-reload{
+	background:url('icons/reload.png') no-repeat center center;
+}
+.icon-search{
+	background:url('icons/search.png') no-repeat center center;
+}
+.icon-print{
+	background:url('icons/print.png') no-repeat center center;
+}
+.icon-help{
+	background:url('icons/help.png') no-repeat center center;
+}
+.icon-undo{
+	background:url('icons/undo.png') no-repeat center center;
+}
+.icon-redo{
+	background:url('icons/redo.png') no-repeat center center;
+}
+.icon-back{
+	background:url('icons/back.png') no-repeat center center;
+}
+.icon-sum{
+	background:url('icons/sum.png') no-repeat center center;
+}
+.icon-tip{
+	background:url('icons/tip.png') no-repeat center center;
+}
+.icon-filter{
+	background:url('icons/filter.png') no-repeat center center;
+}
+
+
+.icon-mini-add{
+	background:url('icons/mini_add.png') no-repeat center center;
+}
+.icon-mini-edit{
+	background:url('icons/mini_edit.png') no-repeat center center;
+}
+.icon-mini-refresh{
+	background:url('icons/mini_refresh.png') no-repeat center center;
+}
+
+.icon-sys-add {
+    background:url('icons/ico_03.png') no-repeat center center;
+}
+.icon-sys-edit {
+    background:url('icons/ico_05.png') no-repeat center center;
+}
+.icon-sys-white-edit {
+    background:url('icons/ico_055.png') no-repeat center center;
+}
+.icon-sys-disable {
+    background:url('icons/ico_07.png') no-repeat center center;
+}
+.icon-sys-enable {
+    background:url('icons/ico_09.png') no-repeat center center;
+}
+.icon-sys-export {
+    background:url('icons/ico_11.png') no-repeat center center;
+}
+.icon-sys-white-export {
+    background:url('icons/ico_12.png') no-repeat center center;
+}
+.icon-sys-cancel {
+    background:url('icons/koudian_09.png') no-repeat center center;
+}
+.icon-sys-ok {
+    background:url('icons/koudian_07.png') no-repeat center center;
+}
+.icon-sys-badd {
+    background:url('icons/koudian_03.png') no-repeat center center;
+}
+.icon-sys-delete {
+    background:url('icons/x.png') no-repeat center center;
+}
+/**
+    input
+    */
+.input {
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  vertical-align: middle;
+  font-size: 12px;
+  border: 0px;
+  line-height: 20px;
+  height: 20px;
+  vertical-align: baseline;
+  border: #808080 1px solid;
+  background-color: #fafafa;
+}
+.table,.editTable  {
+    width:100%;
+    border-collapse:collapse;
+}
+.table thead tr th {
+        background:#EBF3F6;
+        font-weight:bolder;
+        color:#666868;
+        height:24px;
+        line-height:24px;
+    }
+.table tbody tr td {
+        vertical-align:top;
+        line-height:24px;
+        border-bottom:1px dashed #808080;
+    }
+    .editTable tr td {
+        height:44px; 
+        vertical-align:middle;
+    }

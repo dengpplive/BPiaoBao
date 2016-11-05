@@ -1,0 +1,310 @@
+﻿xia@{
+    Layout = null;
+}
+@using BPiaoBao.AppServices.DataContracts.DomesticTicket
+@model BPiaoBao.AppServices.DataContracts.DomesticTicket.OrderDetailDto
+
+<div id="orderdetaildiv" style="width: 980px; height: 600px; margin: 0 auto;">
+    <div>
+        <br />
+    </div>
+    <p style="text-align: center;"><span style="font-family: Arial; font-size: 20px; font-weight: bold; font-style: normal; text-decoration: none; color: #333333;">订单详情</span></p>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">订单信息</span>
+    <table class="table_class" cellpadding="0" cellspacing="0">
+        <tr>
+            <th class="a">订单编号：</th>
+            <td class="color_red b" id="OrderId_Detail">@Model.OrderId</td>
+            <th class="a">PNR：</th>
+            <td  id="PnrCode_Detail"><a class="color_blue b" href='javascript:ShowPnr("@Model.PNRContent")'>@Model.PnrCode</a></td>
+            <th class="a">订单金额：</th>
+            <td class="color_red b" id="OrderMoney_Detail">
+                @if (Model.CarrierCode != Model.CurrentCode)
+                {
+                    <text>@Model.CPMoney</text>
+                }
+                else
+                { 
+                    <text>@Model.OrderMoney</text>
+                }
+            </td>
+        </tr>
+        <tr>
+            <th class="a">政策来源：</th>
+            <td class="b" id="PlatformCode_Detail">@Model.Policy.PolicySourceType</td>
+            <th class="a">订单状态：</th>
+            <td class="b" id="OrderStatus_Detail">@Model.OrderStatusStr</td>
+            @if (Model.IsSupplier || (Model.IsCarrier == false && Model.Policy.PolicySourceType == "共享"))
+            {
+                <th class="a">政策点数：</th>
+                <td class="b" id="PolicyPoint_Detail">@Model.Policy.PaidPoint</td>
+            }
+            else
+            {
+                <th class="a">政策点数(最终/原)：</th>
+                <td class="b" id="PolicyPoint_Detail">@Model.Policy.Point/@if (Model.Policy.PolicySourceType == "共享" && Model.Policy.Code != Model.CurrentCode)
+                                                                          { 
+                                                                              @Model.Policy.PaidPoint
+                                                                          }
+                                                                          else
+                                                                          {
+                                                                              @(Model.Policy.OriginalPolicyPoint == 0 ? (Model.Policy.PaidPoint + Model.Policy.DownPoint) : Model.Policy.OriginalPolicyPoint)
+                                                                          }
+
+                </td>
+            }
+        </tr>
+        <tr>
+            <th class="a">支付方式：</th>
+            <td class="b" id="PayMethodCode">
+                @if (Model.PayInfo.PayMethodCode == "Alipay")
+                {
+                    <p>支付宝</p>
+                }
+                else if (Model.PayInfo.PayMethodCode == "Tenpay")
+                { 
+                    <p>支付宝</p>
+                }
+                else
+                {
+                    <p>@Model.PayInfo.PayMethodCode</p>
+                }
+            </td>
+            <th class="a">交易号：</th>
+            <td class="b" id="PaySerialNumber">@Model.PayInfo.PaySerialNumber</td>
+            <th class="a">支付状态：</th>
+            <td class="b" id="PayStatus">
+                @if ((int)Model.PayInfo.PayStatus == 1)
+                {
+                    <p>已支付</p>
+                }
+                else
+                {
+                    <p>未支付</p>
+                }
+            </td>
+        </tr>
+        <tr>
+            <th class="a">废、改处理时间：</th>
+            <td class="b" id="TFGTime">@Model.Policy.TFGTime</td>
+            <th class="a">订单备注：</th>
+            @if (Model.OrderType == "1")
+            { 
+                <td id="Remark0">@Model.Remark</td>
+                <th class="a">成人订单号：</th>
+                <td id="OldOrderID">@Model.OldOrderId</td>
+            }
+            else
+            {
+                <td colspan="3" id="Remark">@Model.Remark</td>
+            }
+        </tr>
+        <tr>
+            <th class="a">订单来源：</th>
+            <td class="b">@Model.OrderSource.ToEnumDesc()</td>
+            <th class="a">出票方:</th>
+            <td class="b" colspan="3">@Model.Policy.Code</td>
+        </tr>
+        <tr>
+            <th class="a">政策备注：</th>
+            <td colspan="5" id="PolicyRemark_Detail">@Model.Policy.Remark</td>
+        </tr>
+    </table>
+
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">行程信息</span>
+    <table cellpadding="0" cellspacing="0" class="Trip_box table_class">
+        <tr>
+            <th>起飞城市</th>
+            <th>到达城市</th>
+            <th>起飞日期</th>
+            <th>到达日期</th>
+            <th>承运人</th>
+            <th>航班号</th>
+            <th id="active">舱位</th>
+        </tr>
+        @for (int i = 0; i < Model.SkyWays.Count; i++)
+        { 
+            <tr>
+                <td id="FromCityCode_Detail">@Model.SkyWays[i].FromCity</td>
+                <td id="ToCityCode_Detail">@Model.SkyWays[i].ToCity</td>
+                <td id="StartDateTime_Detail">@Model.SkyWays[i].StartDateTime</td>
+                <td id="ToDateTime_Detail">@Model.SkyWays[i].ToDateTime</td>
+                <td id="CarrayCode_Detail">@Model.SkyWays[i].CarrayCode</td>
+                <td id="FlightNumber_Detail">@Model.SkyWays[i].FlightNumber</td>
+                <td id="Seat_Detail">@Model.SkyWays[i].Seat</td>
+            </tr>
+        }
+    </table>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">乘客信息</span>
+    <table cellpadding="0" cellspacing="0" class="Passenger_box table_class">
+        <tr>
+            <th style="width: 7%;">乘客姓名</th>
+            <th style="width: 7%;">乘客类型</th>
+            <th style="width: 12%;">证件号</th>
+            <th style="width: 12%;">票号</th>
+            <th style="width: 12%;">手机号</th>
+            <th style="width: 7%;">舱位价</th>
+            <th style="width: 7%;">机建/燃油</th>
+            <th style="width: 7%;">手续费</th>
+            <th style="width: 7%;">行程单号</th>
+        </tr>
+        @for (int i = 0; i < Model.Passengers.Count; i++)
+        {
+            <tr style="align-content: center">
+                <td id="PassengerName_Detail">@Model.Passengers[i].PassengerName</td>
+                <td id="PassengerType_Detail">
+                    @if ((int)Model.Passengers[i].PassengerType == 1)
+                    {
+                        <p>成人</p>
+                    }
+                    else if ((int)Model.Passengers[i].PassengerType == 2)
+                    {
+                        <p>儿童</p>
+                    }
+                    else
+                    {
+                        <p>婴儿</p>
+                    }
+                </td>
+                <td id="CardNo_Detail">@Model.Passengers[i].CardNo</td>
+                <td id="票号">@Model.Passengers[i].TicketNumber</td>
+                <td id="Mobile_Detail">@Model.Passengers[i].Mobile</td>
+                <td id="SeatPrice_Detail">@Model.Passengers[i].SeatPrice</td>
+                <td>@Model.Passengers[i].TaxFee/@Model.Passengers[i].RQFee</td>
+                <td>@Model.Passengers[i].RetirementPoundage</td>
+                <td>@Model.Passengers[i].TravelNumber</td>
+            </tr>
+        }
+
+    </table>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">收支明细</span>
+    <table cellpadding="0" cellspacing="0" class="Balance_box table_class">
+        <tr>
+            <th style="width: 20%;">商户号</th>
+            <th style="width: 20%;">商户名</th>
+            <th style="width: 10%;">交易类型</th>
+            <th style="width: 20%;">金额</th>
+            <th style="width: 30%;">备注</th>
+        </tr>
+        @if (Model.PayInfo != null)
+        {
+            if (Model.PayInfo.PayBillDetailDtos != null && Model.PayInfo.PayBillDetailDtos.Count > 0)
+            {
+                for (int i = 0; i < Model.PayInfo.PayBillDetailDtos.Count; i++)
+                {
+
+                    string AdjustType = Model.PayInfo.PayBillDetailDtos[i].AdjustType.ToString() == "Lrish" ? "扣点" : Model.PayInfo.PayBillDetailDtos[i].AdjustType.ToString() == "Leave" ? "留点" : "补点";
+                    string remark = Model.PayInfo.PayBillDetailDtos[i].OpType == "分润" ? AdjustType + ":" + Model.PayInfo.PayBillDetailDtos[i].Point : "";
+                    <tr>
+                        <td>@Model.PayInfo.PayBillDetailDtos[i].Code</td>
+                        <td>@Model.PayInfo.PayBillDetailDtos[i].Name</td>
+                        <td>@Model.PayInfo.PayBillDetailDtos[i].OpType</td>
+                        <td>@Model.PayInfo.PayBillDetailDtos[i].Money</td>
+                        <td>@remark</td>
+                    </tr>
+                }
+            }
+
+        }
+
+    </table>
+</div>
+<script type="text/javascript">
+    function ShowPnr(content) {
+        $.messager.alert("Pnr", content);
+    }
+</script>
+<style type="text/css">
+    .table_class
+    {
+        border: 1px solid #bfc4be;
+        width: 979px;
+        margin: 0 auto;
+        border-bottom: none;
+        border-right: none;
+    }
+
+        .table_class tr
+        {
+            line-height: 36px;
+            height: 36px;
+            width: 978px;
+        }
+
+        .table_class th
+        {
+            border-right: 1px solid #bfc4be;
+            border-bottom: 1px solid #bfc4be;
+            text-align: center;
+        }
+
+        .table_class td
+        {
+            border-right: 1px solid #bfc4be;
+            border-bottom: 1px solid #bfc4be;
+            font-size: 12px;
+            text-align: center;
+        }
+
+    .a
+    {
+        width: 12%;
+        background: #ebebeb;
+        text-align: right;
+    }
+
+    .b
+    {
+        width: 21%;
+        background: #fff;
+        text-align: center;
+    }
+
+    .color_red
+    {
+        color: #ae2356;
+    }
+
+    .color_blue
+    {
+        color: #0812ce;
+    }
+
+    .anthor_box th
+    {
+        width: 12%;
+        background: #ebebeb;
+        text-align: right;
+    }
+
+    .anthor_box td
+    {
+        width: 21%;
+        background: #fff;
+        text-align: center;
+    }
+
+
+    .Trip_box th
+    {
+        width: 11%;
+        background: #ebebeb;
+        border-right: none;
+    }
+
+    .Trip_box td
+    {
+        width: 11%;
+        background: #fff;
+    }
+
+    #active
+    {
+        border-right: 1px solid #bfc4be;
+    }
+
+    .Passenger_box th
+    {
+        background: #ebebeb;
+        border-right: none;
+    }
+</style>

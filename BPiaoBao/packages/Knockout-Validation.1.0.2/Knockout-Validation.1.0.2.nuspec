@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Knockout-Validation</id>
+    <version>1.0.2</version>
+    <title>Knockout-Validation</title>
+    <authors>Eric M. Barnard Submitted By Brendan Kehoe</authors>
+    <owners>Eric M. Barnard Submitted By Brendan Kehoe</owners>
+    <licenseUrl>http://opensource.org/licenses/mit-license.php</licenseUrl>
+    <projectUrl>https://github.com/Knockout-Contrib/Knockout-Validation</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Validation plugin for knockout js</description>
+    <dependencies>
+      <dependency id="knockoutjs" version="2.2.1" />
+    </dependencies>
+  </metadata>
+</package>

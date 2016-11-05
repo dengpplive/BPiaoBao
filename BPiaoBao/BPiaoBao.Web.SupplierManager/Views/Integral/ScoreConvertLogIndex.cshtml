@@ -1,0 +1,39 @@
+﻿<div id="toolbar" style="padding:5px;height:auto; overflow:hidden;">
+    <div>
+        <div style="float:left">
+            日期 从:
+            <input type="text" class="easyui-my97" id="myStart" data-bind="my97value:$root.searchForm.startTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd\')}'}" />
+
+            到
+            <input type="text" class="easyui-my97" id="myEnd" data-bind="my97value:$root.searchForm.endTime" data-options="{minDate:'#F{$dp.$D(\'myStart\')}'}" />
+
+        </div>
+        <div style="float:left; padding-left:10px;">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" style="height:20px; overflow:hidden; line-height:20px;" data-bind="click: $root.searchClick">查询</a>
+        </div>
+    </div>
+</div>
+<div class="tableShow" style="height: 86%">
+    <table id="MainTable" title="积分兑换记录" style="height:auto;"
+           data-bind="datagrid: grid">
+        <thead>
+            <tr bgcolor="#daeef5"> 
+                <th data-options="field:'CreateDate',width:200,formatter:JsonTimeStrFormater">兑换时间</th>
+                <th data-options="field:'PointAmount',width:200">兑换积分</th>
+                <th data-options="field:'LeaveAmount',width:150">剩余积分</th> 
+            </tr>
+        </thead>
+    </table>
+
+
+</div>
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        ko.applyBindings(vm);
+
+    </script>
+}

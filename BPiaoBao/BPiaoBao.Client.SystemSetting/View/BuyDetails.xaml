@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="BPiaoBao.Client.SystemSetting.View.BuyDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.SystemSetting.ViewModel"
+             xmlns:pager="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt"
+             xmlns:convert="clr-namespace:BPiaoBao.Client.SystemSetting.View.Converter"
+             xmlns:WPFSpack="clr-namespace:WPFSpark;assembly=WPFSpark"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="383" d:DesignWidth="534" Background="White">
+    <UserControl.Resources>
+        <convert:PayWayConvert x:Key="PayWay"/>
+        <convert:SMSBuyStateConvert x:Key="SMSBuyState"/>
+        <convert:IsWaitConverter x:Key="IsWait"/>
+    </UserControl.Resources>
+    <DockPanel Margin="15,10,10,10">
+        <pager:Pagination DockPanel.Dock="Bottom"
+                          PageSize="{Binding PageSize}" 
+                          CurrentPageIndex="{Binding CurrentPageIndex,Mode=TwoWay}"
+                          TotalCount="{Binding TotalCount,Mode=TwoWay}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PageChanged">
+                    <i:InvokeCommandAction Command="{Binding PagerCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </pager:Pagination>
+        <Grid>
+            <DataGrid Grid.Row="1" ItemsSource="{Binding List}"
+                      AutoGenerateColumns="False" Foreground="Black" RowDetailsVisibilityMode="Visible" 
+                      BorderThickness="0" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" RowHeight="50" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FFE0E0E0" IsReadOnly="True" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="员工名称" Binding="{Binding Name}" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="交易号" Binding="{Binding OutTradeNo}" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="购买时间" Binding="{Binding BuyTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="购买条数" Binding="{Binding Count}" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="支付金额" Binding="{Binding PayAmount}" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="支付方式" Binding="{Binding PayWay,Converter={StaticResource PayWay}}" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="Auto" Header="支付时间" Binding="{Binding PayTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" MinWidth="80" Width="*" Header="支付状态" Binding="{Binding BuyState,Converter={StaticResource SMSBuyState}}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <WPFSpack:SprocketControl Width="100" Height="100" Panel.ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Center" Visibility="{Binding IsWait,Converter={StaticResource IsWait}}"/>
+        </Grid>
+    </DockPanel>
+</UserControl>

@@ -1,0 +1,46 @@
+2014-11-21 10:56:25,176 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-21 11:01:19,254 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-21 11:34:55,740 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-21 11:55:06,831 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-21 13:49:01,410 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-21 13:50:17,466 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-21 15:29:39,327 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-21 15:34:36,606 - 成人编码生成失败,原因如下:发送指令：NM1蓝和革SS 3U8555 Y 30NOV14 CTUXIY 1SSR FOID 3U HK/NI231283198712023596/P1OSI 3U CTCM13689023172/P1OSI 3U CTCT15528305255TKTL/0705/30NOV/CTU186@，接收返回信息失败，可能通讯断开...
+2014-11-21 15:40:10,447 - 成人编码生成失败,原因如下:发送指令：NM1蓝和革SS 3U8555 Y 30NOV14 CTUXIY 1SSR FOID 3U HK/NI231283198712023596/P1OSI 3U CTCM13689023172/P1OSI 3U CTCT15528305255TKTL/0705/30NOV/CTU186@，接收返回信息失败，可能通讯断开...
+2014-11-21 15:43:07,062 - 商户不存在
+2014-11-21 15:43:18,982 - 商户不存在

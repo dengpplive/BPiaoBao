@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://ws.jinri.cn/JinRiOrderServer.asmx?wsdl" docRef="http://ws.jinri.cn/JinRiOrderServer.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://ws.jinri.cn/JinRiOrderServer.asmx" xmlns:q1="http://policy.jinri.cn/" binding="q1:JinRiOrderServerSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://ws.jinri.cn/JinRiOrderServer.asmx" xmlns:q2="http://policy.jinri.cn/" binding="q2:JinRiOrderServerSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

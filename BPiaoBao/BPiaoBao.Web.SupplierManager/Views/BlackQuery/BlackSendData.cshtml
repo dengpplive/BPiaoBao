@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "网页黑屏";
+}
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/js_SendPid.js?a=@(new Random().Next(0, 9999999).ToString())"></script>
+}
+@model  Dictionary<string, string>
+<style>
+    .leftTd {
+        width: 100px;
+        text-align: center;
+    }
+
+    .tab {
+        line-height: 50px;
+        border-spacing: 20px;
+    }
+
+    textarea {
+        background-color: black;
+        color: green;
+        overflow: auto;
+    }
+
+    select {
+        width: 260px;
+    }
+
+    .Cmd {
+        width: 250px;
+        border: 1px solid black;
+        line-height: 40px;
+        font-size: 25px;
+    }
+
+    .Office {
+        width: 100px;
+        border: 1px solid black;
+        line-height: 40px;
+        font-size: 25px;
+    }
+
+    .allOffice {
+        font-size: 15px;
+    }
+
+    .showip {
+        line-height: 40px;
+        font-size: 20px;
+    }
+
+    .btnSend {
+        width: 200px;
+    }
+
+    .AP_div {
+        /*右侧内容区*/
+        position: absolute;
+        display: block; /*background-color: Red;*/
+        /*border: solid 1px green;*/
+        z-index: 200;
+        left: 420px;
+        top: 280px;
+        width: 530px;
+        height: 110px;
+    }
+</style>
+<div id="main" class="easyui-panel" title="网页黑屏"
+    style="width: 1000px; height: 400px; padding: 10px; background: #fafafa; overflow: hidden;"
+    data-options="closable:false,doSize:true,
+                collapsible:false,minimizable:false,maximizable:false,maximized:true">
+    <table style="width: 100%;" cellspacing="10" cellpadding="0">
+        <tr>
+            <th valign="top" class="leftTd">接收数据</th>
+            <td>
+                <textarea id="txtAcceptData" name="txtAcceptData" rows="15" cols="100" ondblclick="this.value=''"></textarea></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th class="leftTd">运营商</th>
+            <td>
+                <select id="selGY" name="selGY" onchange="setChange(this)">
+                     <option value="">---请选择运营商---</option>
+                    @foreach (KeyValuePair<string, string> item in Model)
+                    {
+                        <option value="@item.Value">@item.Key</option>
+                    }
+                </select></td>
+        </tr>
+
+        <tr>
+            <th class="leftTd">指令：</th>
+            <td>
+                <input id="txtCmd" type="text" class="Cmd" /></td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <th class="leftTd">Office:</th>
+            <td>
+                <input id="txtOffice" type="text" class="Office"  /><b><sup id="showOffice" class="allOffice"></sup></b>
+            </td>
+        </tr>
+        <tr>
+            <th class="leftTd">&nbsp;</th>
+            <td>
+                <input id="btnSend" type="button" class="btnSend" value="发送"  /></td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <div class="AP_div">
+        <p id="ShowIP" class="showip"></p>
+    </div>
+</div>

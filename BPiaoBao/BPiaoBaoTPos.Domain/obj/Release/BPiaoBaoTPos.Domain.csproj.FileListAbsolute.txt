@@ -1,0 +1,4 @@
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBaoTPos.Domain\bin\Release\BPiaoBaoTPos.Domain.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBaoTPos.Domain\bin\Release\BPiaoBaoTPos.Domain.pdb
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBaoTPos.Domain\obj\Release\BPiaoBaoTPos.Domain.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBaoTPos.Domain\obj\Release\BPiaoBaoTPos.Domain.pdb

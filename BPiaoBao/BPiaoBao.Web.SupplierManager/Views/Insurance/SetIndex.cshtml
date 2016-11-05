@@ -1,0 +1,376 @@
+﻿<div id="mainContent">
+    <div style="padding: 15px; font-size: 18px;font-weight: bold">保险设置</div>
+    <table width="650" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="100px" height="45" align="right">保险剩余张数：</td>
+            <td width="550px" height="45">
+                <span data-bind="text: $root.$editForm.LeaveCount"></span>
+                <a style="margin-right: 10px;margin-left: 20px" class="easyui-linkbutton" href="javascript:void(0);" onclick="buyViewModel.openBuyWindow()">购买保险</a>
+                <a style="margin-right: 10px;" class="easyui-linkbutton" href="javascript:void(0);" onclick="openBuyLog();">购买记录</a>
+                <a style="margin-right: 10px;" class="easyui-linkbutton" href="javascript:void(0);" onclick="giveViewModel.openGiveWindow()">保险赠送</a>
+                <a style="margin-right: 10px;" class="easyui-linkbutton" href="javascript:void(0);" onclick="sellInsuranceLogViewModel.openSellLogWindow();">销售记录</a>
+            </td>
+        </tr>
+        <tr>
+            <td height="45" align="right">保险单价：</td>
+            <td height="45">
+                <input type="text" class="inputStyle90" style="text-indent:3px;" data-bind="value: $root.$editForm.SinglePrice" />
+            </td>
+
+        </tr>
+
+        <tr>
+            <td height="45" align="right">保险开关：</td>
+            <td height="45">
+                <table width="150">
+                    <tr>
+                        <td>
+                            <label>
+                                <input type="radio" name="IsEnabled" value="true" data-bind="checked:$root.$editForm.IsOpen" />
+
+                                启用
+                            </label>
+                        </td>
+                        <td>
+                            <label>
+                                <input type="radio" name="IsEnabled" value="false" data-bind="checked:$root.$editForm.IsOpen" />
+                                禁用
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td height="45" align="right"></td>
+            <td height="45">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" data-bind="click: $root.saveForm">保存</a>
+
+            </td>
+        </tr>
+    </table>
+</div>
+@Html.Partial("BuyInsuranceWindow")
+@Html.Partial("BuyInsuranceLogWindow")
+@Html.Partial("GiveInsuranceWindow")
+@Html.Partial("SellInsuranceLogWindow")
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        vm.grid.idField = "OutTradeNo";
+        ko.applyBindings(vm, $("#BuyInsuranceLogWindow")[0]);
+
+        function openBuyLog() {
+            $("#BuyInsuranceLogWindow").window("open");
+        }
+
+        function payStatus(value) {
+            if (value == 1) {
+                return "已支付";
+            } else if (value==2) {
+                return "赠送";
+            }
+            else{
+                return "未支付";
+            }
+        }
+
+        function recordType(value) {
+            if (value == 0) {
+                return "购买";
+            } else {
+                return "赠送";
+            }
+        }
+
+        cfgViewModel = {
+            $Data: null,
+            $editForm: null,
+            init: function(data) {
+                this.$Data = data;
+                this.$editForm = {
+                    IsOpen: ko.observable(false),
+                    SinglePrice: ko.observable(0),
+                    LeaveCount: ko.observable(0),
+                };
+                this.loadCurrentUserInsurance();
+                ko.applyBindings(this, $("#mainContent")[0]);
+            },
+            loadCurrentUserInsurance: function() {
+                var self = this;
+                $.getJSON(self.$Data.urls.getCurrentUserInsuranceConfigInfo, { "time": new Date().getTime() }, function(res) {
+                    if (res != null) {
+                        self.$editForm.IsOpen(res.IsOpen.toString());
+                        self.$editForm.SinglePrice(res.SinglePrice);
+                        self.$editForm.LeaveCount(res.LeaveCount);
+                    }
+                });
+            },
+            saveForm: function() {
+                var self = this;
+                var price = self.$editForm.SinglePrice();
+                if (price == null || $.trim(price) == "") {
+                    window.parent.$.messager.alert('提示', "请输入保险单价", "warning");
+                    return;
+                } else {
+                    if (isNaN($.trim(price))) {
+                        window.parent.$.messager.alert('提示', "保险单价必须为数字", "warning");
+                        return;
+                    } else if (parseFloat($.trim(price)) <= 0) {
+                        window.parent.$.messager.alert('提示', "保险单价必须大于0", "warning");
+                        return;
+                    }
+
+                }
+                $("body").mask("正在提交数据...");
+                $.ajax({
+                    url: self.$Data.urls.setInsuranceConfig,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS(self.$editForm)),
+                    success: function(result) {
+                        $("body").unmask();
+                        result = JSON.parse(result);
+                        if (result.Success) {
+                            location.reload();
+                        } else {
+                            window.parent.$.messager.alert("系统提示", result.Message);
+                        }
+
+                    }
+                });
+            }
+        };
+
+        buyViewModel = {
+            $Data: null,
+            $BuyParams: null,
+            init: function(data) {
+                this.$Data = data;
+                this.$BuyParams = {
+                    buyCount: ko.observable(0),
+                    singlePrice: ko.observable(data.buyInsuranceParams.singlePrice.toFixed(2)),
+                    totalPrice: ko.observable(0),
+                    pwd: ko.observable(),
+                    leaveCount: ko.observable(cfgViewModel.$editForm.LeaveCount)
+                };
+                ko.applyBindings(this, $("#BuyInsuranceWindow")[0]);
+            },
+            openBuyWindow: function() {
+                if (!this.$Data.buyInsuranceParams.isOpenInsuracne) {
+                    window.parent.$.messager.alert("提示", "保险功能未开启", "warning");
+                    return;
+                }
+
+                if (parseFloat(this.$Data.buyInsuranceParams.sysCurrentLeaveCount) < 1) {
+                    window.parent.$.messager.alert("提示", "系统当前剩余保险数量为0，暂时不能购买", "warning");
+                    return;
+                }
+                $("#BuyInsuranceWindow").window("open");
+            },
+            closeBuyWindow: function() {
+                $("#BuyInsuranceWindow").window("close");
+            },
+            calTotalPrice: function() {
+                var count = this.$BuyParams.buyCount();
+                var singlePrice = this.$BuyParams.singlePrice();
+                var total = parseFloat(count) * parseFloat(singlePrice);
+                this.$BuyParams.totalPrice(total.toFixed(2));
+            },
+            buyClick: function() {
+                var self = this;
+                var buyCount = self.$BuyParams.buyCount();
+                var pwd = self.$BuyParams.pwd();
+                if (buyCount == null || $.trim(buyCount) == "") {
+                    window.parent.$.messager.alert("提示", "请输入购买保险数量", "warning");
+                    return false;
+                } else {
+
+                    if (!(/^[0-9]*[1-9][0-9]*$/.test(buyCount))) {
+                        window.parent.$.messager.alert('提示', "购买数量必须为正整数", "warning");
+                        return false;
+                    } else if (parseFloat($.trim(buyCount)) <= 0) {
+                        window.parent.$.messager.alert('提示', "购买数量必须大于0", "warning");
+                        return false;
+                    } else if (parseFloat($.trim(buyCount)) > parseFloat(self.$Data.buyInsuranceParams.sysCurrentLeaveCount)) {
+                        window.parent.$.messager.alert('提示', "购买数量大于系统剩余数量", "warning");
+                        return false;
+                    }
+                }
+                if (pwd == null) {
+                    window.parent.$.messager.alert("提示", "请输入支付密码", "warning");
+                    return false;
+                }
+                $("#BuyInsuranceWindow").mask("正在提交数据...");
+                $.ajax({
+                    url: self.$Data.urls.buyInsuracne,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS(self.$BuyParams)),
+                    success: function(result) {
+                        $("#BuyInsuranceWindow").unmask();
+                        result = JSON.parse(result);
+                        if (result.Success) {
+                            self.$BuyParams.buyCount(0);
+                            self.$BuyParams.pwd();
+                            self.$BuyParams.singlePrice(0);
+                            self.$BuyParams.totalPrice(0);
+                            self.$BuyParams.leaveCount(0);
+                            self.closeBuyWindow();
+                            //cfgViewModel.loadCurrentUserInsurance();
+                            location.reload();
+                        } else {
+                            window.parent.$.messager.alert("系统提示", result.Message);
+                        }
+
+                    },
+                    error: function(e) {
+                        $("#BuyInsuranceWindow").unmask();
+                        var obj = JSON.parse(e.responseText);
+                        window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                    }
+                });
+            }
+
+        };
+
+        giveViewModel = {
+            $Data: null,
+            $GiveParams: null,
+            init: function(data) {
+                //alert(cfgViewModel.$editForm.LeaveCount());
+                this.$Data = data;
+                this.$GiveParams = {
+                    currentLeaveCount: ko.observable(cfgViewModel.$editForm.LeaveCount()),
+                    businessCode: ko.observable(),
+                    giveCount: ko.observable(0),
+                    remark: ko.observable()
+                };
+                ko.applyBindings(this, $("#GiveInsuranceWindow")[0]);
+            },
+            loadCurrentUserInsurance: function() {
+                var self = this;
+                $.getJSON(self.$Data.urls.getCurrentUserInsuranceConfigInfo, { "time": new Date().getTime() }, function(res) {
+                    if (res != null) {
+                        self.$GiveParams.currentLeaveCount(res.LeaveCount);
+                    }
+                });
+            },
+            openGiveWindow: function() {
+                $("#GiveInsuranceWindow").window("open");
+                this.loadCurrentUserInsurance();
+            },
+            closeGiveWindow: function() {
+                $("#GiveInsuranceWindow").window("close");
+            },
+            giveClick: function() {
+                var self = this;
+                var giveCount = self.$GiveParams.giveCount();
+                var businessCode = self.$GiveParams.businessCode();
+                if (businessCode == null || $.trim(businessCode) == "") {
+                    window.parent.$.messager.alert("提示", "请输入商户号", "warning");
+                    return false;
+                }
+                if (giveCount == null || $.trim(giveCount) == "") {
+                    window.parent.$.messager.alert("提示", "请输入赠送保险数量", "warning");
+                    return false;
+                } else {
+
+                    if (!(/^[0-9]*[1-9][0-9]*$/.test(giveCount))) {
+                        window.parent.$.messager.alert('提示', "购买数量必须为正整数", "warning");
+                        return false;
+                    } else if (parseFloat($.trim(giveCount)) <= 0) {
+                        window.parent.$.messager.alert('提示', "购买数量必须大于0", "warning");
+                        return false;
+                    } else if (parseFloat($.trim(giveCount)) > parseFloat(self.$GiveParams.currentLeaveCount())) {
+                        window.parent.$.messager.alert('提示', "赠送数量大于当前剩余数量", "warning");
+                        return false;
+                    }
+                }
+
+                $("#GiveInsuranceWindow").mask("正在提交数据...");
+                $.ajax({
+                    url: self.$Data.urls.giveInsuracne,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS(self.$GiveParams)),
+                    success: function(result) {
+                        $("#GiveInsuranceWindow").unmask();
+                        result = JSON.parse(result);
+                        if (result.Success) {
+                            self.$GiveParams.businessCode();
+                            self.$GiveParams.giveCount();
+                            self.$GiveParams.remark();
+                            self.closeGiveWindow();
+                            location.reload();
+                        } else {
+                            window.parent.$.messager.alert("系统提示", result.Message);
+                        }
+
+                    },
+                    error: function(e) {
+                        $("#GiveInsuranceWindow").unmask();
+                        var obj = JSON.parse(e.responseText);
+                        window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                    }
+                });
+            },
+            checkBusinessCode: function() {
+                var self = this;
+                var businessCode = self.$GiveParams.businessCode();
+                if(businessCode.length<=0)return;
+                $.getJSON(self.$Data.urls.checkBusinessCode, { "businessCode": businessCode, "time": new Date().getTime() }, function(res) {
+                    if (res.Success == 1) {
+                        $("#businessName").text("商户名：" + res.Message);
+                        $("#btnGive").removeAttr("disabled");
+                    } else {
+                        $("#btnGive").attr({ "disabled": "disabled" });
+                        $("#businessName").text(res.Message);
+                    }
+                });
+            }
+
+        };
+
+        sellInsuranceLogViewModel = {
+            $Data: null,
+            $QueryParams: null,
+            vmSell:null,
+            init: function(data) {
+                this.$Data = data;
+                this.$QueryParams = {
+                    searchForm:{
+                        businessCode: ko.observable(),
+                        tradeNo: ko.observable(),
+                        startTime: ko.observable(data.searchForm.startTime),
+                        endTime: ko.observable(data.searchForm.endTime)
+                    },urls: {
+                        search:data.urls.querySellInsuranceLog
+                    }
+                };
+                this.vmSell = new ViewModel(this.$QueryParams);
+                this.vmSell.grid.toolbar = "#toolbar_sell";
+                ko.applyBindings( this.vmSell, $("#SellInsuranceLogWindow")[0]);
+            },
+            openSellLogWindow: function() {
+                $("#SellInsuranceLogWindow").window("open");
+            },
+            closeSellLogWindow: function() {
+                $("#SellInsuranceLogWindow").window("close");
+            },
+            searchClick:function() {
+                this.vmSell.searchClick();
+            }
+        };
+
+        cfgViewModel.init(Fromdata);
+        buyViewModel.init(Fromdata);
+        giveViewModel.init(Fromdata);
+        sellInsuranceLogViewModel.init(Fromdata);
+
+    </script>
+}

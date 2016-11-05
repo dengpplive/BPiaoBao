@@ -1,0 +1,11 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:BPiaoBao.Client.Account.View" x:Class="BPiaoBao.Client.Account.View.RechargeWindow"
+        Title="充值" Height="500" Width="757" Style="{DynamicResource CustomWindowStyle}" WindowStartupLocation="CenterOwner">
+	<Grid>
+        
+		<local:DepositControl IsShowLogButton="False"/>
+        
+	</Grid>
+</Window>

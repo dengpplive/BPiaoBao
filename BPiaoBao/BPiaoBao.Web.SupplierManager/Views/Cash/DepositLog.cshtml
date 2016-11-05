@@ -1,0 +1,59 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="filterbg" data-options="region:'north',border:0">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="75" valign="bottom" class="tdtitle td_noboder"><h3>充值记录</h3></td>
+                <td width="1059" valign="bottom" class="td_noboder">
+                    充值总余额：
+                    <span class="td_noboder fontcolor">￥<i class="fontsize" data-bind="text:$root.readyBalance"></i></span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="tableShow" style="height:370px;" data-options="region:'center',border:0">
+
+        <div id="toolbar" style="padding:10px;height:auto; overflow:hidden;">
+                <div style="float:left">
+                     <div class="m_search">
+                         日期 从:
+                        <input type="text" class="easyui-my97" id="myStart" data-bind="my97value:$root.searchForm.startTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd\')}'}" />
+                     </div>
+                     <div class="m_search">
+                         到
+                         <input type="text" class="easyui-my97" id="myEnd" data-bind="my97value:$root.searchForm.endTime" data-options="{minDate:'#F{$dp.$D(\'myStart\')}'}" />
+                     </div>
+                     <div class="m_search">
+                         交易号：
+                        <input type="text" class="inputStyle" data-bind="value:$root.searchForm.outTradeNo" />
+                     </div>
+                    <div class="m_search">
+                      <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a>
+                    </div>
+               </div>
+        </div>
+        <table id="dg" title="记录明细" data-bind="datagrid: grid">
+            <thead>
+                <tr bgcolor="#daeef5"> 
+                    <th data-options="field:'OutTradeNo',width:200">交易号</th>
+                    <th data-options="field:'RechargeTime',width:200">充值日期</th>
+                    <th data-options="field:'TypeName',width:150">名称</th>
+                    <th data-options="field:'RechargeMoney',width:150">金额(元)</th>
+                    <th data-options="field:'CashSource',width:150">资金渠道</th>
+                    <th data-options="field:'RechargeStatus',width:150">状态</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    </div>
+    @section scripts{
+        <script src="~/my97/WdatePicker.js"></script>
+        <script src="~/easyui/jquery.my97.js"></script>
+        <script type="text/javascript">
+            var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            var vm = new ViewModel(Fromdata);
+            vm.grid.idField = "OutTradeNo";
+            vm.readyBalance = ko.mapping.fromJS(Fromdata.readyBalance.toFixed(2));
+            ko.applyBindings(vm);
+        </script>
+    }

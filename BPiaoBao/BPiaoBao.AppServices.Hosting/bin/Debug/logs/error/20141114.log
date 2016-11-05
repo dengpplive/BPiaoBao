@@ -1,0 +1,212 @@
+2014-11-14 09:15:57,502 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 09:46:09,462 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 09:55:55,558 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 10:28:52,981 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 10:51:29,668 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 13:36:50,540 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 13:41:45,431 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 13:52:16,002 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 14:33:30,658 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 14:38:36,051 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 14:40:51,680 - StructureMap Exception Code:  207
+Internal exception while creating Instance 'a9014701-62e5-48a3-ab1e-1a3850bf959b' of PluginType BPiaoBao.AppServices.DomesticTicket.OrderService.  Check the inner exception for more details.
+StructureMap.StructureMapException: StructureMap Exception Code:  207
+Internal exception while creating Instance 'a9014701-62e5-48a3-ab1e-1a3850bf959b' of PluginType BPiaoBao.AppServices.DomesticTicket.OrderService.  Check the inner exception for more details. ---> System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: 连接超时时间已到。在登录后阶段超过了此超时时间。连接可能在等待服务器完成登录过程并响应时超时；或者在尝试创建多个活动连接时超时。  尝试连接到此服务器时花费的持续时间是 - [Pre-Login] initialization=414；handshake=5185；[Login] initialization=0；authentication=0；[Post-Login] complete=9080； ---> System.ComponentModel.Win32Exception: 等待的操作过时。
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   在 System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   在 System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   在 System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   在 System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   在 System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection()
+   在 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass3.<GetResults>b__1()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   在 System.Lazy`1.CreateValue()
+   在 System.Lazy`1.LazyInitValue()
+   在 System.Lazy`1.get_Value()
+   在 System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   在 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   在 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   在 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   在 System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   在 System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   在 BPiaoBao.DomesticTicket.Domain.Services.FlightService..ctor(IBusinessmanRepository businessmanRepository, CurrentUserInfo currentUser) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.DomesticTicket.Domain\Services\FlightService.cs:行号 50
+   在 BPiaoBao.AppServices.DomesticTicket.OrderService..ctor(IOrderRepository orderRepository, IBusinessmanRepository businessmanRepository, DomesticService service, IAfterSaleOrderRepository afterSaleOrderRepository, ITicketSumRepository ticketSumRepository, IPidService pidService, IInsuranceOrderRepository iInsuranceOrderRepository, ILocalPolicyRepository localPolicyRepository, ITicketRepository ticketRepository, IAriChangeRepository ariChangeRepository, IMyMessageRepository MyMessageRepository) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\DomesticTicket\OrderService.cs:行号 75
+   在 lambda_method(Closure , IArguments )
+   在 StructureMap.Construction.BuilderCompiler.FuncCompiler`1.<>c__DisplayClass2.<CreateBuilder>b__0(IArguments args) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Construction\BuilderCompiler.cs:行号 56
+   在 StructureMap.Construction.InstanceBuilder.BuildInstance(IArguments args) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Construction\InstanceBuilder.cs:行号 34
+   在 StructureMap.Pipeline.ConstructorInstance.Build(Type pluginType, BuildSession session, IInstanceBuilder builder) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ConstructorInstance.cs:行号 233
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 StructureMap.Pipeline.ConstructorInstance.Build(Type pluginType, BuildSession session, IInstanceBuilder builder) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ConstructorInstance.cs:行号 245
+   在 StructureMap.Pipeline.ConstructorInstance.build(Type pluginType, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ConstructorInstance.cs:行号 218
+   在 StructureMap.Pipeline.Instance.createRawObject(Type pluginType, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\Instance.cs:行号 103
+   在 StructureMap.Pipeline.Instance.Build(Type pluginType, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\Instance.cs:行号 69
+   在 StructureMap.Pipeline.ObjectBuilder.ConstructNew(Type pluginType, Instance instance, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ObjectBuilder.cs:行号 39
+   在 StructureMap.Pipeline.ObjectBuilder.Resolve(Type pluginType, Instance instance, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ObjectBuilder.cs:行号 27
+   在 StructureMap.BuildSession.CreateInstance(Type pluginType, Instance instance) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\BuildSession.cs:行号 176
+   在 StructureMap.BuildSession.<>c__DisplayClass3.<.ctor>b__1() 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\BuildSession.cs:行号 36
+   在 StructureMap.BuildSession.CreateInstance(Type pluginType) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\BuildSession.cs:行号 215
+   在 StructureMap.Container.GetInstance(Type pluginType) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Container.cs:行号 265
+   在 StructureMap.ObjectFactory.GetInstance(Type pluginType) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\ObjectFactory.cs:行号 122
+   在 BPiaoBao.AppServices.IocInstanceProvider.GetInstance(InstanceContext instanceContext, Message message) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\IocInstanceProvider.cs:行号 19
+   在 System.ServiceModel.Dispatcher.InstanceBehavior.GetInstance(InstanceContext instanceContext, Message request)
+   在 System.ServiceModel.InstanceContext.GetServiceInstance(Message message)
+   在 System.ServiceModel.Dispatcher.InstanceBehavior.EnsureServiceInstance(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage41(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage4(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage31(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage3(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage2(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage11(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.ImmutableDispatchRuntime.ProcessMessage1(MessageRpc& rpc)
+   在 System.ServiceModel.Dispatcher.MessageRpc.Process(Boolean isOperationContextSet)
+2014-11-14 14:44:38,496 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 14:55:41,033 - 定时任务让超时的订单失效
+System.Data.Entity.Core.EntityException: The underlying provider failed on Open. ---> System.Data.SqlClient.SqlException: 已成功与服务器建立连接，但是在登录前的握手期间发生错误。 (provider: SSL Provider, error: 0 - 等待的操作过时。) ---> System.ComponentModel.Win32Exception: 等待的操作过时。
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.ConsumePreLoginHandshake(Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean& marsCapable)
+   在 System.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, Boolean encrypt, Boolean trustServerCert, Boolean integratedSecurity, Boolean withFailover)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   在 System.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   在 System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions)
+   在 System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnectionOptions userOptions)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   在 System.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   在 System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   在 System.Data.SqlClient.SqlConnection.Open()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.<>c__DisplayClass1.<Execute>b__0()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute(Action operation)
+   在 System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Core.EntityClient.EntityConnection.Open()
+   在 System.Data.Entity.Core.Objects.ObjectContext.EnsureConnection()
+   在 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass3.<GetResults>b__1()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   在 System.Lazy`1.CreateValue()
+   在 System.Lazy`1.LazyInitValue()
+   在 System.Lazy`1.get_Value()
+   在 System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 BPiaoBao.AppServices.OrderTimeSendMessage.Execute() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\MessagePushManager.cs:行号 311
+   在 JoveZhao.Framework.ScheduleTask.ScheduleTaskServices.<>c__DisplayClassb.<_callBack>b__5(Object q) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\JoveZhao.Framework\ScheduleTask\ScheduleTaskServices.cs:行号 58
+2014-11-14 15:05:48,955 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 15:37:08,490 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 17:18:30,499 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95
+2014-11-14 17:24:27,881 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 95

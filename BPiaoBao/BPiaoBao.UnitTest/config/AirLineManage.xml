@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="gb2312"?>
+<ArrayOfAirLine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <AirLine>
+        <Id>1</Id>
+        <CarrayCode>3U</CarrayCode>
+        <CarrayName>川航</CarrayName>
+        <CarrayAbbreviation>川航</CarrayAbbreviation>
+        <BSPStatus>true</BSPStatus>
+        <B2BStatus>true</B2BStatus>
+        <AriLineType>国内</AriLineType>
+        <AriLineStatus>true</AriLineStatus>
+    </AirLine>
+</ArrayOfAirLine>

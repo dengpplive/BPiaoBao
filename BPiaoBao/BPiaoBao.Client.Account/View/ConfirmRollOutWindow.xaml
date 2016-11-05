@@ -1,0 +1,38 @@
+﻿<Window x:Class="BPiaoBao.Client.Account.View.ConfirmRollOutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:helpers="clr-namespace:BPiaoBao.Client.UIExt.Helper;assembly=BPiaoBao.Client.UIExt"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource CustomWindowStyle}"
+        Title="提示" Height="413" Width="450">
+    <StackPanel Orientation="Horizontal" Margin="20,30,20,30">
+        <Image Source="{Binding CurrentFinancialProduct.ImageUrl}" VerticalAlignment="Top" HorizontalAlignment="Left" Stretch="Fill" Width="100" Height="100"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <Grid Height="310" Margin="20,0,0,0" Width="300">
+            	<Grid.RowDefinitions>
+            		<RowDefinition Height="Auto"/>
+            		<RowDefinition Height="Auto"/>
+            		<RowDefinition Height="*"/>
+            		<RowDefinition Height="Auto"/>
+            		<RowDefinition Height="Auto"/>
+            		<RowDefinition Height="Auto"/>
+            		<RowDefinition Height="Auto"/>
+            	</Grid.RowDefinitions>
+        		<TextBlock Margin="5,0,0,11.163"><Run Text="产品名称:　" Foreground="#333333"/><Run Text=" "/><Run Text="{Binding CurrentFinancialProduct.ProductName}"/></TextBlock>
+        		<TextBlock Margin="5,8.836,0,14.326" Grid.Row="1"><Run Text="购买金额:　" Foreground="#333333"/><Run Text=" "/><Run Text="{Binding CurrentFinancialProduct.FinancialMoney, StringFormat=￥\{0:f2\}}" Foreground="Orange"/><Run Text=" "/><Run Text="元"/></TextBlock>
+        		<TextBlock TextWrapping="Wrap" Margin="5,5.673,0,19.49" Grid.Row="2"><Run Text="产品简介:　" Foreground="#333333"/><Run Text=" "/><Run Text="{Binding CurrentFinancialProduct.Content}" Foreground="#666666"/></TextBlock>
+        		<Line X1="0" Y1="0" Y2="0" X2="300" Stroke="Black" StrokeDashArray="0.5 3 1 3" StrokeThickness="1" Margin="0,0.51,0,44.99" Grid.Row="3"/>
+        		<TextBlock Margin="5,21.01,0,9.153" Grid.Row="3"><Run Text="正常转出收益:　" Foreground="#333333"/><Run Text=" "/><Run Text="{Binding ExpectProfit.NormalProfit, Mode=OneWay, StringFormat=\{0\}分}" Foreground="Orange"/></TextBlock>
+        		<TextBlock Margin="5,10.846,0,9.316" Grid.Row="4"><Run Text="提前转出收益:　" Foreground="#333333"/><Run Text=" "/><Run Text=" "/><Run Text="{Binding ExpectProfit.Profit, Mode=OneWay, StringFormat=\{0\}分}" Foreground="Orange"/></TextBlock>
+        		<StackPanel Orientation="Horizontal" Margin="5,10.683,0,12.516" Grid.Row="5">
+        			<TextBlock Text="支付密码:　" Foreground="#333333"/>
+        			<PasswordBox helpers:PasswordBoxBindingHelper.Attach="True" BorderBrush="#cccccc" BorderThickness="1" Width="120" helpers:PasswordBoxBindingHelper.Password="{Binding PayPassword, Mode=TwoWay}"/>
+        		</StackPanel>
+        		<StackPanel Orientation="Horizontal" Grid.Row="6" VerticalAlignment="Center">
+        			<Button Content="确认转出" Margin="5" Style="{StaticResource OkButton}" Command="{Binding ConfirmRollOutCommand}"/>
+        			<Button Content="取消转出" Margin="5" Style="{StaticResource CancelButton}" Command="{Binding CancelRollOutCommand}"/>
+        		</StackPanel>
+        	</Grid>
+        </ScrollViewer>
+    </StackPanel>
+</Window>

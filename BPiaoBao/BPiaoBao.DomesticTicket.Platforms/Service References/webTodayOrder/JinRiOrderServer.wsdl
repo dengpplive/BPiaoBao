@@ -1,0 +1,1617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://policy.jinri.cn/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://policy.jinri.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://policy.jinri.cn/">
+      <s:element name="CreateOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderByPNR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderByPNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderByPNRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReCreateOrderByPNR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReCreateOrderByPNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReCreateOrderByPNRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfoByTicketNo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfoByTicketNoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderInfoByTicketNoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateChdPNR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateChdPNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateChdPNRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GaiqianOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GaiqianOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GaiqianOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGaiqianOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGaiqianOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGaiqianOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TuiFeiOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TuiFeiOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TuiFeiOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReturnOrderInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetReturnOrderInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetReturnOrderInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RiseCabin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RiseCabinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RiseCabinResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRaiseOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRaiseOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRaiseOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateJourney">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateJourneyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateJourneyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJourneyTicket">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetJourneyTicketResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetJourneyTicketResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOfficeId">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOfficeIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOfficeIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOrderByPause">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateOrderByPauseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateOrderByPauseResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPNR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckPNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckPNRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSiteByPnr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckSiteByPnrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckSiteByPnrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrder" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPNRSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrderByPNR" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPNRSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderByPNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReCreateOrderByPNRSoapIn">
+    <wsdl:part name="parameters" element="tns:ReCreateOrderByPNR" />
+  </wsdl:message>
+  <wsdl:message name="ReCreateOrderByPNRSoapOut">
+    <wsdl:part name="parameters" element="tns:ReCreateOrderByPNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoByTicketNoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderInfoByTicketNo" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoByTicketNoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderInfoByTicketNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateChdPNRSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateChdPNR" />
+  </wsdl:message>
+  <wsdl:message name="CreateChdPNRSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateChdPNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelOrder" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GaiqianOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:GaiqianOrder" />
+  </wsdl:message>
+  <wsdl:message name="GaiqianOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:GaiqianOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGaiqianOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGaiqianOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetGaiqianOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGaiqianOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="TuiFeiOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:TuiFeiOrder" />
+  </wsdl:message>
+  <wsdl:message name="TuiFeiOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:TuiFeiOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetReturnOrderInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetReturnOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetReturnOrderInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetReturnOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="RiseCabinSoapIn">
+    <wsdl:part name="parameters" element="tns:RiseCabin" />
+  </wsdl:message>
+  <wsdl:message name="RiseCabinSoapOut">
+    <wsdl:part name="parameters" element="tns:RiseCabinResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRaiseOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRaiseOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetRaiseOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRaiseOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateJourneySoapIn">
+    <wsdl:part name="parameters" element="tns:CreateJourney" />
+  </wsdl:message>
+  <wsdl:message name="CreateJourneySoapOut">
+    <wsdl:part name="parameters" element="tns:CreateJourneyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetJourneyTicketSoapIn">
+    <wsdl:part name="parameters" element="tns:GetJourneyTicket" />
+  </wsdl:message>
+  <wsdl:message name="GetJourneyTicketSoapOut">
+    <wsdl:part name="parameters" element="tns:GetJourneyTicketResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeIdSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOfficeId" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeIdSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOfficeIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrderByPauseSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateOrderByPause" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrderByPauseSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateOrderByPauseResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckPNRSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckPNR" />
+  </wsdl:message>
+  <wsdl:message name="CheckPNRSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckPNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckSiteByPnrSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckSiteByPnr" />
+  </wsdl:message>
+  <wsdl:message name="CheckSiteByPnrSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckSiteByPnrResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPNRHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPNRHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ReCreateOrderByPNRHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReCreateOrderByPNRHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoByTicketNoHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoByTicketNoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateChdPNRHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateChdPNRHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GaiqianOrderHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GaiqianOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGaiqianOrderHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGaiqianOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TuiFeiOrderHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TuiFeiOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReturnOrderInfoHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReturnOrderInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RiseCabinHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RiseCabinHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRaiseOrderHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRaiseOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateJourneyHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateJourneyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJourneyTicketHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJourneyTicketHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeIdHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeIdHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrderByPauseHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrderByPauseHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckPNRHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckPNRHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSiteByPnrHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSiteByPnrHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPNRHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPNRHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ReCreateOrderByPNRHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ReCreateOrderByPNRHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoByTicketNoHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoByTicketNoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateChdPNRHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateChdPNRHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CancelOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GaiqianOrderHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GaiqianOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGaiqianOrderHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetGaiqianOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="TuiFeiOrderHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TuiFeiOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReturnOrderInfoHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetReturnOrderInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RiseCabinHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RiseCabinHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRaiseOrderHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRaiseOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateJourneyHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateJourneyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJourneyTicketHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetJourneyTicketHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeIdHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOfficeIdHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrderByPauseHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateOrderByPauseHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckPNRHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckPNRHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSiteByPnrHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CheckSiteByPnrHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="JinRiOrderServerSoap">
+    <wsdl:operation name="CreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">实时创建订单</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderSoapIn" />
+      <wsdl:output message="tns:CreateOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据PNR创建订单</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderByPNRSoapIn" />
+      <wsdl:output message="tns:CreateOrderByPNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateOrderByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据PNR重创订单</wsdl:documentation>
+      <wsdl:input message="tns:ReCreateOrderByPNRSoapIn" />
+      <wsdl:output message="tns:ReCreateOrderByPNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据订单号获取订单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoSoapIn" />
+      <wsdl:output message="tns:GetOrderInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoByTicketNo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据票号获取订单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoByTicketNoSoapIn" />
+      <wsdl:output message="tns:GetOrderInfoByTicketNoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateChdPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> 创建儿童编码</wsdl:documentation>
+      <wsdl:input message="tns:CreateChdPNRSoapIn" />
+      <wsdl:output message="tns:CreateChdPNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取消订单</wsdl:documentation>
+      <wsdl:input message="tns:CancelOrderSoapIn" />
+      <wsdl:output message="tns:CancelOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GaiqianOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请改签</wsdl:documentation>
+      <wsdl:input message="tns:GaiqianOrderSoapIn" />
+      <wsdl:output message="tns:GaiqianOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGaiqianOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取改签信息</wsdl:documentation>
+      <wsdl:input message="tns:GetGaiqianOrderSoapIn" />
+      <wsdl:output message="tns:GetGaiqianOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TuiFeiOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">订单退/废</wsdl:documentation>
+      <wsdl:input message="tns:TuiFeiOrderSoapIn" />
+      <wsdl:output message="tns:TuiFeiOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReturnOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据订单号获取退费票详情</wsdl:documentation>
+      <wsdl:input message="tns:GetReturnOrderInfoSoapIn" />
+      <wsdl:output message="tns:GetReturnOrderInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RiseCabin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请升舱</wsdl:documentation>
+      <wsdl:input message="tns:RiseCabinSoapIn" />
+      <wsdl:output message="tns:RiseCabinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRaiseOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取升舱信息</wsdl:documentation>
+      <wsdl:input message="tns:GetRaiseOrderSoapIn" />
+      <wsdl:output message="tns:GetRaiseOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateJourney">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请行程单</wsdl:documentation>
+      <wsdl:input message="tns:CreateJourneySoapIn" />
+      <wsdl:output message="tns:CreateJourneySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJourneyTicket">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取行程单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetJourneyTicketSoapIn" />
+      <wsdl:output message="tns:GetJourneyTicketSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取供应商Office号</wsdl:documentation>
+      <wsdl:input message="tns:GetOfficeIdSoapIn" />
+      <wsdl:output message="tns:GetOfficeIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderByPause">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">设置暂不能订单状态为已解决</wsdl:documentation>
+      <wsdl:input message="tns:UpdateOrderByPauseSoapIn" />
+      <wsdl:output message="tns:UpdateOrderByPauseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询PNR状态信息</wsdl:documentation>
+      <wsdl:input message="tns:CheckPNRSoapIn" />
+      <wsdl:output message="tns:CheckPNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSiteByPnr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询PNR是否有位置</wsdl:documentation>
+      <wsdl:input message="tns:CheckSiteByPnrSoapIn" />
+      <wsdl:output message="tns:CheckSiteByPnrSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JinRiOrderServerHttpGet">
+    <wsdl:operation name="CreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">实时创建订单</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderHttpGetIn" />
+      <wsdl:output message="tns:CreateOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据PNR创建订单</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderByPNRHttpGetIn" />
+      <wsdl:output message="tns:CreateOrderByPNRHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateOrderByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据PNR重创订单</wsdl:documentation>
+      <wsdl:input message="tns:ReCreateOrderByPNRHttpGetIn" />
+      <wsdl:output message="tns:ReCreateOrderByPNRHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据订单号获取订单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoHttpGetIn" />
+      <wsdl:output message="tns:GetOrderInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoByTicketNo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据票号获取订单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoByTicketNoHttpGetIn" />
+      <wsdl:output message="tns:GetOrderInfoByTicketNoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateChdPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> 创建儿童编码</wsdl:documentation>
+      <wsdl:input message="tns:CreateChdPNRHttpGetIn" />
+      <wsdl:output message="tns:CreateChdPNRHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取消订单</wsdl:documentation>
+      <wsdl:input message="tns:CancelOrderHttpGetIn" />
+      <wsdl:output message="tns:CancelOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GaiqianOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请改签</wsdl:documentation>
+      <wsdl:input message="tns:GaiqianOrderHttpGetIn" />
+      <wsdl:output message="tns:GaiqianOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGaiqianOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取改签信息</wsdl:documentation>
+      <wsdl:input message="tns:GetGaiqianOrderHttpGetIn" />
+      <wsdl:output message="tns:GetGaiqianOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TuiFeiOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">订单退/废</wsdl:documentation>
+      <wsdl:input message="tns:TuiFeiOrderHttpGetIn" />
+      <wsdl:output message="tns:TuiFeiOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReturnOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据订单号获取退费票详情</wsdl:documentation>
+      <wsdl:input message="tns:GetReturnOrderInfoHttpGetIn" />
+      <wsdl:output message="tns:GetReturnOrderInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RiseCabin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请升舱</wsdl:documentation>
+      <wsdl:input message="tns:RiseCabinHttpGetIn" />
+      <wsdl:output message="tns:RiseCabinHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRaiseOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取升舱信息</wsdl:documentation>
+      <wsdl:input message="tns:GetRaiseOrderHttpGetIn" />
+      <wsdl:output message="tns:GetRaiseOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateJourney">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请行程单</wsdl:documentation>
+      <wsdl:input message="tns:CreateJourneyHttpGetIn" />
+      <wsdl:output message="tns:CreateJourneyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJourneyTicket">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取行程单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetJourneyTicketHttpGetIn" />
+      <wsdl:output message="tns:GetJourneyTicketHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取供应商Office号</wsdl:documentation>
+      <wsdl:input message="tns:GetOfficeIdHttpGetIn" />
+      <wsdl:output message="tns:GetOfficeIdHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderByPause">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">设置暂不能订单状态为已解决</wsdl:documentation>
+      <wsdl:input message="tns:UpdateOrderByPauseHttpGetIn" />
+      <wsdl:output message="tns:UpdateOrderByPauseHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询PNR状态信息</wsdl:documentation>
+      <wsdl:input message="tns:CheckPNRHttpGetIn" />
+      <wsdl:output message="tns:CheckPNRHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSiteByPnr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询PNR是否有位置</wsdl:documentation>
+      <wsdl:input message="tns:CheckSiteByPnrHttpGetIn" />
+      <wsdl:output message="tns:CheckSiteByPnrHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JinRiOrderServerHttpPost">
+    <wsdl:operation name="CreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">实时创建订单</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderHttpPostIn" />
+      <wsdl:output message="tns:CreateOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据PNR创建订单</wsdl:documentation>
+      <wsdl:input message="tns:CreateOrderByPNRHttpPostIn" />
+      <wsdl:output message="tns:CreateOrderByPNRHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateOrderByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据PNR重创订单</wsdl:documentation>
+      <wsdl:input message="tns:ReCreateOrderByPNRHttpPostIn" />
+      <wsdl:output message="tns:ReCreateOrderByPNRHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据订单号获取订单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoHttpPostIn" />
+      <wsdl:output message="tns:GetOrderInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoByTicketNo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据票号获取订单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoByTicketNoHttpPostIn" />
+      <wsdl:output message="tns:GetOrderInfoByTicketNoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateChdPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"> 创建儿童编码</wsdl:documentation>
+      <wsdl:input message="tns:CreateChdPNRHttpPostIn" />
+      <wsdl:output message="tns:CreateChdPNRHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">取消订单</wsdl:documentation>
+      <wsdl:input message="tns:CancelOrderHttpPostIn" />
+      <wsdl:output message="tns:CancelOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GaiqianOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请改签</wsdl:documentation>
+      <wsdl:input message="tns:GaiqianOrderHttpPostIn" />
+      <wsdl:output message="tns:GaiqianOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGaiqianOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取改签信息</wsdl:documentation>
+      <wsdl:input message="tns:GetGaiqianOrderHttpPostIn" />
+      <wsdl:output message="tns:GetGaiqianOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TuiFeiOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">订单退/废</wsdl:documentation>
+      <wsdl:input message="tns:TuiFeiOrderHttpPostIn" />
+      <wsdl:output message="tns:TuiFeiOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReturnOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据订单号获取退费票详情</wsdl:documentation>
+      <wsdl:input message="tns:GetReturnOrderInfoHttpPostIn" />
+      <wsdl:output message="tns:GetReturnOrderInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RiseCabin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请升舱</wsdl:documentation>
+      <wsdl:input message="tns:RiseCabinHttpPostIn" />
+      <wsdl:output message="tns:RiseCabinHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRaiseOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取升舱信息</wsdl:documentation>
+      <wsdl:input message="tns:GetRaiseOrderHttpPostIn" />
+      <wsdl:output message="tns:GetRaiseOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateJourney">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请行程单</wsdl:documentation>
+      <wsdl:input message="tns:CreateJourneyHttpPostIn" />
+      <wsdl:output message="tns:CreateJourneyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetJourneyTicket">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取行程单详情</wsdl:documentation>
+      <wsdl:input message="tns:GetJourneyTicketHttpPostIn" />
+      <wsdl:output message="tns:GetJourneyTicketHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeId">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取供应商Office号</wsdl:documentation>
+      <wsdl:input message="tns:GetOfficeIdHttpPostIn" />
+      <wsdl:output message="tns:GetOfficeIdHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderByPause">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">设置暂不能订单状态为已解决</wsdl:documentation>
+      <wsdl:input message="tns:UpdateOrderByPauseHttpPostIn" />
+      <wsdl:output message="tns:UpdateOrderByPauseHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询PNR状态信息</wsdl:documentation>
+      <wsdl:input message="tns:CheckPNRHttpPostIn" />
+      <wsdl:output message="tns:CheckPNRHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSiteByPnr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询PNR是否有位置</wsdl:documentation>
+      <wsdl:input message="tns:CheckSiteByPnrHttpPostIn" />
+      <wsdl:output message="tns:CheckSiteByPnrHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="JinRiOrderServerSoap" type="tns:JinRiOrderServerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateOrder">
+      <soap:operation soapAction="http://policy.jinri.cn/CreateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPNR">
+      <soap:operation soapAction="http://policy.jinri.cn/CreateOrderByPNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateOrderByPNR">
+      <soap:operation soapAction="http://policy.jinri.cn/ReCreateOrderByPNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <soap:operation soapAction="http://policy.jinri.cn/GetOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoByTicketNo">
+      <soap:operation soapAction="http://policy.jinri.cn/GetOrderInfoByTicketNo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateChdPNR">
+      <soap:operation soapAction="http://policy.jinri.cn/CreateChdPNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <soap:operation soapAction="http://policy.jinri.cn/CancelOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GaiqianOrder">
+      <soap:operation soapAction="http://policy.jinri.cn/GaiqianOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGaiqianOrder">
+      <soap:operation soapAction="http://policy.jinri.cn/GetGaiqianOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TuiFeiOrder">
+      <soap:operation soapAction="http://policy.jinri.cn/TuiFeiOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReturnOrderInfo">
+      <soap:operation soapAction="http://policy.jinri.cn/GetReturnOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RiseCabin">
+      <soap:operation soapAction="http://policy.jinri.cn/RiseCabin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRaiseOrder">
+      <soap:operation soapAction="http://policy.jinri.cn/GetRaiseOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateJourney">
+      <soap:operation soapAction="http://policy.jinri.cn/CreateJourney" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJourneyTicket">
+      <soap:operation soapAction="http://policy.jinri.cn/GetJourneyTicket" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeId">
+      <soap:operation soapAction="http://policy.jinri.cn/GetOfficeId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderByPause">
+      <soap:operation soapAction="http://policy.jinri.cn/UpdateOrderByPause" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPNR">
+      <soap:operation soapAction="http://policy.jinri.cn/CheckPNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSiteByPnr">
+      <soap:operation soapAction="http://policy.jinri.cn/CheckSiteByPnr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiOrderServerSoap12" type="tns:JinRiOrderServerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateOrder">
+      <soap12:operation soapAction="http://policy.jinri.cn/CreateOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPNR">
+      <soap12:operation soapAction="http://policy.jinri.cn/CreateOrderByPNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateOrderByPNR">
+      <soap12:operation soapAction="http://policy.jinri.cn/ReCreateOrderByPNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetOrderInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoByTicketNo">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetOrderInfoByTicketNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateChdPNR">
+      <soap12:operation soapAction="http://policy.jinri.cn/CreateChdPNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <soap12:operation soapAction="http://policy.jinri.cn/CancelOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GaiqianOrder">
+      <soap12:operation soapAction="http://policy.jinri.cn/GaiqianOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGaiqianOrder">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetGaiqianOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TuiFeiOrder">
+      <soap12:operation soapAction="http://policy.jinri.cn/TuiFeiOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReturnOrderInfo">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetReturnOrderInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RiseCabin">
+      <soap12:operation soapAction="http://policy.jinri.cn/RiseCabin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRaiseOrder">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetRaiseOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateJourney">
+      <soap12:operation soapAction="http://policy.jinri.cn/CreateJourney" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJourneyTicket">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetJourneyTicket" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeId">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetOfficeId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderByPause">
+      <soap12:operation soapAction="http://policy.jinri.cn/UpdateOrderByPause" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPNR">
+      <soap12:operation soapAction="http://policy.jinri.cn/CheckPNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSiteByPnr">
+      <soap12:operation soapAction="http://policy.jinri.cn/CheckSiteByPnr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiOrderServerHttpGet" type="tns:JinRiOrderServerHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CreateOrder">
+      <http:operation location="/CreateOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPNR">
+      <http:operation location="/CreateOrderByPNR" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateOrderByPNR">
+      <http:operation location="/ReCreateOrderByPNR" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <http:operation location="/GetOrderInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoByTicketNo">
+      <http:operation location="/GetOrderInfoByTicketNo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateChdPNR">
+      <http:operation location="/CreateChdPNR" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <http:operation location="/CancelOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GaiqianOrder">
+      <http:operation location="/GaiqianOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGaiqianOrder">
+      <http:operation location="/GetGaiqianOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TuiFeiOrder">
+      <http:operation location="/TuiFeiOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReturnOrderInfo">
+      <http:operation location="/GetReturnOrderInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RiseCabin">
+      <http:operation location="/RiseCabin" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRaiseOrder">
+      <http:operation location="/GetRaiseOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateJourney">
+      <http:operation location="/CreateJourney" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJourneyTicket">
+      <http:operation location="/GetJourneyTicket" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeId">
+      <http:operation location="/GetOfficeId" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderByPause">
+      <http:operation location="/UpdateOrderByPause" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPNR">
+      <http:operation location="/CheckPNR" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSiteByPnr">
+      <http:operation location="/CheckSiteByPnr" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiOrderServerHttpPost" type="tns:JinRiOrderServerHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateOrder">
+      <http:operation location="/CreateOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPNR">
+      <http:operation location="/CreateOrderByPNR" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReCreateOrderByPNR">
+      <http:operation location="/ReCreateOrderByPNR" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <http:operation location="/GetOrderInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfoByTicketNo">
+      <http:operation location="/GetOrderInfoByTicketNo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateChdPNR">
+      <http:operation location="/CreateChdPNR" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelOrder">
+      <http:operation location="/CancelOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GaiqianOrder">
+      <http:operation location="/GaiqianOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGaiqianOrder">
+      <http:operation location="/GetGaiqianOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TuiFeiOrder">
+      <http:operation location="/TuiFeiOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReturnOrderInfo">
+      <http:operation location="/GetReturnOrderInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RiseCabin">
+      <http:operation location="/RiseCabin" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRaiseOrder">
+      <http:operation location="/GetRaiseOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateJourney">
+      <http:operation location="/CreateJourney" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetJourneyTicket">
+      <http:operation location="/GetJourneyTicket" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOfficeId">
+      <http:operation location="/GetOfficeId" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOrderByPause">
+      <http:operation location="/UpdateOrderByPause" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPNR">
+      <http:operation location="/CheckPNR" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSiteByPnr">
+      <http:operation location="/CheckSiteByPnr" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JinRiOrderServer">
+    <wsdl:port name="JinRiOrderServerSoap" binding="tns:JinRiOrderServerSoap">
+      <soap:address location="http://ws.jinri.cn/JinRiOrderServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiOrderServerSoap12" binding="tns:JinRiOrderServerSoap12">
+      <soap12:address location="http://ws.jinri.cn/JinRiOrderServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiOrderServerHttpGet" binding="tns:JinRiOrderServerHttpGet">
+      <http:address location="http://ws.jinri.cn/JinRiOrderServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiOrderServerHttpPost" binding="tns:JinRiOrderServerHttpPost">
+      <http:address location="http://ws.jinri.cn/JinRiOrderServer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

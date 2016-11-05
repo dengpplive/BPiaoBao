@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "SendDetailList";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px;">
+                 <div class="m_search">
+                     发送时间：<input type="text" name="startTime" class="easyui-my97" style="width:100px;" id="startTime" data-bind="my97value: $root.searchForm.StartTime" data-options="{maxDate:'#F{$dp.$D(\'endTime\')}'}" />
+                                -
+                                <input type="text" class="easyui-my97" style="width: 100px;" name="endTime" id="endTime" data-bind="my97value: $root.searchForm.EndTime" data-options="{minDate:'#F{$dp.$D(\'startTime\')}'}" />
+                 </div>
+                 <div class="m_search">
+                        接收号码：<input type="text" class="inputStyle" maxlength="11" data-bind="value:$root.searchForm.Tel" />
+                 </div>
+                <div class="m_search"><a href="#" class="easyui-linkbutton" code="15" iconcls="icon-search" data-bind="click: $root.searchClick" style="height:22px; line-height:22px;">查询</a></div>
+            <div class="both"></div>
+        </div>
+        <table id="MainTable" data-bind="datagrid: grid" title="发送记录列表">
+            <thead>
+                <tr>
+                    <th data-options="field:'Name',width:140">发送人</th>
+                    <th data-options="field:'SendTime',width:130">发送时间</th>
+                    <th data-options="field:'SendCount',width:60">发送条数</th>
+                    <th data-options="field:'ReceiveNum',width:130">接收号码</th>
+                    <th data-options="field:'Content',width:530">发送内容</th>
+                    <th data-options="field:'SendState',width:130,formatter: formatSendState">发送状态</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    </div>
+ @section scripts{
+     <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+        <script type="text/javascript">
+            var BuyerIndexVM = CC.Create(BaseVM, function (data) {
+                this.urls = data.urls;
+                this.grid.pagination = true;
+                this.grid.nowrap = false;
+            });
+            var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+            ko.applyBindings(vm);
+            function formatSendState(val, row, index) {
+                return str = row.SendState == 1 ? "成功" : "失败";
+            };
+        </script>
+    }

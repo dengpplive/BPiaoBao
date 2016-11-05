@@ -1,0 +1,2 @@
+时间:2014-11-25 11:08:10.358  http://10.11.3.241:889/api/Bank/GetBankList?code=0000000022&currentTime=20141125110810&partnerKey=bf4ebff2c39240599b34d886945cd879&signature=0f836b0d68fa74efb7e04cd504100a76
+时间:2014-11-25 11:08:14.571  http://10.11.3.241:889/api/BusinessMan/GetUserInfo?code=0000000022&currentTime=20141125110814&partnerKey=bf4ebff2c39240599b34d886945cd879&signature=a413b5eacab56467686fe5cd418f0193

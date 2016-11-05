@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<web>
+  <ConfigList>
+    <old>裤</old>
+    <oldcode>191,227</oldcode>
+    <new>便</new>
+    <newcode>177,227</newcode>
+  </ConfigList>
+  <ConfigList>
+    <old>蕾</old>
+    <oldcode>192,217</oldcode>
+    <new>操</new>
+    <newcode>178,217</newcode>
+  </ConfigList>
+  <ConfigList>
+    <old>勒</old>
+    <oldcode>192,213</oldcode>
+    <new>舱</new>
+    <newcode>178,213</newcode>
+  </ConfigList>
+  <ConfigList>
+    <old>浚</old>
+    <oldcode>191,163</oldcode>
+    <new>保</new>
+    <newcode>177,163</newcode>
+  </ConfigList>
+  <ConfigList>
+    <old>阑</old>
+    <oldcode>192,187</oldcode>
+    <new>不</new>
+    <newcode>178,187</newcode>
+  </ConfigList>
+  <ConfigList>
+    <old>揽</old>
+    <oldcode>192,191</oldcode>
+    <new>部</new>
+    <newcode>178,191</newcode>
+  </ConfigList>
+  <ConfigList>
+    <old>兰</old>
+    <oldcode>192,188</oldcode>
+    <new>布</new>
+    <newcode>178,188</newcode>
+  </ConfigList>
+</web>

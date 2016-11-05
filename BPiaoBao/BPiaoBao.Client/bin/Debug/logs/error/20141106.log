@@ -1,0 +1,15 @@
+2014-11-06 09:36:20,001 - 发生系统异常，请联系客服
+System.ServiceModel.FaultException: 发生系统异常，请联系客服
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Query15DayStatistics()
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingManagerViewModel.<ExecuteQueryChartStatisticsCommand>b__2(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingManagerViewModel.cs:行号 338
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55

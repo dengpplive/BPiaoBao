@@ -1,0 +1,8 @@
+﻿<uiExt:FullWidowExt x:Class="BPiaoBao.Client.FullScreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:uiExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt"
+        WindowStyle="None"
+        Title="FullScreenWindow" WindowState="Maximized" 
+        WindowStartupLocation="CenterOwner"  > 
+</uiExt:FullWidowExt>

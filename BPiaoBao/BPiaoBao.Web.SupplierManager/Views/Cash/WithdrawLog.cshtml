@@ -1,0 +1,78 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="filterbg" data-options="region:'north',border:0">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="75" valign="bottom" class="tdtitle td_noboder"><h3>结算记录</h3></td>
+                @*<td width="1059" valign="bottom" class="td_noboder">
+                    已成功结算：<span class="td_noboder fontcolor">
+                        ￥<i class="fontsize" data-bind="text:$root.withdrawMoney"></i>
+                    </span>
+                </td>*@
+            </tr>
+        </table>
+    </div>
+    <div class="tableShow"  data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px;height:auto; overflow:hidden;">
+                <div style="float:left">
+                    <div class="m_search">
+                        日期 从:
+                        <input type="text" class="easyui-my97" id="myStart" data-bind="my97value:$root.searchForm.startTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd\')}'}" />
+                        到
+                        <input type="text" class="easyui-my97" id="myEnd" data-bind="my97value:$root.searchForm.endTime" data-options="{minDate:'#F{$dp.$D(\'myStart\')}'}" />
+                    </div>
+                    <div class="m_search">
+                        交易号：
+                       <input type="text" class="inputStyle" data-bind="value:$root.searchForm.outTradeNo" />
+                    </div>
+                    <div class="m_search">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" onclick="searchClick();">查询</a>
+                    </div>
+               </div>
+        </div>
+        <table id="dg" title="记录明细" data-bind="datagrid: grid">
+            <thead>
+                <tr bgcolor="#daeef5">
+                    <th data-options="field:'OutTradeNo',width:200">交易号</th>
+                    <th data-options="field:'CashOutTime',width:200">创建日期</th>
+                    <th data-options="field:'ClearDateTime',width:200">结算日期</th>
+                    <th data-options="field:'CashOutMoney',width:150,formatter:priceFormater">结算金额(元)</th>
+                    <th data-options="field:'FeeAmount',width:200,formatter:priceFormater">手续费(元)</th>
+                    <th data-options="field:'BankCardNoShowStar',width:120">银行卡号</th>
+                    <th data-options="field:'CashOutStatus',width:150">状态</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    </div>
+    @section scripts{
+        <script src="~/my97/WdatePicker.js"></script>
+        <script src="~/easyui/jquery.my97.js"></script>
+        <script type="text/javascript">
+            var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            var vm = new ViewModel(Fromdata);
+            vm.grid.idField = "OutTradeNo";
+            vm.withdrawMoney = ko.mapping.fromJS(Fromdata.withdrawMoney.toFixed(2));
+            ko.applyBindings(vm);
+
+            function searchClick() {
+                vm.searchClick();
+                $.ajax({
+                    url: Fromdata.urls.getWithdrawMoneyJson,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS(vm.searchForm)),
+                    success: function(res) {
+                        ko.mapping.fromJS(res.toFixed(2), vm.withdrawMoney);
+                    }
+                });
+            }
+
+            function priceFormater(value,row,index) {
+
+                return  parseFloat(value).toFixed(2);
+
+            }
+        </script>
+    }

@@ -1,0 +1,107 @@
+﻿<div id="SaleOrderDetail_Dialog" class="easyui-dialog" title="售后订单" data-options="modal:true,closed:true,closable:false,buttons:'#UnProcess-buttons'" style="width: 450px; height: 400px; padding: 5px 15px;">
+<table data-bind="with:Detail">
+    <caption>基本信息</caption>
+    <tr>
+        <td>支付时间：</td>
+        <td data-bind="text: Model.OrderID"></td>
+        <td>支付方式：</td>
+        <td></td>
+        <td>售后单号：</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>交易号：</td>
+        <td></td>
+        <td>支付状态：</td>
+        <td></td>
+        <td>售后类型：</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>申请人：</td>
+        <td></td>
+        <td>申请时间：</td>
+        <td></td>
+        <td>锁定帐号：</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>原订单号：</td>
+        <td></td>
+        <td>PNR：</td>
+        <td></td>
+        <td>原订单金额：</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>申请备注：</td>
+        <td colspan="5"></td>
+    </tr>
+</table>
+<table>
+    <caption>处理信息</caption>
+    <tr>
+        <td>处理人：</td>
+        <td></td>
+        <td>处理时间：</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>产生金额：</td>
+        <td></td>
+        <td>备注：</td>
+        <td></td>
+    </tr>
+</table>
+<table>
+    <caption>乘机人信息</caption>
+    <thead>
+        <tr>
+            <th data-options="field:'',title:'乘客姓名'"></th>
+            <th data-options="field:'',title:'乘客类型'"></th>
+            <th data-options="field:'',title:'证件号'"></th>
+            <th data-options="field:'',title:'手机号'"></th>
+            <th data-options="field:'',title:'票号'"></th>
+            <th data-options="field:'',title:'舱位价'"></th>
+            <th data-options="field:'',title:'机建/燃油'"></th>
+            <th data-options="field:'',title:'退票手续费'"></th>
+            <th data-options="field:'',title:'行程单号'"></th>
+        </tr>
+    </thead>
+</table>
+<table>
+    <caption>航段信息</caption>
+    <thead>
+        <tr>
+            <th data-options="field:'',title:'承运人'"></th>
+            <th data-options="field:'',title:'航班号'"></th>
+            <th data-options="field:'',title:'舱位'"></th>
+            <th data-options="field:'',title:'出发城市'"></th>
+            <th data-options="field:'',title:'到达城市'"></th>
+            <th data-options="field:'',title:'起飞日期'"></th>
+            <th data-options="field:'',title:'到达日期'"></th>
+        </tr>
+    </thead>
+</table>
+<table>
+    <caption>改签信息</caption>
+    <thead>
+        <tr>
+            <th data-options="field:'',title:'航班号'"></th>
+            <th data-options="field:'',title:'舱位'"></th>
+            <th data-options="field:'',title:'起飞日期'"></th>
+            <th data-options="field:'',title:'到达日期'"></th>
+        </tr>
+    </thead>
+</table>
+<table>
+    <caption>操作日期</caption>
+    <thead>
+        <tr>
+            <th data-options="field:'',title:'操作人'"></th>
+            <th data-options="field:'',title:'操作时间'"></th>
+            <th data-options="field:'',title:'操作内容'"></th>
+        </tr>
+    </thead>
+</table>
+</div>

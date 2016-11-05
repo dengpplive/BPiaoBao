@@ -1,0 +1,487 @@
+﻿@{
+    ViewBag.Title = "SaleOrderIndex";
+}
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <table>
+                <tr>
+                    <td>
+                        <div style="clear: both;">
+                            <div class="search">
+                                <div class="left">订单号：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.orderid" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">PNR：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.pnr" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">乘机人：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.passengerName" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">商户号：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.code" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">交易号：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.payNum" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">锁定账号：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 150px;" data-bind="value: searchForm.lockAccount" maxlength="15" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">状态:</div>
+                                <div class="right">
+                                    <select data-bind="options: TfgProcessStatus, optionsValue: 'Value', optionsText: 'Description', value: searchForm.status, optionsCaption: '请选择...'" style="width: 150px;"></select>
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">申请类型：</div>
+                                <div class="right">
+                                    <select style="width: 150px;" data-bind="options: AfterSaleType, value: searchForm.afterSaleType, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">政策类型：</div>
+                                <div class="right">
+                                    <select style="width: 150px;" data-bind="options: PolicyType, value: searchForm.policyType, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+                            <div class="search" style="width:280px;">
+                                <div class="left">申请时间：</div>
+                                <div class="right" style="width:200px;">
+                                    <input type="text" id="startDate" class="easyui-my97" style="width: 90px;" data-bind="my97value: searchForm.startDate" />-
+                                    <input type="text" id="endDate" class="easyui-my97" style="width: 90px;" data-bind="my97value: searchForm.endDate" />
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 150px; text-align: center; vertical-align: middle;">
+                        <button type="button" class="btnsearch" data-bind="click: searchClick">查询</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table data-bind="datagrid: grid">
+            <thead data-options="frozen:true">
+                <tr>
+                    <th data-options="field:'xx',width:60,align:'center',title:'操作',formatter:Hanlder"></th>
+                    <th data-options="field:'BusinessmanCode',width:80,title:'商户号',formatter:formatterCode"></th>
+                    <th data-options="field:'OrderId',width:145,title:'原订单号',formatter:OldOrderId"></th>
+                </tr>
+            </thead>
+            <thead>
+                <tr>
+                    <th data-options="field:'AfterSaleType',width:60,title:'申请类型',formatter:formatType"></th>
+                    <th data-options="field:'PlatformCode',width:65,title:'政策来源',formatter:function(val,row){return EnumPolicySourceType[row.Order.Policy.PolicySourceType].Description+'<br/>'+row.Order.Policy.PolicyType;}"></th>
+                    <th data-options="field:'Money',width:50,title:'产生金额'"></th>
+                    <th data-options="field:'TotalMoney',width:50,title:'总金额'"></th>
+                    <th data-options="field:'ProcessStatus',width:60,title:'处理状态',formatter:function(val){return SpShow(EnumTfgProcessStatus[val].Description,',');}"></th>
+                    <th data-options="field:'LockCurrentAccount',width:60,title:'锁定帐号'"></th>
+                    <th data-options="field:'CreateTime',width:70,title:'申请时间',formatter:function(val){return SpShow(val,' ')}"></th>
+                    <th data-options="field:'PassengerName',width:60,title:'乘机人',formatter:formmaterPassenger"></th>
+                    <th data-options="field:'StartDateTime',width:70,title:'乘机时间',formatter:formmaterPassengTime"></th>
+                    <th data-options="field:'Travel',width:60,title:'航程',formatter:formatterTravel"></th>
+                    <th data-options="field:'FlightNum',width:60,title:'航班号',formatter:formatterFlightNum"></th>
+                    <th data-options="field:'IssueTicketTime',width:70,title:'出票日期',formatter:function(val,row){ return SpShow(row.Order.IssueTicketTime,' ');}"></th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div id="UnProcess_Dialog" class="easyui-dialog" title="拒绝处理" data-options="modal:true,closed:true,closable:false,buttons:'#UnProcess-buttons'" style="width: 400px; height: 150px; padding: 5px 15px;">
+    <table data-bind="with: UnProcess">
+        <tr>
+            <td style="width: 80px; text-align: right; vertical-align: top;">拒绝理由：</td>
+            <td>
+                <textarea id="reasonValue" data-bind="value: reason" style="width: 280px; height: 60px;"></textarea>
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="UnProcess-buttons" style="text-align: center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.UnProcess.UnProcessClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#UnProcess_Dialog').dialog('close');">取消</a>
+</div>
+
+<div class="easyui-dialog" id="showdetail_dialog" title="订单处理详情" data-options="modal:true,closed:true,draggable:false,maximized:true,buttons:'#Detail_buttons'" style="padding: 5px 15px;">
+    <div id="Content"></div>
+</div>
+<div id="Detail_buttons" style="text-align: center;">
+    <a href="javascript:void(0)" data-bind="visible: $root.ProcessForm.Status" class="easyui-linkbutton" iconcls="icon-sys-ok" onclick="vm.ProcessForm.SaveClick()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#showdetail_dialog').dialog('close');">关闭</a>
+</div>
+
+<div class="easyui-dialog" id="SaleRefundDetail" title="退款明细" data-options="modal:true,closed:true,maximized:true" style="padding: 5px 15px;">
+    <div id="RefundDetail"></div>
+</div>
+<div class="easyui-dialog" id="IssueTicketDialog" title="出票" data-options="model:true,closed:true,buttons:'#IssueTicket_buttons'" style="padding: 5px 15px; width: 400px; height: 250px;">
+    <fieldset data-bind="with: $root.IssueTicket">
+        <legend>出票票号设置</legend>
+
+        <table data-bind="foreach: PassengerList">
+            <tr>
+                <td data-bind="text: AfterPassengerName"></td>
+                <td>
+                    <input type="text" data-bind="value: AfterSaleTravelTicketNum" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</div>
+<div id="IssueTicket_buttons" style="text-align: center">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.IssueTicket.SaveClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#IssueTicketDialog').dialog('close');">关闭</a>
+</div>
+<div class="easyui-dialog" id="BuyerDetail" title="商户信息" data-options="modal:true,closed:true" style="width: 300px; padding: 5px 5px 10px;">
+    <div id="Detail"></div>
+</div>
+<div id="OldOrderDetail_Window" class="easyui-window" title="订单详情" data-options="modal:true,closed:true,draggable:false,maximized:true,collapsible:false" title="原订单详情" style="width: 1050px; height: 500px; padding: 10px 15px;">
+    <div id="orderContent"></div>
+</div>
+@Html.Partial("Coordination")
+
+@section scripts{
+    <script type="text/javascript" src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        function Hanlder(val, row) {
+            var html = "<a href='javascript:void(0)' onclick='vm.ProcessClick(" + row.Id + ",-1)' class='m_blue'>详情</a>";
+            if (row.LockCurrentAccount != null && row.LockCurrentAccount != '') {
+                if (row.LockCurrentAccount.toLowerCase() == vm.LockName.toLowerCase()) {
+                    html += "<br/><a href='javascript:void(0)' onclick='vm.UnlockClick(" + row.Id + ")' style='color:red;font-weight:bold' >解锁</a>";
+                    if (row.ProcessStatus == 1) {
+                        html += "<br/><a href='javascript:void(0)' onclick='vm.ProcessClick(" + row.Id + ",0)' class='m_blue'>处理</a>";
+                    } else if (row.ProcessStatus == 2 || row.ProcessStatus == 3) {
+                        if (row.ProcessStatus == 2)
+                            html += "<br/><a href='javascript:void(0)' onclick='vm.RefundClick(" + row.Id + "," + row.Money + ")' style='color:red;font-weight:bold'>退款</a>";
+                        html += "<br/><a href='javascript:void(0)' onclick='vm.ProcessClick(" + row.Id + ",0)' style='color:red;font-weight:bold' >重新处理</a>";
+                    } else if (row.ProcessStatus == 5) {
+                        html += "<br/><a href='javascript:void(0)' onclick='vm.CompletedClick(" + row.Id + ")' class='m_recom'>出票</a>";
+                    }
+                    //else if (row.ProcessStatus == 4)
+                    //    html += "<br/><a href='javascript:void(0)' onclick='vm.QueryRefundClick(" + row.Id + ")'>退款明细</a>";
+                    if (row.ProcessStatus == 1 || row.ProcessStatus == 2 || row.ProcessStatus == 3 || row.ProcessStatus == 5)
+                        html += "<br/><a href='javascript:void(0)' onclick='vm.UnProcessClick(" + row.Id + ")' style='color:red;font-weight:bold' >拒绝处理</a>";
+                }
+            } else if (row.ProcessStatus != 6 && row.ProcessStatus != 7)
+                html += "<br/><a href='javascript:void(0)' onclick='vm.LockClick(" + row.Id + ")' class='m_blue'>锁定</a>";
+            //else if (row.ProcessStatus == 6 && row.AfterSaleType != '改签')
+            //    html += "<br/><a href='javascript:void(0)' onclick='vm.QueryRefundClick(" + row.Id + ")'>退款明细</a>";
+            var style = '';
+            if (row.IsCoorCompleted == true)
+                style = 'style="color:#0ece5f;font-weight: bold;"';
+            else if (row.IsCoorCompleted == false)
+                style = 'style="color:red;font-weight: bold;"';
+            html += '<br/><a href="javascript:void(0)" ' + style + ' onclick="vm.AddCoordinationClick(\'' + row.Id + '\',\'' + row.Order.PnrCode + '\',' + row.Id + ')" style="color:#3ca8e8;font-weight: bold;">订单协调</a>';
+            return html;
+        }
+        function formatType(val, row) {
+            if (val == "退票")
+                return val + '<br/><font color="red">(' + (row.IsVoluntary == true ? '自愿' : '非自愿') + ')</font>';
+            return val;
+        }
+        function ShowBuyer(code) {
+            $('#Detail').load('/TicketOrder/GetBuyerInfo', { code: code }, function () {
+                $('#BuyerDetail').dialog('open');
+            });
+        }
+        function formatterCode(val, row) {
+            if (row.Order.BusinessmanCode != null && row.Order.BusinessmanCode != '')
+                return "<a href='javascript:void(0)' onclick='ShowBuyer(\"" + row.Order.BusinessmanCode + "\")'>" + row.Order.BusinessmanCode + "</a>";
+            return '';
+        }
+        function formmaterPassenger(val, row) {
+            var passengerNames = '';
+            for (var i = 0; i < row.Passenger.length; i++) {
+                passengerNames += row.Passenger[i].PassengerName + '<br/>';
+            }
+            return passengerNames;
+        }
+        function formmaterPassengTime(val, row) {
+            var _time = '';
+            for (var i = 0; i < row.Order.SkyWays.length; i++) {
+                _time += SpShow(row.Order.SkyWays[i].StartDateTime, ' ') + '<br/>';
+            }
+            return _time;
+        }
+        function formatterTravel(val, row) {
+            var _travel = '';
+            for (var i = 0; i < row.Order.SkyWays.length; i++) {
+                _travel += row.Order.SkyWays[i].FromCityCode + row.Order.SkyWays[i].ToCityCode + '<br/>';
+            }
+            return _travel;
+        }
+        function formatterFlightNum(val, row) {
+            var _flightNum = '';
+            for (var i = 0; i < row.Order.SkyWays.length; i++) {
+                _flightNum += row.Order.SkyWays[i].CarrayCode + row.Order.SkyWays[i].FlightNumber + '<br/>';
+            }
+            return _flightNum;
+        }
+        function OldOrderId(val, row) {
+            var str = "<a href='javascript:vm.openOldOrderDetail(\"" + row.Order.OrderId + "\")'>" + row.Order.OrderId + "</a><br/>" + row.Order.PnrCode;
+            if (row.Order.OrderType == 1)
+                str += '<br/><span style="color:red;">儿童</span>';
+            else if (row.Order.OrderType == 2)
+                str += '<br/><span style="color:red;">婴儿</span>';
+            return str;
+        }
+        var BuyerIndexVM = CC.Create(BaseVM, function (data) {
+            this.grid.title = "售后订单处理";
+            this.urls = data.urls;
+            this.LockName = data.lockName;
+            this.UnProcess = {
+                reason: ko.observable(),
+                saleorderid: ko.observable(),
+                UnProcessClick: function () {
+                    if ($("#reasonValue").val() == null || $("#reasonValue").val() == "") {
+                        vm.alert('请输入拒绝理由');
+                        return false;
+                    }
+                    $('body').mask('正在处理请求...');
+                    vm.ajax({
+                        url: vm.urls._unprocess,
+                        type: 'post',
+                        data: { saleorderid: vm.UnProcess.saleorderid(), reason: vm.UnProcess.reason() }
+                    }, function () {
+                        $('#UnProcess_Dialog').dialog('close');
+                        vm.grid.datagrid('reload');
+                        TopCenterMsg('售后订单(' + vm.UnProcess.saleorderid() + ')已拒绝');
+                        $('body').unmask();
+                    }, function () {
+                        $('body').unmask();
+                    })
+                }
+            };
+            this.ProcessForm = {
+                Status: ko.observable(true),
+                saleorderid: ko.observable(),
+                SaveClick: function () {
+                    var remark = $('#detail_remark').text();
+                    var data = [];
+                    var check = true;
+                    $("#mainDiv .datagrid-view2 > div.datagrid-body > table tr input[name='RetirementPoundage']").each(function (i, n) {
+                        var value = $(this).val();
+                        if (value == null || value == '' || isNaN(value)) {
+                            vm.alert('手续费为空或不是数字');
+                            value.focus();
+                            check = false;
+                            return false;
+                        }
+                        data.push({ key: $(this).attr("data-temp"), value: value });
+                    });
+                    if (check) {
+                        $('#showdetail_dialog').mask('正在处理中...');
+                        vm.ajax({
+                            url: vm.urls._process,
+                            contentType: 'application/json',
+                            type: 'post',
+                            data: JSON.stringify({ saleorderid: vm.ProcessForm.saleorderid(), remark: remark, dic: data })
+                        }, function () {
+                            vm.grid.datagrid('reload');
+                            $('#showdetail_dialog').dialog('close').unmask();
+                        }, function () {
+                            $('#showdetail_dialog').unmask();
+                        })
+                    }
+                }
+            };
+            this.IssueTicket = {
+                saleorderid: ko.observable(),
+                PassengerList: ko.observableArray(),
+                SaveClick: function () {
+                    $('#IssueTicketDialog').mask('正在提交数据...');
+                    var dic = [];
+                    $.each(vm.IssueTicket.PassengerList(), function (i, n) {
+                        dic.push({ key: n.AfterPassengerId, value: n.AfterSaleTravelTicketNum() })
+                    })
+                    vm.ajax({
+                        url: vm.urls._completed,
+                        contentType: 'application/json',
+                        type: 'post',
+                        data: JSON.stringify({ saleorderid: vm.IssueTicket.saleorderid(), dic: dic })
+                    }, function () {
+                        vm.grid.datagrid('reload');
+                        TopCenterMsg('售后订单(' + vm.IssueTicket.saleorderid() + ')正在出票');
+                        $('#IssueTicketDialog').dialog('close').unmask();
+                    }, function () {
+                        $('#IssueTicketDialog').dialog('close');
+                    })
+                }
+            };
+            this.CoordinationForm = {
+                orderid: ko.observable(),
+                pnr: ko.observable(),
+                saleorderid: ko.observable(),
+                IsCompleted: ko.observable(),
+                Type: ko.observable(),
+                Content: ko.observable(),
+                SaveCoordinationClick: function () {
+                    $('#coordination_dialog').mask('正在提交保存数据...');
+                    vm.ajax({
+                        url: vm.urls._addcoordination,
+                        type: 'post',
+                        data: { saleorderid: vm.CoordinationForm.saleorderid(), isCompleted: vm.CoordinationForm.IsCompleted(), Type: vm.CoordinationForm.Type(), Content: vm.CoordinationForm.Content() }
+                    }, function () {
+                        $('#coordinationGrid').datagrid('reload');
+                        vm.CoordinationForm.Type('出票').Content('').IsCompleted('true');
+                        $('#coordination_dialog').unmask();
+                    }, function () {
+                        $('#coordination_dialog').unmask();
+                    });
+                }
+            };
+        }, {
+            TfgProcessStatus: ko.observableArray(EnumTfgProcessStatus),
+            LockName: null,
+            Detail: null,
+            AfterSaleType: ko.observableArray(['退票', '废票', '改签', '其他修改']),
+            PolicyType: ko.observableArray(['B2B', 'BSP']),
+            ProcessForm: null,
+            IssueTicket: null,
+            CoordinationForm: null,
+            LockClick: function (saleorderid) {
+                $('body').mask('正在处理请求...');
+                this.ajax({
+                    url: this.urls._lock,
+                    type: 'POST',
+                    data: { saleorderid: saleorderid }
+                }, function () {
+                    this.grid.datagrid('reload');
+                    TopCenterMsg('售后订单(' + saleorderid + ')锁定成功');
+                    $('body').unmask();
+                }, function () {
+                    $('body').unmask();
+                })
+            },
+            UnlockClick: function (saleorderid) {
+                var $this = this;
+                $this.confirm('确认解锁吗?', function () {
+                    $('body').mask('正在处理请求...');
+                    $this.ajax({
+                        url: $this.urls._unlock,
+                        type: 'POST',
+                        data: { saleorderid: saleorderid }
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                        TopCenterMsg('售后订单(' + saleorderid + ')已解锁');
+                        $('body').unmask();
+                    }, function () {
+                        $('body').unmask();
+                    })
+                })
+            },
+            ProcessClick: function (saleorderid, isProcess) {
+                $('#showdetail_dialog').mask('正在加载...')
+                this.ProcessForm.saleorderid(saleorderid).Status(isProcess != -1);
+                $('#Content').load('/TicketOrder/SaleOrderDetail', { saleorderid: saleorderid, isProcess: isProcess }, function () {
+                    $.parser.parse('#Content');
+                    $('#showdetail_dialog').unmask();
+                });
+                $('#showdetail_dialog').dialog('open');
+            },
+            UnProcessClick: function (saleorderid) {
+                this.UnProcess.saleorderid(saleorderid).reason('');
+                $('#UnProcess_Dialog').dialog('open');
+            },
+            RefundClick: function (saleorderid, ordermoney) {
+                var $this = this;
+                $this.confirm('订单退款金额:' + ordermoney + '<br/>确认退款吗?', function () {
+                    $('body').mask('正在处理请求...');
+                    $this.ajax({
+                        url: $this.urls._refund,
+                        type: 'post',
+                        data: { saleorderid: saleorderid }
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                        TopCenterMsg('售后订单(' + saleorderid + ')正在退款处理');
+                        $('body').unmask();
+                    }, function () {
+                        $('body').unmask();
+                    })
+                })
+            },
+            CompletedClick: function (saleorderid) {
+                var $this = this;
+                $this.IssueTicket.saleorderid(saleorderid);
+                $this.IssueTicket.PassengerList.removeAll();
+                $this.ajax({
+                    url: $this.urls._afterpassenger,
+                    type: 'post',
+                    data: { saleorderid: saleorderid },
+                    dataType: 'json'
+                }, function (r, s) {
+                    $.each(r, function (i, n) {
+                        $this.IssueTicket.PassengerList.push({ AfterPassengerId: n.AfterPassengerId, AfterPassengerName: n.AfterPassengerName, AfterSaleTravelTicketNum: ko.observable(n.AfterSaleTravelTicketNum) });
+                    });
+                    $('#IssueTicketDialog').dialog('open');
+                })
+
+            },
+            QueryRefundClick: function (saleorderid) {
+                $('#RefundDetail').load(this.urls._qrefund, { saleorderid: saleorderid }, function () {
+                    $.parser.parse('#RefundDetail');
+                });
+                $('#SaleRefundDetail').dialog('open');
+            },
+            QueryRefundStatueClick: function (saleorderid, refundno) {
+                this.ajax({
+                    url: this.urls._refundstatus,
+                    type: 'post',
+                    data: { saleorderid: saleorderid, refundno: refundno }
+                }, function (r, s) {
+                    this.alert(r);
+                    $('#RefundDetail').load(this.urls._qrefund, { saleorderid: saleorderid }, function () {
+                        $.parser.parse('#RefundDetail');
+                    });
+                })
+            },
+            SignalRefundClick: function (saleorderid, refundno) {
+                this.ajax({
+                    url: this.urls._sigrefund,
+                    type: 'post',
+                    data: { saleorderid: saleorderid, refundno: refundno }
+                }, function (r, s) {
+                    $('#RefundDetail').load(this.urls._qrefund, { saleorderid: saleorderid }, function () {
+                        $.parser.parse('#RefundDetail');
+                    });
+                })
+            },
+            AddCoordinationClick: function (orderid, pnr, saleorderid) {
+                var $this = this;
+                $('#coordination_dialog').dialog('open');
+                $this.CoordinationForm.orderid(orderid).saleorderid(saleorderid).pnr(pnr).Type('出票').Content('').IsCompleted('true');
+                $('#coordinationGrid').datagrid({
+                    url: $this.urls._getcoordination,
+                    queryParams: { saleorderid: saleorderid }
+                });
+            },
+            openOldOrderDetail: function (orderID) {
+                $('#OldOrderDetail_Window').dialog('open').mask('正在家在...');
+                $('#orderContent').load('/TicketOrder/OrderDetail', { OrderId: orderID }, function () {
+                    $('#OldOrderDetail_Window').unmask();
+                });
+            }
+        });
+        var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+        ko.applyBindings(vm);
+
+    </script>
+}

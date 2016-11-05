@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5928C486-5249-4BE4-ACB3-11718060C66C}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.Client.UIExt</RootNamespace>
+    <AssemblyName>BPiaoBao.Client.UIExt</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <ExpressionBlendVersion>12.0.41212.0</ExpressionBlendVersion>
+    <Utf8Output>true</Utf8Output>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CashBag.FileEntity">
+      <HintPath>..\packages\CashBag\CashBag.FileEntity.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\NPOI 2.0\dotnet4\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\NPOI.1.2.5\lib\net40\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Controls, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\Microsoft.Expression.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\Microsoft.Expression.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Effects, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\Microsoft.Expression.Effects.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Prototyping.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\Microsoft.Expression.Prototyping.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Http">
+      <HintPath>..\packages\Microsoft.Http\Microsoft.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell">
+      <HintPath>..\packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI 2.0\dotnet4\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI 2.0\dotnet4\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI 2.0\dotnet4\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI 2.0\dotnet4\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="PnrAnalysis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PnrAnalysis\PnrAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFSpark">
+      <HintPath>..\packages\WPFSpark.1.1\lib\net40\WPFSpark.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Asset\Base.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Asset\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Asset\operator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Asset\ComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Asset\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonControl\GifControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonControl\NoticeBrowerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonControl\PassengerControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonControl\CitysControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonControl\PayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonControl\WeekControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonWindow\CancelOrderConfirmWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonWindow\ExportProgressWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonWindow\PayCompleted.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CommonWindow\PopupWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonWindow\RemindWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\MetroProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\PassengerPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\CityPicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CommonWindow\WebWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ProgressRing.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Agent\Agent.cs" />
+    <Compile Include="BaseVM.cs" />
+    <Compile Include="Behaviors\DatePickerDisplayDateStartBehavior.cs" />
+    <Compile Include="CommonControl\GifAnimation.cs" />
+    <Compile Include="CommonControl\GifControl.xaml.cs">
+      <DependentUpon>GifControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\GifImage.cs" />
+    <Compile Include="CommonControl\MetroProgressBar.cs" />
+    <Compile Include="CommonControl\NoticeBrowerControl.xaml.cs">
+      <DependentUpon>NoticeBrowerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\PassengerControl.xaml.cs">
+      <DependentUpon>PassengerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\PassengerPicker.cs" />
+    <Compile Include="CommonControl\CityPicker.cs" />
+    <Compile Include="CommonControl\CitysControl.xaml.cs">
+      <DependentUpon>CitysControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\PayControl.xaml.cs">
+      <DependentUpon>PayControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonControl\PopupTopmost.cs" />
+    <Compile Include="CommonControl\ProgressRing.cs" />
+    <Compile Include="CommonControl\PromptAdorner.cs" />
+    <Compile Include="CommonControl\PromptChrome.cs" />
+    <Compile Include="CommonControl\WeekControl.xaml.cs">
+      <DependentUpon>WeekControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonWindow\CancelOrderConfirmWindow.xaml.cs">
+      <DependentUpon>CancelOrderConfirmWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonWindow\ExportProgressWindow.xaml.cs">
+      <DependentUpon>ExportProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonWindow\PayCompleted.xaml.cs">
+      <DependentUpon>PayCompleted.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CommonWindow\RemindWindow.xaml.cs">
+      <DependentUpon>RemindWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Communicate\CommunicateManager.cs" />
+    <Compile Include="Communicate\ClientInterpector.cs" />
+    <Compile Include="Communicate\CommunicationProxy.cs" />
+    <Compile Include="Communicate\EnableJsonFormatterBehavior.cs" />
+    <Compile Include="Communicate\EnableJsonFormatterBehaviorElement.cs" />
+    <Compile Include="Communicate\ExtClientBehavior.cs" />
+    <Compile Include="Communicate\LoginInfo.cs" />
+    <Compile Include="Communicate\PublishCallback.cs" />
+    <Compile Include="Converter\BankCardConverter.cs" />
+    <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converter\CommissionConverter.cs" />
+    <Compile Include="Converter\DescriptionConverter.cs" />
+    <Compile Include="Converter\EnumToBooleanConverter.cs" />
+    <Compile Include="Converter\FinancialProductAvailableAmountConverter.cs" />
+    <Compile Include="Converter\FinancialProductPercentageConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
+    <Compile Include="Converter\PassengersConverter.cs" />
+    <Compile Include="Converter\PercentageConverter.cs" />
+    <Compile Include="Converter\SubStrConverter.cs" />
+    <Compile Include="Converter\ForegroundConverter.cs" />
+    <Compile Include="ExportProgressViewModel.cs" />
+    <Compile Include="FullWidowExt.cs" />
+    <Compile Include="Helper\AsynHelper.cs" />
+    <Compile Include="Helper\DateTimeHelper.cs" />
+    <Compile Include="Helper\EnumHelper.cs" />
+    <Compile Include="Helper\ExcelHelper.cs" />
+    <Compile Include="Helper\HtmlToXamlConverter\HtmlCssParser.cs" />
+    <Compile Include="Helper\HtmlToXamlConverter\HtmlLexicalAnalyzer.cs" />
+    <Compile Include="Helper\HtmlToXamlConverter\HtmlParser.cs" />
+    <Compile Include="Helper\HtmlToXamlConverter\HtmlSchema.cs" />
+    <Compile Include="Helper\HtmlToXamlConverter\HtmlTokenType.cs" />
+    <Compile Include="Helper\HtmlToXamlConverter\HtmlToXamlConverter.cs" />
+    <Compile Include="Helper\INIHelper.cs" />
+    <Compile Include="Helper\IsolatedStorageHelper.cs" />
+    <Compile Include="Helper\CommandBindingsHelper.cs" />
+    <Compile Include="Helper\PasswordBoxBindingHelper.cs" />
+    <Compile Include="Helper\SerializeHelper.cs" />
+    <Compile Include="Helper\UIHelper.cs" />
+    <Compile Include="Helper\UploadHelper.cs" />
+    <Compile Include="Helper\ValidationHelper.cs" />
+    <Compile Include="MessageBoxExt.cs" />
+    <Compile Include="Model\BankData.cs" />
+    <Compile Include="Model\PasserModel.cs" />
+    <Compile Include="Model\CarrayModel.cs" />
+    <Compile Include="Model\CityData.cs" />
+    <Compile Include="Model\Enumeration\BillStatus.cs" />
+    <Compile Include="Model\Enumeration\PosStatus.cs" />
+    <Compile Include="Model\FileInfoObject.cs" />
+    <Compile Include="PageBaseViewModel.cs" />
+    <Compile Include="Pagination.cs" />
+    <Compile Include="CommonWindow\PopupWindow.xaml.cs">
+      <DependentUpon>PopupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="UIManager.cs" />
+    <Compile Include="CommonWindow\WebWindow.xaml.cs">
+      <DependentUpon>WebWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\EnumHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\GlobalData.cs" />
+    <Compile Include="Utils\Guard.cs" />
+    <Compile Include="Utils\ProjectUtils.cs" />
+    <Compile Include="Utils\RandomHelper.cs" />
+    <Compile Include="Utils\StringHelper.cs" />
+    <Compile Include="ValidationRules\AtLeastOneValidationRule.cs" />
+    <Compile Include="ValidationRules\RegexValidationRule.cs" />
+    <Compile Include="ValidationRules\RequiredValidationRule.cs" />
+    <Compile Include="ValidationRules\ValidationAndInvokeCommandAction.cs" />
+    <Resource Include="Image\Loading.gif" />
+    <Resource Include="Image\select_time_icon.png" />
+    <Resource Include="Image\BankImages\BOCD.png" />
+    <Resource Include="Image\BankImages\HXB.png" />
+    <Resource Include="Image\select_city_icon.png" />
+    <Resource Include="Image\remindIco.png" />
+    <Resource Include="Image\vertical_line.png" />
+    <Resource Include="Image\close.png" />
+    <Resource Include="Image\credit.png" />
+    <Resource Include="Image\cash.png" />
+    <Resource Include="Image\PayControl\ad.png" />
+    <Resource Include="Image\PayControl\cash.png" />
+    <Resource Include="Image\PayControl\credit.png" />
+    <Resource Include="Image\PayControl\ticket.png" />
+    <Resource Include="Image\creditCard.png" />
+    <Resource Include="Image\reparation.png" />
+    <Resource Include="Image\cry.jpg" />
+    <Resource Include="Image\smile.jpg" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Content Include="city.xls">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.tpl" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\error.png" />
+    <Resource Include="Image\info.png" />
+    <Resource Include="Image\question.png" />
+    <Resource Include="Image\success.png" />
+    <Resource Include="Image\warning.png" />
+    <Resource Include="Image\windowclose.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Contracts\BPiaoBao.AppServices.Contracts.csproj">
+      <Project>{e892d14e-df51-47e9-9865-e7269ea15013}</Project>
+      <Name>BPiaoBao.AppServices.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.Plugin\BPiaoBao.Client.Module.csproj">
+      <Project>{85df9d0a-c2b1-47ee-bc2a-a63451b8130b}</Project>
+      <Name>BPiaoBao.Client.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\CCBlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data\BankData.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\BankImages\ABC.png" />
+    <Resource Include="Image\BankImages\beijing.png" />
+    <Resource Include="Image\BankImages\BJBANK.png" />
+    <Resource Include="Image\BankImages\BOCB2C.png" />
+    <Resource Include="Image\BankImages\CCB.png" />
+    <Resource Include="Image\BankImages\CEBBANK.png" />
+    <Resource Include="Image\BankImages\CIB.png" />
+    <Resource Include="Image\BankImages\CITIC.png" />
+    <Resource Include="Image\BankImages\CMB.png" />
+    <Resource Include="Image\BankImages\CMBC.png" />
+    <Resource Include="Image\BankImages\COMM.png" />
+    <Resource Include="Image\BankImages\fdb101.png" />
+    <Resource Include="Image\BankImages\GDB.png" />
+    <Resource Include="Image\BankImages\HZCBB2C.png" />
+    <Resource Include="Image\BankImages\ICBCB2C.png" />
+    <Resource Include="Image\BankImages\NBBANK.png" />
+    <Resource Include="Image\BankImages\PSBC-DEBIT.png" />
+    <Resource Include="Image\BankImages\SDB.png" />
+    <Resource Include="Image\BankImages\SHBANK.png" />
+    <Resource Include="Image\BankImages\SPABANK.png" />
+    <Resource Include="Image\BankImages\SPDB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\payBorder.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\horizontal_dashed_line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\PayPlatformsImages\Alipay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\PayPlatformsImages\BillPay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\PayPlatformsImages\Tenpay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <DesignData Include="SampleData\ExportProgressViewModelSampleData.xaml" />
+    <DesignData Include="SampleData\FinancialProductDtoSampleData.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\PayPlatformsImages\ChinaPnrPay.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

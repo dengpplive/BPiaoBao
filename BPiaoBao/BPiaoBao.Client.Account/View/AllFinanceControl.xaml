@@ -1,0 +1,165 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:converters="clr-namespace:BPiaoBao.Client.Account.View.Converters"
+             x:Class="BPiaoBao.Client.Account.View.AllFinanceControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="379" d:DesignWidth="574">
+    <UserControl.Resources>
+        <converters:ShowBoolTextConverter x:Key="ShowBoolTextConverter"/>
+        <Style x:Key="DataGridStyle1" TargetType="{x:Type DataGrid}">
+    		<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    		<Setter Property="Background" Value="{StaticResource {x:Static SystemColors.ControlBrushKey}}"/>
+    		<Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+    		<Setter Property="BorderBrush" Value="{x:Null}"/>
+    		<Setter Property="BorderThickness" Value="0"/>
+    		<Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected"/>
+    		<Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+    		<Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+    		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+    		<Setter Property="ContextMenu" Value="{StaticResource copyMenu}"/>
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="{x:Type DataGrid}">
+    					<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+    						<ContentControl x:Name="DG_ScrollViewer" Focusable="false">
+    							<ContentControl.Template>
+    								<ControlTemplate TargetType="{x:Type ContentControl}">
+    									<Grid>
+    										<Grid.ColumnDefinitions>
+    											<ColumnDefinition Width="Auto"/>
+    											<ColumnDefinition Width="*"/>
+    											<ColumnDefinition Width="Auto"/>
+    										</Grid.ColumnDefinitions>
+    										<Grid.RowDefinitions>
+    											<RowDefinition Height="Auto"/>
+    											<RowDefinition Height="*"/>
+    											<RowDefinition Height="Auto"/>
+    										</Grid.RowDefinitions>
+    										<DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter" Grid.Column="1" Visibility="{Binding HeadersVisibility, ConverterParameter={x:Static DataGridHeadersVisibility.Column}, Converter={x:Static DataGrid.HeadersVisibilityConverter}, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.ColumnSpan="2"/>
+    										<ContentPresenter x:Name="PART_ScrollContentPresenter" Grid.ColumnSpan="2" Grid.Row="1"/>
+    									</Grid>
+    								</ControlTemplate>
+    							</ContentControl.Template>
+    							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+    						</ContentControl>
+    					</Border>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    		<Setter Property="GridLinesVisibility" Value="Horizontal"/>
+    		<Setter Property="HeadersVisibility" Value="Column"/>
+    		<Setter Property="HorizontalGridLinesBrush" Value="{StaticResource HorizontalDashedBrush}"/>
+    		<Setter Property="IsReadOnly" Value="True"/>
+    		<Setter Property="AutoGenerateColumns" Value="False"/>
+    		<Setter Property="SelectionUnit" Value="Cell"/>
+    		<Style.Triggers>
+    			<Trigger Property="IsGrouping" Value="true">
+    				<Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+    			</Trigger>
+    		</Style.Triggers>
+    	</Style>
+    	<DataTemplate x:Key="disableDataTemplate">
+    		<Grid>
+    			<Button Content="已满额" Style="{StaticResource PayBtn}" Command="{Binding DataContext.BuyCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding ProductId}" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0" Height="30" IsEnabled="False" />
+    		</Grid>
+    	</DataTemplate>
+    	<DataTemplate x:Key="DataTemplate1">
+    		<Grid d:DesignWidth="719.317" d:DesignHeight="64.167" d:DataContext="{d:DesignData /SampleData/FinancialProductDtoSampleData.xaml}">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="Auto"/>
+    				<ColumnDefinition Width="*"/>
+    			</Grid.ColumnDefinitions>
+    			<Image Grid.ColumnSpan="1" VerticalAlignment="Center" Height="60" Width="60" HorizontalAlignment="Center" Source="{Binding IconUrl}" Margin="15,2"/>
+    			<Grid Grid.Column="1">
+    				<Grid.RowDefinitions>
+    					<RowDefinition Height="Auto"/>
+    					<RowDefinition Height="Auto"/>
+    					<RowDefinition Height="Auto"/>
+    				</Grid.RowDefinitions>
+    				<StackPanel Grid.RowSpan="1" Orientation="Horizontal">					
+    					<Button Content="{Binding Name}" FontSize="17.333" Margin="0,0,17,0" Style="{StaticResource LinkBtn}" VerticalAlignment="Center" />
+    					<Image HorizontalAlignment="Left" Height="17" Source="/BPiaoBao.Client.UIExt;component/Image/reparation.png" Stretch="Fill" Width="19" Margin="0">
+    						<Image.ToolTip>
+    							<ToolTip Style="{StaticResource ToolTipStyle}">
+    								<Border BorderBrush="#FF403E3E" BorderThickness="1" Background="#FFFFFFCB" Padding="2">
+    									<TextBlock><Run Text="全额理赔"/></TextBlock>
+    								</Border>
+    							</ToolTip>
+    						</Image.ToolTip>
+    					</Image>
+    					<Image HorizontalAlignment="Left" Height="17" Source="/BPiaoBao.Client.UIExt;component/Image/creditCard.png" Stretch="Fill" Width="19" Margin="7,0,0,0">
+    						<Image.ToolTip>
+    							<ToolTip Style="{StaticResource ToolTipStyle}">
+    								<Border BorderBrush="#FF403E3E" BorderThickness="1" Background="#FFFFFFCB" Padding="2">
+    									<TextBlock><Run Text="随时转出"/></TextBlock>
+    								</Border>
+    							</ToolTip>
+    						</Image.ToolTip>
+    					</Image>
+    				</StackPanel>
+    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Description}" d:LayoutOverrides="Height" Grid.Row="1" VerticalAlignment="Center" Foreground="Gray" Margin="0,2,0,1"/>
+    				<StackPanel HorizontalAlignment="Left" Width="Auto" Grid.Row="2" VerticalAlignment="Center" Orientation="Horizontal">
+    					<TextBlock TextWrapping="Wrap" Text="购买额" Foreground="#FFF7681A" Margin="0,0,9,0" FontSize="11.333" VerticalAlignment="Center"/>
+    					<ProgressBar Height="9" Width="159" Style="{DynamicResource ProductsProgressBarStyle}" Maximum="{Binding MaxAmount}" Value="{Binding CurrentAmount}" Foreground="#FFFB6413" VerticalAlignment="Center"/>
+    					<TextBlock TextWrapping="Wrap" Text="{Binding Converter={StaticResource FinancialProductPercentageConverter}, Mode=OneWay}" Foreground="#FFF7681A" Margin="5,0,0,0" VerticalAlignment="Center"/>
+    				</StackPanel>
+    			</Grid>
+    		</Grid>
+    	</DataTemplate>
+    </UserControl.Resources>
+	<UserControl.DataContext>
+		<ViewModel:AllFinanceViewModel/>
+	</UserControl.DataContext>
+    <!--<Border DockPanel.Dock="Top" Height="38" Background="#F5F5F5">
+            <TextBlock FontWeight="Bold" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Text="所有理财产品"/>
+        </Border>-->
+	<ScrollViewer VerticalScrollBarVisibility="Auto">
+		<Grid Background="White">
+			<Grid.RowDefinitions>		
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Rectangle Fill="WhiteSmoke" Stroke="Black" StrokeThickness="0" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height" Margin="0,1,0,0"/>
+				<TextBlock HorizontalAlignment="Left" Margin="15   ,12.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13.333" FontWeight="Bold"><Run Language="zh-cn" Text="可购买理财产品"/></TextBlock>
+				<DataGrid ItemsSource="{Binding OnSaleFinancialProducts}" RowHeight="75" ColumnHeaderStyle="{StaticResource FinancialProductsDataGridColumnHeaderStyle}" Grid.Row="1" Style="{StaticResource DataGridStyle1}">
+					<DataGrid.Columns>
+						<DataGridTemplateColumn Width="*" SortMemberPath="Name" Header="产品名称" CellTemplate="{StaticResource FinancialProductsDataTemplate}" />
+						<DataGridTextColumn Width="112" Header="年利率" Binding="{Binding InterestRate}" Foreground="#FFFE2400" FontSize="18.667" />
+						<DataGridTextColumn Width="124" Header="理财周期" Binding="{Binding Day, StringFormat=\{0\}天}" Foreground="{StaticResource LightBlueForeground}" FontSize="18.667" />
+                        <DataGridTextColumn Width="124" Header="是否支持提前转出" Binding="{Binding CanSettleInAdvance,Converter={StaticResource ShowBoolTextConverter}}" Foreground="{StaticResource LightBlueForeground}" FontSize="18.667" />
+                        <DataGridTemplateColumn Width="124" CellTemplate="{StaticResource FinancialProductsOperationDataTemplate}" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</Grid>
+			<WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsWait, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="237,98.804,237,139.304" Grid.Row="1" Grid.RowSpan="2"/>
+			<Grid Grid.Row="1">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Rectangle Fill="WhiteSmoke" Stroke="Black" StrokeThickness="0" Height="40" VerticalAlignment="Top" d:LayoutOverrides="Height" Margin="0,1,0,0"/>
+				<TextBlock HorizontalAlignment="Left" Margin="15   ,12.5,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="13.333" FontWeight="Bold"><Run Language="zh-cn" Text="已满额理财产品"/></TextBlock>
+				<DataGrid ItemsSource="{Binding SoldOutFinancialProducts}" RowHeight="75" Style="{StaticResource DataGridStyle1}" ColumnHeaderStyle="{StaticResource FinancialProductsDataGridColumnHeaderStyle}" Grid.Row="1">
+					<DataGrid.Columns>
+						<DataGridTemplateColumn Width="*" SortMemberPath="Name" Header="产品名称" CellTemplate="{StaticResource DataTemplate1}" />
+						<DataGridTextColumn Width="112" Header="年利率" Binding="{Binding InterestRate}" Foreground="#FFFE2400" FontSize="18.667" />
+						<DataGridTextColumn Width="124" Header="理财周期" Binding="{Binding Day, StringFormat=\{0\}天}" Foreground="{StaticResource LightBlueForeground}" FontSize="18.667" />
+                        <DataGridTextColumn Width="124" Header="是否支持提前转出" Binding="{Binding CanSettleInAdvance,Converter={StaticResource ShowBoolTextConverter}}" Foreground="{StaticResource LightBlueForeground}" FontSize="18.667" />
+                        <DataGridTemplateColumn Width="124" CellTemplate="{StaticResource disableDataTemplate}" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</Grid>
+		</Grid>
+	</ScrollViewer>
+</UserControl>

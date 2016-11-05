@@ -1,0 +1,525 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://203.88.210.234:116/PMService.asmx" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://203.88.210.234:116/PMService.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://203.88.210.234:116/PMService.asmx">
+      <s:element name="GetPolicyDataByDC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flightno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPolicyDataByDCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPolicyDataByDCResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewGetPolicyDataByDC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PnrType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flightno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewGetPolicyDataByDCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NewGetPolicyDataByDCResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPolicyDataByWFLC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flightno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flightno2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromCityCode2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToCityCode2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seat2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPolicyDataByWFLCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPolicyDataByWFLCResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewGetPolicyDataByWFLC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PnrType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Date2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flightno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Flightno2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FromCityCode2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToCityCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ToCityCode2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dataFormat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seat" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Seat2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="NewGetPolicyDataByWFLCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="NewGetPolicyDataByWFLCResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PnrCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderByPAT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="policyID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="bigPNR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rtData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="patData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="isChild" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOrderByPATResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOrderByPATResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMPay">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMPayResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PMPayResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMOrderQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMOrderQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PMOrderQueryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMOrderTF">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Ticketno" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comment" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Refoundfee" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PWD" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PMOrderTFResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PMOrderTFResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetPolicyDataByDCSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPolicyDataByDC" />
+  </wsdl:message>
+  <wsdl:message name="GetPolicyDataByDCSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPolicyDataByDCResponse" />
+  </wsdl:message>
+  <wsdl:message name="NewGetPolicyDataByDCSoapIn">
+    <wsdl:part name="parameters" element="tns:NewGetPolicyDataByDC" />
+  </wsdl:message>
+  <wsdl:message name="NewGetPolicyDataByDCSoapOut">
+    <wsdl:part name="parameters" element="tns:NewGetPolicyDataByDCResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPolicyDataByWFLCSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPolicyDataByWFLC" />
+  </wsdl:message>
+  <wsdl:message name="GetPolicyDataByWFLCSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPolicyDataByWFLCResponse" />
+  </wsdl:message>
+  <wsdl:message name="NewGetPolicyDataByWFLCSoapIn">
+    <wsdl:part name="parameters" element="tns:NewGetPolicyDataByWFLC" />
+  </wsdl:message>
+  <wsdl:message name="NewGetPolicyDataByWFLCSoapOut">
+    <wsdl:part name="parameters" element="tns:NewGetPolicyDataByWFLCResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrder" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPATSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOrderByPAT" />
+  </wsdl:message>
+  <wsdl:message name="CreateOrderByPATSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOrderByPATResponse" />
+  </wsdl:message>
+  <wsdl:message name="PMPaySoapIn">
+    <wsdl:part name="parameters" element="tns:PMPay" />
+  </wsdl:message>
+  <wsdl:message name="PMPaySoapOut">
+    <wsdl:part name="parameters" element="tns:PMPayResponse" />
+  </wsdl:message>
+  <wsdl:message name="PMOrderQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:PMOrderQuery" />
+  </wsdl:message>
+  <wsdl:message name="PMOrderQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:PMOrderQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="PMOrderTFSoapIn">
+    <wsdl:part name="parameters" element="tns:PMOrderTF" />
+  </wsdl:message>
+  <wsdl:message name="PMOrderTFSoapOut">
+    <wsdl:part name="parameters" element="tns:PMOrderTFResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PMServiceSoap">
+    <wsdl:operation name="GetPolicyDataByDC">
+      <wsdl:input message="tns:GetPolicyDataByDCSoapIn" />
+      <wsdl:output message="tns:GetPolicyDataByDCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NewGetPolicyDataByDC">
+      <wsdl:input message="tns:NewGetPolicyDataByDCSoapIn" />
+      <wsdl:output message="tns:NewGetPolicyDataByDCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPolicyDataByWFLC">
+      <wsdl:input message="tns:GetPolicyDataByWFLCSoapIn" />
+      <wsdl:output message="tns:GetPolicyDataByWFLCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="NewGetPolicyDataByWFLC">
+      <wsdl:input message="tns:NewGetPolicyDataByWFLCSoapIn" />
+      <wsdl:output message="tns:NewGetPolicyDataByWFLCSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <wsdl:input message="tns:CreateOrderSoapIn" />
+      <wsdl:output message="tns:CreateOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPAT">
+      <wsdl:input message="tns:CreateOrderByPATSoapIn" />
+      <wsdl:output message="tns:CreateOrderByPATSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PMPay">
+      <wsdl:input message="tns:PMPaySoapIn" />
+      <wsdl:output message="tns:PMPaySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PMOrderQuery">
+      <wsdl:input message="tns:PMOrderQuerySoapIn" />
+      <wsdl:output message="tns:PMOrderQuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PMOrderTF">
+      <wsdl:input message="tns:PMOrderTFSoapIn" />
+      <wsdl:output message="tns:PMOrderTFSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PMServiceSoap" type="tns:PMServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPolicyDataByDC">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/GetPolicyDataByDC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewGetPolicyDataByDC">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/NewGetPolicyDataByDC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPolicyDataByWFLC">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/GetPolicyDataByWFLC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewGetPolicyDataByWFLC">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/NewGetPolicyDataByWFLC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/CreateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPAT">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/CreateOrderByPAT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMPay">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/PMPay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMOrderQuery">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/PMOrderQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMOrderTF">
+      <soap:operation soapAction="http://203.88.210.234:116/PMService.asmx/PMOrderTF" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PMServiceSoap12" type="tns:PMServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetPolicyDataByDC">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/GetPolicyDataByDC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewGetPolicyDataByDC">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/NewGetPolicyDataByDC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPolicyDataByWFLC">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/GetPolicyDataByWFLC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NewGetPolicyDataByWFLC">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/NewGetPolicyDataByWFLC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/CreateOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrderByPAT">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/CreateOrderByPAT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMPay">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/PMPay" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMOrderQuery">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/PMOrderQuery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PMOrderTF">
+      <soap12:operation soapAction="http://203.88.210.234:116/PMService.asmx/PMOrderTF" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PMService">
+    <wsdl:port name="PMServiceSoap" binding="tns:PMServiceSoap">
+      <soap:address location="http://210.14.138.26:116/PMService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PMServiceSoap12" binding="tns:PMServiceSoap12">
+      <soap12:address location="http://210.14.138.26:116/PMService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

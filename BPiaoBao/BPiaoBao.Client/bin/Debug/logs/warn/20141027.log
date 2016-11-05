@@ -1,0 +1,23 @@
+2014-10-27 15:40:10,687 - 请求通道在等待 00:09:59.9989999 以后答复时超时。增加传递给请求调用的超时值，或者增加绑定上的 SendTimeout 值。分配给此操作的时间可能已经是更长超时的一部分。
+System.TimeoutException: 请求通道在等待 00:09:59.9989999 以后答复时超时。增加传递给请求调用的超时值，或者增加绑定上的 SendTimeout 值。分配给此操作的时间可能已经是更长超时的一部分。 ---> System.TimeoutException: 对“http://127.0.0.1:520/Services/DomesticTicket/FlightDestineService”的 HTTP 请求已超过为 00:10:00 分配的超时。为此操作分配的时间可能是较长超时的一部分。 ---> System.Net.WebException: 操作超时
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.ServiceModel.Channels.HttpChannelUtilities.ProcessGetResponseWebException(WebException webException, HttpWebRequest request, HttpAbortReason abortReason)
+   在 System.ServiceModel.Channels.HttpChannelFactory`1.HttpRequestChannel.HttpChannelRequest.WaitForReply(TimeSpan timeout)
+   在 System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   --- 内部异常堆栈跟踪的结尾 ---
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.RequestChannel.Request(Message message, TimeSpan timeout)
+   在 System.ServiceModel.Dispatcher.RequestChannelBinder.Request(Message message, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryOnewayFlight(String formCityCode, String toCityCode, DateTime takeDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1317
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55

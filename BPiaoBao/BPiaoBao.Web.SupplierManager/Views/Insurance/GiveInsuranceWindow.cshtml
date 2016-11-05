@@ -1,0 +1,38 @@
+﻿
+<div class="easyui-dialog" id="GiveInsuranceWindow" title="保险赠送" style="width:500px;height:auto;padding:10px 15px;"
+     data-options="modal:true,closed:true">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="prdDetails">
+        <tr>
+
+            <td height="30" align="right" nowrap="nowrap">保险剩余张数：</td>
+            <td height="30" class="rightTd"><i data-bind="text:$root.$GiveParams.currentLeaveCount"></i>张</td>
+        </tr>
+        <tr>
+            <td width="14%" height="30" align="right" nowrap="nowrap">商户号：</td>
+            <td width="74%" height="30" class="rightTd">
+                <input type="text" class="inputStyle" data-bind="value:$root.$GiveParams.businessCode,event:{change:$root.checkBusinessCode}" />
+                <span id="businessName"></span>
+            </td>
+        </tr>
+        <tr>
+            <td width="14%" height="30" align="right" nowrap="nowrap">赠送数量：</td>
+            <td width="74%" height="30" class="rightTd">
+                <input type="text" class="inputStyle" data-bind="value:$root.$GiveParams.giveCount" />
+            </td>
+        </tr>
+        <tr>
+            <td width="14%" height="30" align="right" nowrap="nowrap">备注信息：</td>
+            <td width="74%" height="30" class="rightTd">
+                <textarea rows="3" cols="20" data-bind="value:$root.$GiveParams.remark"></textarea>
+
+            </td>
+        </tr>
+        <tr>
+            <td width="14%" height="30" align="right" nowrap="nowrap"></td>
+            <td width="74%" height="30" class="rightTd">
+               <button class="easyui-linkbutton" id="btnGive" data-bind="click:$root.giveClick" style="color:#fff;margin-top:5px;">赠送</button>
+            </td>
+        </tr>
+    </table>
+</div>

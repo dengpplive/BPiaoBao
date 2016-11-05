@@ -1,0 +1,150 @@
+Start====================================================================
+时间:2014-11-03 10:07:28.865
+客户端IP:127.0.0.1:48524
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8555
+StartDate=2014/11/27 7:05:00
+EndDate=2014/11/27 8:25:00
+Seat=Y
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=100.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=630.00
+PolicySpecialType=DiscountOnDiscount
+SpecialPrice=189.63000
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 10:06:08.169
+时间2:2014-11-03 10:06:14.059
+结果:
+ 成人Pnr=HVJ6BX PNRContent= 1.杨关 HVJ6BX   2.  3U8555 Y   TH27NOV  CTUXIY HK1   0705 0825          E T1T3  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0705/27NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.SSR ADTK 1E BY CTU10NOV14/1005 OR CXL 3U8555 Y27NOV   7.OSI 3U CTCM15928636274/P1 8.OSI 3U CTCT15928636274    9.RMK CA/MG3TGM10.CTU186    
+ PATContent=
+时间3:2014-11-03 10:07:26.107
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 10:33:27.707
+客户端IP:127.0.0.1:48723
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8555
+StartDate=2014/11/27 7:05:00
+EndDate=2014/11/27 8:25:00
+Seat=Y
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=100.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=630.00
+PolicySpecialType=DiscountOnDiscount
+SpecialPrice=180
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 10:33:20.496
+时间2:2014-11-03 10:33:23.515
+结果:
+ 成人Pnr=HSGE7S PNRContent= 1.杨关 HSGE7S   2.  3U8555 Y   TH27NOV  CTUXIY HK1   0705 0825          E T1T3  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0705/27NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.SSR ADTK 1E BY CTU10NOV14/1033 OR CXL 3U8555 Y27NOV   7.OSI 3U CTCM15928636274/P1 8.OSI 3U CTCT15928636274    9.RMK CA/NWQXB610.CTU186    
+ PATContent=
+时间3:2014-11-03 10:33:27.707
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 10:36:59.346
+客户端IP:127.0.0.1:48751
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8555
+StartDate=2014/11/27 7:05:00
+EndDate=2014/11/27 8:25:00
+Seat=Y
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=100.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=630.00
+PolicySpecialType=DiscountOnDiscount
+SpecialPrice=190
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 10:36:53.303
+时间2:2014-11-03 10:36:54.909
+结果:
+ 成人Pnr=HSGFD7 PNRContent=   1.杨关 HSGFD7   2.  3U8555 Y   TH27NOV  CTUXIY HK1   0705 0825          E T1T3  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0705/27NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.OSI 3U CTCM15928636274/P1 7.OSI 3U CTCT15928636274    8.RMK CA/NKVYV6 9.CTU186    
+ PATContent=
+时间3:2014-11-03 10:36:59.346
+
+
+End=====================================================================
+

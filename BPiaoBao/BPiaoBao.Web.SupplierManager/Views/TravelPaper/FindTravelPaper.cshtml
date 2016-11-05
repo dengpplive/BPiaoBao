@@ -1,0 +1,81 @@
+﻿@{
+    ViewBag.Title = "行程单已分配管理-商户分类查询";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+@section scripts{
+    <script src="~/Scripts/knockout-3.1.0.debug.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+    <script src="~/Scripts/ko.custombinding.js"></script>
+    <script src="~/Scripts/commonViewModel.js?a=@(new Random().Next(0, 9999999).ToString())"></script>
+    <script type="text/javascript">
+        function customFormat(val, row, index) {
+            var html = '';
+            if (row.UseBusinessmanName != "合计") {
+                html = '<a href="/TravelPaper/CodeDetailList?BuyBusinessmanCode=' + row.UseBusinessmanCode + '" class="aStyle">查看详情</a>';
+            }
+            return html;
+        }
+
+        var TravelPaperVM = CC.Create(BaseVM, function (data) {
+            this.editForm = ko.mapping.fromJS(data.editForm);
+            this.urls = data.urls;
+            delete this.editForm.__ko_mapping__;
+        }, {
+            searchClick: function () {                
+                this.grid.datagrid('load', ko.toJS(this.searchForm));
+            },
+            reload:function()
+            {
+                this.grid.datagrid('load', ko.toJS(this.searchForm));
+            }
+        }
+        );
+        var FormData =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model))
+        var vm=new TravelPaperVM(FormData)
+        ko.applyBindings(vm);
+        function fnStyle(val, row, index)
+        {
+            return "width:100px;";
+        }
+    </script>
+}
+
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar">
+            <div style="margin: 10px;">
+                <table>
+                    <tr>
+                        <td>商户名称：</td>
+                        <td width="180"><input type="text" name="BuyBusinessmanName" id="BuyBusinessmanName" data-bind="value: vm.searchForm.BuyBusinessmanName" class="inputStyle" /></td>
+                        <td>商户号：</td>
+                        <td width="160"><input type="text" name="BuyBusinessmanCode" id="BuyBusinessmanCode" data-bind="value: vm.searchForm.BuyBusinessmanCode" class="inputStyle" /></td>
+                        <td>
+                            <a href="#" class="easyui-linkbutton m_refer" iconcls="icon-search" data-bind="click: vm.searchClick">查询</a>
+                            <a href="#" class="easyui-linkbutton" iconcls="icon-sys-export" plain="true" onclick="vm.exportClick('Excel2003')" style=" height:22px; line-height:22px;margin-left:10px;">导出Excel</a>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <table id="codeList" title="行程单商户分类查询" data-bind="datagrid: grid">
+            <thead>
+                <tr>
+                    <th formatter="customFormat" data-options="field:'1',width:100,styler:fnStyle, align:'center'">操作</th>
+                    <th data-options="field:'UseBusinessmanName',width:150,align:'center'">商户名称</th>
+                    <th data-options="field:'UseBusinessmanCode',width:100,align:'center'">商户号</th>
+                    <th data-options="field:'TotalCount',width:80,align:'center'">全部行程单</th>
+                    <th data-options="field:'TotalUse',width:80,align:'center'">已使用</th>
+                    <th data-options="field:'TotalNoUse',width:100,align:'center'">未使用</th>
+                    <th data-options="field:'TotalValidateUse',width:120,align:'center'">可使用</th>
+                    <th data-options="field:'TotalVoid',width:200,align:'center'">已作废</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+

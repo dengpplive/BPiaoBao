@@ -1,0 +1,279 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" x:Class="BPiaoBao.Client.Account.View.ApplyingForCreditControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="667" d:DesignWidth="887" Background="White" d:DataContext="{d:DesignData /SampleData/ApplyingForCreditViewModelSampleData.xaml}">
+	<UserControl.Resources>
+		<DataTemplate x:Key="busyDataTemplate">
+			<Grid>
+				<WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100"/>
+			</Grid>
+		</DataTemplate>
+		<ItemsPanelTemplate x:Key="ItemsPanelTemplate">
+			<WrapPanel IsItemsHost="True"  />
+		</ItemsPanelTemplate>
+		<DataTemplate x:Key="itemDataTemplate">
+			<Border Height="131" Width="168" BorderThickness="1" BorderBrush="#FFD7D7D7" Margin="15" >
+				<Grid Background="{x:Null}" >
+					<Grid.RowDefinitions>
+						<RowDefinition Height="15"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="25"/>
+					</Grid.RowDefinitions>
+					<Border HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch" Width="Auto" BorderThickness="0,1,0,0" BorderBrush="#FFD7D7D7">
+						<Grid Background="{x:Null}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<StackPanel Margin="5,4.081" Orientation="Vertical" d:LayoutOverrides="Height">
+								<TextBlock HorizontalAlignment="Stretch" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="0" Text="{Binding FileName}" Background="{x:Null}" Foreground="Black" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+							</StackPanel>
+							<StackPanel Grid.Column="1" Orientation="Horizontal" d:LayoutOverrides="Height">
+								<Button Content="X" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Command="{Binding DataContext.DeleteImageCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" ToolTip="删除"/>
+								<Button Content="O" HorizontalAlignment="Center" VerticalAlignment="Center" Width="20" Height="20" Command="{Binding DataContext.OpenFileCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" Margin="5,0,0,0" ToolTip="查看"/>
+							</StackPanel>
+						</Grid>
+					</Border>
+					<Image Height="Auto" Grid.Row="1" Grid.RowSpan="1" VerticalAlignment="Stretch" Source="{Binding FilePath}" Stretch="UniformToFill" ToolTip="{Binding RelativeSource.Self.Source}"/>
+					<xctk:BusyIndicator Content="BusyIndicator" VerticalAlignment="Stretch" Grid.RowSpan="23" Style="{StaticResource BusyIndicatorStyle}" BusyContentTemplate="{StaticResource busyDataTemplate}" IsBusy="{Binding IsUploading}" d:IsHidden="True"/>
+					<TextBlock HorizontalAlignment="Stretch" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="0" Text="{Binding ErrorMessage}" Background="{x:Null}" Foreground="#FFFF0505" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}"/>
+					<TextBlock HorizontalAlignment="Stretch" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="0,-0.419,0,88.581" Text="{Binding SuccessMessage}" Background="{x:Null}" Foreground="{StaticResource GreenForeground}" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" Grid.RowSpan="2"/>
+				</Grid>
+			</Border>
+		</DataTemplate>		
+	</UserControl.Resources>
+	<UserControl.DataContext>
+		<ViewModel:ApplyingForCreditViewModel/>
+	</UserControl.DataContext>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="105"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="50"/>
+		</Grid.RowDefinitions>
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="37*"/>
+				<RowDefinition Height="68*"/>
+			</Grid.RowDefinitions>
+			<StackPanel Margin="20,0,0,0" Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Center">
+				<TextBlock TextWrapping="Wrap" VerticalAlignment="Top" d:LayoutOverrides="Width"><Run Text="买票宝信用账户申请资料提交"/></TextBlock>
+				<TextBlock TextWrapping="Wrap" Text="{Binding StateMessage}" HorizontalAlignment="Left" Foreground="Green" Margin="34,0,0,0"/>
+				<TextBlock TextWrapping="Wrap" Text="{Binding ExamineMessage}" HorizontalAlignment="Left" Foreground="Red" Margin="34,0,0,0"/>
+			</StackPanel>
+			<Grid Grid.Row="1" Margin="20,0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="140"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>
+				<Rectangle Fill="#FFF7FBFE" Stroke="#FFDFE4E9" StrokeThickness="2" Grid.ColumnSpan="3" Grid.RowSpan="2"/>
+				<TextBlock HorizontalAlignment="Center" Grid.RowSpan="2" TextWrapping="Wrap" Text="温馨提示：" VerticalAlignment="Center" Margin="20.94,26.081"/>
+				<TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="2.只有提交完必须提交的文件，才能完成提交" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+				<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="1.为了获取更高的授信额度，请尽量将资料提交完整" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+				<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" TextWrapping="Wrap" Text="3.点击需上传文件，可以查看示例" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+			</Grid>
+		</Grid>
+            
+		<TabControl x:Name="tabControl" Grid.Row="1" ItemContainerStyle="{StaticResource AccountTabItem}" BorderThickness="0" SelectedIndex="{Binding CurrentIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+			<TabItem Header="身份证" Tag="Id">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="75*"/>
+						<ColumnDefinition Width="811*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="34"/>
+						<RowDefinition Height="38"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="身份认证" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,14,0,8.163" Orientation="Horizontal" Grid.Row="1">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：身份证正反两面照片" VerticalAlignment="Top" Foreground="{StaticResource GrayForeground}"/>
+						<Button Content="示图" Width="52" Style="{DynamicResource OrangeBtn}" Margin="25,0,0,0" Command="{Binding ShowSampleCommandCommand}" CommandParameter="Id"/>
+					</StackPanel>
+					<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+						<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[0]}"/>
+					</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/id.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="信用认证" Tag="Credit">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="75*"/>
+						<ColumnDefinition Width="811*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="34"/>
+						<RowDefinition Height="38"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="信用认证" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,0,0,0" Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：个人征信报告" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}"/>
+						<Button CommandParameter="credit" Content="示图" Style="{DynamicResource OrangeBtn}" Margin="25,0,79,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="40" Command="{Binding ShowSampleCommandCommand}"/>
+					</StackPanel>
+					<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+						<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[1]}"/>
+					</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/Credit.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="收入认证" Tag="Income">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="75*"/>
+						<ColumnDefinition Width="811*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="34"/>
+						<RowDefinition Height="38"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="收入证明" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,0,0,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：银行卡流水 网银截图" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}"/>
+						<Button CommandParameter="income" Content="示图" Style="{DynamicResource OrangeBtn}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="40" Command="{Binding ShowSampleCommandCommand}"/>
+					</StackPanel>
+					<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+						<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[2]}"/>
+					</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/income.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52" Margin="11.204,10,11.203,10"/>
+				</Grid>
+			</TabItem><TabItem Header="工作认证" Tag="Work">
+				<Grid Background="White">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="75*"/>
+			<ColumnDefinition Width="811*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="34"/>
+			<RowDefinition Height="38"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="工作认证" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,0,0,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：营业执照 组织机构代码 税务登记证 店铺照片 场地租赁合同 营业执照副本 组织机构代码副本 税务登记证副本" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}"/>
+						<Button CommandParameter="work" Content="示图" Style="{DynamicResource OrangeBtn}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="40" Command="{Binding ShowSampleCommandCommand}"/>
+					</StackPanel>
+		<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+			<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[3]}"/>
+		</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/work.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52" Margin="11.204,10,11.203,10"/>
+	</Grid>
+			</TabItem>
+			<TabItem Header="房产认证" Tag="House">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="75*"/>
+						<ColumnDefinition Width="811*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="34"/>
+						<RowDefinition Height="38"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="房产认证" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,0,0,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：房产证 购房合同" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}"/>
+						<Button CommandParameter="house" Content="示图" Style="{DynamicResource OrangeBtn}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="40" Command="{Binding ShowSampleCommandCommand}"/>
+					</StackPanel>
+					<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+						<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[4]}"/>
+					</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/House.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52" Margin="11.204,10,11.203,10"/>
+				</Grid>
+			</TabItem><TabItem Header="购车认证" Tag="Car">
+				<Grid Background="White">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="75*"/>
+			<ColumnDefinition Width="811*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="34"/>
+			<RowDefinition Height="38"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="购车认证" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,0,0,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：车辆行驶证 与车辆合影" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}"/>
+						<Button CommandParameter="car" Content="示图" Style="{DynamicResource OrangeBtn}" Margin="25,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="40" Command="{Binding ShowSampleCommandCommand}"/>
+					</StackPanel>
+		<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+			<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[5]}"/>
+		</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/car.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52" Margin="11.204,10,11.203,10"/>
+	</Grid>
+			</TabItem>
+			<TabItem Header="结婚认证" Tag="Marry">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="75*"/>
+						<ColumnDefinition Width="811*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="34"/>
+						<RowDefinition Height="38"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="结婚认证" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,0,0,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：结婚证书" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}"/>
+						<Button CommandParameter="marry" Content="示图" Style="{DynamicResource OrangeBtn}" Margin="25,0,728.593,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="40" Command="{Binding ShowSampleCommandCommand}"/>
+					</StackPanel>
+					<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+						<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[6]}"/>
+					</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/marry.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52" Margin="11.204,10,11.203,10"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="学历认证" Margin="-2,-2,-2,-1" Tag="Diplomas">
+				<Grid Background="White">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="75*"/>
+						<ColumnDefinition Width="811*"/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="34"/>
+						<RowDefinition Height="38"/>
+						<RowDefinition Height="*"/>
+					</Grid.RowDefinitions>
+					<TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="学历认证" VerticalAlignment="Top" Foreground="Black"/>
+					<StackPanel Grid.Column="1" Margin="11,0,0,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center">
+						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="上传文件示例：学历认证1 学历认证2" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}"/>
+						<Button CommandParameter="degree" Content="示图" Style="{DynamicResource OrangeBtn}" Margin="25,0,728.593,0" VerticalAlignment="Center" HorizontalAlignment="Center" Height="20" Width="40" Command="{Binding ShowSampleCommandCommand}"/>
+					</StackPanel>
+					<ScrollViewer Grid.ColumnSpan="2" Grid.Row="2" Margin="20" >
+						<ItemsControl ItemsPanel="{StaticResource ItemsPanelTemplate}" ItemTemplate="{StaticResource itemDataTemplate}" ItemsSource="{Binding Images[7]}"/>
+					</ScrollViewer>
+					<Image Grid.RowSpan="2" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/diplomas.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="52" Height="52" Margin="11.204,10,11.203,10"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
+		<Grid Grid.Row="2" Background="#FFF3F3F3">
+			<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Orientation="Horizontal">
+				<Button Width="95" Style="{StaticResource OkButton}" Command="{Binding UploadCommand, Mode=OneWay}">
+					<StackPanel Orientation="Horizontal">
+						<Image VerticalAlignment="Center" Source="/BPiaoBao.Client.Account;component/Image/Diplomas/upload.png" Width="18" Height="15" Margin="0,0,3,0"/>
+						<TextBlock TextWrapping="Wrap" Text="开始上传"/>
+					</StackPanel>
+				</Button>
+				<Button Content="添加文件" Width="75" Style="{StaticResource CancelButton}" Command="{Binding AddImagesCommand, Mode=OneWay}"/>
+				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Foreground="{StaticResource GrayForeground}" Margin="20,0,0,0"><Run Text="总共"/><Run Text="{Binding TotalFileCount,StringFormat={}{0}张，}"/><Run Text="{Binding TotalFileSize,StringFormat={}{0}M}" /></TextBlock>
+				<Button Content="提交审核" Width="75" Margin="15,0,0,0" Command="{Binding SubmitCommand, Mode=OneWay}"/>
+				<WPFSpark:SprocketControl Width="10" Height="10" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="13,0,0,0" Visibility="{Binding IsSubmiting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+			</StackPanel>
+		</Grid>
+		<WPFSpark:SprocketControl HorizontalAlignment="Center" Width="100" Height="100" VerticalAlignment="Center" Grid.RowSpan="2" Visibility="{Binding IsLoading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            
+	</Grid>
+</UserControl>

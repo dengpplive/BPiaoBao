@@ -1,0 +1,593 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" mc:Ignorable="d" x:Class="BPiaoBao.Client.DomesticTicket.View.ReissueWindow"
+        Title="退废改申请" Height="615" Width="868" Style="{DynamicResource CustomWindowStyle}" WindowStartupLocation="CenterOwner" d:DataContext="{d:DesignData /SampleData/ReissueViewModelSampleData.xaml}">
+    <Window.Resources>
+        <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Padding" Value="4,4,4,4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TabControlNormalBorderBrush}"/>
+            <Setter Property="Background" Value="#F9F9F9"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid ClipToBounds="true" SnapsToDevicePixels="true" KeyboardNavigation.TabNavigation="Local">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="ColumnDefinition0"/>
+                                <ColumnDefinition x:Name="ColumnDefinition1" Width="0"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+                                <RowDefinition x:Name="RowDefinition1" Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Column="0" Margin="2,2,2,0" Grid.Row="0" BorderThickness="0,1,0,0" BorderBrush="#FFDEDEDE" Background="WhiteSmoke" >
+                                <Grid>
+                                    <StackPanel Margin="0" Orientation="Horizontal" d:LayoutOverrides="Width">
+                                        <TextBlock HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="申请类型：" VerticalAlignment="Center" Margin="39,0,20,0"/>
+                                        <TabPanel x:Name="HeaderPanel" IsItemsHost="true" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1" Background="WhiteSmoke" Margin="0" Width="630"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                            <Border x:Name="ContentPanel" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.Column="0" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="TabStripPlacement" Value="Bottom">
+                                <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="1"/>
+                                <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="Auto"/>
+                                <Setter Property="Margin" TargetName="HeaderPanel" Value="2,0,2,2"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Left">
+                                <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0"/>
+                                <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="HeaderPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="ContentPanel" Value="1"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition0" Value="Auto"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition1" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                <Setter Property="Margin" TargetName="HeaderPanel" Value="2,2,0,2"/>
+                            </Trigger>
+                            <Trigger Property="TabStripPlacement" Value="Right">
+                                <Setter Property="Grid.Row" TargetName="HeaderPanel" Value="0"/>
+                                <Setter Property="Grid.Row" TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Grid.Column" TargetName="HeaderPanel" Value="1"/>
+                                <Setter Property="Grid.Column" TargetName="ContentPanel" Value="0"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition0" Value="*"/>
+                                <Setter Property="Width" TargetName="ColumnDefinition1" Value="Auto"/>
+                                <Setter Property="Height" TargetName="RowDefinition0" Value="*"/>
+                                <Setter Property="Height" TargetName="RowDefinition1" Value="0"/>
+                                <Setter Property="Margin" TargetName="HeaderPanel" Value="0,2,2,2"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="AddButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF2267AA"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF5499DC"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF1A66B0"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFDADADA"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFC1C1C1"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF666666"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="Focused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualState x:Name="Valid"/>
+                                    <VisualState x:Name="InvalidFocused"/>
+                                    <VisualState x:Name="InvalidUnfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Chrome" SnapsToDevicePixels="true" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" Background="#FF2267AA" BorderBrush="#FF2072C4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/BPiaoBao.Client.DomesticTicket;component/Image/add.png" Stretch="None" Margin="10,0,5,0"/>
+                                    <TextBlock  x:Name="textBlock" HorizontalAlignment="Left" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Text="{TemplateBinding Content}" Grid.Column="1" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="itemDataTemplate">
+            <Border BorderThickness="0,0,0,1" BorderBrush="{DynamicResource HorizontalDashedBrush}" d:DesignWidth="412.5" d:DesignHeight="213" Height="32">
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal">
+                    <CheckBox Content="{Binding Name}" VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="25,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center" Margin="0,0,0,0">
+                        <Run Text="("></Run>
+                        <Run Text="{Binding PhoneNum}"></Run>
+                        <Run Text=")"></Run>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <Style x:Key="RemoveBtn" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF2267AA"/>
+            <Setter Property="BorderBrush" Value="#FF2072C4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF5499DC"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF1A66B0"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="Focused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualState x:Name="Valid"/>
+                                    <VisualState x:Name="InvalidFocused"/>
+                                    <VisualState x:Name="InvalidUnfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" Background="#852267AA">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="#ADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="removeBtnTemplate">
+            <Grid>
+                <TextBlock TextWrapping="Wrap" Text="X" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="OpenDataTemplate">
+            <Grid>
+                <TextBlock TextWrapping="Wrap" Text="O" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="startTimeTemplate">
+            <Grid>
+                <xctk:DateTimeUpDown  Value="{Binding StartDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Format="Custom" FormatString="yyyy-MM-dd HH:mm"  x:Name="DtDateTimeUpDown" ShowButtonSpinner="False"/>
+                <!--<xctk:DateTimePicker  Style="{DynamicResource DateTimePickerStyle1}" ShowButtonSpinner="False" />-->
+                <!--VerticalAlignment="Center" HorizontalAlignment="Left" Format="Custom" FormatString="yyyy-MM-dd HH:mm"-->
+                <!--Value="{Binding StartDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="toTimeTemplate">
+            <Grid>
+                <xctk:DateTimeUpDown  Value="{Binding ToDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Format="Custom" FormatString="yyyy-MM-dd HH:mm"  x:Name="DtDateTimeUpDown" ShowButtonSpinner="False"/>
+
+                <!--<xctk:DateTimePicker Value="{Binding ToDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Style="{DynamicResource DateTimePickerStyle1}" ShowButtonSpinner="False" />-->
+                <!--VerticalAlignment="Center" HorizontalAlignment="Left" Format="Custom" FormatString="yyyy-MM-dd HH:mm"-->
+                <!--Value="{Binding StartDateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" -->
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="flightNumberDataTemplate">
+            <TextBox  IsReadOnly="{Binding IsChecked, ElementName=radionBtnReissue}" Text="{Binding FlightNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </DataTemplate>
+        <DataTemplate x:Key="seatDataTemplate">
+            <TextBox  IsReadOnly="{Binding IsChecked, ElementName=radionBtnReissue}" Text="{Binding Seat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        </DataTemplate>
+        <Style x:Key="mustFillTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Text" Value="*"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <DataTemplate x:Key="BabyInformationItemsItemTemplate">
+            <Border Background="Transparent" BorderBrush="#FFE1E1E1" BorderThickness="0,1,0,0" Margin="0,0,0,0" >
+                <StackPanel Height="25" Margin="0,0" Orientation="Horizontal"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="婴儿姓名：" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="Black"/>
+                    <TextBox Width="90" Text="{Binding BabyName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" MaxWidth="180" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Style="{DynamicResource mustFillTextBlockStyle}" Width="5.46" />
+                    <TextBlock Text="性别：" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="Black"/>
+                    <ComboBox Height="20" ItemsSource="{Binding DataContext.AllSexTypes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" SelectedValue="{Binding SexType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="50"  Margin="3,1,0,1" DisplayMemberPath="Value" SelectedValuePath="Key" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Style="{DynamicResource mustFillTextBlockStyle}" Width="5.46" />
+                    <TextBlock Text="出生日期：" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="Black"/>
+                    <DatePicker Width="100" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedDate="{Binding BornDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayDateStart="{Binding DisplayDateStart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  DisplayDateEnd="{Binding DisplayDateEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{DynamicResource mustFillTextBlockStyle}" Width="5.46" />
+                    <!--<Button Content="添加" Style="{DynamicResource AddButtonStyle}"  VerticalContentAlignment="Center" HorizontalAlignment="Center" Command="{Binding DataContext.AddCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Width="60"  Height="20" />-->
+                    <Button Content="移除" Style="{DynamicResource CloseButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="6,0,0,0" Command="{Binding DataContext.RemoveCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Border}}}" Width="60"  Height="20" />
+                </StackPanel>
+                
+            </Border>
+        </DataTemplate>
+        <Style x:Key="DateTimePickerStyle1" TargetType="{x:Type xctk:DateTimePicker}">
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="HorizontalContentAlignment" Value="Right"/>
+            <Setter Property="TextAlignment" Value="Right"/>
+            <Setter Property="TimeWatermarkTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" Foreground="Gray" Focusable="False" Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="WatermarkTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <ContentControl Content="{Binding}" Foreground="Gray" Focusable="False" Margin="0,0,3,0"/>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type xctk:DateTimePicker}">
+                        <Border>
+                            <Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <xctk:ButtonSpinner x:Name="PART_Spinner" AllowSpin="{TemplateBinding AllowSpin}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsTabStop="False" ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}">
+                                        <xctk:WatermarkTextBox x:Name="PART_TextBox" AcceptsReturn="False" BorderThickness="0" Background="Transparent" Foreground="{TemplateBinding Foreground}" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" MinWidth="20" Padding="0" TextAlignment="{TemplateBinding TextAlignment}" TextWrapping="NoWrap" Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="{TemplateBinding TabIndex}" WatermarkTemplate="{TemplateBinding WatermarkTemplate}" Watermark="{TemplateBinding Watermark}"/>
+                                    </xctk:ButtonSpinner>
+                                    <ToggleButton x:Name="_calendarToggleButton" Background="White" Grid.Column="1" Focusable="False" IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed">
+                                        <ToggleButton.IsHitTestVisible>
+                                            <Binding Path="IsOpen" RelativeSource="{RelativeSource TemplatedParent}">
+                                                <Binding.Converter>
+                                                    <xctk:InverseBoolConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </ToggleButton.IsHitTestVisible>
+                                        <ToggleButton.IsEnabled>
+                                            <Binding Path="IsReadOnly" RelativeSource="{RelativeSource TemplatedParent}">
+                                                <Binding.Converter>
+                                                    <xctk:InverseBoolConverter/>
+                                                </Binding.Converter>
+                                            </Binding>
+                                        </ToggleButton.IsEnabled>
+                                        <ToggleButton.Style>
+                                            <Style TargetType="{x:Type ToggleButton}">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type ToggleButton}">
+                                                            <Grid SnapsToDevicePixels="True">
+                                                                <xctk:ButtonChrome x:Name="ToggleButtonChrome" CornerRadius="0,2.75,2.75,0" InnerCornerRadius="0,1.75,1.75,0" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}" RenderChecked="{Binding IsOpen, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xctk:DateTimePicker}}}" RenderEnabled="{Binding IsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorLevel=1, AncestorType={x:Type xctk:DateTimePicker}}}">
+                                                                    <Grid>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="*"/>
+                                                                            <ColumnDefinition Width="Auto"/>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" HorizontalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Stretch"/>
+                                                                        <Grid x:Name="arrowGlyph" Grid.Column="1" IsHitTestVisible="False" Margin="5">
+                                                                            <Path x:Name="Arrow" Data="M0,1C0,1 0,0 0,0 0,0 3,0 3,0 3,0 3,1 3,1 3,1 4,1 4,1 4,1 4,0 4,0 4,0 7,0 7,0 7,0 7,1 7,1 7,1 6,1 6,1 6,1 6,2 6,2 6,2 5,2 5,2 5,2 5,3 5,3 5,3 4,3 4,3 4,3 4,4 4,4 4,4 3,4 3,4 3,4 3,3 3,3 3,3 2,3 2,3 2,3 2,2 2,2 2,2 1,2 1,2 1,2 1,1 1,1 1,1 0,1 0,1z" Fill="Black" Height="4" Width="7"/>
+                                                                        </Grid>
+                                                                    </Grid>
+                                                                </xctk:ButtonChrome>
+                                                            </Grid>
+                                                            <ControlTemplate.Triggers>
+                                                                <Trigger Property="IsEnabled" Value="False">
+                                                                    <Setter Property="Fill" TargetName="Arrow" Value="#FFAFAFAF"/>
+                                                                </Trigger>
+                                                            </ControlTemplate.Triggers>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+                                    </ToggleButton>
+                                </Grid>
+                                <Popup x:Name="PART_Popup" IsOpen="{Binding IsChecked, ElementName=_calendarToggleButton}" StaysOpen="False">
+                                    <Border BorderThickness="1" Padding="3">
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                                                <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                                                <GradientStop Color="#FF718597" Offset="0.375"/>
+                                                <GradientStop Color="#FF617584" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                        <Border.Background>
+                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                <GradientStop Color="White" Offset="0"/>
+                                                <GradientStop Color="#FFE8EBED" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <StackPanel>
+                                            <Calendar x:Name="PART_Calendar" BorderThickness="0" DisplayDate="2014-01-21"/>
+                                            <xctk:TimePicker x:Name="PART_TimeUpDown" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" Foreground="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" FormatString="{TemplateBinding TimeFormatString}" Format="{TemplateBinding TimeFormat}" Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}" WatermarkTemplate="{TemplateBinding TimeWatermarkTemplate}" Watermark="{TemplateBinding TimeWatermark}"/>
+                                        </StackPanel>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+            <WrapPanel IsItemsHost="True"/>
+        </ItemsPanelTemplate>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <ei:DataTrigger Binding="{Binding IsSubmitted}" Value="True">
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="37"/>
+            <RowDefinition Height="*" MaxHeight="126"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0" Background="WhiteSmoke">
+            <StackPanel Orientation="Horizontal" Margin="25,0,0,0">
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left"><Run FontSize="14.667" Text="退废改申请 "/> </TextBlock>
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="{Binding HasRefund, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <Run Foreground="#FF666666" Text="（"/><Run Foreground="#FFFD7F68" Text="温馨提示"/><Run Text="："/>    
+                <Run Text="非自愿退票申请不能享受极速退服务，极速退服务处理时间为09:00-21:00" Foreground="#FF666666" /><Run Foreground="#FF666666" Text="）"/>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="35,18" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock TextWrapping="Wrap" Text="选择乘机人：" d:LayoutOverrides="Width, Height" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
+            <ScrollViewer Margin="0" Grid.Column="1" VerticalScrollBarVisibility="Auto" >
+                <ItemsControl ItemsSource="{Binding Passenger}" ItemTemplate="{DynamicResource itemDataTemplate}" ItemsPanel="{DynamicResource ItemsPanelTemplate1}" VerticalAlignment="Center"/>
+            </ScrollViewer>
+        </Grid>
+        <Grid Margin="0" Grid.Row="2">
+            <TabControl x:Name="tabControl" Style="{DynamicResource TabControlStyle}" ItemContainerStyle="{DynamicResource AccountTabItem}" BorderThickness="0">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding SelectModeCommand}" CommandParameter="{Binding SelectedItem.Tag, ElementName=tabControl}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <TabItem Header="退票申请" Tag="RequestBounceOrder">
+                    <Grid Background="White">
+                        <Grid Margin="59,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.239*"/>
+                                <ColumnDefinition Width="0.761*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="是否自愿：" d:LayoutOverrides="Width, Height" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock TextWrapping="Wrap" Text="申请理由：" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1"/>
+                            <TextBlock TextWrapping="Wrap" Text="申请备注：" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="2" Margin="0,3,0,0"/>
+                            <TextBlock TextWrapping="Wrap" Text="上传附件：" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <RadioButton Content="自愿申请" IsChecked="{Binding IsVoluntary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <RadioButton Content="非自愿申请" Margin="20,0,0,0" IsChecked="True"/>
+                            </StackPanel>
+                            <ComboBox Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" BorderBrush="#FF999999" BorderThickness="1" ItemsSource="{Binding BounceReasons}" SelectedValue="{Binding RequestBounceOrder.Reason, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" BorderThickness="1" Margin="0,0,79,50" Text="{Binding RequestBounceOrder.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="100" Grid.RowSpan="2"/>
+                            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                                <Grid Margin="0,10" Width="200" Visibility="{Binding HasFile, Converter={StaticResource BooleanToVisibilityConverter}}" Cursor="Hand">
+                                    <TextBox IsReadOnly="True" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" Text="{Binding CurrentImageUri}" Foreground="Black" VerticalAlignment="Center"/>
+                                    <Button Content="X" Margin="0" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RemoveBtn}" ContentTemplate="{DynamicResource removeBtnTemplate}" Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding RemoveFileCommand}" ToolTip="删除"/>
+                                    <Button Content="O" Margin="0,0,15,0" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RemoveBtn}" ContentTemplate="{DynamicResource OpenDataTemplate}" Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding OpenFileCommand}" ToolTip="打开"/>
+                                </Grid>
+                                <Button Content="浏览" Width="71" Height="28" Style="{DynamicResource CancelButton}" Command="{Binding SelectFileCommand}" Margin="10,0,0,0"/>
+                                <Button Content="确认上传" Height="28" Width="98" Margin="11,0,0,0" Style="{DynamicResource CancelButton}" Command="{Binding UploadCommand}"/>
+                                <WPFSpark:SprocketControl Width="10" Height="10" Margin="15,20,0,20" Visibility="{Binding IsUploading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="废票申请" Tag="RequestAnnulOrder">
+                    <Grid Background="White">
+                        <Grid Margin="59,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.239*"/>
+                                <ColumnDefinition Width="0.761*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="0"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="申请理由：" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1"/>
+                            <TextBlock TextWrapping="Wrap" Text="申请备注：" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="2" Margin="0,3,0,0"/>
+                            <TextBlock TextWrapping="Wrap" Text="上传附件：" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3"/>
+                            <ComboBox Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" BorderBrush="#FF999999" BorderThickness="1" ItemsSource="{Binding AnnulReasons}" SelectedValue="{Binding RequestAnnulOrder.Reason, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="2" TextWrapping="Wrap" d:LayoutOverrides="Height" BorderThickness="1" Margin="0,0,79,0" Text="{Binding RequestAnnulOrder.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="100"/>
+                            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                                <Grid Margin="0,10" Visibility="{Binding HasFile, Converter={StaticResource BooleanToVisibilityConverter}}" Cursor="Hand" Width="200">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                            <i:InvokeCommandAction Command="{Binding OpenFileCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                    <TextBox IsReadOnly="True" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" Text="{Binding CurrentImageUri}" Foreground="Black" VerticalAlignment="Center"/>
+                                    <Button Content="X" Margin="0" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RemoveBtn}" ContentTemplate="{DynamicResource removeBtnTemplate}" Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding RemoveFileCommand}" ToolTip="删除"/>
+                                    <Button Content="O" Margin="0,0,15,0" Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Top" Style="{DynamicResource RemoveBtn}" ContentTemplate="{DynamicResource OpenDataTemplate}" Background="{x:Null}" BorderBrush="{x:Null}" Command="{Binding OpenFileCommand}" ToolTip="打开"/>
+                                </Grid>
+                                <Button Content="浏览" Width="71" Height="28" Style="{DynamicResource CancelButton}" Command="{Binding SelectFileCommand}" Margin="10,0,0,0"/>
+                                <Button Content="确认上传" Height="28" Width="98" Margin="11,0,0,0" Style="{DynamicResource CancelButton}" Command="{Binding UploadCommand}"/>
+                                <WPFSpark:SprocketControl Width="10" Height="10" Margin="15,0,0,0" Visibility="{Binding IsUploading, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="改签申请" Tag="RequestChangeOrder">
+                    <Grid Background="White">
+                        <Grid Margin="59,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.239*"/>
+                                <ColumnDefinition Width="0.761*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="80"/>
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="改签类型：" d:LayoutOverrides="Width, Height" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock TextWrapping="Wrap" Text="申请理由：" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2"/>
+                            <TextBlock TextWrapping="Wrap" Text="申请备注：" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="3" Margin="0,3,0,0"/>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                <RadioButton x:Name="radionBtnReissue" Content="同等舱位改签" IsChecked="{Binding IsSameSpaceChange, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                <RadioButton Content="升舱并改期" Margin="20,0,0,0" IsChecked="True"/>
+                            </StackPanel>
+                            <ComboBox Grid.Column="1" Grid.Row="2" d:LayoutOverrides="Height" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" BorderBrush="#FF999999" BorderThickness="1" ItemsSource="{Binding ChangeReasons}" SelectedValue="{Binding RequestChangeOrder.Reason, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" d:LayoutOverrides="Height" BorderThickness="1" Margin="0,0,153,0" Text="{Binding RequestChangeOrder.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="100"/>
+                            <ScrollViewer Grid.ColumnSpan="2" Margin="0" Grid.Row="1" d:LayoutOverrides="Height" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" >
+                                <DataGrid ItemsSource="{Binding ReissueSkyWays}" IsReadOnly="False" CanUserAddRows="False" CanUserDeleteRows="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding FromCity}" Header="起飞城市" Width="Auto" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding ToCity}" Header="到达城市" Width="Auto"  ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                                        <DataGridTemplateColumn IsReadOnly="True" Header="起飞时间" Width="Auto" CellTemplate="{StaticResource startTimeTemplate}" />
+                                        <DataGridTemplateColumn IsReadOnly="True" Header="到达时间" Width="Auto" CellTemplate="{StaticResource toTimeTemplate}" />
+                                        <!--<DataGridTextColumn IsReadOnly="True" Binding="{Binding ToDateTime, StringFormat=yyyy-MM-dd HH:mm}" Header="到达时间" Width="Auto"  ElementStyle="{StaticResource WrappedCenteredTextBlock}" />-->
+                                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Carrier}" Header="航空公司" Width="Auto" ElementStyle="{StaticResource WrappedCenteredTextBlock}"  />
+                                        <DataGridTemplateColumn Header="航班号" Width="Auto" CellTemplate="{StaticResource flightNumberDataTemplate}" />
+                                        <DataGridTemplateColumn Header="舱位" Width="Auto" CellTemplate="{StaticResource seatDataTemplate}" />
+                                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Discount}" Header="折扣" Width="Auto" ElementStyle="{StaticResource WrappedCenteredTextBlock}"  />
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </ScrollViewer>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="婴儿申请" Tag="ApplyBabyOrder">
+                    <Grid Background="White">
+                        <Grid Margin="59,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.239*"/>
+                                <ColumnDefinition Width="0.761*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="申请备注：" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0" Margin="0,3,0,0"/>
+                            <TextBox Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" d:LayoutOverrides="Height" BorderThickness="1" Margin="0,0,140,0" Text="{Binding ApplyBabyOrder.Remark, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="100"/>
+                            <ItemsControl Margin="50,16,128,10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemTemplate="{StaticResource BabyInformationItemsItemTemplate}" Style="{DynamicResource ItemsControlStyle1}"  ItemsSource="{Binding BabyInformationItemsItems}"  >
+                                <ItemsControl.Resources>
+                                    <Style x:Key="ItemsControlStyle1" TargetType="{x:Type ItemsControl}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type ItemsControl}">
+                                                    <ScrollViewer x:Name="ScrollViewer" >
+                                                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                    </ScrollViewer>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ItemsControl.Resources>
+                            </ItemsControl>
+                            <Button Grid.Row="0" Content="添加婴儿" Style="{StaticResource AddButtonStyle}" Margin="30,40,0,0"  VerticalContentAlignment="Center" HorizontalAlignment="Center" Command="{Binding DataContext.AddCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" Width="90"  Height="20" />
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="其他" Tag="Modify">
+                    <Grid Background="White">
+                        <Grid Margin="59,15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.239*"/>
+                                <ColumnDefinition Width="0.761*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+
+                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock TextWrapping="Wrap" Text="申请理由：" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock TextWrapping="Wrap" Text="申请备注：" Foreground="Black" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Margin="0,3,0,0"/>
+                            <ComboBox Grid.Column="1" d:LayoutOverrides="Height" VerticalAlignment="Center" HorizontalAlignment="Left" Width="300" BorderBrush="#FF999999" BorderThickness="1" ItemsSource="{Binding ModifyReasons}" SelectedValue="{Binding RequestModifyOrder.Reason, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" d:LayoutOverrides="Height" BorderThickness="1" Margin="0,0,79,0" Text="{Binding RequestModifyOrder.Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MaxLength="100"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+        <Grid Margin="0" Grid.Row="3" Background="WhiteSmoke">
+            <Button Content="提交申请" HorizontalAlignment="Center" VerticalAlignment="Center" Width="93" Height="27" Style="{DynamicResource OkButton}" Command="{Binding SubmitCommand}"/>
+        </Grid>
+
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Margin="0" Grid.RowSpan="4" VerticalAlignment="Center" Width="100" Height="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+    </Grid>
+</Window>

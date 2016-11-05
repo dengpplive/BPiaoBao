@@ -1,0 +1,207 @@
+2014-11-03 10:06:02,413 - 联系人手机号码不正确：004
+System.Exception: 联系人手机号码不正确：004
+   在 ProjectHelper.Utils.Guard.CheckMobilePhoneNum(String num, String msg) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Utils\Guard.cs:行号 33
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.Check() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 840
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.ExecuteOkCommandCommand() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 560
+2014-11-03 14:31:41,671 - 您查询的航班已售完
+System.ServiceModel.FaultException: 您查询的航班已售完
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryOnewayFlight(String formCityCode, String toCityCode, DateTime takeDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1329
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 14:32:29,430 - 您查询的航班已售完
+System.ServiceModel.FaultException: 您查询的航班已售完
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryOnewayFlight(String formCityCode, String toCityCode, DateTime takeDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1329
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 14:47:00,534 - 您查询的航班已售完
+System.ServiceModel.FaultException: 您查询的航班已售完
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryConnwayFlight(String formCityCode, String midCityCode, String toCityCode, DateTime takeDate, DateTime midDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1344
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 14:51:06,253 - 您查询的航班已售完
+System.ServiceModel.FaultException: 您查询的航班已售完
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryConnwayFlight(String formCityCode, String midCityCode, String toCityCode, DateTime takeDate, DateTime midDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1344
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 14:56:18,529 - 您查询的航班已售完
+System.ServiceModel.FaultException: 您查询的航班已售完
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryConnwayFlight(String formCityCode, String midCityCode, String toCityCode, DateTime takeDate, DateTime midDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1344
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 14:57:44,726 - 您查询的航班已售完
+System.ServiceModel.FaultException: 您查询的航班已售完
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryConnwayFlight(String formCityCode, String midCityCode, String toCityCode, DateTime takeDate, DateTime midDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1344
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 14:58:39,129 - 您查询的航班已售完
+System.ServiceModel.FaultException: 您查询的航班已售完
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IFlightDestineService.QueryConnwayFlight(String formCityCode, String midCityCode, String toCityCode, DateTime takeDate, DateTime midDate, Boolean IsShare, String carrayCode)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingQueryViewModel.<QueryFlightInfoResult>b__35(IFlightDestineService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingQueryViewModel.cs:行号 1344
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 15:07:07,409 - 联系人手机号码不正确：004
+System.Exception: 联系人手机号码不正确：004
+   在 ProjectHelper.Utils.Guard.CheckMobilePhoneNum(String num, String msg) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Utils\Guard.cs:行号 33
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.Check() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 840
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.ExecuteOkCommandCommand() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 560
+2014-11-03 15:28:58,181 - 与航信连接失败，请重新预订！错误信息:CHECK CONNECTION
+System.ServiceModel.FaultException: 与航信连接失败，请重新预订！错误信息:CHECK CONNECTION
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass26.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 642
+2014-11-03 15:32:07,292 - 与航信连接失败，请重新预订！错误信息:CHECK CONNECTION
+System.ServiceModel.FaultException: 与航信连接失败，请重新预订！错误信息:CHECK CONNECTION
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass26.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 642
+2014-11-03 15:55:42,286 - 该订单状态已发生变化，不能继续操作
+System.ServiceModel.FaultException: 该订单状态已发生变化，不能继续操作
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.ChoosePolicy(PolicyDto policy, String orderId)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.ChoosePolicyViewModel.<>c__DisplayClass5.<>c__DisplayClass7.<ExecuteChoosePolicyCommand>b__3(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\ChoosePolicyViewModel.cs:行号 153
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 15:58:37,471 - 发生系统异常，请联系客服
+System.ServiceModel.FaultException: 发生系统异常，请联系客服
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.ChoosePolicy(PolicyDto policy, String orderId)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.ChoosePolicyViewModel.<>c__DisplayClass5.<>c__DisplayClass7.<ExecuteChoosePolicyCommand>b__3(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\ChoosePolicyViewModel.cs:行号 153
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 15:59:02,918 - 该订单状态已发生变化，不能继续操作
+System.ServiceModel.FaultException: 该订单状态已发生变化，不能继续操作
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.ChoosePolicy(PolicyDto policy, String orderId)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.ChoosePolicyViewModel.<>c__DisplayClass5.<>c__DisplayClass7.<ExecuteChoosePolicyCommand>b__3(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\ChoosePolicyViewModel.cs:行号 153
+   在 BPiaoBao.Client.UIExt.CommunicateManager.Invoke[T](Action`1 act, Action`1 error) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Communicate\CommunicateManager.cs:行号 55
+2014-11-03 16:02:20,431 - 成人编码JX80LG 没有P到价格信息！错误信息:没有符合条件的运价, 请使用手工处理  
+System.ServiceModel.FaultException: 成人编码JX80LG 没有P到价格信息！错误信息:没有符合条件的运价, 请使用手工处理  
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass26.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 642
+2014-11-03 16:31:21,179 - 联系人手机号码不正确：004
+System.Exception: 联系人手机号码不正确：004
+   在 ProjectHelper.Utils.Guard.CheckMobilePhoneNum(String num, String msg) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.UIExt\Utils\Guard.cs:行号 33
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.Check() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 840
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.ExecuteOkCommandCommand() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 560

@@ -1,0 +1,379 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <div>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: openRuleClick">新增扣点组</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" data-bind="click: $root.editClick">更新</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-enable" plain="true" data-bind="click: $root.getDistribution">分配商户</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-filter" plain="true" data-bind="click: $root.showDetail">查看详情</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-delete" plain="true" data-bind="click: $root.deleteClick">删除</a>
+            </div>
+            <div style="margin: 10px;">
+                <div class="m_search">扣点组名称：<input type="text" data-bind="value: $root.searchForm.name" class="inputStyle" /></div>
+               <div class="m_search"><a href="#" class="easyui-linkbutton" iconcls="icon-search" data-bind="click: $root.searchClick" style="height: 22px; line-height: 22px;">查询</a></div>
+            </div>
+            <div class="both"></div>
+        </div>
+        <table id="MainTable" data-bind="datagrid: grid" title="扣点组管理">
+            <thead>
+                <tr>
+                    <th data-options="field:'Name',width:100">扣点组名称</th>
+                    <th data-options="field:'Description',width:150">描述</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@Html.Partial("Distribution")
+@Html.Partial("AddDetail")
+@Html.Partial("AddRule")
+@section scripts{
+    <script type="text/javascript" src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        var BuyerIndexVM = CC.Create(BaseVM, function (data) {
+            this.editForm = ko.mapping.fromJS(data.editForm);
+            this.urls = data.urls;
+            //delete this.editForm.__ko_mapping__;
+            this.ajax({
+                url: data.urls.getair,
+                dataType: 'json',
+                type: 'get'
+            }, function (response, status) {
+                var $this = this;
+                $.each(response, function () {
+                    $this.allAirCode.push(this);
+                });
+            })
+            this.GetLabel(data.label != null ? data.label.split('|') : []);
+            this.ruleDetail.DeductionTypeDescription = ko.computed(function () {
+                switch (this.ruleDetail.DeductionType()) {
+                    case "Local":
+                        return "本地";
+                    case "Interface":
+                        return "接口";
+                    case "Share":
+                        return "共享";
+                }
+            }, this);
+        }, {
+            identity: 1,
+            allAirCode: ko.observableArray([{ AirCode: 'ALL', AirName: 'ALL-所有航空公司' }]),
+            distribution: {
+                ID: ko.observable(),
+                Name: ko.observable(),
+                Description: ko.observable(),
+                Buyers: ko.observableArray([])
+            },
+            GetDatePart: function (obj) {
+                return obj.split(' ')[0];
+            },
+            GetLabel: ko.observableArray(),
+            QueryDistributionForm: {
+                Label: ko.observable(),
+                Code: ko.observable(),
+                StartTime: ko.observable(),
+                EndTime: ko.observable()
+            },
+            DistributionList: ko.observableArray(),
+            UnSelectedDistribution: ko.observableArray(),
+            QueryStartIndex: ko.observable(0),
+            QueryEndIndex: ko.observable(10),
+            QueryDistributionClick: function () {
+                var $this = this;
+                this.UnSelectedDistribution.removeAll();
+                this.UnSelectedDistribution(ko.utils.arrayFilter(this.DistributionList(), function (item) {
+                    var b = true;
+                    if ($this.QueryDistributionForm.Code() != undefined && $this.QueryDistributionForm.Code() != '' && b) {
+                        b = item.Code == $this.QueryDistributionForm.Code();
+                    }
+                    if ($this.QueryDistributionForm.Label() != undefined && $this.QueryDistributionForm.Label() != '' && b) {
+                        b = item.Label != null ? item.Label.indexOf($this.QueryDistributionForm.Label()) > -1 : false;
+                    }
+                    if ($this.QueryDistributionForm.StartTime() != undefined && $this.QueryDistributionForm.StartTime() != '' && b) {
+                        b = Date.parse(item.CreateTime) >= Date.parse($this.QueryDistributionForm.StartTime());
+                    }
+                    if ($this.QueryDistributionForm.EndTime() != undefined && $this.QueryDistributionForm.EndTime() != '' && b) {
+                        b = Date.parse(item.CreateTime) <= Date.parse($this.QueryDistributionForm.EndTime());
+                    }
+                    return b;
+                }));
+                $('#pagination').pagination({
+                    total: this.UnSelectedDistribution().length,
+                    onSelectPage: function (pageNumber, pageSize) {
+                        $this.QueryStartIndex((pageNumber - 1) * pageSize).QueryEndIndex(pageNumber * pageSize);
+                    }
+                });
+                $.parser.parse($('#pagination'));
+            },
+            editForm: null,
+            ruleDetail: {
+                ID: ko.observable(0),
+                CarrCode: ko.observable(''),
+                DeductionType: ko.observable('Local'),
+                StartTime: ko.observable(''),
+                EndTime: ko.observable(''),
+                AdjustDetails: ko.observableArray([])
+            },
+            getDistribution: function () {
+                var $this = this;
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    this.alert('请选择扣点组行');
+                    return;
+                }
+                $this.distribution.ID(row["ID"]).Name(row["Name"]).Description(row["Description"]).Buyers.removeAll();
+                $this.DistributionList.removeAll();
+                $this.UnSelectedDistribution.removeAll();
+                this.ajax({
+                    url: this.urls.dislist,
+                    type: 'POST',
+                    dataType: 'json'
+                }, function (response, status) {
+                    $.each(response, function (v, n) {
+                        var obj = {
+                            Code: n.Code,
+                            Name: n.Name,
+                            DeductionGroupName: n.DeductionGroupName,
+                            Checked: ko.observable(n.DeductionGroupID == row["ID"]),
+                            TempGroupID: n.DeductionGroupID,
+                            CreateTime: n.CreateTime,
+                            Label: n.Label
+                        };
+                        obj.DeductionGroupID = ko.computed(function () {
+                            return obj.Checked() ? $this.distribution.ID() : (obj.TempGroupID == $this.distribution.ID() ? '' : obj.TempGroupID);
+                        })
+                        $this.DistributionList.push(obj);
+                    })
+                    $('#DistributionDialog').dialog('open');
+                })
+            },
+            DistributionClick: function () {
+                $('#DistributionDialog').mask('正在提交保存数据...');
+                var tempArrayFilter = ko.utils.arrayFilter(this.DistributionList(), function (item) {
+                    return item.TempGroupID != item.DeductionGroupID();
+                });
+                var $this = this;
+                this.ajax({
+                    url: this.urls.distribution,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(ko.toJS(
+                       ko.utils.arrayMap(tempArrayFilter, function (mapItem) {
+                           return {
+                               Code: mapItem.Code,
+                               DeductionGroupID: mapItem.DeductionGroupID()
+                           };
+                       })))
+                }, function () {
+                    $('#DistributionDialog').unmask();
+                    $('#DistributionDialog').dialog('close');
+                    $this.grid.datagrid('reload');
+                }, function () {
+                    $('#DistributionDialog').unmask();
+                });
+            },
+            addRule: function () {
+                var currentAdd = {
+                    ID: ko.observable(0),
+                    StartPoint: ko.observable(''),
+                    EndPoint: ko.observable(''),
+                    AdjustType: ko.observable('Lrish'),
+                    Point: ko.observable('')
+                };
+                currentAdd.AdjustTypeDescription = ko.computed(function () {
+                    switch (currentAdd.AdjustType()) {
+                        case "Lrish":
+                            return "扣点";
+                        case "Leave":
+                            return "留点";
+                        case "Compensation":
+                            return "补点";
+
+                    }
+                });
+                this.ruleDetail.AdjustDetails.push(currentAdd);
+            },
+            addClick: function () {
+                if (this.editForm.Name() == null || this.editForm.Name() == '') {
+                    this.alert('请输入扣点组名称!');
+                    return;
+                }
+                if (this.editForm.Description() == null || this.editForm.Description() == '') {
+                    this.alert('请输入扣点组描述');
+                    return;
+                }
+                $('#AddRuleDialog').mask('正在保存数据...');
+                var $this = this;
+                this.ajax({
+                    url: this.urls.add,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(ko.toJS(this.editForm))
+                }, function () {
+                    $('#AddRuleDialog').unmask();
+                    $('#AddRuleDialog').dialog('close');
+                    $this.editForm.ID(0).Name('').Description('').DeductionRules.removeAll();
+                    $this.clearRule();
+                    $this.grid.datagrid('reload');
+                }, function () {
+                    $('#AddRuleDialog').unmask();
+                })
+            },
+            closeRule: function () {
+                this.editForm.ID(0).Name('').Description('').DeductionRules.removeAll();
+                $('#AddRuleDialog').dialog('close')
+            },
+            closeDetail: function () {
+                this.clearRule();
+                $('#AddDetailDialog').dialog('close');
+            },
+            DetailSelected: ko.observableArray([]),
+            detail: ko.observable(false),
+            showDetail: function () {
+                this.detail(true);
+                this.editfun();
+                var $this = this;
+                $this.DetailSelected.removeAll();
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    return;
+                }
+                this.ajax({
+                    url: this.urls.getdistribution,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: row["ID"] }
+                }, function (response, status) {
+                    $.each(response, function (v, n) {
+                        $this.DetailSelected.push(n);
+                    })
+                })
+            },
+            editClick: function () {
+                this.detail(false);
+                this.editfun();
+            },
+            openRuleClick: function () {
+                this.detail(false);
+                this.editForm.ID(0);
+                $('#AddRuleDialog').dialog('open');
+            },
+            editfun: function () {
+                var $this = this;
+                $this.clearRule();
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    this.alert('请选择列表行');
+                    return;
+                }
+                this.ajax({
+                    url: this.urls.editinfo,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: row["ID"] }
+                }, function (response, status) {
+                    ko.mapping.fromJS(response, $this.editForm);
+                    $('#AddRuleDialog').dialog('open');
+                })
+            },
+            openClick: function () {
+                this.ruleDetail.ID(this.identity).DeductionType('Local');
+                this.identity++;
+                $('#AddDetailDialog').dialog('open');
+            },
+            saveDetail: function () {
+                var obj = $.extend(true, {}, ko.toJS(this.ruleDetail));
+                var isadd = true;
+                var $this = this;
+                $.each($this.editForm.DeductionRules(), function (vi, vn) {
+                    if (vn.ID() == obj.ID) {
+                        $this.editForm.DeductionRules.remove(this);
+                        var m = ko.mapping.fromJS(obj);
+                        delete m.__ko_mapping__;
+                        $this.editForm.DeductionRules.push(m);
+                        isadd = false;
+                        return false;
+                    }
+                })
+                if (isadd) {
+                    var tem = ko.mapping.fromJS(obj);
+                    delete tem.__ko_mapping__;
+                    this.editForm.DeductionRules.push(tem);
+                }
+                this.clearRule();
+                $('#AddDetailDialog').dialog('close');
+            },
+            clearRule: function () {
+                this.ruleDetail.ID(0)
+                    .CarrCode('')
+                    .DeductionType('')
+                    .StartTime('')
+                    .EndTime('')
+                    .AdjustDetails.removeAll()
+            },
+            deleteClick: function () {
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    this.alert('请选择要删除的行');
+                    return;
+                }
+                var $this = this;
+                this.confirm('确定删除吗?', function () {
+                    $this.ajax({
+                        url: $this.urls.deleteurl,
+                        type: 'POST',
+                        data: { id: row["ID"] }
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                    })
+                })
+            },
+            CancelDistribution: function () {
+
+                $('#DistributionDialog').dialog('close');
+            }
+        });
+        var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+        vm.itemdeleteClick = function () {
+            vm.editForm.DeductionRules.remove(this);
+        }
+        vm.itemeditClick = function () {
+            vm.ruleDetail.ID(this.ID())
+                .CarrCode(this.CarrCode())
+                .DeductionType(this.DeductionType())
+                .StartTime(this.StartTime())
+                .EndTime(this.EndTime());
+            vm.ruleDetail.AdjustDetails.removeAll();
+
+            $.each(this.AdjustDetails(), function (v, n) {
+                var $this = this;
+                n.AdjustTypeDescription = ko.computed(function () {
+                    switch ($this.AdjustType()) {
+                        case "Lrish":
+                            return "扣点";
+                        case "Leave":
+                            return "留点";
+                        case "Compensation":
+                            return "补点";
+                    }
+                });
+                vm.ruleDetail.AdjustDetails.push(n);
+            });
+            $("#AddDetailDialog").dialog('open');
+        }
+        vm.SelectedDistribution = ko.computed(function () {
+            return ko.utils.arrayFilter(this.DistributionList(), function (item) {
+                return item.Checked() == true;
+            });
+        }, vm),
+        vm.removeRule = function () {
+            vm.ruleDetail.AdjustDetails.remove(this);
+        }
+        ko.applyBindings(vm);
+    </script>
+}

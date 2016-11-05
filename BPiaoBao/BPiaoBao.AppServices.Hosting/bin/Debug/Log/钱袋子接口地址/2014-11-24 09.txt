@@ -1,0 +1,4 @@
+时间:2014-11-24 09:36:30.180  http://10.11.3.241:889/api/funds/GetRecieveAndCreditMoney?code=0000004182&currentTime=20141124093630&partnerKey=D722137BB41D4713946B406F430317F3&signature=ff69ddfa8b69fb9c905afaa67539c566
+时间:2014-11-24 09:39:33.816  http://10.11.3.241:889/api/funds/GetRecieveAndCreditMoney?code=0000004182&currentTime=20141124093933&partnerKey=bf4ebff2c39240599b34d886945cd879&signature=d328dcf142c63fef7f2b7d3995e7d690
+时间:2014-11-24 09:47:22.555  http://10.11.3.241:889/api/Bank/GetBankList?code=0000005570&currentTime=20141124094722&partnerKey=D722137BB41D4713946B406F430317F3&signature=e94939c05ab603c4d05e34bfa55c5c40
+时间:2014-11-24 09:54:25.166  http://10.11.3.241:889/api/funds/GetRecieveAndCreditMoney?code=0000000022&currentTime=20141124095425&partnerKey=bf4ebff2c39240599b34d886945cd879&signature=5e18f264df393ce2e76592593ca843a4

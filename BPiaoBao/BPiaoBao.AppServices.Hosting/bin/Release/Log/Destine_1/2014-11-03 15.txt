@@ -1,0 +1,420 @@
+Start====================================================================
+时间:2014-11-03 15:08:57.203
+客户端IP:127.0.0.1:57906
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/30 13:45:00
+EndDate=2014/11/30 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8895
+StartDate=2014/11/30 20:30:00
+EndDate=2014/11/30 23:10:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=PEK
+FromTerminal=T1
+ToTerminal=T3
+Discount=279.8600
+FlightModel=320
+TaxFee=50
+RQFee=110.0
+SeatPrice=4030.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=110.0
+SpecialYPrice=1440.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:08:22.471
+时间2:2014-11-03 15:08:25.759
+结果:
+ 成人Pnr=JSFBWH PNRContent= 1.杨关 JSFBWH   2.  3U8556 F   SU30NOV  XIYCTU HK1   1345 1525          E T3T1  3.  3U8895 F   SU30NOV  CTUPEK HK1   2030 2310          E T1T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/1345/30NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.SSR ADTK 1E BY CTU23NOV14/1345 OR CXL 3U8556 F30NOV   8.OSI 3U CTCM15928636274/P1 9.OSI 3U CTCT15928636274   10.RMK CA/NXP7EY11.CTU186    
+ PATContent=
+时间3:2014-11-03 15:08:57.203
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 15:25:21.599
+客户端IP:127.0.0.1:58099
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/30 13:45:00
+EndDate=2014/11/30 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8547
+StartDate=2014/11/30 21:30:00
+EndDate=2014/12/1 0:05:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=PEK
+FromTerminal=T1
+ToTerminal=T3
+Discount=279.8600
+FlightModel=321
+TaxFee=50
+RQFee=110.00
+SeatPrice=4030.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=110.00
+SpecialYPrice=1440.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:24:32.964
+时间2:2014-11-03 15:25:07.988
+结果:
+ 成人Pnr=HVPG1M PNRContent= 1.杨关 HVPG1M   2.  3U8556 F   SU30NOV  XIYCTU HK1   1345 1525          E T3T1  3.  3U8547 F   SU30NOV  CTUPEK HK1   2130 0005+1        E T1T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/1345/30NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.SSR ADTK 1E BY CTU23NOV14/1345 OR CXL 3U8556 F30NOV   8.OSI 3U CTCM15928636274/P1 9.OSI 3U CTCT15928636274   10.RMK CA/MXRBFT11.CTU186    
+ PATContent=
+时间3:2014-11-03 15:25:21.599
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 15:38:53.215
+客户端IP:127.0.0.1:58168
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/29 13:45:00
+EndDate=2014/11/29 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8895
+StartDate=2014/11/29 20:30:00
+EndDate=2014/11/29 23:10:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=PEK
+FromTerminal=T1
+ToTerminal=T3
+Discount=279.8600
+FlightModel=320
+TaxFee=50
+RQFee=110.0
+SeatPrice=4030.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=110.0
+SpecialYPrice=1440.00
+乘客1:
+PassengerName=高阳
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:38:30.511
+时间2:2014-11-03 15:38:43.724
+结果:
+ 成人Pnr=JEHPLC PNRContent=   1.高阳 JEHPLC   2.  3U8556 F   SA29NOV  XIYCTU HK1   1345 1525          E T3T1  3.  3U8895 F   SA29NOV  CTUPEK HK1   2030 2310          E T1T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/1345/29NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.SSR ADTK 1E BY CTU22NOV14/1345 OR CXL 3U8556 F29NOV   8.OSI 3U CTCM15928636274/P1 9.OSI 3U CTCT15928636274   10.RMK CA/NDDZ6R11.CTU186    
+ PATContent=
+时间3:2014-11-03 15:38:53.215
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 15:42:38.433
+客户端IP:127.0.0.1:58226
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/29 13:45:00
+EndDate=2014/11/29 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8895
+StartDate=2014/11/29 20:30:00
+EndDate=2014/11/29 23:10:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=PEK
+FromTerminal=T1
+ToTerminal=T3
+Discount=279.8600
+FlightModel=320
+TaxFee=50
+RQFee=110.0
+SeatPrice=4030.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=110.0
+SpecialYPrice=1440.00
+乘客1:
+PassengerName=高阳
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:42:25.496
+时间2:2014-11-03 15:42:35.871
+结果:
+ 成人Pnr=JS6WED PNRContent= 1.高阳 JS6WED   2.  3U8556 F   SA29NOV  XIYCTU HK1   1345 1525          E T3T1  3.  3U8895 F   SA29NOV  CTUPEK HK1   2030 2310          E T1T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/1345/29NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.SSR ADTK 1E BY CTU22NOV14/1345 OR CXL 3U8556 F29NOV   8.OSI 3U CTCM15928636274/P1 9.OSI 3U CTCT15928636274   10.RMK CA/NYK8HP11.CTU186    
+ PATContent=
+时间3:2014-11-03 15:42:38.433
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 15:54:25.835
+客户端IP:127.0.0.1:58278
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/29 13:45:00
+EndDate=2014/11/29 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8895
+StartDate=2014/11/29 20:30:00
+EndDate=2014/11/29 23:10:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=PEK
+FromTerminal=T1
+ToTerminal=T3
+Discount=279.8600
+FlightModel=320
+TaxFee=50
+RQFee=110.0
+SeatPrice=4030.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=110.0
+SpecialYPrice=1440.00
+乘客1:
+PassengerName=高阳
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:54:07.818
+时间2:2014-11-03 15:54:23.304
+结果:
+ 成人Pnr=HYF0J1 PNRContent= 1.高阳 HYF0J1   2.  3U8556 F   SA29NOV  XIYCTU HK1   1345 1525          E T3T1  3.  3U8895 F   SA29NOV  CTUPEK HK1   2030 2310          E T1T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/1345/29NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.SSR ADTK 1E BY CTU22NOV14/1345 OR CXL 3U8556 F29NOV   8.OSI 3U CTCM15928636274/P1 9.OSI 3U CTCT15928636274   10.RMK CA/MTPK1D11.CTU186    
+ PATContent=
+时间3:2014-11-03 15:54:25.835
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 15:58:16.962
+客户端IP:127.0.0.1:58278
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/29 13:45:00
+EndDate=2014/11/29 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8803
+StartDate=2014/11/29 21:30:00
+EndDate=2014/11/29 22:55:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=300.0000
+FlightModel=319
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:58:01.446
+时间2:2014-11-03 15:58:14.751
+结果:
+ 成人Pnr=JMGKCV PNRContent= 1.杨关 JMGKCV   2.  3U8556 F   SA29NOV  XIYCTU HK1   1345 1525          E T3T1  3.  3U8803 F   SA29NOV  CTUXIY HK1   2130 2255          E T1T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/1345/29NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.SSR ADTK 1E BY CTU22NOV14/1345 OR CXL 3U8556 F29NOV   8.OSI 3U CTCM15928636274/P1 9.OSI 3U CTCT15928636274   10.RMK CA/NBQQQH11.CTU186    
+ PATContent=
+时间3:2014-11-03 15:58:16.962
+
+
+End=====================================================================
+

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jQuery.EasyUI</id>
+    <version>1.3.4</version>
+    <title>eazyui</title>
+    <authors>EasyUI team</authors>
+    <owners>EasyUI team</owners>
+    <licenseUrl>http://www.jeasyui.com/license_commercial.php</licenseUrl>
+    <projectUrl>http://www.jeasyui.com/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>jQuery EasyUI 
+easyui helps you build your web pages easily!</description>
+    <summary>jQuery EasyUI 
+easyui helps you build your web pages easily!</summary>
+    <copyright>2010-2013 EasyUI team</copyright>
+    <language>en-US</language>
+    <tags>jquery javascript UI toolkit eazyui</tags>
+    <dependencies>
+      <dependency id="jQuery" version="2.0.0" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="BPiaoBao.Client.UIExt.WebWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:winForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark" 
+        Title="WebWindow" Style="{DynamicResource CustomWindowStyle}" AllowsTransparency="False" WindowStartupLocation="CenterOwner" >
+    <Grid Background="#cccccccc">
+        <StackPanel x:Name="stWebBrower" Visibility="Hidden" >
+            <WindowsFormsHost>
+                <winForms:WebBrowser x:Name="webBrowser" IsWebBrowserContextMenuEnabled="False"/>
+            </WindowsFormsHost>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" x:Name="stProcess" Visibility="Visible" >
+            <wpfSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" x:Name="sprocketControl"/>
+        </StackPanel>
+    </Grid>
+    <!--<Grid  Background="#FFE6E6E6">
+       
+        <WebBrowser x:Name="webBrowser" Visibility="Hidden"></WebBrowser>
+        <StackPanel VerticalAlignment="Center" x:Name="stProcess">
+            <wpfSpark:SprocketControl HorizontalAlignment="Center" Height="100"  VerticalAlignment="Center" Width="100" x:Name="sprocketControl"/>
+            <TextBlock Text="正在加载网页..." FontSize="14" HorizontalAlignment="Center"></TextBlock>
+        </StackPanel>
+    </Grid>-->
+</Window>

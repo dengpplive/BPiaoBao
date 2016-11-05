@@ -1,0 +1,14 @@
+2014-11-28 10:45:04,559 - 与航信连接失败，请重新预订！错误信息:由于目标计算机积极拒绝，无法连接。 210.14.138.30:2237
+System.ServiceModel.FaultException: 与航信连接失败，请重新预订！错误信息:由于目标计算机积极拒绝，无法连接。 210.14.138.30:2237
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass26.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 642

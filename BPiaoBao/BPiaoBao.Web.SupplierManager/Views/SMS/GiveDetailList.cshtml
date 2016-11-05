@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = "GiveDetailList";
+}
+
+<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                    <td width="60px">创建时间:</td>
+                <td width="240px">
+                    <input id="StartCreateTime"  class="my97value inputStyle22" style="width: 100px;" data-bind="my97value: queryCond.StartTime" />-
+                    <input id="EndCreateTime"  class="easyui-my97 inputStyle22" style="width: 100px;" data-bind="my97value: queryCond.EndTime" />
+                </td>
+                <td width="60px">赠予人:</td>
+                <td width="150px"><input type="text" name="textfieldname" class="inputStyle" data-bind="value: queryCond.GiveName" /></td>
+                <td>
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: search">查询</a>
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: OpenSmsGiveAddPage">短信赠送</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<table id="dg" title="短信赠送列表">
+    <thead>
+        <tr style="background-color: #daeef5">
+            <th data-options="field:'GiveTime',width:130">赠送时间</th>
+            <th data-options="field:'GiveName',width:130">赠予人</th>
+            <th data-options="field:'GiveCode',width:130">赠予人商户号</th>
+            <th data-options="field:'GiveCount',width:130">赠送条数</th>
+            <th data-options="field:'Remark',width:900">赠送原因</th>
+        </tr>
+    </thead>
+</table>
+<div id="SmsGiveWindow" class="easyui-window" title="短信赠送" data-options="minimizable:false,model:true,collapsible:false" style="padding: 10px 15px; width:600px;height:auto;">
+    <div>
+        <table>
+            <tr>
+                <td width="60px">剩余条数：</td>
+                <td>
+                    <label data-bind="text: searchViewModel.RemainCount()"></label>
+                </td>
+            </tr>
+            <tr>
+                <td width="100px">赠予人(商户号)：</td>
+                <td>
+                    <input type="text" name="textfield" maxlength="20" class="inputStyle" data-bind="value: GiveDetailDto.GiveCode,event:{change:$root.CheackBusinessCode}" />
+                    <span id="businessName"></span>
+                </td>
+            </tr>
+            
+            <tr>
+                <td width="60px">赠送条数：</td>
+                <td>
+                    <input type="text" name="textfield" maxlength="6" class="inputStyle" data-bind="value: GiveDetailDto.GiveCount" maxlength="1000" />
+                </td>
+            </tr>
+            <tr>
+                <td>赠送原因：</td>
+                <td>
+                    <textarea name="textfield" data-bind="value: GiveDetailDto.Remark" maxlength="500" rows="5" cols="50"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                
+                <td colspan="2">
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: saveGiveDetail">赠送</a>&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: closeSmsGiveAddWindow">取消</a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts{
+ <script src="~/my97/WdatePicker.js"></script>
+ <script src="~/easyui/jquery.my97.js"></script>
+<script type="text/javascript">
+    $(function () {
+        searchViewModel = {
+            $GiveDetailDataGrid: null,
+            $SmsGiveWindow: null,
+            queryUrl: '@Url.Action("GetSmsGiveDetail")',
+            queryCond: {
+                StartTime: ko.observable(),
+                EndTime: ko.observable(),
+                GiveName: ko.observable()
+            },
+            lastQueryCond: {},
+            init: function () {
+                this.$SmsGiveWindow = $("#SmsGiveWindow").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                this.$GiveDetailDataGrid = $('#dg').datagrid({
+                    rownumbers: false,
+                    singleSelect: true,
+                    autoRowHeight: false,
+                    pagination: true,
+                    pageSize: 10,
+                    toolbar: '#mainContent',
+                    fit: true,
+                    url: searchViewModel.queryUrl,
+                    queryParams: this.lastQueryCond
+                });
+            },
+            search: function () {
+                this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                this.$GiveDetailDataGrid.datagrid("load",this.lastQueryCond);
+            },
+            RemainCount: ko.observable(),
+            GiveDetailDto: {
+                GiveCode:ko.observable(),
+                GiveName: ko.observable(),
+                GiveCount: ko.observable(),
+                Remark: ko.observable(),
+                
+            },
+            closeSmsGiveAddWindow: function () {
+                searchViewModel.$SmsGiveWindow.window("close");
+            },
+            OpenSmsGiveAddPage: function () {
+                $.post('@Url.Action("GetSmsRemainCount")', {} ,function (data) {
+                   var d = JSON.parse(data);
+                   searchViewModel.RemainCount(d);
+                   searchViewModel.GiveDetailDto.GiveName(null).GiveCount(null).Remark(null);
+                   searchViewModel.$SmsGiveWindow.window("setTitle", "短信赠送");
+                   searchViewModel.$SmsGiveWindow.window("open");
+               });
+                
+                
+            },
+            CheackBusinessCode: function () {
+                var buyercode = searchViewModel.GiveDetailDto.GiveCode();
+                $.getJSON('@Url.Action("CheckBusinessCode")', {businessCode:buyercode}, function (res) {
+                    if (res.Success == 1) {
+                        $("#businessName").text("商户名：" + res.Message);
+                        searchViewModel.GiveDetailDto.GiveName(res.Message);
+                        //$("#btnGive").removeAttr("disabled");
+                    } else {
+                        //$("#btnGive").attr({ "disabled": "disabled" });
+                        $("#businessName").text(res.Message);
+                    }
+                });
+            },
+            saveGiveDetail: function () {
+                var GiveDetailDto = ko.toJS(searchViewModel.GiveDetailDto);
+                var givecount = GiveDetailDto.GiveCount;
+                if (GiveDetailDto.GiveCode == undefined || GiveDetailDto.GiveCode == '') {
+                    $.messager.alert("提示", "请输入赠予人商户号！", 'info');
+                    return;
+                }
+                if (givecount == undefined || givecount == '') {
+                    $.messager.alert("提示", "请输入赠送条数！", 'info');
+                    return;
+                } else {
+                    if (!(/^[0-9]*[1-9][0-9]*$/.test($.trim(givecount))) || parseFloat($.trim(givecount)) <= 0) {
+                        $.messager.alert('提示', "赠送条数必须为大于0的整数", "info");
+                        return false;
+                    }
+                }
+                
+                $.ajax({
+                    url: '@Url.Action("AddSmsGiveDetail")',
+                    type: 'POST',
+                    data: GiveDetailDto
+                }).done(function (e,s) {
+                    searchViewModel.closeSmsGiveAddWindow();
+                    searchViewModel.search();
+                }).fail(function (e) {
+                    var obj = JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                });
+            }
+        }
+        searchViewModel.init();
+        ko.applyBindings(searchViewModel);
+    });
+</script>
+    }

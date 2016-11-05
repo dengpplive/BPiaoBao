@@ -1,0 +1,53 @@
+﻿<div id="PartPolicy" class="easyui-dialog" title="政策修改" data-options="modal:true,closed:true,closable:false,buttons:'#Policy-buttons'" style="width: 450px; padding:10px 20px 20px 20px;">
+    <table width="100%">
+        <tr>
+            <td style="width:70px; height:30px;">承运人：</td>
+            <td colspan="3" data-bind="text: $root.EditForm.CarrayCode">
+            </td>
+        </tr>
+        <tr>
+            <td style="width:60px; height:30px;">舱位：</td>
+            <td colspan="3" @*data-bind="foreach: SeatQue"*@>
+                <input type="text" name="Seats" data-bind="value: $root.EditForm.Seats"  maxlength="30" />(多个舱位请以","号分开如:H,F,G)
+            </td>
+        </tr>
+        <tr>
+            <td style="width:60px; height:30px;">本地返点：</td>
+            <td>
+                <input type="text" class="input" style="width: 50px;" data-bind="value: $root.EditForm.LocalPoint" />
+            </td>
+            <td style="width:60px; height:30px;">异地返点：</td>
+            <td>
+                <input type="text" class="input" style="width: 50px;" data-bind="value: $root.EditForm.Different" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width:60px; height:30px;">政策类型：</td>
+            <td colspan="3" data-bind="foreach: PolicyType">
+                <input type="radio" name="PolicyType" data-bind="value: $data, checked: $root.EditForm.LocalPolicyType" /><span data-bind="    text: $data"></span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:60px; height:30px;">行程类型：</td>
+            <td colspan="3" data-bind="foreach: TravelType">
+                <input type="radio" name="TravelType" data-bind="value: Value, checked: $root.EditForm.TravelType()+''" /><span data-bind="    text: Description"></span>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:60px; height:30px;">乘机日期：</td>
+            <td colspan="3">
+                <input type="text" class="easyui-my97" data-bind="my97value: $root.EditForm.PassengeDate.StartTime" style="width:140px;"/>&nbsp;-&nbsp;<input type="text" class="easyui-my97" data-bind="    my97value: $root.EditForm.PassengeDate.EndTime" style="width:140px;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="width:60px; height:30px;">出票日期：</td>
+            <td colspan="3">
+                <input type="text" class="easyui-my97" data-bind="my97value: $root.EditForm.IssueDate.StartTime" style="width:140px;" />&nbsp;-&nbsp;<input type="text" class="easyui-my97" data-bind="    my97value: $root.EditForm.IssueDate.EndTime" style="width:140px;" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="Policy-buttons" style="text-align: center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: PartSaveClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#PartPolicy').dialog('close');">取消</a>
+</div>

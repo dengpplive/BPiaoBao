@@ -1,0 +1,69 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:Converter="clr-namespace:BPiaoBao.Client.UIExt.Converter;assembly=BPiaoBao.Client.UIExt"
+    xmlns:converters="clr-namespace:BPiaoBao.Client.Account.View.Converters"
+    mc:Ignorable="d" x:Class="BPiaoBao.Client.Account.View.FinanceInfoWindow"
+        Title="{Binding FinancialProduct.Name, StringFormat=理财产品详情-\{0\}}" Height="413" Width="616" WindowStartupLocation="CenterOwner" WindowStyle="None" ResizeMode="NoResize" d:DataContext="{d:DesignData /SampleData/FinanceInfoWindowViewModelSampleData.xaml}">
+	<Window.Resources>
+        <converters:ShowBoolTextConverter x:Key="ShowBoolTextConverter"/>
+        <Converter:PercentageConverter x:Key="PercentageConverter"/>
+	</Window.Resources>
+	<Window.Style>
+		<StaticResource ResourceKey="CustomWindowStyle"/>
+	</Window.Style>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="150"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="15*"/>
+			<RowDefinition Height="26*"/>
+		</Grid.RowDefinitions>
+		<Image Source="{Binding FinancialProduct.IconUrl}" Margin="10,10,0,10"/>
+		<Grid Grid.Column="1" Grid.RowSpan="2" DataContext="{Binding FinancialProduct}">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="103*"/>
+				<ColumnDefinition Width="286*"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0"/>
+				<RowDefinition Height="0"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="30"/>
+				<RowDefinition Height="30"/>
+			</Grid.RowDefinitions>
+			<TextBlock TextWrapping="Wrap" Text="产品名称：" VerticalAlignment="Center" HorizontalAlignment="Center" Height="15.836" Margin="21.5,7.082" Width="60"/>
+			<TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>
+			<TextBlock TextWrapping="Wrap" Text="产品简介：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="6" Height="15.836" Margin="21.5,47.082" Width="60"/>
+			<Border Grid.Row="6" Grid.Column="1" BorderThickness="1" BorderBrush="#FFB2B2B2" Margin="0,15,15,15" >
+				<ScrollViewer VerticalScrollBarVisibility="Auto" BorderThickness="0" BorderBrush="#FFA2A2A2" >
+					<TextBlock TextWrapping="Wrap" Text="{Binding Description}"/>
+				</ScrollViewer>
+			</Border>
+			<TextBlock TextWrapping="Wrap" Text="年息率：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Height="15.836" Margin="27.5,7.082" Width="48"/>
+			<TextBlock Grid.Row="2" Grid.Column="1" TextWrapping="Wrap" Text="{Binding ReturnRate, Converter={StaticResource PercentageConverter}}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>
+			<TextBlock TextWrapping="Wrap" Text="最低购买：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="3" Height="15.836" Margin="21.5,7.082" Width="60"/>
+			<TextBlock Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="{Binding LimitAmount, StringFormat=\{0:f2\}元}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>
+			<TextBlock TextWrapping="Wrap" Text="产品周期：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="4" Height="15.836" Margin="21.5,7.082" Width="60"/>
+			<TextBlock Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Text="{Binding Day, StringFormat=\{0\}天}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>
+			<TextBlock TextWrapping="Wrap" Text="有效日期：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="5" Height="15.836" Margin="21.5,7.082" Width="60"/>
+			<TextBlock Grid.Row="5" Grid.Column="1" TextWrapping="Wrap" Text="{Binding ValidDate}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>			
+            
+			
+			<TextBlock TextWrapping="Wrap" Text="购买期限：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="7" Height="15.836" Margin="21.5,7.082" Width="60"/>
+			<TextBlock Grid.Row="7" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>
+			<TextBlock TextWrapping="Wrap" Text="当前收益：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="8" Height="15.836" Margin="21.5,7.082" Width="60"/>
+			<TextBlock Grid.Row="8" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>
+			<TextBlock TextWrapping="Wrap" Text="提前收益：" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="9" Height="15.836" Margin="21.5,7.082" Width="60"/>
+			<TextBlock Grid.Row="9" Grid.Column="1" TextWrapping="Wrap" Text="" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,7.082"/>			
+		</Grid>
+		<WPFSpark:SprocketControl Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Height="100" Grid.RowSpan="6" Grid.ColumnSpan="3"/>
+	</Grid>		
+</Window>

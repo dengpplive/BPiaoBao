@@ -1,0 +1,148 @@
+﻿<UserControl x:Class="BPiaoBao.Client.DomesticTicket.View.InsuranceControl"
+             xmlns:Converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel" 
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" 
+             xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
+             mc:Ignorable="d" 
+             d:DesignHeight="1147" d:DesignWidth="1249" Width="Auto" Height="Auto">
+    <UserControl.Resources>
+        <DataTemplate x:Key="OperaTemplate">
+            <Grid>
+                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Margin="0,5,0,2" Orientation="Horizontal">
+                    <Button x:Name="btnEdit" Content="详情" Style ="{StaticResource LinkBtn}" HorizontalAlignment="Stretch"  Width="57" Height="21" Margin="0,0,0,3" Command="{Binding DataContext.DetailCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="LimitOperaTemplate">
+            <Grid>
+                <StackPanel Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                    <TextBlock TextWrapping="Wrap" Text="{Binding InsuranceLimitStartTime, StringFormat=yyyy-MM-dd}"  ToolTip="开始时间" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding InsuranceLimitEndTime, StringFormat=yyyy-MM-dd}" ToolTip="结束时间" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModel:InsuranceViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto" MaxHeight="220"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource HeadBg2}">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="条件查找" VerticalAlignment="Center" Margin="15,0,0,0" Style="{DynamicResource Head2TextBlock}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" BorderThickness="2" Background="{StaticResource BlueBorderFillBrush}" Margin="15,13" BorderBrush="{StaticResource BlueBorderBrush}">
+                <!--BorderBrush="{StaticResource OrangeBorder}" Background="#FFFFF9F1" Margin="15,13"-->
+                <Grid MinHeight="52">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="保单号：" VerticalAlignment="Center" />
+                            <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding QueryInsurance.InsuranceNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="订单号：" VerticalAlignment="Center" />
+                            <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding QueryInsurance.OrderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="投保时间：" VerticalAlignment="Center" />
+                            <DatePicker VerticalAlignment="Center" Margin="0,0,5,0"  SelectedDate="{Binding QueryInsurance.BuyStartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22" />
+                            <TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="5,0,0,0"  SelectedDate="{Binding QueryInsurance.BuyEndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" Width="110" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="被投保人姓名：" VerticalAlignment="Center" />
+                            <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding QueryInsurance.PassengerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="手机号码：" VerticalAlignment="Center" />
+                            <TextBox Height="22" TextWrapping="Wrap" Width="180" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding QueryInsurance.Mobile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>-->
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="保险有限期：" VerticalAlignment="Center" />
+                            <DatePicker VerticalAlignment="Center" Margin="0,0,5,0"  SelectedDate="{Binding QueryInsurance.InsuranceLimitStartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22" />
+                            <TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="5,0,0,0"  SelectedDate="{Binding QueryInsurance.InsuranceLimitEndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" Width="110" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="证件号：" VerticalAlignment="Center" />
+                            <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding QueryInsurance.IdNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <!--<StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="航班号：" VerticalAlignment="Center" />
+                            <TextBox Height="22" TextWrapping="Wrap" Width="180" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding QueryInsurance.FlightNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>-->
+                        <!--<StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="航班日期：" VerticalAlignment="Center" />
+                            <DatePicker VerticalAlignment="Center" Margin="0,0,10,0"  SelectedDate="{Binding QueryInsurance.FlyStartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180" Height="22" />
+                            <TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="10,0,0,0"  SelectedDate="{Binding QueryInsurance.FlyEndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" Width="180" />
+                        </StackPanel>-->
+                        <!--<StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="PNR：" VerticalAlignment="Center" />
+                            <TextBox Height="22" TextWrapping="Wrap" Width="180" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding QueryInsurance.PNR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>-->
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="状态：" VerticalAlignment="Center" />
+                            <ComboBox Width="170" Height="22" Background="White" ItemsSource="{Binding AllInsurancesStatus}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding QueryInsurance.EnumInsuranceStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </WrapPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,0,48,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Button Content="查询" Width="57" VerticalAlignment="Center" Height="22" Style="{StaticResource QueryBtn}" Margin="0,0,5,0" Command="{Binding QueryCommand, Mode=OneWay}">
+                        </Button>
+                        <Button Content="重置" Width="57" VerticalAlignment="Center" Height="22"  Margin="5,2.5"  Style="{StaticResource HeadBtn}" Command="{Binding ClearCommand,Mode=OneWay}"/>
+                        <!--<Button Content="导出Excel" Width="88" VerticalAlignment="Center"  Height="22" Margin="5,2.5"  Style="{StaticResource HeadBtn}" Command="{Binding ExportCommand,Mode=OneWay}"/>-->
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Margin="15,0,15,15" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="290*"/>
+                <RowDefinition Height="31*"/>
+            </Grid.RowDefinitions>
+            <DataGrid ScrollViewer.CanContentScroll="True" BorderThickness="0" ItemsSource="{Binding Insurances}" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" CanUserAddRows="False" CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="操作" CellTemplate="{StaticResource OperaTemplate}" />
+                    <DataGridTextColumn Width="*" Header="保单号" Binding="{Binding InsuranceNo}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTextColumn Width="*" Header="订单号" Binding="{Binding OrderId}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTextColumn Binding="{Binding BuyTime, StringFormat=yyyy-MM-dd HH:mm}" Width="*" Header="投保时间" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTextColumn Binding="{Binding PassengerName}" Width="*" Header="被投保人姓名" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <DataGridTextColumn Binding="{Binding CardNo}" Width="*" Header="证件号码" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <!--<DataGridTextColumn Binding="{Binding CardNo}" Width="*" Header="航班号" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />-->
+                    <!--<DataGridTextColumn Binding="{Binding }" Width="*" Header="PNR" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />-->
+                    <DataGridTextColumn Width="*" Header="投保状态" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding EnumInsuranceStatus, Converter={StaticResource DescriptionConverter}}" />
+                    <DataGridTemplateColumn Width="*" Header="保险有限期" CellTemplate="{StaticResource LimitOperaTemplate}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <UIExt:Pagination Grid.Row="1" CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TotalCount="{Binding TotalCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </UIExt:Pagination>
+        </Grid>
+    </Grid>
+</UserControl>

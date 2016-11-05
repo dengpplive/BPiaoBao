@@ -1,0 +1,174 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+xmlns:BPiaoBao_Client_UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" 
+xmlns:BPiaoBao_Client_Account_ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel" 
+xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" 
+xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+xmlns:local="clr-namespace:BPiaoBao.Client.Account.View" x:Name="userControl" x:Class="BPiaoBao.Client.Account.View.CreditControl" 
+             d:DesignHeight="523" d:DesignWidth="716" mc:Ignorable="d">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <!--<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="/BPiaoBao.Client.Account;component/ProjectDataSources.xaml"/>
+			</ResourceDictionary.MergedDictionaries>-->
+            <DataTemplate x:Key="operationTemplate">
+                <StackPanel Margin="0,10" HorizontalAlignment="Left">
+                    <Button Content="消费明细" Width="55" Margin="0,0,0,10" Style="{StaticResource LinkBtn}" Command="{Binding DataContext.BillDetailCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <Button Content="还款明细" Width="55" Style="{StaticResource LinkBtn}"  Command="{Binding DataContext.BillRePayDetailCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                </StackPanel>
+            </DataTemplate>
+            <ControlTemplate x:Key="toolTipControlTemplate" TargetType="{x:Type Control}">
+                <Border Height="55" Width="390" BorderBrush="#FFEFF1EE" BorderThickness="1" >
+                    <Grid Background="#FFFFFFCB">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="觉得信用额度不够？" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" d:LayoutOverrides="Height" VerticalAlignment="Center"><Run Text="如需开通临时额度，请联系客服经理" /><Run Text=" "/><Run Text="{Binding CurrentUserInfoDto.ContactName}" /><Run Text=" "/><Run Text="{Binding CurrentUserInfoDto.Phone, StringFormat=（电话：\{0\}）}" /></TextBlock>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+            <ControlTemplate x:Key="TemporaryLimittoolTipControlTemplate" TargetType="{x:Type Control}">
+                <Border Height="50" Width="440" BorderBrush="#FFEFF1EE" BorderThickness="1" >
+                    <Grid Background="#FFFFFFCB">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="临时额度申请条件：" d:LayoutOverrides="Height" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" d:LayoutOverrides="Height" VerticalAlignment="Center"><Run Text="1、信用账户未冻结；" />
+                            <Run Text="2、最近"/><Run Text="{Binding DataContext.Day,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CreditControl}}}" /><Run Text="天无逾期记录；"/>
+                            <Run Text="3、最近"/><Run Text="{Binding DataContext.Day,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CreditControl}}}"  /><Run Text="天只能申请"/><Run Text="{Binding DataContext.Number,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CreditControl}}}"  /><Run Text="次；"/></TextBlock>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger>
+            <!--<i:InvokeCommandAction Command="{Binding PageLoadCommand, Mode=OneWay}"/>-->
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <UserControl.DataContext>
+        <BPiaoBao_Client_Account_ViewModel:CreditViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="137"/>
+            <RowDefinition Height="41"/>
+            <RowDefinition Height="0.834*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{StaticResource HeadBg1}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="71"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Image Height="50" Source="/BPiaoBao.Client.Account;component/Image/credit_account.png" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,18.5,0,0"/>
+            <Grid DataContext="{Binding HomeViewModel}" Grid.Column="1" Grid.RowSpan="2" Margin="27,0,0,0" VerticalAlignment="Center" Height="120">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="0">
+                    <TextBlock TextWrapping="Wrap" Text="信用账户" VerticalAlignment="Center" Style="{DynamicResource HeadTextBlock}"/>
+                    <Button DataContext="{Binding DataContext, ElementName=userControl}" ToolTipService.InitialShowDelay="10" ToolTipService.ShowDuration="100000" Style="{StaticResource ImageBtn}" Margin="12,0,0,0" Command="{Binding OpenAgreementCommand, Mode=OneWay}" Cursor="Hand">
+                        <!--<Button.ToolTip>
+                            <ToolTip Style="{StaticResource ToolTipStyle}">
+                                <Control Template="{StaticResource toolTipControlTemplate}" />
+                            </ToolTip>
+                        </Button.ToolTip>-->
+                        <Image Source="/BPiaoBao.Client.Account;component/Image/question.png" Margin="0" Stretch="None"/>
+                    </Button>
+                    <TextBlock Text="额度不够用？" VerticalAlignment="Center"></TextBlock>
+                    <Button HorizontalAlignment="Left"  VerticalAlignment="Center" Content="临时额度" Style ="{StaticResource LinkBtn}"  Cursor="Hand"
+                    Command="{Binding DataContext.ShowApplyTemporaryLimitCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CreditControl}}}" CommandParameter="{Binding Path=.,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                        <Button.ToolTip>
+                            <ToolTip Style="{StaticResource ToolTipStyle}">
+                                <Control Template="{StaticResource TemporaryLimittoolTipControlTemplate}" />
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <TextBlock Text="来帮忙" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+                <Button Content="立即还款" HorizontalAlignment="Right" VerticalAlignment="Center" Width="80" Height="28" Margin="0,0,20,0" Command="{Binding SwitchToRepaymentCommand, Mode=OneWay}" Style="{DynamicResource HeadBtn}" DataContext="{Binding DataContext, ElementName=userControl}"/>
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Margin="0,5,0,0">
+                    <Run Text="信用额度：" /><Run Text=" "/><Run Text="{Binding RepayInfo.CreditAmount, StringFormat=￥\{0:f2\}}" Foreground="{StaticResource OrangeForeground}" FontSize="14.667" /><Run Text=" "/><InlineUIContainer>
+						<Path Data="M124.875,10.75 L124.625,27" Fill="WhiteSmoke" HorizontalAlignment="Right" Height="10" Stretch="Fill" Stroke="#FFD7D7D7" VerticalAlignment="Center" Width="1.25" Margin="10,0"/>	
+					</InlineUIContainer>
+                    <Run Text="可用额度：" /><Run Text="{Binding RepayInfo.AvailableAmount, StringFormat=￥\{0:f2\}}" Foreground="{StaticResource OrangeForeground}" FontSize="14.667" /><Run Text=" "/><InlineUIContainer>
+						<Path Data="M124.875,10.75 L124.625,27" Fill="WhiteSmoke" HorizontalAlignment="Right" Height="10" Stretch="Fill" Stroke="#FFD7D7D7" VerticalAlignment="Center" Width="1.25" Margin="10,0"/>	
+					</InlineUIContainer>
+                    <Run Text="账户欠款：" /><Run Text="{Binding RepayInfo.OweRentMoney, StringFormat=￥\{0:f2\}}" Foreground="{StaticResource OrangeForeground}" FontSize="14.667" />
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Margin="0,5,0,0">
+                    <Run Text="逾期金额："/><Run Text=" "/><InlineUIContainer>
+						<TextBlock Foreground="{StaticResource OrangeForeground}" FontSize="14.667" Text="{Binding RepayInfo.LateAmount, StringFormat=￥\{0:f2\}}" />
+					</InlineUIContainer><Run Text=" "/><InlineUIContainer>
+						<Path Data="M124.875,10.75 L124.625,27" Fill="WhiteSmoke" HorizontalAlignment="Right" Height="10" Stretch="Fill" Stroke="#FFD7D7D7" VerticalAlignment="Center" Width="1.25" Margin="10,0"/>
+					</InlineUIContainer><Run Text=" "/>
+                    <Run Text="本期应还："/><Run Text=" "/><InlineUIContainer>
+						<TextBlock Foreground="{StaticResource OrangeForeground}" FontSize="14.667" Text="{Binding RepayInfo.ShouldRepayMoney, StringFormat=￥\{0:f2\}}" />												
+					</InlineUIContainer>
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="信用账户为后台授信产生，帮您实现资金周转。" Margin="0,5,0,0" Grid.Row="3" VerticalAlignment="Center" Foreground="{DynamicResource DescriptionForeground}"/>
+                <TextBlock TextWrapping="Wrap" Text="请在“最迟还款日”15:00之前还款。" Margin="0,5,0,0" Grid.Row="4" VerticalAlignment="Center" Foreground="Red"/>
+                <!--<StackPanel Margin="0,5,0,0" Grid.Row="4" VerticalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock TextWrapping="Wrap" Text='请在"最迟还款日"15:00之前还款。'  VerticalAlignment="Center" Foreground="Red"/>
+                    <TextBlock Text="额度不够用？" VerticalAlignment="Center"></TextBlock>
+                    <Button HorizontalAlignment="Left"  VerticalAlignment="Center" Content="临时额度" Style ="{StaticResource LinkBtn}"  Cursor="Hand"
+                    Command="{Binding DataContext.ShowApplyTemporaryLimitCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:CreditControl}}}" CommandParameter="{Binding Path=.,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                        <Button.ToolTip>
+                            <ToolTip Style="{StaticResource ToolTipStyle}">
+                                <Control Template="{StaticResource TemporaryLimittoolTipControlTemplate}" />
+                            </ToolTip>
+                        </Button.ToolTip>
+                    </Button>
+                    <TextBlock Text="来帮忙" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>-->
+            </Grid>
+        </Grid>
+        <Border Grid.Row="1" BorderThickness="0,1,0,0" Padding="0" BorderBrush="#FFE7E8EA" >
+            <Grid Background="{StaticResource HeadBg3}">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="历史账单" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0" Style="{DynamicResource Head2TextBlock}"/>
+                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,20,0">
+                    <Button Content="查看更多账单&gt;&gt;" VerticalAlignment="Center" Height="23" Style="{StaticResource LinkBtn}" Margin="0" Command="{Binding SwitchToBillsCommand, Mode=OneWay}"/>
+                    <Button Content="导出Excel" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource CancelButton}"  Command="{Binding ExportCreditCommand, Mode=OneWay}" Foreground="{StaticResource HeavyBlueForeground}" Margin="5,2.5"  />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="2">
+            <DataGrid CanUserSortColumns="False" Margin="20,10" BorderThickness="0" ItemsSource="{Binding Bills}" MinRowHeight="48" HorizontalGridLinesBrush="{StaticResource HorizontalDashedBrush}" Background="{x:Null}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Binding="{Binding CreateDate, StringFormat=yyyy-MM-dd}" Header="账单日期" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Binding="{Binding ShouldRepayDate, StringFormat=yyyy-MM-dd}" Header="最迟还款日" />
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Binding="{Binding CreditDayStr}" Header="账期" />
+                    <DataGridTextColumn Width="*" Binding="{Binding BillAmount, StringFormat=\{0:f2\}}" Header="账单金额" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding Amount, StringFormat=\{0:f2\}}" Header="消费金额" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding FeeAmount, StringFormat=\{0:f2\}}" Header="利息"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding LateAmount, StringFormat=\{0:f2\}}" Header="滞纳金" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding RepayAmount, StringFormat=\{0:f2\}}" Header="已还金额"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding ShouldRepayAmount, StringFormat=\{0:f2\}}" Header="未还金额"/>
+                    <DataGridTextColumn Width="*" Binding="{Binding Status}"  Header="账单状态" Foreground="{StaticResource GrayForeground}"/>
+                    <DataGridTemplateColumn CellTemplate="{StaticResource operationTemplate}" Width="*"  Header="操作" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </Grid>
+
+
+        <local:ApplyForCreditControl Grid.RowSpan="3" Width="Auto" Height="Auto" d:IsHidden="True"  />
+
+
+    </Grid>
+</UserControl>

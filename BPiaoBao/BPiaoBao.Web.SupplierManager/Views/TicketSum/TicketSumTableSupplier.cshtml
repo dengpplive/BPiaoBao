@@ -1,0 +1,206 @@
+﻿@{
+    ViewBag.Title = "TicketSumTableSupplier";
+}
+
+<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablest">
+            <tr>
+                <td width="115" class="tdtitle">
+                    <h3>总表查询条件:</h3>
+                </td>
+                <td width="60">订单编号:</td>
+                <td width="150">
+                    <input type="text" name="textfield" class="inputStyle" data-bind="value: queryCond.orderId" /></td>
+                <td width="40">PNR:</td>
+                <td width="150">
+                    <input type="text" name="textfield2" class="inputStyle" data-bind="value: queryCond.pnr" /></td>
+                <td width="80">(出/退)票时间:</td>
+                <td width="190">
+                    <input id="starttime" class="easyui-my97 inputStyle22" data-bind="my97value: queryCond.startIssueRefundTime" />-
+                    <input class="easyui-my97 inputStyle22" data-bind="my97value: queryCond.endIssueRefundTime" /></td>
+                <td width="60">机票状态:</td>
+                <td width="150">
+                    <select data-bind="value: queryCond.ticketStatus, options: $root.BpbTicketStatus, optionsText: 'text', optionsValue: 'value'"></select>
+                </td>
+            </tr>
+            <tr class="linepadding">
+                <td class="td_noboder">&nbsp;</td>
+                <td>出发城市:</td>
+                <td>
+                    <input type="text" name="textfield5" class="inputStyle" data-bind="value: queryCond.fromCity" /></td>
+                <td>票号:</td>
+                <td>
+                    <input type="text" name="textfield9" class="inputStyle" data-bind="value: queryCond.ticketNum" /></td>
+                <td>商户号:</td>
+                <td>
+                    <input type="text" name="textfield11" class="inputStyle" data-bind="value: queryCond.businessmanCode" /></td>
+            </tr>
+            <tr class="linepadding">
+                <td class="td_noboder">&nbsp;</td>
+                <td>到达城市:</td>
+                <td>
+                    <input type="text" name="textfield6" class="inputStyle" data-bind="value: queryCond.toCity" /></td>
+                <td>承运人:</td>
+                <td>
+                    <input type="text" name="textfield10" class="inputStyle" data-bind="value: $root.queryCond.carrayCode" /></td>
+                <td colspan="4" class="td_noboder td_noboder2" style="padding-top: 10px;">
+@*                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: $root.search">查询</a>*@
+                     <button type="button" class="easyui-linkbutton" data-bind="click: $root.search">查询</button>
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: $root.resetQueryCond" style="display: none;">重置数据</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="tableShow" style="padding-bottom: 0px;">
+        <div style="padding: 5px 0px"><i style="font-style: normal; font-weight: bold;">机票明细</i><i style="padding: 0px 10px; font-style: normal;">|</i><a href="#" class="easyui-linkbutton" iconcls="icon-sys-export" plain="true" data-bind="click: ExportExcelTicketDetail">导出excel</a></div>
+
+        <table id="TicketDetail_dg">
+            <thead data-options="frozen:true">
+                <tr style="background-color: #daeef5">
+                    <th data-options="field:'OrderID'">订单号</th>
+                     <th data-options="field:'PNR'">PNR</th>
+                    <th data-options="field:'BigCode'">大编码</th>
+                </tr>
+            </thead>
+            <thead>
+                <tr style="background-color: #daeef5">
+                    <th data-options="field:'TicketNum'">票号</th>
+                    <th data-options="field:'TicketState'">机票状态</th>
+                    <th data-options="field:'CreateDate',width:90">(出/退)票时间</th>
+                    <th data-options="field:'StartTime',width:80">起飞时间</th>
+                    <th data-options="field:'CarryCode'">承运人</th>
+                    <th data-options="field:'FlightNum'">航班号</th>
+                    <th data-options="field:'Seat'">舱位</th>
+                    <th data-options="field:'Voyage',width:80">航程</th>
+                    <th data-options="field:'PassengerName'">乘客姓名</th>
+                    <th data-options="field:'Money'">实收金额</th>
+                    <th data-options="field:'SeatPrice'">舱位价</th>
+                    <th data-options="field:'ABFee'">机建费</th>
+                    <th data-options="field:'RQFee'">燃油费</th>
+                    <th data-options="field:'PMFee'">票面价</th>
+                    <th data-options="field:'PolicyPoint'">政策点数</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var mydate = new Date();
+            var mydate1 = new Date();
+            mydate1.setDate(mydate1.getDate() - 7);
+            var M = (mydate.getMonth() + 1) < 10 ? "0" + (mydate.getMonth() + 1) : (mydate.getMonth() + 1);
+            var D = (mydate.getDate() < 10 ? "0" + mydate.getDate() : mydate.getDate());
+            var M1 = (mydate1.getMonth() + 1) < 10 ? "0" + (mydate1.getMonth() + 1) : (mydate1.getMonth() + 1);
+            var D1 = (mydate1.getDate() < 10 ? "0" + mydate1.getDate() : mydate1.getDate());
+            var mydatetime = mydate.getFullYear() + "-" + M + "-" + D;
+            var mydatetime1 = mydate1.getFullYear() + "-" + M1 + "-" + D1;
+            var searchViewModel = {
+                queryUrl1: '@Url.Action("GetTicketSummary")',
+                queryUrl2: '@Url.Action("GetTicketSalesStatistics")',
+                queryUrl3: '@Url.Action("GetTicketInformationDetail")',
+                $datagrid1: null,
+                $treegrid2: null,
+                $datagrid3: null,
+                queryCond: {
+                    orderId: ko.observable(""),
+                    pnr: ko.observable(""),
+                    startIssueRefundTime: ko.observable(mydatetime),
+                    endIssueRefundTime: ko.observable(mydatetime),
+                    payType: ko.observable(null),
+                    fromCity: ko.observable(""),
+                    ticketNumber: ko.observable(""),
+                    businessmanCode: ko.observable(""),
+                    platformCode: ko.observable(""),
+                    toCity: ko.observable(""),
+                    operAccount: ko.observable(""),
+                    carrayCode: ko.observable(""),
+                    ticketStatus: ko.observable(null)
+                },
+                BpbTicketStatus: [
+                   { text: "所有状态", value: "" },
+                   { text: "出票", value: "出票" },
+                   { text: "退票", value: "退票" },
+                   { text: "废票", value: "废票" },
+                   { text: "改签", value: "改签" }
+                ],
+                BpbPayType: [
+                   { text: "现金账户", value: "现金账户" },
+                   { text: "信用账户", value: "信用账户" },
+                   { text: "银行卡", value: "银行卡" },
+                   { text: "支付平台", value: "支付平台" }
+                ],
+                CarrierState: [
+                    { text: "启用", value: 1 },
+                    { text: "禁用", value: 0 }
+                ],
+                PlatformCode: [
+                    { text: "所有", value: "" },
+                    { text: "卖票宝", value: "0" },
+                    { text: "BSP", value: "1" },
+                    { text: "B2B", value: "2" }
+                ],
+                clear: function (obj) {
+                    for (var prop in obj) {
+                        if (obj.hasOwnProperty(prop)) {
+                            if (typeof obj[prop] === "function")
+                                obj[prop](null);
+                            else if (typeof obj[prop] === "object")
+                                ko.clear(obj[prop]);
+                        }
+                    }
+                },
+                lastQueryCond: {},
+                init: function () {
+
+                    var self = this;
+                    this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                    this.$datagrid3 = $('#TicketDetail_dg').datagrid({
+                        rownumbers: false,
+                        singleSelect: true,
+                        autoRowHeight: false,
+                        pagination: true,
+                        nowrap:false,
+                        height: 400,
+                        url: searchViewModel.queryUrl3,
+                        queryParams: this.lastQueryCond,
+                        pageSize: 20
+                    });
+
+                },
+                search: function () {
+                    var date1 = ko.toJS(searchViewModel.queryCond.startIssueRefundTime);
+                    var date2 = ko.toJS(searchViewModel.queryCond.endIssueRefundTime);
+                    if (date1 != "" && date2 != "") {
+                        var start = new Date(date1);
+                        var end = new Date(date2);
+                        var times = end.getTime() - start.getTime();
+                        var days = parseInt(times / (1000 * 60 * 60 * 24));
+                        if (days > 30 || days < 0) {
+                            $.messager.alert("提示", "只能查询30天之内的数据！", 'info');
+                        }
+                        else {
+                            this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                            this.$datagrid3.datagrid("load", this.lastQueryCond);
+                        }
+                    } else {
+                        $.messager.alert("提示", "请选择出退票时间！", 'info');
+                    }
+
+                },
+                resetQueryCond: function () {
+                    this.clear(this.queryCond);
+                },
+                ExportExcelTicketDetail: function () {
+                    window.open('@Url.Action("ExportExcelSupplierTicketDetail")' + "?" + $.param(searchViewModel.queryCond), "download");
+                }
+            }
+            searchViewModel.init();
+            ko.applyBindings(searchViewModel);
+        });
+    </script>
+}

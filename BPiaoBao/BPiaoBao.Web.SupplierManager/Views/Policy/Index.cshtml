@@ -1,0 +1,516 @@
+﻿@{
+    ViewBag.Title = "政策列表";
+}
+<link href="/Content/css/ticket2.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <div style="margin-left: 16px;">
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: $root.AddLocalPolicyClick">新增政策</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: function () { $root.BatchDeleteClick() }">批量删除</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: function () { $root.BatchReviewClick() }">批量审核</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: function () { $root.BatchCancelHangUpClick() }">批量挂起</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: function () { $root.BatchHangUpClick() }">批量解挂</a>
+            </div>
+            <table class="m_common">
+                <tr>
+                    <td>
+                        <div style="clear: both;">
+                            <div class="search">
+                                <div class="left">本地返点：</div>
+                                <div class="right">
+                                    <input type="text" class="input" style="width: 65px;" data-bind="value: searchForm.LocalStartPoint" />-
+                                    <input type="text" class="input" style="width: 65px;" data-bind="value: searchForm.LocalEndPoint" />
+                                </div>
+                            </div>
+                            <div class="search" style="width:280px;">
+                                <div class="left">航空公司：</div>
+                                <div class="right_1">
+                                    <select name="A_CarrayCode" data-bind="options: FullForm.Carray, optionsValue: function (item) { return item.Value; }, optionsText: function (item) { return item.Text; }, value: searchForm.CarrayCode, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">政策类型：</div>
+                                <div class="right">
+                                    <select style="width: 150px;" data-bind="options: PolicyType, value: searchForm.PolicyType, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">发布类型：</div>
+                                <div class="right">
+                                    <select style="width: 150px;" data-bind="options: ReleaseType, optionsValue: 'Value', optionsText: 'Description', value: searchForm.ReleaseType, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+
+                            <div class="search">
+                                <div class="left">审核状态：</div>
+                                <div class="right">
+                                    <select style="width: 150px;" data-bind="options: BooleanType, optionsValue: 'Value', optionsText: 'Description', value: searchForm.Review, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">出发城市：</div>
+                                <div class="right">
+                                    <input style="width: 150px;" type="text" class="input" data-bind="value: searchForm.FromCityCode" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">到达城市：</div>
+                                <div class="right">
+                                    <input style="width: 150px;" type="text" class="input" data-bind="value: searchForm.ToCityCode" />
+                                </div>
+                            </div>
+                            <div class="search">
+                                <div class="left">行程类型：</div>
+                                <div class="right">
+                                    <select style="width: 150px;" data-bind="options: TravelType, optionsValue: 'Value', optionsText: 'Description', value: searchForm.TravelType, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+
+                            <div class="search">
+                                <div class="left">出票方式：</div>
+                                <div class="right">
+                                    <select style="width: 150px;" data-bind="options: IssueTicketWay, optionsValue: 'Value', optionsText: 'Description', value: searchForm.IssueTicketWay, optionsCaption: '请选择...'"></select>
+                                </div>
+                            </div>
+
+                            <div class="search" style="width:360px;">
+                                <div class="left">乘机日期：</div>
+                                <div class="right" style="width:260px;">
+                                    <input type="text" id="pStart_Time" data-options="maxDate:'#F{$dp.$D(\'pEnd_Time\')}'" class="easyui-my97" style="width: 90px;" data-bind="my97value: searchForm.PStartTime" />-
+                                    <input type="text" id="pEnd_Time" data-options="minDate:'#F{$dp.$D(\'pStart_Time\')}'" class="easyui-my97" style="width: 90px;" data-bind="    my97value: searchForm.PEndTime" />
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 80px; text-align: center; vertical-align: middle;">
+                        <button type="button" class="btnsearch" data-bind="click: searchClick">查询</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table id="mainTable" data-bind="datagrid: grid">
+            <thead>
+                <tr>
+                    <th data-options="field:'ck',checkbox:true" rowspan="2"></th>
+                    <th data-options="field:'ID',formatter:action" rowspan="2">操作</th>
+                    <th data-options="field:'CreateMan',align:'center',width:60" rowspan="2">发布人</th>
+                    <th data-options="field:'ReleaseType',formatter:function(val,row){return EnumReleaseType[val].Description;},align:'center',width:60" rowspan="2">发布类型</th>
+                    <th data-options="field:'Review',formatter:formatterReview,align:'center',width:60" rowspan="2">审核</th>
+                    <th data-options="field:'HangUp',formatter:formatterHangUp,align:'center',width:60" rowspan="2">挂起</th>
+                    <th data-options="field:'CarrayCode',align:'center',width:60" rowspan="2">承运人</th>
+                    <th data-options="field:'LocalPolicyType',align:'center',width:60" rowspan="2">类型</th>
+                    <th colspan="2">返点</th>
+                    <th colspan="2">乘机有效期</th>
+                    <th colspan="2">出票有效期</th>
+                </tr>
+                <tr>
+                    <th data-options="field:'LocalPoint',align:'center',width:60">本地返点</th>
+                    <th data-options="field:'Different',align:'center',width:60">异地返点</th>
+                    <th data-options="field:'PassengeDate.StartTime',formatter:function(val,row){return row.PassengeDate.StartTime.split(' ')[0];},align:'center',width:100">开始日期</th>
+                    <th data-options="field:'PassengeDate.EndTime',formatter:function(val,row){return row.PassengeDate.EndTime.split(' ')[0];},align:'center',width:100">结束日期</th>
+                    <th data-options="field:'IssueTicketSetting.StartTime',formatter:function(val,row){return row.IssueDate.StartTime.split(' ')[0];},align:'center',width:100">开始日期</th>
+                    <th data-options="field:'IssueTicketSetting.EndTime',formatter:function(val,row){return row.IssueDate.EndTime.split(' ')[0];},align:'center',width:100">结束日期</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@Html.Partial("AddLocalPolicy")
+@Html.Partial("PartPolicy")
+<div class="easyui-dialog" id="showdetail_dialog" title="政策详情" data-options="modal:true,closed:true,maximized:true">
+    <div id="Content"></div>
+</div>
+@section scripts{
+    <script type="text/javascript" src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script src="~/Scripts/AllAirport.js"></script>
+    <script type="text/javascript">
+        function action(val, row) {
+            var html = "<a href='javascript:void(0)' onclick='vm.PartEditClick(\"" + val + "\",\"" + row["CarrayCode"] + "\");'>局部修改</a>";
+            html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='vm.FullForm.EditClick(\"" + val + "\")'>修改</a>";
+            html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='vm.BatchDeleteClick(\"" + val + "\")'>删除</a>";
+            html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='ShowDetail(\"" + val + "\")'>详情</a>";
+            if (row.Review == false)
+                html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='vm.BatchReviewClick(\"" + val + "\");'>审核</a>";
+            if (row.HangUp == true)
+                html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='vm.BatchHangUpClick(\"" + val + "\")'>解挂</a>";
+            else
+                html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='vm.BatchCancelHangUpClick(\"" + val + "\")'>挂起</a>";
+            return html;
+        }
+        function formatterReview(val, row) {
+            if (val == true) {
+                return '<span style="color:red;">已审</span>';
+            } else {
+                return '未审';
+            }
+        }
+        function formatterHangUp(val, row) {
+            if (val == true) {
+                return '<span style="color:red;">已挂</span>';
+            } else {
+                return '未挂';
+            }
+        }
+        function ShowDetail(id) {
+            $('#Content').load('/Policy/ShowDetail', { id: id });
+            $('#showdetail_dialog').dialog('open');
+        }
+        var PolicyIndexVM = CC.Create(BaseVM, function (data) {
+            this.urls = data.urls;
+            this.grid.title = "政策管理";
+            this.grid.singleSelect = true;
+            this.grid.checkOnSelect = false;
+            this.grid.selectOnCheck = false;
+            this.InitForm = data.fullForm;
+            this.InitForm.PassengeDate.StartTime = this.InitForm.PassengeDate.StartTime.split(' ')[0];
+            this.InitForm.PassengeDate.EndTime = this.InitForm.PassengeDate.EndTime.split(' ')[0];
+            this.InitForm.IssueDate.StartTime = this.InitForm.IssueDate.StartTime.split(' ')[0];
+            this.InitForm.IssueDate.EndTime = this.InitForm.IssueDate.EndTime.split(' ')[0];
+            this.EditForm = ko.mapping.fromJS(data.editForm);
+            this.FullForm = {
+                CustomModel: {
+                    ReleaseType: ko.observable(data.fullForm.ReleaseType + ''),
+                    TravelType: ko.observable(data.fullForm.TravelType + ''),
+                    Share: ko.observable(data.fullForm.Share + ''),
+                    Apply: ko.observable(data.fullForm.Apply + ''),
+                    IssueTicketWay: ko.observable(data.fullForm.IssueTicketWay + ''),
+                    Low: ko.observable(data.fullForm.Low + ''),
+                    ChangeCode: ko.observable(data.fullForm.ChangeCode + '')
+                },
+                Model: ko.mapping.fromJS(data.fullForm),
+                ReleaseType: ko.observableArray(EnumReleaseType),
+                TravelType: ko.observableArray(EnumTravelType),
+                IssueTicketWay: ko.observableArray(EnumIssueTicketWay),
+                Apply: ko.observableArray(EnumApply),
+                Carray: ko.observableArray(CarrayList),
+                WeekLimit: ko.observableArray([{ Value: '1', Description: '星期一' }, { Value: '2', Description: '星期二' }, { Value: '3', Description: '星期三' }, { Value: '4', Description: '星期四' }, { Value: '5', Description: '星期五' }, { Value: '6', Description: '星期六' }, { Value: '7', Description: '星期日' }]),
+                Seats: ko.observableArray([]),
+                PolicyType: ko.observableArray(['B2B', 'BSP']),
+                SelectedCarray: ko.observable(),
+                SelectedWeek: ko.observableArray(),
+                IsInit: ko.observable(false),
+                Init: function () {
+                    $('#FromCityCodes').combogrid({
+                       // panelWidth: 300,
+                       // panelHeight: 500,
+                        multiple: true,
+                        idField: 'Code',
+                        textField: 'Code',
+                        data: AllAirport,
+                        fitColumns: true,
+                        columns: [[
+                        { field: 'ck', checkbox: true, width: 20 },
+                        { field: 'Code', title: '三字码', width: 80 },
+                        { field: 'CityName', title: '城市', width: 100 }]]
+                    });
+                    $('#ToCityCodes').combogrid({
+                      //  panelWidth: 300,
+                       // panelHeight: 500,
+                        multiple: true,
+                        idField: 'Code',
+                        textField: 'Code',
+                        data: AllAirport,
+                        fitColumns: true,
+                        columns: [[
+                        { field: 'ck', checkbox: true, width: 20 },
+                        { field: 'Code', title: '三字码', width: 80 },
+                        { field: 'CityName', title: '城市', width: 100 }]]
+                    });
+                },
+                SaveClick: function () {
+                    vm.FullForm.Model.FromCityCodes($('#FromCityCodes').combogrid('getValues').join(','));
+                    vm.FullForm.Model.ToCityCodes($('#ToCityCodes').combogrid('getValues').join(','));
+                    vm.FullForm.Model.WeekLimit(vm.FullForm.SelectedWeek().join(','));
+                    if (vm.FullForm.Model.FromCityCodes() == null || vm.FullForm.Model.FromCityCodes() == '') {
+                        vm.alert('请输入或选择出发城市');
+                        return;
+                    }
+                    if (vm.FullForm.Model.ToCityCodes() == null || vm.FullForm.Model.ToCityCodes() == '') {
+                        vm.alert('请输入或选择到达城市');
+                        return;
+                    }
+                    if ((vm.FullForm.Model.Apply() == "1" || vm.FullForm.Model.Apply() == "2") && (vm.FullForm.Model.ApplyFlights() == null || vm.FullForm.Model.ApplyFlights() == '')) {
+                        vm.alert('请输入航班号');
+                        return;
+                    }
+                    if (vm.FullForm.Model.CarrayCode() == null || vm.FullForm.Model.CarrayCode() == '') {
+                        vm.alert('请选择航空公司');
+                        return;
+                    }
+                    if (vm.FullForm.Model.Office() == null || vm.FullForm.Model.Office() == '') {
+                        vm.alert('请输入Office号');
+                        return;
+                    }
+                    if (vm.FullForm.Model.Seats() == null || vm.FullForm.Model.Seats() == '') {
+                        vm.alert('请选择航空公司舱位');
+                        return;
+                    }
+                    if (vm.FullForm.Model.LocalPolicyType() == null || vm.FullForm.Model.LocalPolicyType() == '') {
+                        vm.alert('请选择政策类型');
+                        return;
+                    }
+                    if (!(vm.FullForm.Model.LocalPoint() >= 0 && vm.FullForm.Model.LocalPoint() < 100)) {
+                        vm.alert('本地返点范围必须在0-100之间');
+                        return;
+                    }
+                    if (!(vm.FullForm.Model.Different() >= 0 && vm.FullForm.Model.Different() < 100)) {
+                        vm.alert('异地返点范围必须在0-100之间');
+                        return;
+                    }
+
+                    $('#AddLocalPolicy').mask('正在提交保存数据...');;
+                    vm.ajax({
+                        url: vm.urls.add,
+                        type: 'post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(ko.toJS(vm.FullForm.Model))
+                    }, function () {
+                        $('#AddLocalPolicy').dialog('close').unmask();
+                        vm.grid.datagrid('reload');
+                    }, function () {
+                        $('#AddLocalPolicy').unmask();
+                    })
+                },
+                EditClick: function (id) {
+                    if (vm.FullForm.IsInit() == false) {
+                        vm.FullForm.IsInit(true);
+                        vm.FullForm.Init();
+                    }
+                    vm.ajax({
+                        url: vm.urls.editinfo,
+                        type: 'post',
+                        data: { id: id },
+                        dataType: 'json'
+                    }, function (r, s) {
+                        if (r.CarrayCode != undefined || r.CarrayCode != null)
+                            vm.FullForm.SelectedCarray(r.CarrayCode);
+                        if (r.WeekLimit != undefined || r.WeekLimit != null)
+                            vm.FullForm.SelectedWeek(r.WeekLimit.split(','));
+                        if (r.FromCityCodes != undefined || r.FromCityCodes != null)
+                            $('#FromCityCodes').combogrid('setValues', r.FromCityCodes.split(','));
+                        if (r.ToCityCodes != undefined || r.ToCityCodes != null)
+                            $('#ToCityCodes').combogrid('setValues', r.ToCityCodes.split(','));
+                        r.PassengeDate.StartTime = r.PassengeDate.StartTime.split(' ')[0];
+                        r.PassengeDate.EndTime = r.PassengeDate.EndTime.split(' ')[0];
+                        r.IssueDate.StartTime = r.IssueDate.StartTime.split(' ')[0];
+                        r.IssueDate.EndTime = r.IssueDate.EndTime.split(' ')[0];
+                        vm.FullForm.CustomModel.ReleaseType(r.ReleaseType + '');
+                        vm.FullForm.CustomModel.TravelType(r.TravelType + '');
+                        vm.FullForm.CustomModel.Share(r.Share + '');
+                        vm.FullForm.CustomModel.Apply(r.Apply + '');
+                        vm.FullForm.CustomModel.IssueTicketWay(r.IssueTicketWay + '');
+                        vm.FullForm.CustomModel.Low(r.Low);
+                        vm.FullForm.CustomModel.ChangeCode(r.ChangeCode);
+                        ko.mapping.fromJS(r, vm.FullForm.Model);
+                        $('#AddLocalPolicy').dialog('open');
+                    })
+                }
+            };
+        }, {
+            InitForm: null,
+            EditForm: null,
+            FullForm: null,
+            SelectSeats: ko.observableArray([]),
+            ReleaseType: ko.observableArray(EnumReleaseType),
+            TravelType: ko.observableArray(EnumTravelType),
+            IssueTicketWay: ko.observableArray(EnumIssueTicketWay),
+            BooleanType: ko.observableArray([{ Value: false, Description: '未审' }, { Value: true, Description: '已审' }]),
+            PolicyType: ko.observableArray(['B2B', 'BSP']),
+            SeatQue: ko.observableArray([]),
+            BatchDeleteClick: function (id) {
+                var ids = [], $this = this;
+                if (!id) {
+                    var rows = this.grid.datagrid('getChecked');
+                    for (var i = 0; i < rows.length; i++) {
+                        ids.push(rows[i].ID);
+                    }
+                    if (ids.length == 0) {
+                        this.alert('未选择行!');
+                        return;
+                    }
+                } else {
+                    ids.push(id);
+                }
+                $this.confirm('确认要删除吗?', function () {
+                    $this.ajax({
+                        url: $this.urls.batchdelete,
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify(ids)
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                    })
+                })
+            },
+            BatchReviewClick: function (id) {
+                var ids = [], $this = this;
+                if (!id) {
+                    var rows = this.grid.datagrid('getChecked');
+                    for (var i = 0; i < rows.length; i++) {
+                        ids.push(rows[i].ID);
+                    }
+                    if (ids.length == 0) {
+                        this.alert('未选择行!');
+                        return;
+                    }
+                } else {
+                    ids.push(id);
+                }
+                $this.confirm('确认审核吗?', function () {
+                    $this.ajax({
+                        url: $this.urls.batchreview,
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify(ids)
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                    })
+                })
+            },
+            BatchCancelHangUpClick: function (id) {
+                var ids = [], $this = this;
+                if (!id) {
+                    var rows = this.grid.datagrid('getChecked');
+                    for (var i = 0; i < rows.length; i++) {
+                        ids.push(rows[i].ID);
+                    }
+                    if (ids.length == 0) {
+                        this.alert('未选择行!');
+                        return;
+                    }
+                } else {
+                    ids.push(id);
+                }
+                $this.confirm('确认挂起吗?', function () {
+                    $this.ajax({
+                        url: $this.urls.batchcancelhangup,
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify(ids)
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                    })
+                })
+            },
+            BatchHangUpClick: function (id) {
+                var ids = [], $this = this;
+                if (!id) {
+                    var rows = this.grid.datagrid('getChecked');
+                    for (var i = 0; i < rows.length; i++) {
+                        ids.push(rows[i].ID);
+                    }
+                    if (ids.length == 0) {
+                        this.alert('未选择行!');
+                        return;
+                    }
+                } else {
+                    ids.push(id);
+                }
+                $this.confirm('确认取消挂起吗?', function () {
+                    $this.ajax({
+                        url: $this.urls.batchhangup,
+                        contentType: 'application/json',
+                        type: 'POST',
+                        data: JSON.stringify(ids)
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                    })
+                })
+            },
+            PartEditClick: function (val, carraycode) {
+                var $this = this;
+                $this.SeatQue.removeAll();
+                this.ajax({
+                    url: this.urls.getseats,
+                    type: 'POST',
+                    data: { carraycode: carraycode },
+                    dataType: 'json'
+                }, function (r, s) {
+                    for (var i = 0; i < r.length; i++) {
+                        $this.SeatQue.push(r[i]);
+                    }
+                })
+                this.ajax({
+                    url: this.urls.getpartinfo,
+                    type: 'POST',
+                    data: { id: val },
+                    dataType: 'json'
+                }, function (r, s) {
+                    ko.mapping.fromJS(r, $this.EditForm);
+                })
+                $("#PartPolicy").dialog("open");
+            },
+            PartSaveClick: function () {
+                $('#PartPolicy').mask('正在提交保存数据...');
+                var $this = this;
+                $this.ajax({
+                    url: $this.urls.partsave,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS($this.EditForm))
+                }, function () {
+                    $('#PartPolicy').unmask();
+                    $('#PartPolicy').dialog('close');
+                    $this.grid.datagrid('reload');
+                }, function () {
+                    $('#PartPolicy').unmask();
+                })
+            },
+            AddLocalPolicyClick: function () {
+                if (vm.FullForm.IsInit() == false) {
+                    vm.FullForm.IsInit(true);
+                    vm.FullForm.Init();
+                }
+                this.FullForm.SelectedCarray('');
+                this.FullForm.SelectedWeek([]);
+                this.FullForm.CustomModel.ReleaseType(this.InitForm.ReleaseType + '');
+                this.FullForm.CustomModel.TravelType(this.InitForm.TravelType + '');
+                this.FullForm.CustomModel.Share(this.InitForm.Share + '');
+                this.FullForm.CustomModel.Apply(this.InitForm.Apply + '');
+                this.FullForm.CustomModel.IssueTicketWay(this.InitForm.IssueTicketWay + '');
+                this.FullForm.CustomModel.Low(this.InitForm.Low);
+                this.FullForm.CustomModel.ChangeCode(this.InitForm.ChangeCode);
+                $('#FromCityCodes').combogrid('setValues', []);
+                $('#ToCityCodes').combogrid('setValues', []);
+                ko.mapping.fromJS(this.InitForm, this.FullForm.Model);
+                $('#AddLocalPolicy').dialog('open');
+            }
+        });
+        var vm = new PolicyIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+        vm.FullForm.SelectedCarray.subscribe(function (newValue) {
+            vm.FullForm.Model.CarrayCode(newValue);
+            if (newValue == undefined || newValue == null || newValue == '')
+                return;
+            $.getJSON('/Policy/GetSeats', { carraycode: newValue, date: new Date() }, function (r) {
+                for (var i = 0; i < r.length; i++) {
+                    vm.FullForm.Seats.push(r[i]);
+                }
+            });
+        });
+        vm.FullForm.CustomModel.ReleaseType.subscribe(function (newValue) {
+            vm.FullForm.Model.ReleaseType(newValue);
+        });
+        vm.FullForm.CustomModel.TravelType.subscribe(function (newValue) {
+            vm.FullForm.Model.TravelType(newValue);
+        });
+        vm.FullForm.CustomModel.Share.subscribe(function (newValue) {
+            vm.FullForm.Model.Share(newValue);
+        });
+        vm.FullForm.CustomModel.Apply.subscribe(function (newValue) {
+            vm.FullForm.Model.Apply(newValue);
+        });
+        vm.FullForm.CustomModel.IssueTicketWay.subscribe(function (newValue) {
+            vm.FullForm.Model.IssueTicketWay(newValue);
+        });
+        vm.FullForm.CustomModel.Low.subscribe(function (newValue) {
+            vm.FullForm.Model.Low(newValue);
+        });
+        vm.FullForm.CustomModel.ChangeCode.subscribe(function (newValue) {
+            vm.FullForm.Model.ChangeCode(newValue);
+        });
+        ko.applyBindings(vm);
+    </script>
+}
+

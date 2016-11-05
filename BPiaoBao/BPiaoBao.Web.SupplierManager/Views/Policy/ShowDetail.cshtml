@@ -1,0 +1,150 @@
+﻿@model BPiaoBao.AppServices.ConsoContracts.DomesticTicket.DataObjects.ResponseFullPolicy
+           <style>
+               .span_paddingright { padding-right:10px;
+               }
+               .divstyle { padding-left:20px;  padding-top:20px;
+               }
+               .divstyle table tr td{ color:#000;
+                   }
+               .titleStyle2 {
+                   color: #666; 
+               }
+           </style>
+<div class="divstyle">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <td height="35" class="titleStyle2">发布类型：</td>
+                <td height="35">
+                    @Model.ReleaseType.ToEnumDesc()
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">行程类型：</td>
+                <td height="35">
+                    @Model.TravelType.ToEnumDesc()
+                </td>
+            </tr>
+            <tr>
+                <td height="20">&nbsp;</td>
+                <td height="20">
+                    是否低开:@(Model.Low ? "是" : "否")&nbsp;&nbsp;&nbsp;&nbsp;
+                    是否换编码:@(Model.ChangeCode ? "是" : "否")
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">出发城市：</td>
+                <td height="35">
+                    @Model.FromCityCodes
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">到达城市：</td>
+                <td height="35">
+                    @Model.ToCityCodes
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">星期限制：</td>
+                <td height="35">
+                    <div style="float: left; padding-right: 10px;">
+                        <input type="checkbox" name="D_WeekLimit" style="margin-right: 3px;" disabled="disabled" checked="@(Model.WeekLimit != null ? Model.WeekLimit.Contains("1") : false)" /><span class="span_paddingright">星期一</span>
+                        <input type="checkbox" name="D_WeekLimit" style="margin-right: 3px;" disabled="disabled" checked="@(Model.WeekLimit != null ? Model.WeekLimit.Contains("2") : false)" /><span class="span_paddingright">星期二</span>
+                        <input type="checkbox" name="D_WeekLimit" style="margin-right: 3px;" disabled="disabled" checked="@(Model.WeekLimit != null ? Model.WeekLimit.Contains("3") : false)" /><span class="span_paddingright">星期三</span>
+                        <input type="checkbox" name="D_WeekLimit" style="margin-right: 3px;" disabled="disabled" checked="@(Model.WeekLimit != null ? Model.WeekLimit.Contains("4") : false)" /><span class="span_paddingright">星期四</span>
+                        <input type="checkbox" name="D_WeekLimit" style="margin-right: 3px;" disabled="disabled" checked="@(Model.WeekLimit != null ? Model.WeekLimit.Contains("5") : false)" /><span class="span_paddingright">星期五</span>
+                        <input type="checkbox" name="D_WeekLimit" style="margin-right: 3px;" disabled="disabled" checked="@(Model.WeekLimit != null ? Model.WeekLimit.Contains("6") : false)" /><span class="span_paddingright">星期六</span>
+                        <input type="checkbox" name="D_WeekLimit" style="margin-right: 3px;" disabled="disabled" checked="@(Model.WeekLimit != null ? Model.WeekLimit.Contains("7") : false)" /><span class="span_paddingright">星期天</span>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">适用共享航班：</td>
+                <td height="35">
+                    @(Model.Share ? "适用" : "不适用")
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">适用航班：</td>
+                <td height="35">
+                    @Model.Apply.ToEnumDesc()
+                </td>
+            </tr>
+            <tr>
+                <td height="30"></td>
+                <td height="30">
+                    @Model.ApplyFlights
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td height="35" class="titleStyle2">航空公司：</td>
+                <td height="35">
+                    @Model.CarrayCode
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Office:@Model.Office &nbsp;&nbsp;&nbsp;&nbsp;
+                    出票方式：
+                    @Model.IssueTicketWay.ToEnumDesc()
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">舱位：</td>
+                <td height="35">
+                    @Model.Seats
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">政策类型:</td>
+                <td height="35">
+                    @Model.LocalPolicyType &nbsp;&nbsp;&nbsp;&nbsp;
+                    本地返点：@Model.LocalPoint &nbsp;&nbsp;&nbsp;&nbsp;
+                    异地返点：@Model.Different
+                </td>
+            </tr>
+            @if (Model is BPiaoBao.AppServices.ConsoContracts.DomesticTicket.DataObjects.ReponseSpecialFullPolicy)
+        {
+                <tr>
+                    <td height="35" class="titleStyle2">特价类型：</td>
+                    <td height="35">
+                        @((Model as BPiaoBao.AppServices.ConsoContracts.DomesticTicket.DataObjects.ReponseSpecialFullPolicy).SpecialType.ToEnumDesc())
+                    </td>
+                </tr>
+            if ((Model as BPiaoBao.AppServices.ConsoContracts.DomesticTicket.DataObjects.ReponseSpecialFullPolicy).SpecialType == BPiaoBao.Common.Enums.SpeciaType.Fixed)
+            {
+                <tr>
+                    <td height="35" class="titleStyle2">固定特价类型：</td>
+                    <td height="35">
+                        @((Model as BPiaoBao.AppServices.ConsoContracts.DomesticTicket.DataObjects.ReponseSpecialFullPolicy).Type.ToEnumDesc())
+                        [@((Model as BPiaoBao.AppServices.ConsoContracts.DomesticTicket.DataObjects.ReponseSpecialFullPolicy).FixedSeatPirce)
+                        @if ((Model as BPiaoBao.AppServices.ConsoContracts.DomesticTicket.DataObjects.ReponseSpecialFullPolicy).Type == BPiaoBao.Common.Enums.FixedOnSaleType.Credit)
+                    {
+                            <span>%</span>
+                    }]
+                    </td>
+                </tr>
+            }
+        }
+            <tr>
+                <td height="35" class="titleStyle2">乘机日期:</td>
+                <td height="35">
+                    @Model.PassengeDate.StartTime.ToString("yyyy-MM-dd")-
+                    @Model.PassengeDate.EndTime.ToString("yyyy-MM-dd")
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">出票日期：</td>
+                <td height="35">
+                    @Model.IssueDate.StartTime.ToString("yyyy-MM-dd")-
+                    @Model.IssueDate.EndTime.ToString("yyyy-MM-dd")
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">政策备注</td>
+                <td height="35">
+                    @Model.Remark
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

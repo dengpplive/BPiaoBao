@@ -1,0 +1,112 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>自动出票设置</title>
+    <script src="~/Scripts/jquery-1.9.0.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <style type="text/css">
+        .drawerSet {
+            padding-left: 15px;
+            padding-top: 10px;
+            font-size: 12px;
+            font-family: 'Microsoft YaHei';
+            color: #333;
+            overflow: hidden;
+            clear: both;
+            display: block;
+        }
+
+        .drawerSet_wr {
+            overflow: hidden;
+            padding-bottom: 4px;
+            line-height: 30px;
+            border-bottom: 1px dashed #e5e5e5;
+            padding-top: 4px;
+            padding-right: 15px;
+        }
+
+            .drawerSet_wr:hover {
+                background: #eee;
+            }
+
+            .drawerSet_wr div {
+                float: left;
+                padding-right: 15px;
+            }
+
+        .ds_airlines {
+            width: 60px;
+            color: #000;
+            font-weight: bold;
+            padding-top: 1px;
+        }
+
+        .drawerSet_wr input {
+            margin-left: 3px;
+        }
+
+        .qianyue {
+            margin-right: 15px;
+            color: #008dde;
+            text-decoration: none;
+        }
+
+            .qianyue:hover {
+                color: #111;
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div data-bind="foreach:Model.IssueTickets" class="drawerSet">
+        <div class="drawerSet_wr">
+            <div class="ds_airlines"><span data-bind="text:CarrayName"></span>(<span data-bind="    text:CarrayCode"></span>)</div>
+            <div class="ds_account">帐号:<input type="text" data-bind="value:Account" /></div>
+            <div class="ds_pwd">密码:<input type="text" data-bind="value:Pwd" /></div>
+            <div class="ds_contact">联系人:<input type="text" data-bind="value:ContactName" /></div>
+            <div class="ds_tel">电话:<input type="text" data-bind="value:Phone" /></div>
+        </div>
+    </div>
+
+    <div style="margin-top: 5px; font-size: 12px; font-family: 'Microsoft YaHei'; color: #000; padding-left: 15px; background: #c8d9e6; overflow: hidden; line-height: 40px; padding-top: 5px;">
+        <span>失败重新调次数:<input type="text" data-bind="value:Model.ReconnectionCount" /></span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>支付宝:<input type="text" data-bind="value:Model.Account" /></span>
+        <a href="https://mapi.alipay.com/gateway.do?service=alipay.dut.third.userext.nav&partner=2088701769940874&_input_charset=GBK&sign_type=MD5&biz_type=air_dut_third%3aDEFAULT&operate_type=sign&platform_pid=2088411221409280&sign=279698c3f85659fbd1b7f704988b4e3f" target="_blank" class="qianyue">平台供应出票代扣签约</a>
+        <a href="https://mapi.alipay.com/gateway.do?service=dut.customer.sign&partner=2088701769940874&item_code=DEFAULT&protocol_code=air_dut_third&sign=9e38c1c46f331c16d3b3f2e0bf37a6ca&sign_type=MD5" target="_blank" class="qianyue">机票自动支付签约 </a>(<font color="red">注:须[平台供应出票代扣签约,机票自动支付签约]两次签约成功,才能自动出票</font>)<br />
+        <span>开关设置:<input type="checkbox" data-bind="checked:Model.B2B" id="B2B" /><label for="B2B">B2B自动出票</label>&nbsp;&nbsp;
+            <input type="checkbox" data-bind="checked:Model.BSP" id="BSP" /><label for="BSP">BSP自动出票</label>
+        </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="button" data-bind="click:SaveClick" value="保存" style="padding: 2px 25px; cursor: pointer;" />
+    </div>
+    <script type="text/javascript">
+        var json=@(Html.Raw(ExpandTypeConvert.ToJson(Model)))
+
+        var ViewModel=function(data){
+            var self=this;
+            self.Model=ko.mapping.fromJS(data);
+            self.SaveClick=function(){
+                $.ajax({
+                    url:'/Businessman/AutoTicketSetSave',
+                    type:'post',
+                    contentType: 'application/json',
+                    data:JSON.stringify(ko.toJS(self.Model))
+                }).done(function(){
+                    alert('保存成功!')
+                }).fail(function(){
+                    alert('保存失败!');
+                })
+            }
+        }
+        ko.applyBindings(new ViewModel(json));
+        window.parent.HideDiv();
+    </script>
+</body>
+</html>

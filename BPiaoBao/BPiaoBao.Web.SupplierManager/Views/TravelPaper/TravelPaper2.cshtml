@@ -1,0 +1,519 @@
+﻿@{
+    ViewBag.Title = "行程单已分配管理-已分配行程单综合查询";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.debug.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+    <script src="~/Scripts/ko.custombinding.js"></script>
+    <script src="~/Scripts/jsDate.js"></script>
+    <script src="~/Scripts/commonViewModel.js?a=@(new Random().Next(0, 9999999).ToString())"></script>
+    <script type="text/javascript">
+        var TravelPaperVM = CC.Create(BaseVM, function (data) {
+            this.editForm = ko.mapping.fromJS(data.editForm);
+            this.urls = data.urls;
+            delete this.editForm.__ko_mapping__;
+        }, { 
+            addClick: function () {               
+                $.ajax({
+                    url: this.urls.add,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS(this.editForm)),
+                    success: function (d) {
+                        try{
+                            var Msg = null;
+                            var rowCount = -1;
+                            var State = null;
+                            for (var i in d) {
+                                if (i == "State") {
+                                    State = d[i];
+                                } else if (i == "rowCount") {
+                                    rowCount = d[i];
+                                } else if (i == "Msg") {
+                                    Msg = d[i];
+                                }
+                            }
+                            if (State != null) {
+                                if (State == true) {
+                                    $.messager.alert("提示", "操作成功", "info", function () {
+                                        $('#win').dialog('close');                                        
+                                        if(this.grid!=null)
+                                            this.grid.datagrid('reload');
+                                        else
+                                        {
+                                            vm.grid.datagrid('reload');
+                                        }
+                                    });
+                                } else {
+                                    $.messager.alert("提示", Msg + " 条数:" + rowCount, "info");
+                                }
+                            } else {
+                                $.messager.alert("提示", "操作成功", "info", function () {
+                                    $('#win').dialog('close');
+                                    if(this.grid!=null)
+                                        this.grid.datagrid('reload');
+                                    else
+                                    {
+                                        vm.grid.datagrid('reload');
+                                    }
+                                });
+                            }
+                        } finally  {
+                            window.parent.HideDiv();
+                        }   
+                    }
+                });
+            },
+            reload:function()
+            {              
+                this.grid.datagrid('load', ko.toJS(this.searchForm));
+            }        
+        }                           
+      );
+        var FormData =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model))
+        var vm=new TravelPaperVM(FormData);
+        vm.grid.singleSelect = false;       
+        ko.applyBindings(vm)
+
+        function customFormat(val, row, index) {           
+            var html= '<a href="#" onclick="OpenWin(3,'+index+')"  class="aStyle">修改Office</a>';
+            if(row.TripStatus==3){
+                html= '<a href="#" onclick="OpenWin(0,'+index+')"   class="aStyle" >分配空白行程单</a>';
+            }else if(row.TripStatus==0||row.TripStatus==4)
+            {
+                html= '<a href="#" onclick="OpenWin(1,'+index+')"  class="aStyle">回收空白行程单</a>';
+            }         
+            if(row.TripStatus==2){
+                html= '<a href="#" onclick="OpenWin(2,'+index+')"  class="aStyle" >回收作废行程单</a>';
+            }
+            return html;
+        }
+        function formatDatebox(val, row, index) {
+            try {
+                if (val == null || val == '' || val == undefined) {
+                    return '';
+                }
+                eval('var d=new Date(' + val.replace(/\/Date\((-?\d+)\)\//, '$1') + ");d.setMonth(d.getMonth()+1);");
+                val = d.format("yyyy-MM-dd HH:mm:ss");
+                if (val == "1900-01-01 00:00:00" ||val == "1900-00-01 00:00:00"|| val == "1-00-01 08:00:00"||val=="1-01-01 08:00:00") {
+                    val = "";
+                }
+            } catch (e) {
+                //alert(e.message);
+            }
+            return val;
+        }
+        function formatTripStatus(val, row, index) {
+            switch (val) {
+                case 0:
+                    val = "已分配,未使用";
+                    break;
+                case 1:
+                    val = "已创建,已使用";
+                    break;
+                case 2:
+                    val = "已作废,未回收";
+                    break;
+                case 3:
+                    val = "空白回收,未分配";
+                    break;
+                case 4:
+                    val = "空白回收,已分配";
+                    break;
+                case 5:
+                    val = "已作废,已回收";
+                    break;
+                default:
+                    break;
+            }
+            return val;
+        }
+        //分配行程单
+        function OpenWin(type, index) {
+            try {
+                           
+                var isExist = false;
+                var ckRows=[];
+                //alert("index="+index);
+                if(index!=null){   
+                    //ckRows.push(rowArr[index]);
+                    ckRows.push( vm.grid.datagrid("getRows")[index]);   
+                    //alert(11);
+                }else{
+                    ckRows = vm.grid.datagrid("getChecked");   
+                }                                    
+                var ids = [];
+                var tripArr = [];
+                if (ckRows.length > 0) {                   
+                    for (var i = 0; i < ckRows.length; i++) {
+                        if (type == 0) {//批量分配空白行程单
+                            if (ckRows[i].TripStatus == 3) {
+                                isExist = true;
+                                ids.push(ckRows[i].ID);
+                                tripArr.push(ckRows[i].TripNumber);
+                            }
+                        } else if (type == 1) {//空白回收
+                            if (ckRows[i].TripStatus == 0||ckRows[i].TripStatus == 4) {
+                                isExist = true;
+                                ids.push(ckRows[i].ID);
+                                tripArr.push(ckRows[i].TripNumber);
+                            }
+                        }else if(type == 2)//作废回收
+                        {
+                            if (ckRows[i].TripStatus == 2) {
+                                isExist = true;
+                                ids.push(ckRows[i].ID);
+                                tripArr.push(ckRows[i].TripNumber);
+                            }
+                        }else if(type==3)//修改Office
+                        {
+                            //alert(ckRows[i].ID+"|"+type);
+                            // break;
+                            isExist = true;
+                            ids.push(ckRows[i].ID);
+                            tripArr.push(ckRows[i].TripNumber);
+                        }
+                    }
+                }
+                if (type == 0)//批量分配空白行程单
+                {
+                    if (isExist) {
+                        vm.editForm.selTripIds=ids.join(",");                     
+                        $("#selTripIds").val(ids.join(","));
+                        $("#selTripNum").val(tripArr.join(","));
+                        $("#tripCount").val(ids.length);                                            
+                        $('#win').dialog('open');
+                    } else {
+                        $.messager.alert("提示", "请选择“空白回收，未分配”的行程单进行发放！");
+                    }
+                } 
+                else if(type==3)//修改Office
+                {
+                    if (isExist) {
+                        $.messager.prompt("操作提示", "确定修改选中行程单的Office？", function (data) {
+                            if (data) {
+                                if ($.trim(data).length != 6) {
+                                    $.messager.alert("提示",'输入Office号格式错误！');
+                                } else {
+                                    UpdateOffice(data,ids.join(","));
+                                }
+                            }
+                        });
+                    }else{
+                        $.messager.alert("提示", "请选择作需要修改Office的行程单！");
+                    }
+                }
+                else //批量回收空白/作废行程单
+                {                    
+                    if (isExist) {
+                        var id = ids.join(",");  
+                        window.parent.ShowDiv();
+                        $.ajax({
+                            url: "/TravelPaper/PatchRecovery",
+                            contentType: 'application/json',
+                            type: 'GET',
+                            data: {type:type, selTripIds: id },
+                            success: function (d) {
+                                try{
+                                    var count = -1;
+                                    for (var i in d) {
+                                        if (i == "count") {
+                                            count = d[i];
+                                            break;
+                                        }
+                                    }
+                                    if (count > 0) {
+                                        $.messager.alert("提示", "成功" + count + "条", "info", function () {                                       
+                                            vm.reload();
+                                        });
+                                    } else {
+                                        $.messager.alert("提示", count + "操作失败");
+                                    }
+                                } finally  {
+                                    window.parent.HideDiv();
+                                }   
+                            },
+                            error: function (a, b, c) {
+                                // alert(b);
+                                window.parent.HideDiv();
+                            }
+                        })
+                    } else {
+                        if(type==1)//空白回收
+                        {
+                            $.messager.alert("提示", "请选择状态为”空白回收,未分配“的行程单！");
+                        }
+                        else if(type==2)//作废回收
+                        {
+                            $.messager.alert("提示", "请选择状态为“已作废,未回收”的行程单！");
+                        }   
+                        // $.messager.alert("提示", "请选择作废回收或者空白回收的行程单！");
+                    }
+                }
+            } catch (e) {
+                alert(e.message);
+            }
+            return  false;
+        }
+        function formatTripStatus(val, row, index) {
+            switch (val) {
+                case 0:
+                    val = "已分配,未使用";
+                    break;
+                case 1:
+                    val = "已创建,已使用";
+                    break;
+                case 2:
+                    val = "已作废,未回收";
+                    break;
+                case 3:
+                    val = "空白回收,未分配";
+                    break;
+                case 4:
+                    val = "空白回收,已分配";
+                    break;
+                case 5:
+                    val = "已作废,已回收";
+                    break;
+                default:
+                    break;
+            }
+            return val;
+        }
+        function UpdateOffice(office,id)
+        {
+            //alert(id);
+            window.parent.ShowDiv();
+            $.ajax({
+                url: "/TravelPaper/UpdateOffice",
+                contentType: 'application/json',
+                type: 'GET',
+                data: { useOffice: office, Ids: id },
+                success: function (d) {
+                    try{
+                        var count = -1;
+                        for (var i in d) {
+                            if (i == "count") {
+                                count = d[i];
+                                break;
+                            }
+                        }
+                        if (count > 0) {
+                            $.messager.alert("提示", "成功" + count + "条", "info", function () {
+                                vm.reload();
+                            });
+                        } else {
+                            $.messager.alert("提示", count+"操作失败");
+                        }   } finally  {
+                            window.parent.HideDiv();
+                        }                        
+                },
+                error: function (a, b, c) {
+                    // alert(b);
+                    window.parent.HideDiv();
+                }
+            })
+        
+        }
+        function Validate() {           
+            var msg = "";
+            var Code = $.trim($("#Code").val());
+            if (Code == "") {
+                msg = "商户号或商户名不能为空！";
+            }
+            if (msg == "") {
+                var len = $.trim($("#selTripIds").val()).split(',').length;
+                $("#tripCount").val(len);
+            }
+            if (msg == "") {
+                var office = $.trim($("#ffoffice").val());
+                var iataCode = $.trim($("#iataCode").val());
+                var ticketCompanyName = $.trim($("#ticketCompanyName").val());
+                //alert(office+"|"+iataCode+"|"+ticketCompanyName);
+                if (office == "" || iataCode == "" || ticketCompanyName == "") {
+                    msg = "Office号,航协号,填开单位不能为空！";
+                }
+            }
+            if (msg == "") {
+                vm.addClick();
+                window.parent.ShowDiv();
+            } else {
+                $.messager.alert("提示", msg, "info");
+            }
+        }
+        function formatDetail(val, row, index) {             
+            var html = '<a href="#" onclick=showDetail("' + row.TripNumber + '") class="aStyle" >' + row.TripNumber + '</a>';
+            return html;
+        }
+        function showDetail(TripNumber) {
+            var url = "/TravelPaper/GetTripNumberDetail?TripNumber=" + TripNumber + "&num=" + Math.random();
+            $.get(url, {}, function (d) {
+                if (d.msg.Success == 1) {
+                    //显示
+                    try {
+                        var data = d.model;
+                        //alert(data.TravelPaperLogDtos);
+                        var tr = [];
+                        if (data.TravelPaperLogDtos != null && data.TravelPaperLogDtos.length > 0) {
+                            tr.push("<tr><td>操作时间</td><td>操作账号</td><td>操作类型</td> <td>内容</td></tr>");
+                            for (var i = 0; i < data.TravelPaperLogDtos.length; i++) {
+                                var item=data.TravelPaperLogDtos[i];                            
+                                tr.push("<tr><td>" + formatDatebox(item.OperationDatetime ,'','')+ "</td><td>" + item.OperationPerson + "</td><td>" + item.OperationType + "</td><td>" + item.OperationContent + "</td></tr>");
+                            }
+                        }
+                        var tr = tr.join("");
+                        var html = '<table  style="margin: 10px;width: 100%;" class="tablestyle0">\
+                        <tr>\
+                        <td>行程单号:</td>\
+                        <td>\
+                        <div id="dTripNumber">'+ data.TripNumber + '</div>\
+                        </td>\
+                        <td>状态:</td>\
+                        <td>\
+                        <div id="dTripStatus">'+ formatTripStatus(data.TripStatus, null, null) + '</div>\
+                        </td>\
+                        </tr>\
+                        <tr>\
+                        <td>商户名:</td>\
+                        <td>\
+                        <div id="dCodeName">'+ data.UseBusinessmanName + '</div>\
+                        </td>\
+                        <td>商户号:</td>\
+                        <td>\
+                        <div id="dCode">'+ data.UseBusinessmanCode + '</div>\
+                        </td>\
+                        </tr>\
+                        <tr>\
+                        <td colspan="4">\
+                        <table style="width: 100%;" id="tabLog">\
+                        '+ tr + '\
+                        </table>\
+                        </td>\
+                        </tr>\
+                        </table>';
+                        $("<div id='win'></div>").appendTo(document.body);
+                        $('#win').html(html);
+                        $('#win').window({
+                            title: "行程单详情",
+                            modal: true
+                        });
+                    } catch (e) {
+                        //alert(e.message);
+                    }
+                } else {
+                    $.messager.alert("提示", d.msg.Message);
+                }
+            }, "json");
+        }
+    </script>
+}
+<style type="text/css">
+    input
+    {
+        width: 120px;
+    }
+</style>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar">
+            <div id="buttons">
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" onclick="OpenWin(2)">批量回收作废行程单</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" onclick="OpenWin(1)">批量回收空白行程单</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" onclick="OpenWin(0)">批量分配空白行程单</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" onclick="OpenWin(3)">批量修改Office</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-export" plain="true" onclick="vm.exportClick('Excel2003')">导出Excel</a>
+            </div>
+            <div style="margin: 10px;">
+                <table class="tablestyle0">
+                    <tr>
+                        <td>商户号：</td>
+                        <td width="150">
+                            <input type="text" name="UseBusinessmanCode" class="inputStyle" id="UseBusinessmanCode" data-bind="value: $root.searchForm.UseBusinessmanCode" />
+                        </td>
+
+                        <td>行程单号段：</td>
+                        <td width="305">
+                            <input type="text" name="startTripNumber" class="inputStyle" id="startTripNumber" data-bind="value: $root.searchForm.startTripNumber" />
+                            -
+                            <input type="text" name="endTripNumber" class="inputStyle" id="endTripNumber" data-bind="value: $root.searchForm.endTripNumber" />
+                        </td>
+                        <td>分配时间:
+                        </td>
+                        <td width="200">
+                            <input type="text" name="startGrantTime" class="easyui-my97 inputStyle22" id="startGrantTime" data-bind="my97value: $root.searchForm.startGrantTime" data-options="{maxDate:'#F{$dp.$D(\'endGrantTime\')}'}" />
+                            -
+                            <input type="text" class="easyui-my97 inputStyle22" name="endGrantTime" id="endGrantTime" data-bind="my97value: $root.searchForm.endGrantTime" data-options="{minDate:'#F{$dp.$D(\'startGrantTime\')}'}" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>商户名称 :</td>
+                        <td>
+                            <input type="text" name="UseBusinessmanName" class="inputStyle" id="UseBusinessmanName" data-bind="value: $root.searchForm.UseBusinessmanName" />
+                        </td>
+
+
+                        <td>票号号段：</td>
+                        <td>
+                            <input type="text" name="startTicketNumber" class="inputStyle" id="startTicketNumber" data-bind="value: $root.searchForm.startTicketNumber" />
+                            -
+                            <input type="text" name="endTicketNumber" class="inputStyle" id="endTicketNumber" data-bind="value: $root.searchForm.endTicketNumber" />
+                        </td>
+                        <td>创建时间:</td>
+                        <td>
+                            <input type="text" name="startPrintTime" class="easyui-my97 inputStyle22" id="startPrintTime" data-bind="my97value: $root.searchForm.startCreateTime" data-options="{maxDate:'#F{$dp.$D(\'endPrintTime\')}'}" />
+                            -
+                            <input type="text" name="endPrintTime" class="easyui-my97 inputStyle22" id="endPrintTime" data-bind="my97value: $root.searchForm.endCreateTime" data-options="{minDate:'#F{$dp.$D(\'startPrintTime\')}'}" />
+                        </td>
+                        <td>状态:</td>
+                        <td>
+                            <select name="TripStatus" id="TripStatus" data-bind="value: $root.searchForm.TripStatus" style="height: 22px; line-height: 22px; width: 100px;">
+                                <option value="">---状态--</option>
+                                <option value="0">已分配,未使用</option>
+                                <option value="1">已创建,已使用</option>
+                                <option value="2">已作废,未回收</option>
+                                <option value="3">空白回收,未分配</option>
+                                <option value="4">空白回收,已分配</option>
+                                <option value="5">已作废,已回收</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td colspan="5">
+                            <a href="#" class="easyui-linkbutton btnheight0  m_refer" iconcls="icon-search" data-bind="click: vm.searchClick">查询</a>
+                        </td>
+
+
+                    </tr>
+
+
+                </table>
+            </div>
+
+
+        </div>
+        <table id="codeList" title="行程单综合查询" data-bind="datagrid: grid">
+            <thead>
+                <tr>
+                    <th data-options="field:'ID',width:100,checkbox:true,align:'left'"></th>
+                    <th data-options="field:'1',formatter:customFormat,width:100,align:'left'">操作</th>
+                    <th data-options="field:'UseBusinessmanName',width:100,align:'left'">商户名称</th>
+                    <th data-options="field:'UseBusinessmanCode',width:100,align:'left'">商户号</th>
+                    <th data-options="field:'UseOffice',width:60,align:'left'">office</th>
+                    <th data-options="field:'TicketNumber',width:100,align:'left'">票号</th>
+                    <th data-options="field:'TripNumber',formatter:formatDetail,width:80,align:'left'">行程单号</th>
+                    <th data-options="field:'TripStatus',width:100,align:'left',formatter:formatTripStatus">行程单状态</th>
+                    <th data-options="field:'BlankRecoveryTime',width:120,align:'left',formatter:formatDatebox">回收时间</th>
+                    <th data-options="field:'GrantTime',width:120,align:'left',formatter:formatDatebox">分配时间</th>
+                    <th data-options="field:'PrintTime',width:120,align:'left',formatter:formatDatebox">创建时间</th>
+                    <th data-options="field:'InvalidTime',width:120,align:'left',formatter:formatDatebox">作废时间</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@Html.Partial("AddRecoveryBlackTravelPaper")

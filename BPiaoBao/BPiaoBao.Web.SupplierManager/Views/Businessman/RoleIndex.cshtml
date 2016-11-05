@@ -1,0 +1,161 @@
+﻿@{
+    ViewBag.Title = "角色管理";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar">
+            <div>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" code="10" plain="true" data-bind="click: $root.open">新增角色</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" code="11" plain="true" data-bind="click: $root.editClick">更新</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-delete" code="12" plain="true" data-bind="click: $root.deleteClick">删除</a>
+            </div>
+
+            <div style="margin: 10px;">
+                <div class="m_search">
+                    角色名称：<input type="text" data-bind="value: $root.searchForm.roleName" class="inputStyle" />
+                </div>
+                <div class="m_search"><a href="#" class="easyui-linkbutton" code="15" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a></div>
+
+            </div>
+            <div class="both"></div>
+        </div>
+
+        <table id="MainTable" data-bind="datagrid: grid" title="角色管理">
+            <thead>
+                <tr>
+                    <th data-options="field:'RoleName',width:100">角色名称</th>
+                    <th data-options="field:'Description',width:150">描述</th>
+                    <th data-options="field:'CreateTime',width:150">创建时间</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+</div>
+@Html.Partial("AddRole")
+@section scripts{
+    <script type="text/javascript">
+
+        var BuyerIndexVM = CC.Create(BaseVM, function(data) {
+            this.editForm = ko.mapping.fromJS(data.editForm);
+            this.urls = data.urls;
+            this.grid.pagination = false;
+            delete this.editForm.__ko_mapping__;
+        }, {
+            action: ko.observable('add'),
+            editForm: null,
+            open: function() {
+                this.action('add');
+                //this.editForm.RoleName('').Description('').ID('');
+                var self = this;
+                $("#authGrid").tree({
+                    onLoadSuccess: function () {
+                        self.clearForm(self.editForm); 
+                $('#AddRoleDialog').dialog('open');
+                    }
+                });
+               
+            },
+            addClick: function () {
+               
+                if (this.editForm.RoleName() == "" || this.editForm.RoleName() == null) {
+                    this.alert('请输入角色名称');
+                    return false;
+                }
+                if (this.editForm.Description() == "" || this.editForm.Description() == null) {
+                    this.alert('请输入描述');
+                    return false;
+                }
+
+                var nodes = $('#authGrid').tree('getChecked');
+                if (nodes.length == 0) {
+                    this.alert('请选择权限点');
+                    return false;
+                }
+                var AuthNodes = '';
+                for (var i = 0; i < nodes.length; i++) {
+                    if (AuthNodes != '') AuthNodes += ',';
+                    AuthNodes += nodes[i].id;
+                }
+                this.editForm.AuthNodes(AuthNodes);
+                this.ajax({
+                    url: this.urls.add,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(ko.toJS(this.editForm))
+                }, function (r, s) {
+                    if (r == "false") {
+
+                    } else {
+                        $('#AddRoleDialog').dialog('close');
+                        this.clearForm(this.editForm);
+                        this.grid.datagrid('reload');
+                    }
+                });
+            },
+            deleteClick: function () {
+                var self = this;
+                var row = self.grid.datagrid('getSelected');
+                if (!row) {
+                    self.alert('请选择行进行删除');
+                    return;
+                }
+                self.confirm("确定删除选择的角色信息吗？", function () {
+                    self.clearForm(self.editForm);
+
+                    self.ajax({
+                        url: self.urls.delectinfo,
+                    type: 'POST',
+                    data: { id: row["ID"] }
+                    }, function(r, s) {
+                    if (r == "false") {
+                   
+                            self.alert('当前角色正在使用,无法删除');
+                    } else {
+                            self.grid.datagrid('reload');
+                    }
+                    });
+                });
+
+               
+            },
+            editClick: function() {
+                var row = this.grid.datagrid('getSelected');
+                if (!row) {
+                    this.alert('请选择行编辑');
+                    return;
+                }
+                var self = this;
+                $("#authGrid").tree({
+                    onLoadSuccess: function() {
+                        self.clearForm(self.editForm);
+                        self.action('edit');
+                        self.ajax({
+                            url: self.urls.editinfo,
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { id: row["ID"] }
+                        }, function(response, status) {
+                            ko.mapping.fromJS(response, ko.mapping.fromJS(self.editForm));
+                    var array = [];
+                    if (response.AuthNodes != null) {
+                        array = response.AuthNodes.split(',');
+                                for (var i = 0; i < array.length; i++) {
+                            var node = $('#authGrid').tree('find', array[i]);
+                            $('#authGrid').tree('check', node.target);
+                        }
+                    }
+                    $('#AddRoleDialog').dialog('open');
+                        });
+                    }
+                });
+                //$('#authGrid').tree('reload');
+
+            }
+        });
+        var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+            ko.applyBindings(vm);
+
+    </script>
+}

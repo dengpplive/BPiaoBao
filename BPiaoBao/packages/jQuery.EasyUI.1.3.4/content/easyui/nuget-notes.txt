@@ -1,0 +1,3 @@
+﻿- removed local jquery copy
+- removed demo folder
+- renamed "jquery.easyui.min.js" to "jquery.easyui.js"

@@ -1,0 +1,93 @@
+﻿<ViewModel:HomeViewModel ServiceHotline="123123123123" xmlns:ViewModel="clr-namespace:BPiaoBao.Client.TPOS.ViewModel" xmlns:TPos="clr-namespace:BPiaoBao.AppServices.DataContracts.TPos;assembly=BPiaoBao.AppServices.DataContracts" xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.WPF4" IsInDesignMode="False" IsInDesignModeStatic="True" IsBusy="True">
+	<ViewModel:HomeViewModel.AccountStatData>
+		<TPos:AccountStatDataObject AssignPosCount="22" BusinessmanCount="50" PosCount="29" UnAssignPosCount="90">
+			<TPos:AccountStatDataObject.HistoryGain>
+				<System:Decimal/>
+			</TPos:AccountStatDataObject.HistoryGain>
+			<TPos:AccountStatDataObject.YesterdayGain>
+				<System:Decimal/>
+			</TPos:AccountStatDataObject.YesterdayGain>
+		</TPos:AccountStatDataObject>
+	</ViewModel:HomeViewModel.AccountStatData>
+	<ViewModel:HomeViewModel.InitializeCommand>
+		<Command:RelayCommand/>
+	</ViewModel:HomeViewModel.InitializeCommand>
+	<ViewModel:HomeViewModel.PageLoadCommand>
+		<Command:RelayCommand/>
+	</ViewModel:HomeViewModel.PageLoadCommand>
+	<ViewModel:HomeViewModel.TradeStatData>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="55" TradeMoney="11">
+			
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="58">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="63" TradeMoney="22" TradeGain="33">
+			
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="30">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="88">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="86">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="17">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="85">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="42">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+		<TPos:TradeStatDataObject Date="02/19/2014 09:27:17" TradeTimes="95">
+			<TPos:TradeStatDataObject.TradeMoney>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeMoney>
+			<TPos:TradeStatDataObject.TradeGain>
+				<System:Decimal/>
+			</TPos:TradeStatDataObject.TradeGain>
+		</TPos:TradeStatDataObject>
+	</ViewModel:HomeViewModel.TradeStatData>
+</ViewModel:HomeViewModel>

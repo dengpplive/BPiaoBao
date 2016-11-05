@@ -1,0 +1,172 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"     
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:Converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" xmlns:BPiaoBao_Client_DomesticTicket_ViewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:BPiaoBao_Client_UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" x:Class="BPiaoBao.Client.DomesticTicket.View.TicketTableControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="852" d:DesignWidth="1225" d:DataContext="{d:DesignData /SampleData/TicketTableViewModelSampleData.xaml}">
+    <UserControl.Resources>
+        <Converters:ShowTickStatusVisibilityConverter x:Key="ShowTickStatusVisibilityConverter"/>
+        <Converters:ShowTicketMoneyConverter x:Key="ShowTicketMoneyConverter"/>
+        <DataTemplate x:Key="discountemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+                <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap"  VerticalAlignment="Center" Foreground="#FFFB6D00">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="￥{0:f2}" Converter="{StaticResource CommissionConverter}">
+                            <Binding Path="Policy" />
+                            <Binding Path="Passengers[0].SeatPrice"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        <!--<DataTemplate x:Key="OrderColumnDataTemplate">
+            <Grid>
+                <StackPanel Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                    <TextBox TextWrapping="Wrap" Text="{Binding OrderID}" Visibility="{Binding TicketState, Converter={StaticResource ShowTickStatusVisibilityConverter},ConverterParameter=other}" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding CurrentOrderID}" Visibility="{Binding TicketState, Converter={StaticResource ShowTickStatusVisibilityConverter},ConverterParameter=改}" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>-->
+        <DataTemplate x:Key="AfterOrderColumnDataTemplate">
+            <Grid>
+                <StackPanel Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                    <TextBox TextWrapping="Wrap" Text="{Binding CurrentOrderID}" Visibility="{Binding TicketState, Converter={StaticResource ShowTickStatusVisibilityConverter},ConverterParameter=after}" BorderBrush="{x:Null}" Background="{x:Null}" Style="{DynamicResource TextBoxStyle}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="MoneyColumnDataTemplate">
+            <Grid>
+                <StackPanel Height="Auto" VerticalAlignment="Stretch" Width="Auto" Orientation="Horizontal">
+                    <TextBlock Text="-"  VerticalAlignment="Center" Visibility="{Binding TicketState, Converter={StaticResource ShowTicketMoneyConverter}}" Foreground="{StaticResource OrangeForeground}" />
+                    <TextBlock Text="{Binding OrderMoney,StringFormat={}{0:f2}}" VerticalAlignment="Center" Style="{StaticResource WrappedCenteredTextBlock}" Foreground="{StaticResource OrangeForeground}"/> 
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <BPiaoBao_Client_DomesticTicket_ViewModel:TicketTableViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0.928*"/>
+            <RowDefinition Height="0.072*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource HeadBg2}">
+            <TextBlock HorizontalAlignment="Left" Margin="15,0,0,0" TextWrapping="Wrap" Text="机票总表" VerticalAlignment="Center" Style="{DynamicResource Head2TextBlock}"/>
+            <!--<StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Visibility="Hidden">
+				<TextBlock TextWrapping="Wrap" Text="出票量总汇："/>
+				<TextBlock TextWrapping="Wrap" Text="100" Foreground="#FFC53939"/>
+				<TextBlock TextWrapping="Wrap" Text="张"/>
+				<TextBlock TextWrapping="Wrap" Text="交易金额汇总：" Margin="28,0,0,0"/>
+				<TextBlock TextWrapping="Wrap" Text="100" Foreground="#FFC53939"/>
+				<TextBlock TextWrapping="Wrap" Text="张"/>
+				<TextBlock TextWrapping="Wrap" Text="佣金汇总" Margin="28,0,0,0" />
+				<TextBlock TextWrapping="Wrap" Text="100" Foreground="#FFC53939"/>
+				<TextBlock TextWrapping="Wrap" Text="张"/>
+			</StackPanel>-->
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="541*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" BorderThickness="2" Background="{StaticResource BlueBorderFillBrush}" Margin="15,13" BorderBrush="{StaticResource BlueBorderBrush}">
+                <WrapPanel VerticalAlignment="Center" Margin="0,0.5">
+                    <StackPanel Orientation="Horizontal" Margin="7,5,25,5" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" Text="原订单号：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding OrderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,18,5" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" Text="售后订单号：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding CurrentOrderID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" Text="PNR编号：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding PNRCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,18,5" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" Text="乘机人：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding PassengerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,5,18,5" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" Text="机票状态：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}" />
+                        <ComboBox Width="170" BorderBrush="#FFB4BFC3" Height="22" Background="White" ItemsSource="{Binding AllTicketStatus}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedTicketStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Horizontal" Margin="7,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="创建时间：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding CreateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22"/>
+                        <TextBlock TextWrapping="Wrap"  VerticalAlignment="Center"  Style="{DynamicResource HorizontalLineTextBlock}"/>
+                        <DatePicker SelectedDate="{Binding EndCreateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="7,5,18,5" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" Text="票号：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding TicketNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,5,18,5" VerticalAlignment="Center">
+                        <TextBlock TextWrapping="Wrap" Text="交易号：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource BlueTextBoxStyle}" Text="{Binding TransactionNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="28,5,0,5">
+                        <Button Content="查询" Margin="0,0,13,0" Width="58" Height="22" Command="{Binding QueryCommand}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button Content="导出" Width="58" Height="22" Background="White" BorderBrush="{StaticResource GrayBorderBrush}" Foreground="{StaticResource BlueButtonForeground}" Style="{StaticResource WhiteBtn}" Command="{Binding ExportCommand}"/>
+                    </StackPanel>
+                </WrapPanel>
+            </Border>
+        </Grid>
+        <Grid Margin="15,0" Grid.Row="2">
+            <DataGrid BorderThickness="0" AutoGenerateColumns="False" ItemsSource="{Binding Tickets}" GridLinesVisibility="None" IsReadOnly="True" HeadersVisibility="Column" MinRowHeight="55" Background="{x:Null}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding TicketNum}" Header="票号"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding PNR}" Header="PNR"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding SeatPrice}" Header="航位价" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding ABFee,StringFormat={}{0:f2}}" Header="机建费" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding RQFee,StringFormat={}{0:f2}}" Header="燃油费" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding PolicyPoint,StringFormat={}{0:f2}}" Header="返点"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding Commission,StringFormat={}{0:f0}}" Header="佣金" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding CreateDate,StringFormat={}{0:yyyy-MM-dd HH:mm}}" Header="交易时间"/>
+                    <!--<DataGridTextColumn Width="Auto" Binding="{Binding OrderMoney,StringFormat={}{0:f2}}" Header="订单金额" Foreground="{StaticResource OrangeForeground}"/>-->
+                    <DataGridTemplateColumn Width="Auto"  Header="订单金额" CellTemplate="{StaticResource MoneyColumnDataTemplate}"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding RetirementPoundage,StringFormat={}{0:f2}}" Header="退废改手续费" Foreground="{StaticResource OrangeForeground}"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding PayMethod}" Header="支付方式"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding TicketState}" Header="机票状态"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding StartTime}" Header="起飞时间"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding FlightNum}" Header="航班号"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding Voyage}" Header="航程" />
+                    <DataGridTextColumn Width="Auto" Binding="{Binding Seat}" Header="舱位" />
+                    <!--/折扣-->
+                    <DataGridTextColumn Width="Auto" Binding="{Binding PassengerName}" Header="乘客姓名"/>
+                    <!--<DataGridTextColumn Width="Auto" Binding="{Binding TravelNum}" Header="行程单号"/>-->
+                    <!--<DataGridTemplateColumn Width="Auto" Header="交易号" CellTemplate="{StaticResource OrderColumnDataTemplate}"/>-->
+                    <!--<DataGridTextColumn Width="Auto" Binding="{Binding CurrentOrderID}" Header="售后订单号"/>-->
+                    <DataGridTextColumn Width="Auto" Binding="{Binding PayNumber}" Header="交易号"/>
+                    <DataGridTextColumn Width="Auto" Binding="{Binding OrderID}" Header="原订单号"/>
+                    <DataGridTemplateColumn Width="Auto" Header="售后订单号" CellTemplate="{StaticResource AfterOrderColumnDataTemplate}"/> 
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+        </Grid>
+
+        <BPiaoBao_Client_UIExt:Pagination Grid.Row="3" CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TotalCount="{Binding TotalCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="15,0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PageChanged">
+                    <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </BPiaoBao_Client_UIExt:Pagination>
+
+    </Grid>
+</UserControl>

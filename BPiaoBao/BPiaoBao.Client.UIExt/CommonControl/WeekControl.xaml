@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="BPiaoBao.Client.UIExt.CommonControl.WeekControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="RadioButton.Static.Background" Color="#FFEAF3FB"/>
+        <SolidColorBrush x:Key="RadioButton.Static.Border" Color="#FFBCBCBC"/>
+
+        <SolidColorBrush x:Key="RadioButton.MouseOver.Background" Color="White"/>
+        <SolidColorBrush x:Key="RadioButton.MouseOver.Border" Color="#FF00A9F7"/>
+        <SolidColorBrush x:Key="RadioButton.MouseOver.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="RadioButton.Disabled.Background" Color="#FFE6E6E6"/>
+        <SolidColorBrush x:Key="RadioButton.Disabled.Border" Color="#FFBCBCBC"/>
+        <SolidColorBrush x:Key="RadioButton.Pressed.Background" Color="White"/>
+        <SolidColorBrush x:Key="RadioButton.Pressed.Border" Color="#FF00A9F7"/>
+        <SolidColorBrush x:Key="RadioButton.Pressed.Glyph" Color="#FF212121"/>
+        <SolidColorBrush x:Key="RadioButton.Static.Glyph" Color="#FF212121"/>
+        <Style x:Key="RadioButtonWeekStyle" TargetType="{x:Type RadioButton}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Top"/> 
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource RadioButton.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource RadioButton.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RadioButton}">
+                        <Border x:Name="bd" Cursor="Hand" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true" Height="35" Margin="0,0,0,0"  Width="100">
+                            <Border x:Name="bddown">
+                                <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+                                    <TextBlock x:Name="txt"  HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap"   VerticalAlignment="Center" Text="{TemplateBinding Content}"/>
+
+                                </Grid>
+                            </Border>
+
+
+                        </Border>
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource RadioButton.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource RadioButton.MouseOver.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="bd" Value="1,1,1,0"/>
+
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource RadioButton.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource RadioButton.Pressed.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="bd" Value="1,1,1,0"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource RadioButton.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource RadioButton.Disabled.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="true">
+                                <!--<Setter Property="Background" TargetName="bd" Value="Transparent"/>-->
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource RadioButton.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource RadioButton.MouseOver.Border}"/>
+
+                                <Setter Property="BorderThickness" TargetName="bd" Value="1,1,1,0"/>
+                                <Setter Property="Foreground" TargetName="txt" Value="#FF2BC3F0"/>
+                                <Setter Property="FontWeight" TargetName="txt" Value="Bold"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter Property="Background" TargetName="bd" Value="{StaticResource RadioButton.Static.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="bd" Value="{StaticResource RadioButton.Static.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="bd" Value="0,1,1,0"/>
+
+                                <Setter Property="BorderBrush" TargetName="bddown" Value="{StaticResource RadioButton.MouseOver.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="bddown" Value="0,0,0,1"/>
+
+                                <Setter Property="Foreground" TargetName="txt" Value="#FFA8ABAC"/>
+                                <Setter Property="FontWeight" TargetName="txt" Value="Normal"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <StackPanel x:Name="stWeekPanel"  Margin="0,5,0,5" Orientation="Horizontal" Height="36" Grid.Row="1" Background="{StaticResource RadioButton.Static.Background}">
+            <RadioButton Content="星期三(03-02)" HorizontalAlignment="Left" 
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期四(03-03)" HorizontalAlignment="Left"
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期五(03-04)" HorizontalAlignment="Left" 
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期六(03-04)" HorizontalAlignment="Left"   IsChecked="True"
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期日(03-04)" HorizontalAlignment="Left" 
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期一(03-04)" HorizontalAlignment="Left" 
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期二(03-04)" HorizontalAlignment="Left" 
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期三(03-04)" HorizontalAlignment="Left" 
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期四(03-03)" HorizontalAlignment="Left"   
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期五(03-04)" HorizontalAlignment="Left" 
+				VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+            <RadioButton Content="星期六(03-04)" HorizontalAlignment="Left" 
+			VerticalAlignment="Top" Style="{DynamicResource RadioButtonWeekStyle}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

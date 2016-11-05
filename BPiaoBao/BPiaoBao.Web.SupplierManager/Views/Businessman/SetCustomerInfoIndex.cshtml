@@ -1,0 +1,217 @@
+﻿@{
+    ViewBag.Title = "客服中心信息设置";
+}
+<style type="text/css">
+    * {
+        font-family: Arial,'Microsoft YaHei';
+    }
+    .talkingMan { 
+      padding-top:40px; padding-left:20px;
+    }
+     .talktable td {
+        line-height: 36px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #dedede; margin-bottom:20px;
+    }
+        .talktable td.talkfontcolor { color:#999; font-size:12px; padding-left:2px;
+        }
+        .talktable td span { font-size:14px;
+        }
+         .OfficialTel {
+            border: 0px;
+            border: 1px solid #ccc;
+            height: 32px;
+            line-height: 32px;
+            width: 260px;
+        }
+    .OfficialTel2 {
+        width:130px; margin-right:20px; height:24px; line-height:24px;
+    }
+    .saveBTN {
+        padding: 8px 40px;
+        background: #2f8fe3;
+        color: #fff;
+        font-size: 14px;
+        
+    }
+        .saveBTN:hover {
+            background: #004f94; 
+        }
+    .addBTN {
+        background: #6bae29; padding:3px 8px; color:#fff; margin-left:10px;
+    }
+        .addBTN:hover {
+            background:#397300;
+        }
+    .detailContact {
+        padding-top: 10px;
+        padding-left: 20px;  float:left;
+    }
+    .detailContact2 { margin-left:40px;
+    }
+    .detailContact td {
+        line-height: 40px;
+        
+    }
+     .detailContact td span { font-weight:bold; 
+        }
+    .closeBTN {
+        display: block;
+        background: url(../Content/images/closedBTN.png) 0 center no-repeat; width:30px; height:30px; text-indent:-9999em;
+    }
+    .closeBTN:hover {
+        display: block;
+        background: url(../Content/images/closedBTN2.png) 0 center no-repeat;
+    }
+
+</style>
+<div id="CutomerInfo" class="easyui-layout" data-options="fit:true">
+    <form id="InfoForm">
+        <div class="talkingMan">
+             <table class="talktable" cellpadding="0" cellspacing="0">
+                 <tr>
+                     <td width="75"><span>客服热线</span></td>
+                     <td><input name="CustomPhone" type="text" data-bind="value:Model.DataObject.CustomPhone" required class="OfficialTel" /></td>
+                     <td width="400" class="talkfontcolor">(此处请填写官方电话,用于显示在买票宝客户端上)</td>
+                     <td><a href="#" class="saveBTN" data-bind="click:Save">保  存</a></td>
+                 </tr>
+             </table>
+        </div>
+        <table class="detailContact" cellpadding="0" cellspacing="0" >
+            <tr>
+                <td colspan="5"><span>Q Q业务咨询</span><a href="#" class="addBTN" data-bind="click:AddQQ">+ 新增</a></td>
+            </tr>
+            <!-- ko foreach: $root.Model.DataObject.AdvisoryQQ-->
+                <tr>
+                    <td width="30">描述</td>
+                    <td><input name="QQKey" type="text" data-bind="value:Key" required class="OfficialTel OfficialTel2" /></td>
+                    <td width="30">Q Q</td>
+                    <td><input name="QQValue" type="text" data-bind="value:Value" required class="OfficialTel OfficialTel2" /></td>
+                    <td><a href="#" data-bind="click:$parent.DelQQ" class="closeBTN">删除</a></td>
+                </tr> 
+              <!-- /ko -->
+        </table>
+
+        <table class="detailContact detailContact2" cellpadding="0" cellspacing="0">
+            <tr>
+                <td colspan="5"><span>热线业务咨询</span><a href="#" class="addBTN" data-bind="click:AddPhone">+ 新增</a></td>
+            </tr>
+            <!-- ko foreach: $root.Model.DataObject.HotlinePhone-->
+            <tr>
+                <td width="30">描述</td>
+                <td><input type="text" data-bind="value:Key" required class="OfficialTel OfficialTel2" /></td>
+                <td width="30">电话</td>
+                <td><input type="text" data-bind="value:Value" required class="OfficialTel OfficialTel2" /></td>
+                <td><a href="#" data-bind="click:$parent.DelPhone" class="closeBTN">删除</a></td>
+            </tr>
+            <!-- /ko -->
+        </table>
+    </form>
+</div>
+
+@section scripts{
+<script src="~/Scripts/jquery.validate.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            String.prototype.trim=function(){
+                return this.replace(/(^\s*)|(\s*$)/g, "");
+            }
+            var DataModel=@(Html.Raw(ExpandTypeConvert.ToJson(Model)));
+
+            var CustomerInfoViewModel={
+                Model:ko.mapping.fromJS(DataModel),
+                AddQQ:function(){
+                    var item={Key:'',Value:''};
+                    CustomerInfoViewModel.Model.DataObject.AdvisoryQQ.push(item);
+                },
+                DelQQ:function(){
+                    CustomerInfoViewModel.Model.DataObject.AdvisoryQQ.remove(this);
+                },
+                AddPhone:function(){
+                    var item={Key:'',Value:''};
+                    CustomerInfoViewModel.Model.DataObject.HotlinePhone.push(item);
+                },
+                DelPhone:function(){
+                    CustomerInfoViewModel.Model.DataObject.HotlinePhone.remove(this);
+                },
+                Save:function(){
+
+
+                    $("#CutomerInfo").mask('正在保存数据。。。');
+                    $.ajax({
+                        url:'/Businessman/SetCustomerInfo',
+                        type:'POST',
+                        contentType:'application/json',
+                        data:JSON.stringify(ko.toJS(CustomerInfoViewModel.Model.DataObject))
+                    }).done(function(){
+                        $("#CutomerInfo").unmask();
+                        window.parent.$.messager.alert('提示', "保存成功", 'info');
+                    }).fail(function(e){
+                        $('#CutomerInfo').unmask();
+                        
+                        window.parent.$.messager.alert('提示', eval("("+e.responseText+")").ErrorMsg, 'info');
+                    });
+                },
+
+                CheckData:function(){
+                    var data=CustomerInfoViewModel.Model.DataObject;
+                    //如果qq描述均为空或者电话描述均为空，则去掉那一行
+                    for(var i=data.AdvisoryQQ().length-1;i>=0;i--)
+                    {
+                        //去除空项
+                        if(data.AdvisoryQQ()[i].Key.trim()==""
+                            &&data.AdvisoryQQ()[i].Value.trim()=="")
+                        {
+                            data.splice(i,1);
+                            continue;
+                        }
+                        //判断描述，不可不可为空，长度不可超过20
+                        if(data.AdvisoryQQ()[i].Key.length==0)
+                        {
+                            return "QQ描述不可为空。";
+                        }
+                        if(data.AdvisoryQQ()[i].Key.length>20)
+                        {
+                            return "QQ描述不可超过20个字。";
+                        }
+                        var qqTest="^\d{5,12}$";
+                        if(!qqTest.test(data.AdvisoryQQ()[i].Value))
+                        {
+                            return data.AdvisoryQQ()[i].Value+"不是正确的QQ号码";
+                        }
+                    }
+
+                    for(var i=data.HotlinePhone().length-1;i>=0;i--)
+                    {
+                        //去除空项
+                        if(data.HotlinePhone()[i].Key.trim()==""
+                            &&data.HotlinePhone()[i].Value.trim()=="")
+                        {
+                            data.splice(i,1);
+                            continue;
+                        }
+                        //判断描述，不可不可为空，长度不可超过20
+                        if(data.HotlinePhone[i]().Key.length==0)
+                        {
+                            return "电话描述不可为空。";
+                        }
+                        if(data.HotlinePhone[i]().Key.length>20)
+                        {
+                            return "电话描述不可超过20个字。";
+                        }
+                        var phoneTest="((\d{11})|^((\d{7,8})|(\d{4}|\d{3})-(\d{7,8})|(\d{4}|\d{3})-(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1})|(\d{7,8})-(\d{4}|\d{3}|\d{2}|\d{1}))$)";
+                        if(!phoneTest.test(data.HotlinePhone()[i].Value))
+                        {
+                            return data.HotlinePhone()[i].Value+"不是正确的电话号码";
+                        }
+                    }
+
+                    return "";
+                }
+            }
+
+            ko.applyBindings(CustomerInfoViewModel);
+        })
+    </script>
+    }

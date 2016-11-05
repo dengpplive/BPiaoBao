@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="InterfaceFacade">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlParam" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InterfaceFacadeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InterfaceFacadeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MD5">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="plaintext" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MD5Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MD5Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="InterfaceFacadeSoapIn">
+    <wsdl:part name="parameters" element="tns:InterfaceFacade" />
+  </wsdl:message>
+  <wsdl:message name="InterfaceFacadeSoapOut">
+    <wsdl:part name="parameters" element="tns:InterfaceFacadeResponse" />
+  </wsdl:message>
+  <wsdl:message name="MD5SoapIn">
+    <wsdl:part name="parameters" element="tns:MD5" />
+  </wsdl:message>
+  <wsdl:message name="MD5SoapOut">
+    <wsdl:part name="parameters" element="tns:MD5Response" />
+  </wsdl:message>
+  <wsdl:message name="InterfaceFacadeHttpGetIn">
+    <wsdl:part name="xmlParam" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InterfaceFacadeHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MD5HttpGetIn">
+    <wsdl:part name="plaintext" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MD5HttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="InterfaceFacadeHttpPostIn">
+    <wsdl:part name="xmlParam" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="InterfaceFacadeHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MD5HttpPostIn">
+    <wsdl:part name="plaintext" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MD5HttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="BenefitInterfaceSoap">
+    <wsdl:operation name="InterfaceFacade">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">接口服务调用入口</wsdl:documentation>
+      <wsdl:input message="tns:InterfaceFacadeSoapIn" />
+      <wsdl:output message="tns:InterfaceFacadeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MD5">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">计算MD5值</wsdl:documentation>
+      <wsdl:input message="tns:MD5SoapIn" />
+      <wsdl:output message="tns:MD5SoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BenefitInterfaceHttpGet">
+    <wsdl:operation name="InterfaceFacade">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">接口服务调用入口</wsdl:documentation>
+      <wsdl:input message="tns:InterfaceFacadeHttpGetIn" />
+      <wsdl:output message="tns:InterfaceFacadeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MD5">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">计算MD5值</wsdl:documentation>
+      <wsdl:input message="tns:MD5HttpGetIn" />
+      <wsdl:output message="tns:MD5HttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BenefitInterfaceHttpPost">
+    <wsdl:operation name="InterfaceFacade">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">接口服务调用入口</wsdl:documentation>
+      <wsdl:input message="tns:InterfaceFacadeHttpPostIn" />
+      <wsdl:output message="tns:InterfaceFacadeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MD5">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">计算MD5值</wsdl:documentation>
+      <wsdl:input message="tns:MD5HttpPostIn" />
+      <wsdl:output message="tns:MD5HttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BenefitInterfaceSoap" type="tns:BenefitInterfaceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InterfaceFacade">
+      <soap:operation soapAction="http://tempuri.org/InterfaceFacade" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MD5">
+      <soap:operation soapAction="http://tempuri.org/MD5" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BenefitInterfaceSoap12" type="tns:BenefitInterfaceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InterfaceFacade">
+      <soap12:operation soapAction="http://tempuri.org/InterfaceFacade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MD5">
+      <soap12:operation soapAction="http://tempuri.org/MD5" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BenefitInterfaceHttpGet" type="tns:BenefitInterfaceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="InterfaceFacade">
+      <http:operation location="/InterfaceFacade" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MD5">
+      <http:operation location="/MD5" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BenefitInterfaceHttpPost" type="tns:BenefitInterfaceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="InterfaceFacade">
+      <http:operation location="/InterfaceFacade" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MD5">
+      <http:operation location="/MD5" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BenefitInterface">
+    <wsdl:port name="BenefitInterfaceSoap" binding="tns:BenefitInterfaceSoap">
+      <soap:address location="http://pb.jk.517na.com/BenefitInterface.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BenefitInterfaceSoap12" binding="tns:BenefitInterfaceSoap12">
+      <soap12:address location="http://pb.jk.517na.com/BenefitInterface.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BenefitInterfaceHttpGet" binding="tns:BenefitInterfaceHttpGet">
+      <http:address location="http://pb.jk.517na.com:8013/BenefitInterface.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BenefitInterfaceHttpPost" binding="tns:BenefitInterfaceHttpPost">
+      <http:address location="http://pb.jk.517na.com:8013/BenefitInterface.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

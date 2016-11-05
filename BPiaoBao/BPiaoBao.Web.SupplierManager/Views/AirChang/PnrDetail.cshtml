@@ -1,0 +1,85 @@
+﻿<div id="PnrDetail" class="easyui-dialog" title="PNR" data-options="modal:true,closed:true,draggable:false,closable:true,maximized:true" style="padding: 5px 15px;">
+@*    <div data-bind="with: searchViewModel">*@
+        <table style="width: 100%;" cellspacing="10" cellpadding="0">
+            <tr>
+                <td>
+                    <p><span>RT结果</span></p>
+                    <textarea data-bind="text:searchViewModel.pnrVM.RTContent" readonly="readonly" name="txtAcceptData" rows="15" cols="100" style="width: 510px; height: 300px; resize: none; background-color: #646464; color: #CDCB67; overflow: auto; font-size: 14px;"></textarea>
+                </td>
+                <td>
+                    <p><span>QN结果</span></p>
+                    <textarea data-bind="text:searchViewModel.pnrVM.QNContent" readonly="readonly" name="txtAcceptData" rows="15" cols="100" style="width: 510px; height: 300px; resize: none; background-color: #646464; color: #CDCB67; overflow: auto; font-size: 14px;"></textarea>
+                </td>
+            </tr>
+            <tr style="margin-top: 10px;">
+                <td>
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <p><span style="font-size: 20px">协调操作</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td width="100px">类型：</td>
+                                <td>
+                                    <select style="width: 150px; height: 20px;" data-bind="value: :searchViewModel.Coordion.NotifyWay">
+                                        <option value="4">电话通知航变</option>
+                                        <option value="1">短信通知航变</option>
+                                        <option value="2">自动弹出提醒</option>
+                                        <option value="3">其他</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100px">处理状态：</td>
+                                <td>
+                                    <input type="radio" name="status" value="true" data-bind="checked:searchViewModel.Coordion.Status" />完成
+                                    <input type="radio" name="status" value="false" data-bind="checked:searchViewModel.Coordion.Status" />未完成
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100px">协调内容：</td>
+                                <td>
+                                    <textarea rows="3" cols="50" style="width: 400px; height: 50px; resize: none;" data-bind="value:searchViewModel.Coordion.Description"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="100px"></td>
+                                <td>
+                                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: searchViewModel.saveInfo" style="float: left">保存</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr style="margin-top: 10px;">
+                <td>
+                    <table>
+                        <tr>
+                            <td>
+                                <p><span style="font-size: 20px">操作记录</span></p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 800px">
+                                <table id="opTable" class="easyui-datagrid">
+                                    <thead>
+                                        <tr>
+                                            <th data-options="field:CreateDate,width:80">登陆时间</th>
+                                            <th data-options="field:OpertorName,width:80">操作者</th>
+                                            <th data-options="field:NotifyWay,width:80">类型</th>
+                                            <th data-options="field:Description,width:80">内容</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+ @*   </div>*@
+</div>

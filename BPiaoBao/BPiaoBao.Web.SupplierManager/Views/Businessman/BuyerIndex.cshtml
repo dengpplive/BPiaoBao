@@ -1,0 +1,230 @@
+﻿@{
+    ViewBag.Title = "采购商";
+
+}
+@Html.Partial("SetLabel")
+@Html.Partial("AddBusinessman")
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <div>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: $root.open">新增商户</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" data-bind="click: $root.editClick">更新</a>
+                @*<a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" data-bind="click:$root.getLabel">标签分配</a>*@
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-edit" plain="true" data-bind="click:$root.resetClick">密码重置</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-disable" plain="true" data-bind="click:function(){$root.setEnable(false)}">禁用</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-enable" plain="true" data-bind="click:function(){$root.setEnable(true)}">启用</a>
+                <a href="#" class="easyui-splitbutton" data-options="menu:'#Export',iconCls:'icon-sys-export',plain:true" data-bind="click: function () { $root.exportClick('Excel2003') }">导出</a>
+            </div>
+            <div style="margin:10px;">
+                <div class="m_search">商户号：<input type="text" class="input" data-bind="value: $root.searchForm.code" /></div>
+                <div class="m_search">商户名称：<input type="text" class="input" data-bind="value: $root.searchForm.businessmanName" /></div>
+                <div class="m_search">创建时间：<input type="text" class="easyui-my97" data-bind="my97value: $root.searchForm.startTime" />-<input type="text" class="easyui-my97" data-bind="my97value: $root.searchForm.endTime" /></div>
+                <div class="m_search"><a href="#" class="easyui-linkbutton" code="15" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a></div>
+            </div>
+            <div class="both"></div>
+        </div>
+        <div id="Export" style="width: 100px;">
+            <div data-bind="click: function () { $root.exportClick('Excel2003') }">Excel2003</div>
+            <div data-bind="click: function () { $root.exportClick('Excel2007') }">Excel2007</div>
+        </div>
+        <table id="MainTable" data-bind="datagrid: grid">
+            <thead>
+                <tr>
+                    <th data-options="field:'Code',width:100">商户号</th>
+                    <th data-options="field:'Name',width:150">商户名称</th>
+                    <th data-options="field:'Plane',width:100">座机</th>
+                    <th data-options="field:'Contact',width:100,formatter:function(val,row){return row.ContactWay.Contact;}">联系人</th>
+                    <th data-options="field:'Tel',width:120,formatter:function(val,row){return row.ContactWay.Tel}">手机号码</th>
+                    <th data-options="field:'Address',width:200,formatter:function(val,row){return row.ContactWay.Province+row.ContactWay.City+row.ContactWay.Address}">联系地址</th>
+                    <th data-options="field:'ContactName',width:80">客户经理</th>
+                    <th data-options="field:'Phone',width:80">客户经理手机</th>
+                    @*<th data-options="field:'Lable',width:100">标签</th>*@
+                    <th data-options="field:'IsEnable',width:60,formatter:function(val){ if(val==true){return '正常'}else{ return '禁用'}}">状态</th>
+                    <th data-options="field:'CreateTime',width:100">创建时间</th>
+                </tr>
+            </thead>
+        </table>
+        </div>
+    </div>
+        @section scripts{
+            <script type="text/javascript" src="~/my97/WdatePicker.js"></script>
+            <script src="~/easyui/jquery.my97.js"></script>
+            <script src="~/Scripts/ProvinceCity.js"></script>
+            <script src="~/Scripts/jquery.validate.js"></script>
+            <script type="text/javascript">
+                $(function () {
+                   
+                    var BuyerIndexVM = CC.Create(BaseVM, function (data) {
+                        this.editForm = ko.mapping.fromJS(data.editForm);
+                        this.urls = data.urls;
+                        this.grid.title = "商户管理";
+                        delete this.editForm.__ko_mapping__;
+                        this.labelForm.BuyerLabel = ko.computed(function () {
+                            return this.labelForm.BuyerLabelArray().join('|');
+                        }, this);
+                        this.Province = ko.observableArray(where);
+                        this.City = ko.observableArray();
+                       // this.selectedProvince = ko.observable('');
+                    }, {
+                        action: ko.observable('add'),
+                        Province: null,
+                        selectedProvince:ko.observable(),
+                        City:null,
+                        labelForm: {
+                            Code: ko.observable(),
+                            CarrierLabel: ko.observableArray(),
+                            BuyerLabelArray: ko.observableArray()
+                        },
+                        editForm: null,
+                        open: function () {
+                            this.action('add');
+                            $('#AddBusinessmanDialog').dialog('open');
+                        },
+                        getLabel: function () {
+                            var $this = this;
+                            var row = this.grid.datagrid('getSelected');
+                            if (!row) {
+                                this.alert('请选择分配商户');
+                                return;
+                            }
+                            $this.labelForm.Code(row["Code"]).BuyerLabelArray(row["Lable"] == null ? [] : row["Lable"].split('|'));
+                            this.ajax({
+                                url: this.urls.getlabel,
+                                type: 'post',
+                                data: { code: row["Code"] }
+                            }, function (response, status) {
+                                $this.labelForm.CarrierLabel(response.split('|'));
+                                $('#SetLabelDialog').dialog('open');
+                            })
+                        },
+                        setLabelClick: function () {
+                            var $this = this;
+                            this.ajax({
+                                url: this.urls.setlabel,
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify(ko.toJS(this.labelForm))
+                            }, function () {
+                                $('#SetLabelDialog').dialog('close');
+                                $this.grid.datagrid('reload');
+                            })
+                        },
+                        clearClick: function () {
+                            this.clearForm(this.editForm);
+                            this.selectedProvince(null);
+                            $('#businessmanForm').resetForm;
+                            $('#AddBusinessmanDialog').dialog('close');
+                        },
+                        resetClick: function () {
+                            var $this = this;
+                            var row = this.grid.datagrid('getSelected');
+                            if (!row) {
+                                $this.alert('请选择商户!');
+                                return;
+                            }
+                            $this.confirm('确定重置该商户管理员密码吗?', function () {
+                                $this.ajax({
+                                    url: $this.urls.reset,
+                                    type: 'POST',
+                                    data: { code: row["Code"] }
+                                }, function (response, status) {
+                                    $this.alert('密码重置成功');
+                                })
+                            })
+                        },
+                        addClick:function(){
+                            $('#businessmanForm').submit();
+                        },
+                        saveClick: function () {
+                            $('#AddBusinessmanDialog').mask('正在提交数据...');
+                            this.ajax({
+                                url: this.action() == 'add' ? this.urls.add : this.urls.edit,
+                                type: 'POST',
+                                contentType: 'application/json',
+                                data: JSON.stringify(ko.toJS(this.editForm))
+                            }, function () {
+                                $('#AddBusinessmanDialog').unmask();
+                                $('#AddBusinessmanDialog').dialog('close');
+                                this.clearForm(this.editForm);
+                                this.selectedProvince(null);
+                                this.grid.datagrid('reload');
+                            }, function () {
+                                $('#AddBusinessmanDialog').unmask();
+                            })
+                        },
+                        editClick: function () {
+                            this.action('edit');
+                            this.clearForm(this.editForm);
+                            var row = this.grid.datagrid('getSelected');
+                            if (!row) {
+                                this.alert('请选择要编辑的行');
+                                return;
+                            }
+                            this.ajax({
+                                url: this.urls.editinfo,
+                                type: 'POST',
+                                dataType: 'json',
+                                data: { Code: row["Code"] }
+                            }, function (response, status) {
+                                var $this = this;
+                                $.each($this.Province(), function () {
+                                    if (this.loca == response.ContactWay.Province) {
+                                        $this.selectedProvince(this);
+                                        return false;
+                                    }
+                                });
+                                ko.mapping.fromJS(response, ko.mapping.fromJS(this.editForm));
+                                $('#AddBusinessmanDialog').dialog('open');
+                            })
+                        },
+                        init: function () {
+                            $("#Code").watermark("请输入商户号", { useNative: false });
+                            $("#Name").watermark("请输入商户名称", { useNative: false });
+                            $("#Contact").watermark("请输入联系人", { useNative: false });
+                            $("#Tel").watermark("请输入联系方式", { useNative: false });
+                            $("#Address").watermark("请输入联系地址", { useNative: false });
+                        },
+                        setEnable: function (isenable) {
+                            var $this = this;
+                            var row = this.grid.datagrid('getSelected');
+                            if (!row) {
+                                this.alert('请选择要编辑的行');
+                                return;
+                            }
+                            this.confirm('确定此操作吗?', function () {
+                                $('#SetLabelDialog').mask('正在提交数据...');
+                                $this.ajax({
+                                    url: $this.urls.setenable,
+                                    type: 'POST',
+                                    data: { code: row["Code"], isEnable: isenable }
+                                }, function () {
+                                    $('#SetLabelDialog').unmask();
+                                    $this.grid.datagrid('reload');
+                                }, function () {
+                                    $('#SetLabelDialog').unmask();
+                                })
+                            })
+                        }
+                    });
+                    var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+                    vm.selectedProvince.subscribe(function (newValue) {
+                        vm.City.removeAll();
+                        if (newValue != null && newValue != "") {
+                            vm.editForm.ContactWay.Province(newValue.loca);
+                            $.each(newValue.locacity.split('|'), function () {
+                                vm.City.push(this);
+                            });
+                        }
+                    });
+                    ko.applyBindings(vm);
+                    $('#businessmanForm').validate({
+                        submitHandler: function () {
+                            vm.saveClick();
+                        }
+                    })
+                });
+            </script>
+        }
+

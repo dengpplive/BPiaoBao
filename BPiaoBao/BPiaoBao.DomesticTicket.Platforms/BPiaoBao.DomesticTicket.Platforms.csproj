@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{337E340F-4C92-4BAF-B111-FAB0D0373F55}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.DomesticTicket.Platforms</RootNamespace>
+    <AssemblyName>BPiaoBao.DomesticTicket.Platforms</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\..\..\..\..\SPiaoBao\SPiaoBao(2014-04-01-1)\packages\Framework\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PTInterface\CachePolicyManage.cs" />
+    <Compile Include="PTInterface\DataSwitch.cs" />
+    <Compile Include="PTInterface\PTLog.cs" />
+    <Compile Include="PTInterface\PTMange.cs" />
+    <Compile Include="Service References\IBEService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\web517\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\web51book\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\web8000yi\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\webbaituo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\webpm\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\webTodayAutoPay\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\webTodayOrder\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\webTodayPolicy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\webyeexing\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\_517Policy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\_baiTuoPolicy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\_baiTuo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\_PTService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="_517\_517Platform.cs" />
+    <Compile Include="_517\_517PlatformNotify.cs" />
+    <Compile Include="_51book\_51BookPlatform.cs" />
+    <Compile Include="_51book\_51bookPlatformNotify.cs" />
+    <Compile Include="_8000YI\_8000YIPlatform.cs" />
+    <Compile Include="_8000YI\_8000YIPlatformNotify.cs" />
+    <Compile Include="_BaiTuo\_BaiTuoPlatform.cs" />
+    <Compile Include="_BaiTuo\_BaiTuoPlatformNotify.cs" />
+    <Compile Include="_PiaoMeng\_PiaoMengPlatform.cs" />
+    <Compile Include="_PiaoMeng\_PiaoMengPlatformNotify.cs" />
+    <Compile Include="_Today\_TodayPlatform.cs" />
+    <Compile Include="_Today\_TodayPlatformNotify.cs" />
+    <Compile Include="_YeeXing\_YeeXingPlatform.cs" />
+    <Compile Include="_YeeXing\_YeeYingPlatformNotify.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Domain\BPiaoBao.DomesticTicket.Domain.csproj">
+      <Project>{d90805ce-cee6-42a5-87c2-ebf6ecfa94e2}</Project>
+      <Name>BPiaoBao.DomesticTicket.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Platform.Plugin\BPiaoBao.DomesticTicket.Platform.Plugin.csproj">
+      <Project>{f1c58e54-417f-4a65-a13e-e872841c544e}</Project>
+      <Name>BPiaoBao.DomesticTicket.Platform.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PnrAnalysis\PnrAnalysis.csproj">
+      <Project>{8b4c3980-a7b8-4a81-8df2-cffa576fe414}</Project>
+      <Name>PnrAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\DataSources\System.Xml.Linq.XElement.datasource" />
+    <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
+    <None Include="Service References\IBEService\WebService1.wsdl" />
+    <None Include="Service References\web517\517WebService.wsdl" />
+    <None Include="Service References\web51book\51bookService.wsdl" />
+    <None Include="Service References\web8000yi\W8000YService.wsdl" />
+    <None Include="Service References\webbaituo\BaiTuoWeb.wsdl" />
+    <None Include="Service References\webpm\PMService.wsdl" />
+    <None Include="Service References\webTodayAutoPay\JinRiAutoPayServer.wsdl" />
+    <None Include="Service References\webTodayOrder\JinRiOrderServer.wsdl" />
+    <None Include="Service References\webTodayPolicy\JinRiRateServer.wsdl" />
+    <None Include="Service References\webyeexing\YeeXingSerivce.wsdl" />
+    <None Include="Service References\_517Policy\BenefitInterface.wsdl" />
+    <None Include="Service References\_baiTuoPolicy\AirWsCoManage.wsdl" />
+    <None Include="Service References\_baiTuo\baitourService.wsdl" />
+    <None Include="Service References\_PTService\PTService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\IBEService\" />
+    <WCFMetadataStorage Include="Service References\web517\" />
+    <WCFMetadataStorage Include="Service References\web51book\" />
+    <WCFMetadataStorage Include="Service References\web8000yi\" />
+    <WCFMetadataStorage Include="Service References\webbaituo\" />
+    <WCFMetadataStorage Include="Service References\webpm\" />
+    <WCFMetadataStorage Include="Service References\webTodayAutoPay\" />
+    <WCFMetadataStorage Include="Service References\webTodayOrder\" />
+    <WCFMetadataStorage Include="Service References\webTodayPolicy\" />
+    <WCFMetadataStorage Include="Service References\webyeexing\" />
+    <WCFMetadataStorage Include="Service References\_517Policy\" />
+    <WCFMetadataStorage Include="Service References\_baiTuoPolicy\" />
+    <WCFMetadataStorage Include="Service References\_baiTuo\" />
+    <WCFMetadataStorage Include="Service References\_PTService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\WebService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web51book\51bookService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_PTService\PTService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_PTService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_PTService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_PTService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web517\517WebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web517\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web517\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web517\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web51book\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web51book\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web51book\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web8000yi\W8000YService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web8000yi\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web8000yi\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\web8000yi\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webbaituo\BaiTuoWeb.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webbaituo\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webbaituo\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webbaituo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webpm\PMService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webpm\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webpm\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webpm\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webyeexing\YeeXingSerivce.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webyeexing\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webyeexing\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webyeexing\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_517Policy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_517Policy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_517Policy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuoPolicy\AirWsCoManage.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuoPolicy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuoPolicy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuoPolicy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuo\baitourService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuo\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuo\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\_baiTuo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayPolicy\JinRiRateServer.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayPolicy\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayPolicy\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayPolicy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayOrder\JinRiOrderServer.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayOrder\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayOrder\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayOrder\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayAutoPay\JinRiAutoPayServer.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayAutoPay\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayAutoPay\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\webTodayAutoPay\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

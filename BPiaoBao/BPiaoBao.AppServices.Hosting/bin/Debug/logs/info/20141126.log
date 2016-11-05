@@ -1,0 +1,25 @@
+2014-11-26 15:02:55,681 - 2014/11/26 15:02:55:让超时的订单失效
+2014-11-26 17:44:36,168 - 2014/11/26 17:44:36:让超时的订单失效
+2014-11-26 17:49:30,599 - 出票成功乘客：姜来义 票号:8762342202008成功
+2014-11-26 17:49:31,311 - Start=====================================================================
+
+时间:2014-11-26 17:49:03.880
+内容:
+card_no=211303197711261870
+order_no=W2014112604021022365
+passenger=姜来义
+remark=
+service=order_issue_notify
+status=T
+ticket_no=876-2342202008
+user_name=kjtadmin
+sign=469e75f2f55768136eb823602e04760d
+areaCity=ctu
+已处理Today
+异常信息:此计算机上尚未安装消息队列。   在 BPiaoBao.DomesticTicket.Platforms._Today._TodayPlatformNotify.Process(NameValueCollection nameValueCollection) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.DomesticTicket.Platforms\_Today\_TodayPlatformNotify.cs:行号 221
+   在 BPiaoBao.DomesticTicket.Platform.Plugin.NotifyObserver.<>c__DisplayClass1.<Process>b__0(IPlatformNotify p) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.DomesticTicket.Platform.Plugin\NotifyObserver.cs:行号 41
+End=====================================================================
+
+
+
+2014-11-26 17:58:48,759 - 2014/11/26 17:58:48:让超时的订单失效

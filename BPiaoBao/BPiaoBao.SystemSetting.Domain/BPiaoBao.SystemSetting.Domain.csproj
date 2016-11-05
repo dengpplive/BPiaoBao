@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3165024D-838D-4D30-A243-645FC51B9F41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.SystemSetting.Domain</RootNamespace>
+    <AssemblyName>BPiaoBao.SystemSetting.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\Behavior\BehaviorStat.cs" />
+    <Compile Include="Models\Behavior\BehaviorStatBuilder.cs" />
+    <Compile Include="Models\Behavior\IBehaviorStatRepository.cs" />
+    <Compile Include="Models\Businessmen\Attachment.cs" />
+    <Compile Include="Models\Businessmen\Behavior\Businessman.cs" />
+    <Compile Include="Models\Businessmen\Businessman.cs" />
+    <Compile Include="Models\Businessmen\BusinessmanBuilder.cs" />
+    <Compile Include="Models\Businessmen\ContactWay.cs" />
+    <Compile Include="Models\Businessmen\Exceptions.cs" />
+    <Compile Include="Models\Businessmen\IBusinessmanRepository.cs" />
+    <Compile Include="Models\Businessmen\ILoginLogRepository.cs" />
+    <Compile Include="Models\Businessmen\IMyMessageRepository.cs" />
+    <Compile Include="Models\Businessmen\IOPENScanRepository.cs" />
+    <Compile Include="Models\Businessmen\IRoleRepository.cs" />
+    <Compile Include="Models\Businessmen\IStationBuyGroupRepository.cs" />
+    <Compile Include="Models\Businessmen\LoginLog.cs" />
+    <Compile Include="Models\Businessmen\MyMessage.cs" />
+    <Compile Include="Models\Businessmen\OPENScan.cs" />
+    <Compile Include="Models\Businessmen\Operator.cs" />
+    <Compile Include="Models\Businessmen\Role.cs" />
+    <Compile Include="Models\Businessmen\StationBuyGroup.cs" />
+    <Compile Include="Models\CustomerInfo\CustomerInfo.cs" />
+    <Compile Include="Models\CustomerInfo\ICustomerInfoRepository.cs" />
+    <Compile Include="Models\CustomerInfo\PhoneInfo.cs" />
+    <Compile Include="Models\CustomerInfo\QQInfo.cs" />
+    <Compile Include="Models\Logs\IOperationLogRepository.cs" />
+    <Compile Include="Models\Logs\OperationLog.cs" />
+    <Compile Include="Models\Notice\INoticeRepository.cs" />
+    <Compile Include="Models\Notice\Notice.cs" />
+    <Compile Include="Models\Notice\NoticeAttachment.cs" />
+    <Compile Include="Models\SMS\BuyDetail.cs" />
+    <Compile Include="Models\SMS\GiveDetail.cs" />
+    <Compile Include="Models\SMS\ISMSChargeSetRepository.cs" />
+    <Compile Include="Models\SMS\ISmsTemplateRepository.cs" />
+    <Compile Include="Models\SMS\SendDetail.cs" />
+    <Compile Include="Models\SMS\SMS.cs" />
+    <Compile Include="Models\SMS\SMSChargeSet.cs" />
+    <Compile Include="Models\SMS\SMSTemplate.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Auth\AuthService.cs" />
+    <Compile Include="Services\Auth\CurrentUserInfo.cs" />
+    <Compile Include="Services\Auth\LoginParames.cs" />
+    <Compile Include="Services\Auth\UserLoginEvent.cs" />
+    <Compile Include="Services\BaseDomainService.cs" />
+    <Compile Include="Services\CustomerInfoDomainService.cs" />
+    <Compile Include="Services\Logs\OperationLogDomainService.cs" />
+    <Compile Include="Services\StationBuyGroupDomainService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

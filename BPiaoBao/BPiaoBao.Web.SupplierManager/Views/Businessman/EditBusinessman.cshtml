@@ -1,0 +1,46 @@
+﻿<div id="EditBusinessmanDialog" class="easyui-dialog" title="新增商户" data-options="iconCls:'icon-add',closed:true,buttons:'#EditBusinessmanDialog-buttons'" style="width: 450px; height: 400px; padding: 5px;">
+        <table>
+            <tr>
+                <td>商户号：</td>
+                <td>
+                    <span data-bind="text: $root.editForm.Code">&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td>商户名称：</td>
+                <td>
+                    <span data-bind="text: $root.editForm.Name">&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td>座机号码：</td>
+                <td>
+                    <input type="text" name="Plane" data-bind="value:$root.editForm.Plane" />
+                </td>
+            </tr>
+            
+            <tr>
+                <td>联系人：</td>
+                <td>
+                    <input type="text" name="Contact"  data-bind="value: $root.editForm.ContactWay.Contact"/>
+                </td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td>
+                    <input type="text" name="Tel"  data-bind="value: $root.editForm.ContactWay.Tel"/>
+                </td>
+            </tr>
+            <tr>
+                <td>联系地址：</td>
+                <td>
+                    <input type="text" name="Address"  data-bind="value: $root.editForm.ContactWay.Address"/>
+                </td>
+            </tr>
+          
+        </table>
+</div>
+<div id="EditBusinessmanDialog-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" data-bind="click: $root.editClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#EditBusinessmanDialog').dialog('close')">取消</a>
+</div>

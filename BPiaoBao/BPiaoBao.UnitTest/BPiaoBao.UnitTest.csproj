@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB65A4A8-3E1D-4DA2-B831-1CD5570841FA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.UnitTest</RootNamespace>
+    <AssemblyName>BPiaoBao.UnitTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4">
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.XML" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="BSPAutoDZ.cs" />
+    <Compile Include="cashbag\AccountTest.cs" />
+    <Compile Include="cashbag\PayTest.cs" />
+    <Compile Include="Service References\_PTService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UnitTest3.cs" />
+    <Compile Include="Coordination.cs" />
+    <Compile Include="Data.cs" />
+    <Compile Include="DomesticTicket\BootStrapper.cs" />
+    <Compile Include="DomesticTicket\Order.cs" />
+    <Compile Include="Notify.cs" />
+    <Compile Include="notiyfyTest.cs" />
+    <Compile Include="PaidNotify.cs" />
+    <Compile Include="payTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest1.cs" />
+    <Compile Include="UnitTest2.cs" />
+    <Compile Include="UnitTest4.cs" />
+    <Compile Include="UnitTest5.cs" />
+    <Compile Include="AutoB2BTest.cs" />
+    <Compile Include="仓储测试\BSystemTest.cs" />
+    <Compile Include="仓储测试\BTicketTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="bin\Debug\pinyin.dat" />
+    <None Include="config\customerservice.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="config\insurance.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="config\jzf.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>
+      </SubType>
+    </None>
+    <None Include="config\log4net.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="config\memcached.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="config\platform.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="config\setting.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Service References\_PTService\PTService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.ConsoContracts\BPiaoBao.AppServices.ConsoContracts.csproj">
+      <Project>{8a2f936a-7d1f-46e1-adf8-e101573aa3e4}</Project>
+      <Name>BPiaoBao.AppServices.ConsoContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Contracts\BPiaoBao.AppServices.Contracts.csproj">
+      <Project>{e892d14e-df51-47e9-9865-e7269ea15013}</Project>
+      <Name>BPiaoBao.AppServices.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Hosting\BPiaoBao.AppServices.Hosting.csproj">
+      <Project>{73fa4cbe-6279-47dd-9728-a53be04b72c8}</Project>
+      <Name>BPiaoBao.AppServices.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.StationContracts\BPiaoBao.AppServices.StationContracts.csproj">
+      <Project>{d8721be3-0b6c-4128-956a-28d817ef9286}</Project>
+      <Name>BPiaoBao.AppServices.StationContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices\BPiaoBao.AppServices.csproj">
+      <Project>{0831ace7-562b-4820-9665-18c363f46974}</Project>
+      <Name>BPiaoBao.AppServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Cashbag.ClientProxy\BPiaoBao.Cashbag.ClientProxy.csproj">
+      <Project>{2a0b270b-a029-4920-bfcb-c0bbc847e4a4}</Project>
+      <Name>BPiaoBao.Cashbag.ClientProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Cashbag.Domain\BPiaoBao.Cashbag.Domain.csproj">
+      <Project>{b86a3b18-54cd-4cfc-9b03-9a659d34b23b}</Project>
+      <Name>BPiaoBao.Cashbag.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.Account\BPiaoBao.Client.Account.csproj">
+      <Project>{c24563ca-ab56-4ffb-9a75-75c5fc0163b0}</Project>
+      <Name>BPiaoBao.Client.Account</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.DomesticTicket\BPiaoBao.Client.DomesticTicket.csproj">
+      <Project>{617da60b-7997-418f-a7aa-8bc761e35184}</Project>
+      <Name>BPiaoBao.Client.DomesticTicket</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.Plugin\BPiaoBao.Client.Module.csproj">
+      <Project>{85df9d0a-c2b1-47ee-bc2a-a63451b8130b}</Project>
+      <Name>BPiaoBao.Client.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.SystemSetting\BPiaoBao.Client.SystemSetting.csproj">
+      <Project>{78fe02da-a945-4527-b408-19a4a3509185}</Project>
+      <Name>BPiaoBao.Client.SystemSetting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.UIExt\BPiaoBao.Client.UIExt.csproj">
+      <Project>{5928c486-5249-4be4-acb3-11718060c66c}</Project>
+      <Name>BPiaoBao.Client.UIExt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client\BPiaoBao.Client.csproj">
+      <Project>{ef9b5546-e089-4cde-9d36-40065ec965d9}</Project>
+      <Name>BPiaoBao.Client</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Domain\BPiaoBao.DomesticTicket.Domain.csproj">
+      <Project>{d90805ce-cee6-42a5-87c2-ebf6ecfa94e2}</Project>
+      <Name>BPiaoBao.DomesticTicket.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.EFRepository\BPiaoBao.DomesticTicket.EFRepository.csproj">
+      <Project>{dd879b19-5a18-488f-bddd-2d6c7f0834cc}</Project>
+      <Name>BPiaoBao.DomesticTicket.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Platform.Plugin\BPiaoBao.DomesticTicket.Platform.Plugin.csproj">
+      <Project>{f1c58e54-417f-4a65-a13e-e872841c544e}</Project>
+      <Name>BPiaoBao.DomesticTicket.Platform.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Platforms\BPiaoBao.DomesticTicket.Platforms.csproj">
+      <Project>{337e340f-4c92-4baf-b111-fab0d0373f55}</Project>
+      <Name>BPiaoBao.DomesticTicket.Platforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.SystemSetting.Domain\BPiaoBao.SystemSetting.Domain.csproj">
+      <Project>{3165024d-838d-4d30-a243-645fc51b9f41}</Project>
+      <Name>BPiaoBao.SystemSetting.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.SystemSetting.EFRepository\BPiaoBao.SystemSetting.EFRepository.csproj">
+      <Project>{2f657692-028d-45a6-8768-688a312181cc}</Project>
+      <Name>BPiaoBao.SystemSetting.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.TPos.ClientProxy\BPiaoBao.TPos.ClientProxy.csproj">
+      <Project>{2d248859-fe99-4326-80a5-c84d8cd206d4}</Project>
+      <Name>BPiaoBao.TPos.ClientProxy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBaoTPos.Domain\BPiaoBaoTPos.Domain.csproj">
+      <Project>{a04224bb-8321-4862-af7e-cde3073446c5}</Project>
+      <Name>BPiaoBaoTPos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework.EFRepository\JoveZhao.Framework.EFRepository.csproj">
+      <Project>{be77c3cc-e8a9-444f-9dea-a8f047a050eb}</Project>
+      <Name>JoveZhao.Framework.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PnrAnalysis\PnrAnalysis.csproj">
+      <Project>{8b4c3980-a7b8-4a81-8df2-cffa576fe414}</Project>
+      <Name>PnrAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll">
+      <Link>AutoMapper.Net4.dll</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bin\Debug\qt.txt" />
+    <Content Include="bin\Debug\qt_ctuadmin.txt" />
+    <Content Include="config\AirLineManage.xml" />
+    <None Include="Service References\_PTService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\_PTService\configuration.svcinfo" />
+    <None Include="Service References\_PTService\configuration91.svcinfo" />
+    <None Include="Service References\_PTService\PTService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\_PTService\" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

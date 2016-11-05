@@ -1,0 +1,55 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:5px;height:auto; overflow:hidden;">
+            <div>
+                <div style="float:left">
+                    <div class="m_search">
+                        日期 从:
+                        <input type="text" class="easyui-my97" id="myStart" data-bind="my97value:$root.searchForm.startTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd\')}'}" />
+                        到
+                        <input type="text" class="easyui-my97" id="myEnd" data-bind="my97value:$root.searchForm.endTime" data-options="{minDate:'#F{$dp.$D(\'myStart\')}'}" />
+                    </div>
+                    <div class="m_search">
+                        交易号：
+                        <input type="text" class="inputStyle" data-bind="value:$root.searchForm.outTradeNo" />
+                    </div>
+                    <div class="m_search">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" style="overflow:hidden;" data-bind="click: $root.searchClick">查询</a>
+                    </div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+
+        <table id="MainTable" title="理财记录" style="height:auto;" data-bind="datagrid: grid">
+            <thead>
+                <tr bgcolor="#daeef5"> 
+                    <th data-options="field:'OutTradeNo',width:220">交易号</th>
+                    <th data-options="field:'BuyTime',width:200">购买时间</th>
+                    <th data-options="field:'ProductName',width:200">产品名称</th>
+                    <th data-options="field:'FinancialMoney',width:150">金额(元)</th>
+                    <th data-options="field:'StartDateTime',width:200">生效时间</th>
+                    <th data-options="field:'CashSource',width:150">资金渠道</th> 
+                    <th data-options="field:'PointAmount',width:150">收益</th>
+                    <th data-options="field:'FinancialLogStatus',width:150">状态</th>
+                    <th data-options="field:'Remark',width:200">备注</th>
+                </tr>
+            </thead>
+        </table>
+
+
+    </div>
+    </div>
+    @section scripts{
+        <script src="~/my97/WdatePicker.js"></script>
+        <script src="~/easyui/jquery.my97.js"></script>
+        <script type="text/javascript">
+            var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            var vm = new ViewModel(Fromdata);
+            ko.applyBindings(vm);
+
+        </script>
+    }

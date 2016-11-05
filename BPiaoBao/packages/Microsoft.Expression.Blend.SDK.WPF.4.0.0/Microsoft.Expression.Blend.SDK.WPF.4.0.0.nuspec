@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Microsoft.Expression.Blend.SDK.WPF</id>
+    <version>4.0.0</version>
+    <title>Microsoft.Expression.Blend.SDK.WPF</title>
+    <authors>Matthew Hayhurst</authors>
+    <owners>Matthew Hayhurst</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Microsofts expression blend SDK for WPF</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+  </metadata>
+</package>

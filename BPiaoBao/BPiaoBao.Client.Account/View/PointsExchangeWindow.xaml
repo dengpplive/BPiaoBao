@@ -1,0 +1,30 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:BPiaoBao_Client_Account_ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Name="window" x:Class="BPiaoBao.Client.Account.View.PointsExchangeWindow"
+        Title="积分兑换" Height="201" Width="258" Style="{DynamicResource CustomWindowStyle}" WindowStartupLocation="CenterOwner">
+	<Window.DataContext>
+		<BPiaoBao_Client_Account_ViewModel:PointsExchangeViewModel/>
+	</Window.DataContext>
+	<i:Interaction.Triggers>
+		<ei:DataTrigger Binding="{Binding IsExchangeSuccess}" Value="True">
+			<ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+		</ei:DataTrigger>
+	</i:Interaction.Triggers>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.426*"/>
+			<ColumnDefinition Width="0.574*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.323*"/>
+			<RowDefinition Height="0.348*"/>
+			<RowDefinition Height="0.329*"/>
+		</Grid.RowDefinitions>
+		<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="积分总额：" VerticalAlignment="Center" Margin="0"/>
+		<TextBlock TextWrapping="Wrap" Text="{Binding AccountInfo.ScoreInfo.FinancialScore, StringFormat=\{0\}分}" Foreground="{StaticResource OrangeForeground}" FontSize="14.667" VerticalAlignment="Center" Margin="0" Grid.Column="1" HorizontalAlignment="Left" Width="80"/>
+		<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="兑换：" VerticalAlignment="Center" Margin="0" Grid.Row="1"/>
+		<xctk:DecimalUpDown Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Center" Grid.Column="1" HorizontalAlignment="Left" Width="80" Value="{Binding Points, Mode=TwoWay}" Maximum="{Binding AccountInfo.ScoreInfo.FinancialScore}" Minimum="0" FormatString="F0"/>
+		<Button Content="确认兑换" Width="80" Style="{DynamicResource OkButton}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="2" Command="{Binding ExchangeCommand, Mode=OneWay}"/>
+	</Grid>
+</Window>

@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "TicketCountOfBuyer";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar">
+            <div style="margin: 10px;">
+                商户号：<input type="text" class="inputStyle" maxlength="11" data-bind="value:queryCond.Tel" />&nbsp;&nbsp;
+                出票时间：<input type="text" name="startTime" class="easyui-my97" style="width: 90px;" id="startTime" data-bind="my97value: queryCond.StartTime" data-options="{maxDate:'#F{$dp.$D(\'endTime\')}'}" />
+                                -
+                                <input type="text" class="easyui-my97" style="width: 90px;" name="EndTime" id="endTime" data-bind="my97value: queryCond.EndTime" data-options="{minDate:'#F{$dp.$D(\'startTime\')}'}" />
+                <a href="#" class="easyui-linkbutton m_refer" code="15" iconcls="icon-search" data-bind="click: search" style="margin:-5px 0 0 10px;">查询</a>
+            </div>
+        </div>
+        <table id="dg" title="采购出票统计" class="dgShow">
+            <thead>
+                <tr>
+                    <th data-options="field:'Code',width:140">商户号</th>
+                    <th data-options="field:'TotalCount',width:130">出票量</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    </div>
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var mydate = new Date();
+            var M = (mydate.getMonth() + 1) < 10 ? "0" + (mydate.getMonth() + 1) : (mydate.getMonth() + 1);
+            var D = (mydate.getDate() < 10 ? "0" + mydate.getDate() : mydate.getDate());
+            var mydatetime = mydate.getFullYear() + "-" + M + "-" + D;
+            var searchViewModel = {
+                queryUrl: '@Url.Action("GetTicketCount")',
+                $datagrid: null,
+                queryCond: {
+                    StartTime: ko.observable(mydatetime),
+                    EndTime: ko.observable(mydatetime),
+                    BusinessCode: ko.observable("")
+                },
+                lastQueryCond: {},
+                init: function () {
+
+                    var self = this;
+                    this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                    this.$datagrid = $('#dg').datagrid({
+                        rownumbers: false,
+                        singleSelect: true,
+                        autoRowHeight: false,
+                        pagination: true,
+                        nowrap:false,
+                        url: searchViewModel.queryUrl,
+                        queryParams: this.lastQueryCond,
+                        pageSize: 10
+                    });
+
+                },
+                search: function () {
+                    var date1 = ko.toJS(searchViewModel.queryCond.StartTime);
+                    var date2 = ko.toJS(searchViewModel.queryCond.EndTime);
+                    if (date1 != "" && date2 != "") {
+                        var start = new Date(date1.replace('\-\g', '/'));
+                        var end = new Date(date2.replace('\-\g', '/'));
+                        var times = end.getTime() - start.getTime();
+
+                        var days = parseInt(times / (1000 * 60 * 60 * 24));
+                        if (days > 30 || days < 0) {
+                            $.messager.alert("提示", "只能查询30天之内的数据！", 'info');
+                        }
+                        else {
+                            this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                            this.$datagrid.datagrid("load", this.lastQueryCond);
+                        }
+                    } else {
+                        $.messager.alert("提示", "请选择出票时间！", 'info');
+                    }
+
+                },
+                ExportExcelSummary: function () {
+                    window.open('@Url.Action("")' + "?" + $.param(searchViewModel.queryCond), "download");
+                }
+            }
+            searchViewModel.init();
+            ko.applyBindings(searchViewModel);
+        });
+    </script>
+}

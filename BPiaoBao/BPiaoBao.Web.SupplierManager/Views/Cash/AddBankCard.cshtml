@@ -1,0 +1,50 @@
+﻿<div id="AddBankCardDialog" class="easyui-dialog" title="添加新的银行卡"
+     data-options="iconCls:'icon-add',modal:true,closed:true,buttons:'#AddBankCardDialog-buttons'"
+     style="width:600px;height:auto;padding:10px 15px;">
+  
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="30%" height="45" align="right">银行账户类型：</td>
+            <td height="45" colspan="2">
+                <input type="radio" value="" name="BankCardType" checked="checked" />&nbsp;储蓄卡<font color="#999999" style=" margin-right:15px;">（借记卡）</font>
+                @*<input name="RadioGroup1" type="radio" value="" id="RadioGroup1_1" />&nbsp;信用卡*@
+            </td>
+        </tr>
+        <tr>
+            <td height="45" align="right">选择发卡银行：</td>
+            <td width="25%" height="45">
+                <select name="Banks" class="inputStyle" data-bind="options: $root.otherParas.Banks,optionsText: 'Name',optionsValue:'Name',value: $root.editForm.Name"></select>
+            </td>
+            <td width="45%" height="45">
+                @*<input type="text" name="CardNo" id="CardNo" data-bind="value: $root.editForm.CardNo"   value="请输入您的卡号" onfocus="if(value == defaultValue){value='';this.style.color='#000'}"
+                    onblur="if(!value){value = defaultValue;this.style.color='#999'}" class="easyui-numberbox" />*@
+                <input type="text" id="CardNo" data-bind="value: $root.editForm.CardNo" class="watermark inputStyle" />
+            </td>
+        </tr>
+        <tr>
+            <td height="45" align="right">开户人真实姓名：</td>
+            <td height="45" colspan="2">
+                <strong data-bind="text: $root.editForm.Owner"></strong>
+                （此银行的开户名必须为”<i data-bind="text: $root.editForm.Owner"></i>”,否则会交易失败）
+            </td>
+        </tr>
+        <tr>
+            <td height="45" align="right">开户银行：</td>
+            <td height="45" colspan="2">
+                <select class="inputStyle2" name="selPro" id="selPro" data-bind="options: $root.otherParas.Provinces,optionsText: 'State',optionsValue:'State',value: $root.editForm.Province"></select>
+                <select class="inputStyle2" name="City" data-bind="options: $root.city,optionsText: 'City',optionsValue:'City',value: $root.editForm.City"></select>
+
+                <input type="text" id="BankBranch" data-bind="value: $root.editForm.BankBranch" class="watermark inputStyle" />
+            </td>
+        </tr>
+
+    </table>
+ 
+
+
+</div>
+
+<div id="AddBankCardDialog-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-ok" onclick="addBankCard()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript: $('#AddBankCardDialog').dialog('close')">取消</a>
+</div>

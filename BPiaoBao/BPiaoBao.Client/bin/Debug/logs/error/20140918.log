@@ -1,0 +1,47 @@
+2014-09-18 13:46:17,665 - PAT解析价格失败
+System.ServiceModel.FaultException: PAT解析价格失败
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass25.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 625
+2014-09-18 15:38:11,124 - 成人编码生成失败,原因如下:发送指令：NM1罗思徽SS 3U8548 H 22SEP14 PEKCTU 1SSR FOID 3U HK/NI450328199310235372/P1OSI 3U CTCM13689023174/P1OSI 3U CTCT15528305255TKTL/0625/22SEP/CTU186@，接收返回信息失败，可能通讯断开...
+System.ServiceModel.FaultException: 成人编码生成失败,原因如下:发送指令：NM1罗思徽SS 3U8548 H 22SEP14 PEKCTU 1SSR FOID 3U HK/NI450328199310235372/P1OSI 3U CTCM13689023174/P1OSI 3U CTCT15528305255TKTL/0625/22SEP/CTU186@，接收返回信息失败，可能通讯断开...
+
+Server stack trace: 
+   在 System.ServiceModel.Channels.ServiceChannel.HandleReply(ProxyOperationRuntime operation, ProxyRpc& rpc)
+   在 System.ServiceModel.Channels.ServiceChannel.Call(String action, Boolean oneway, ProxyOperationRuntime operation, Object[] ins, Object[] outs, TimeSpan timeout)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.InvokeService(IMethodCallMessage methodCall, ProxyOperationRuntime operation)
+   在 System.ServiceModel.Channels.ServiceChannelProxy.Invoke(IMessage message)
+
+Exception rethrown at [0]: 
+   在 System.Runtime.Remoting.Proxies.RealProxy.HandleReturnMessage(IMessage reqMsg, IMessage retMsg)
+   在 System.Runtime.Remoting.Proxies.RealProxy.PrivateInvoke(MessageData& msgData, Int32 type)
+   在 BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.Destine(DestineRequest destine, EnumDestineSource destineSource)
+   在 BPiaoBao.Client.DomesticTicket.ViewModel.TicketBookingViewModel.<>c__DisplayClass25.<ExecuteOkCommandCommand>b__12(IOrderService service) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.DomesticTicket\ViewModel\TicketBookingViewModel.cs:行号 625
+2014-09-18 18:36:54,931 - 未将对象引用设置到对象的实例。
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 BPiaoBao.Client.ViewModel.MainViewModel.Initialize() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 72
+   在 BPiaoBao.Client.ViewModel.MainViewModel..ctor() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 50
+2014-09-18 18:36:54,963 - 未将对象引用设置到对象的实例。
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 BPiaoBao.Client.ViewModel.MainViewModel.Initialize() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 72
+   在 BPiaoBao.Client.ViewModel.MainViewModel..ctor() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 50
+2014-09-18 18:39:39,456 - 未能找到文件“E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\AutoUpdate\Version.txt”。
+System.IO.FileNotFoundException: 未能找到文件“E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\AutoUpdate\Version.txt”。
+文件名:“E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\AutoUpdate\Version.txt”
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.StreamReader..ctor(String path, Encoding encoding, Boolean detectEncodingFromByteOrderMarks, Int32 bufferSize, Boolean checkHost)
+   在 System.IO.StreamReader..ctor(String path)
+   在 BPiaoBao.Client.ViewModel.MainViewModel.<GetVersion>b__7() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 85
+   在 System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   在 MS.Internal.Threading.ExceptionFilterHelper.TryCatchWhen(Object source, Delegate method, Object args, Int32 numArgs, Delegate catchHandler)

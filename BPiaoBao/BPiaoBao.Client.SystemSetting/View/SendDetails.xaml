@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="BPiaoBao.Client.SystemSetting.View.SendDetails"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:convert="clr-namespace:BPiaoBao.Client.SystemSetting.View.Converter"
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.SystemSetting.ViewModel"
+             xmlns:pager="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt"
+             xmlns:WPFSpack="clr-namespace:WPFSpark;assembly=WPFSpark"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" Background="White">
+    <UserControl.Resources>
+        <convert:SmsSendStateConvert x:Key="SmsSendState"/>
+        <convert:IsWaitConverter x:Key="IsWait"/>
+        <convert:SubStrConverter x:Key="SubStr"/>
+        <DataTemplate x:Key="SmsContent">
+            <TextBlock Text="{Binding Content,Converter={StaticResource SubStr}}">
+                <TextBlock.ToolTip>
+                    <TextBlock Width="300" TextWrapping="Wrap" Text="{Binding Content}"/>
+                </TextBlock.ToolTip>
+            </TextBlock>
+        </DataTemplate>
+    </UserControl.Resources>
+    <DockPanel Margin="15,10,10,10">
+        <pager:Pagination DockPanel.Dock="Bottom"
+                          PageSize="{Binding PageSize}" 
+                          CurrentPageIndex="{Binding CurrentPageIndex,Mode=TwoWay}"
+                          TotalCount="{Binding TotalCount,Mode=TwoWay}" VerticalAlignment="Bottom">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PageChanged">
+                    <i:InvokeCommandAction Command="{Binding PagerCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </pager:Pagination>
+        <Grid>
+            <DataGrid Grid.Row="1" ItemsSource="{Binding List}" 
+                      AutoGenerateColumns="False" Foreground="Black" RowDetailsVisibilityMode="Visible" 
+                      BorderThickness="0" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Center" VerticalContentAlignment="Stretch" RowHeight="50" GridLinesVisibility="Horizontal" HorizontalGridLinesBrush="#FFE0E0E0" IsReadOnly="True" SelectionMode="Single" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="员工名称" Binding="{Binding Name}" ClipboardContentBinding="{x:Null}"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Width="*" Header="发送时间" Binding="{Binding SendTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" ClipboardContentBinding="{x:Null}" />
+                    <DataGridTemplateColumn Width="*" Header="发送内容" ClipboardContentBinding="{x:Null}" CellTemplate="{StaticResource SmsContent}"/>
+                    <DataGridTextColumn Width="*" Header="接收号码" Binding="{Binding ReceiveNum}" ClipboardContentBinding="{x:Null}"/>
+                    <DataGridTextColumn Width="*" Header="接收人" Binding="{Binding ReceiveName}" ClipboardContentBinding="{x:Null}"/>
+                    <DataGridTextColumn Width="*" Header="发送状态" Binding="{Binding SendState,Converter={StaticResource SmsSendState}}" ClipboardContentBinding="{x:Null}"/>
+                    <DataGridTextColumn Width="*" Header="发送条数" Binding="{Binding SendCount}" ClipboardContentBinding="{x:Null}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <WPFSpack:SprocketControl Width="100" Height="100" Panel.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsWait,Converter={StaticResource IsWait}}"/>
+        </Grid>
+    </DockPanel>
+</UserControl>

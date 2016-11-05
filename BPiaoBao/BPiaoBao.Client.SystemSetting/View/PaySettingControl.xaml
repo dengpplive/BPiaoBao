@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="BPiaoBao.Client.SystemSetting.View.PaySettingControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:viewModel="clr-namespace:BPiaoBao.Client.SystemSetting.ViewModel"
+             xmlns:converter="clr-namespace:BPiaoBao.Client.UIExt.Converter;assembly=BPiaoBao.Client.UIExt"
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" 
+             d:DesignHeight="400" d:DesignWidth="1000" Background="White" >
+    <UserControl.DataContext>
+        <viewModel:PaySettingViewModel/>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <converter:BooleanToUnVisibilityConverter x:Key="BooleanToUnVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="支付宝自动代扣绑定" FontWeight="Bold" Margin="50,10,0,0"></TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="100,10,0,0">
+            <TextBlock Text="支付宝账户：" VerticalAlignment="Center"></TextBlock>
+            <TextBox Width="170" Height="22" VerticalAlignment="Center" Text="{Binding AliPayEmail,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <Button Margin="5,0,5,0" Content="签约委托代扣"  Style="{StaticResource LinkBtn}" VerticalAlignment="Center" Command="{Binding DataContext.GetAliPaySignCommand,Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"  
+                    Visibility="{Binding DataContext.IsBinded,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Converter={StaticResource BooleanToUnVisibilityConverter}}"
+                    Cursor="Hand"/>
+            <Button Margin="5,0,5,0" Content="解除委托代扣" Style="{StaticResource LinkBtn}" VerticalAlignment="Center" Command="{Binding DataContext.ShowConfirmPwdCommand,Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" 
+                    Visibility="{Binding DataContext.IsBinded,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Converter={StaticResource BooleanToVisibilityConverter}}"
+                    Cursor="Hand"/>
+            <!--<Button Margin="5,0,0,0" Content="保存" Width="100" Height="22" VerticalAlignment="Center" Command="{Binding DataContext.ShowConfirmPwdCommand,Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}"
+                    Visibility="{Binding DataContext.IsBinded,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}},Converter={StaticResource BooleanToUnVisibilityConverter}}"/>-->
+        </StackPanel>
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="100" Grid.RowSpan="3" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+    </Grid>
+</UserControl>

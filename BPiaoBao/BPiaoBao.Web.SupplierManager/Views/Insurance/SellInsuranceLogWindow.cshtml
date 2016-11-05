@@ -1,0 +1,46 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div id="SellInsuranceLogWindow" class="easyui-dialog" title="保险销售记录"
+     data-options="iconCls:'icon-add2',modal:true,closed:true"
+     style="width:1200px;height:auto;">
+    <div style="height:400px;" data-options="region:'center',border:0">
+
+        <div id="toolbar_sell" style="padding:10px;height:auto; overflow:hidden;">
+            <div>
+               <div class="m_search">
+                    商户号：
+                    <input type="text" data-bind="value: $root.searchForm.businessCode" class="inputStyle" />
+               </div>
+                <div class="m_search">
+                    交易号：
+                    <input type="text" data-bind="value: $root.searchForm.tradeNo" class="inputStyle" />
+                </div>
+                <div class="m_search">
+                        交易日期 从:
+                        <input type="text" class="easyui-my97" id="myStart1" data-bind="my97value:$root.searchForm.startTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd1\')}'}" />
+                        到
+                        <input type="text" class="easyui-my97" id="myEnd1" data-bind="my97value:$root.searchForm.endTime" data-options="{minDate:'#F{$dp.$D(\'myStart1\')}'}" />
+                </div>
+                <div class="m_search">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a>
+                </div>
+            </div>
+        </div>
+        <table id="dg" title="记录明细" data-bind="datagrid: grid">
+            <thead>
+                <tr bgcolor="#daeef5"> 
+                    <th data-options="field:'OutTradeNo',width:200">交易号</th>
+                    <th data-options="field:'BusinessmanCode',width:200">商户号</th>
+                    <th data-options="field:'BusinessmanName',width:200">商户名称</th>
+                    <th data-options="field:'BeforeLeaveCount',width:150">购买前剩余</th>
+                    <th data-options="field:'AfterLeaveCount',width:150">购买后剩余</th>
+                    <th data-options="field:'DepositCount',width:150">购买张数</th> 
+                    <th data-options="field:'TotalPrice',width:120">总价(元)</th>
+                    <th data-options="field:'BuyTime',width:260">交易时间</th>
+                    <th data-options="field:'BuyState',width:100,formatter:payStatus">支付状态</th>
+                    <th data-options="field:'RecordType',width:100,formatter:recordType">记录类别</th>
+                    <th data-options="field:'Remark',width:260">备注</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

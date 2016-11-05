@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "政策对比";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <div style="float:left;">
+                <div class="search">
+                    <div class="m_left">承运人：</div>
+                    <div class="right">
+                        <select style="width: 150px;" data-bind="options:carrayCode,optionsText:'Text',optionsValue:'Value',value: searchForm.carrayCode, optionsCaption: '请选择...'"></select>
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="m_left">出发：</div>
+                    <div class="right">
+                        <input type="text" id="fromCityCode"  name="fromCityCode" style ="width: 120px;line-height:20px;height:20px;"   data-bind="value: searchForm.fromCityCodes" />
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="m_left">到达：</div>
+                    <div class="right">
+                        <input type="text" id="toCityCode" name="toCityCode" style="width: 120px;line-height:20px;height:20px;" data-bind="value: searchForm.toCityCode" />
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="m_left">政策类型：</div>
+                    <div class="right">
+                        <select style="width: 150px;" data-bind="options: localPolicyType, value: searchForm.localPolicyType, optionsCaption: '请选择...'"></select>
+                    </div>
+                </div>
+                <div class="search" style="width:280px;">
+                    <div class="m_left">乘机日期：</div>
+                    <div class="right" style="width:200px;">
+                        <input type="text" id="startDate" class="easyui-my97" style="width: 90px;" data-bind="my97value: searchForm.startDate" />-
+                        <input type="text" id="endDate" class="easyui-my97" style="width: 90px;"  data-bind="my97value: searchForm.endDate"/>
+                    </div>
+                </div>
+                <div class="search">
+                    <div class="m_left">舱位：</div>
+                    <div class="right">
+                        <input type="text" data-bind="value:searchForm.seat" class="input" style="width: 150px;" />
+                    </div>
+                </div>
+                <div style="width: 80px; text-align: center; vertical-align: middle;float:left;margin-top:5px;">
+                    <a href="#" class="easyui-linkbutton" iconcls="icon-search" data-bind="click: searchClick">查询</a>
+                </div>
+            </div>
+            <div class="both"></div>
+        </div>
+        <table id="mainTable" data-bind="datagrid: grid">
+            <thead>
+                <tr>
+                    <th data-options="field:'ID',formatter:action">操作</th>
+                    <th data-options="field:'CarrayCode',align:'center',width:60">承运人</th>
+                    <th data-options="field:'FromCityCodes',align:'center',width:300">出发</th>
+                    <th data-options="field:'ToCityCodes',align:'center',width:300">到达</th>
+                    <th data-options="field:'Seats',align:'center',width:300">舱位</th>
+                    <th data-options="field:'LocalPoint',align:'center',width:60,editor:{type:'numberbox',options:{precision:1}}">返点</th>
+                    <th data-options="field:'TravelType',align:'center',width:60,formatter:function(val){return EnumTravelType[val].Description;}">行程</th>
+                    <th data-options="field:'LocalPolicyType',align:'center',width:60">政策类型</th>
+                    <th data-options="field:'IssueDate',align:'center',width:65,formatter:formarIssueDate">有效日期</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@Html.Partial("EditPoint")
+@section scripts{
+    <script type="text/javascript" src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        function action(val, row) {
+            if (row.IsExist) {
+                var html = "<a href='javascript:void(0)' onclick='vm.PartEditClick(\"" + val + "\",\"" + row["ID"] + "\");'>返点修改</a>";
+                return html;
+            }
+        }
+        function formarIssueDate(val, row) {
+            return val.StartTime + '<br/>' + val.EndTime;
+        }
+        var PolicyIndexVM = CC.Create(BaseVM, function (data) {
+            this.urls = data.urls;
+            this.grid.rowStyler = function (index, row) {
+                if (row.IsExist)
+                    return 'background-color:#eaeaea;color:#555;font-weight:bold;';
+            };
+            this.EditForm = ko.mapping.fromJS(data.editForm);
+        },
+        {
+            carrayCode: ko.observableArray(CarrayList),
+            EditForm:null,
+            localPolicyType: ko.observableArray(['B2B', 'BSP']),
+            PartEditClick: function (val, Id) {
+                var $this = this;
+                this.ajax({
+                    url: this.urls.info,
+                    type: 'Post',
+                    data: { guid: Id },
+                    dataType: 'json'
+                }, function (r, s) {
+                    ko.mapping.fromJS(r, $this.EditForm);
+                })
+                $("#EditPoint").dialog("open");
+            },
+            PartSaveClick: function () {
+                $('#EditPoint').mask('正在提交保存数据...');
+                var reg = new RegExp("^\\d+(\\.\\d+)?$");
+                if (!(vm.EditForm.LocalPoint() > 0 && vm.EditForm.LocalPoint() < 100) || !reg.test(vm.EditForm.LocalPoint())) {
+                    vm.alert('本地返点范围必须在0-100之间');
+                    $('#EditPoint').unmask();
+                    return false;
+                }
+                vm.ajax({
+                    url: vm.urls.adjust,
+                    type: 'Post',
+                    data: { policyId: vm.EditForm.ID(), newPoint: vm.EditForm.LocalPoint() }
+                }, function () {
+                    $('#EditPoint').unmask();
+                    $('#EditPoint').dialog('close');
+                    vm.grid.datagrid('reload');
+                });
+            }
+            
+        });
+        var vm = new PolicyIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+        ko.applyBindings(vm);
+    </script>
+}

@@ -1,0 +1,98 @@
+﻿
+<div class="easyui-dialog" id="liaiDialog" title="理财信息" style="width:600px;height:auto;padding:10px 15px;"
+     data-options="modal:true,closed:true">
+   
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="prdDetails">
+        <tr>
+            <td width="15%" rowspan="8" valign="top"> 
+                <img data-bind="imgSrc:$root.sale.IconUrl" width="53" height="53" /> 
+            </td>
+            <td height="30" align="right" nowrap="nowrap">产品名称：</td>
+            <td height="30" class="rightTd"><i data-bind="text:$root.sale.Name"></i></td>
+        </tr>
+        <tr>
+            <td width="14%" height="30" align="right" nowrap="nowrap">最低购买额：</td>
+            <td width="74%" height="30" class="rightTd">￥<i class="i0" data-bind="text:$root.sale.LimitAmount"></i></td>
+        </tr>
+        <tr>
+            <td height="30" align="right" nowrap="nowrap">年利率：</td>
+            <td height="30" class="rightTd"><i class="i1" data-bind="text:$root.sale.InterestRate"></i></td>
+        </tr>
+        <tr>
+            <td height="30" align="right" nowrap="nowrap">是否支持提前转出：</td>
+            <td height="30" class="rightTd"><i   data-bind="text:$root.sale.CanSettleInAdvanceText"></i></td>
+        </tr>
+        <tr>
+            <td height="30" align="right" nowrap="nowrap">产品有效期：</td>
+            <td height="30" class="rightTd"><i data-bind="text:$root.sale.ValidDate"></i></td>
+        </tr>
+        <tr>
+            <td height="30" align="right" nowrap="nowrap">剩余购买额：</td>
+            <td height="30" class="rightTd"> ￥ <i class="i0" data-bind="text:$root.canBuyMoney"></i></td>
+        </tr>
+         
+        <tr class="tr00">
+            <td height="30" align="right" valign="top" nowrap="nowrap">产品简介：</td>
+            <td height="30" class="rightTd"> <div data-bind="text:$root.sale.Description"></div></td>
+        </tr>
+        <tr data-bind="visible:$root.visible">
+            <td height="30" align="right" nowrap="nowrap">购买金额：</td>
+            <td height="30" class="rightTd">
+                <input type="text" id="money" data-bind="value:$root.sale.Money" class="easyui-numberbox" min="0" style="height:26px; line-height:26px; background:#f8fbfe; border:1px solid #a9b9c8;" />
+            </td>
+        </tr>
+    </table>
+    <div style="padding-bottom:10px; font-weight:bold; padding-top:10px; border-top:1px solid #ccc; margin-top:15px;">现金账户</div>
+    <div style=" padding-left: 30px;">
+        可用余额：￥<span class="td_noboder fontcolor"><i class="fontsize" data-bind="text:$root.readyBalance"></i></span>
+        <div style=" padding-top: 10px;" data-bind="visible:$root.visible">
+            支付密码：
+            <input id="pwd" type="password" style="height:26px; line-height:26px; background:#f8fbfe; border:1px solid #a9b9c8; padding-right: 20px;" data-bind="value:$root.sale.Password" />
+            <a class="easyui-linkbutton" style="width:80px;" data-bind="click:$root.buyClick;return false;">立即购买</a>
+        </div>
+     </div>
+
+   
+ 
+   
+    @*<div style="padding-bottom:10px; font-weight:bold; padding-top:10px; border-top:1px solid #ccc; margin-top:15px;">支付方式</div>
+            <div class="easyui-tabs" style="height:auto;">
+                <div title="银行卡充值" style="padding:10px; overflow:hidden; padding-top:0px;">
+
+                    <div class="yinhangka">
+                        <p class="pstyle"><strong>储蓄卡银行:</strong></p>
+
+                        <ul class="bankCard" id="ulbankCard"></ul>
+                        <div style=" clear:both; padding-left:78px; padding-top:25px; padding-bottom:20px;">
+                            <a class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick="doPay(1)">下一步</a><span style=" padding-left:30px; color:#666;">下一步将跳转到相应的网银进行支付</span>
+                        </div>
+                    </div>
+                </div>
+                <div title="第三方平台" style="padding:10px; overflow:hidden; padding-top:0px;">
+
+                    <div class="yinhangka">
+
+                        <p class="pstyle"><strong>支持的平台:</strong> </p>
+                        <ul class="pingtai">
+
+                            <li>
+                                <input type="radio" name="channelToken1" id="alipay" value="alipay" checked="checked">
+                                <label for="alipay">
+                                    <img src="/Content/images/zhifubaologo.png" style="width:107px;height:44px;">
+                                </label>
+                            </li>
+                            <li>
+                                <input type="radio" name="channelToken1" id="tenpay" value="tenpay">
+                                <label for="tenpay">
+                                    <img src="/Content/images/CaiFuTongLogo.png" style="width:107px;height:44px;">
+                                </label>
+                            </li>
+                        </ul>
+                        <div style=" clear:both; padding-left:78px; padding-top:25px; padding-bottom:20px;">
+                            <a class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick="doPay(2)">立即进行支付</a>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+    </div>

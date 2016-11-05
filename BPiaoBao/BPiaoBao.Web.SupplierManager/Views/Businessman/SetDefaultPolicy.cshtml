@@ -1,0 +1,95 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>默认政策设置</title>
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.9.0.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/register.js"></script>
+    <script type="text/javascript" src="@Url.Content("~/EnumTypeHandler.ashx?v=3dfsdfsxxssx")"></script>
+</head>
+<body>
+    <div class="zhengce_wr">
+        <div class="addzhengce"><input type="button" value="添加默认政策" data-bind="click:AddClick" style="padding:2px 10px;" /></div>
+        <div>
+            <form id="formAddZhengce">
+                <table data-bind="foreach:Model">
+                    <tr class="m_deft">
+                        <td class="m_default"><select data-bind="options:$parent.CarrayList,optionsText:'Text',optionsValue:'Value',value:CarrayCode,uniqueName:true" class="required"></select></td>
+                        <td>成人政策：<input type="text" data-bind="value:DefaultPolicyPoint,uniqueName:true" class="input required" /></td>
+                        <td>儿童政策：<input type="text" data-bind="value:ChildrenPolicyPoint,uniqueName:true" class="input required" /></td>
+                        <td class="m_default">出票类型：<select data-bind="options:$parent.IssueTickets,value:IssueTicketType,uniqueName:true" class="required"></select></td>
+                        <td>Office帐号：<input type="text" data-bind="value:Office,uniqueName:true" class="input required" /></td>
+                        <td>出票方式：<select data-bind="options:$parent.IssueTicketWay,optionsText:'Description',optionsValue:'Value',value:IssueTicketWay,uniqueName:true" style="margin-right:10px;"></select></td>
+                        <td><input type="button" value="移除" data-bind="click:$parent.RemoveClick" style="padding:2px 15px;" /></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <div class="addzhengce2">
+            <input type="button" value="保存" data-bind="click:submitClick" style="padding:2px 20px;" />
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var json =@(Html.Raw(ExpandTypeConvert.ToJson(Model)))
+        var ViewModel=function(data){
+            var self=this;
+            self.CarrayList=ko.observableArray([{Text:'所有航空公司',Value:'ALL'}]);
+            for (var i = 0; i < CarrayList.length; i++) {
+                self.CarrayList.push(CarrayList[i]);
+            }
+            self.IssueTickets=['B2B','BSP'];
+            self.IssueTicketWay=ko.observableArray(EnumIssueTicketWay);
+            self.Model=ko.mapping.fromJS(data);
+            self.AddClick=function(){
+                self.Model.push({
+                    CarrayCode:ko.observable(),
+                    DefaultPolicyPoint:ko.observable(),
+                    ChildrenPolicyPoint:ko.observable(),
+                    IssueTicketType:ko.observable(),
+                    IssueTicketWay:ko.observable(),
+                    Office:ko.observable()
+                });
+            }
+            self.RemoveClick=function(){
+                self.Model.remove(this);
+            }
+            self.submitClick=function(){
+                $('#formAddZhengce').submit();
+            };
+            self.SaveClick=function(){
+                $.ajax({
+                    url:'/Businessman/SetDefaultPolicy',
+                    type:'post',
+                    contentType: 'application/json',
+                    data:JSON.stringify(ko.toJS(self.Model))
+                }).done(function(){
+                    alert('保存成功');
+                }).fail(function(e){
+                    alert(JSON.parse(e.responseText).ErrorMsg);
+                })
+            }
+        }
+        var vm=new ViewModel(json);
+        ko.applyBindings(vm);
+        window.parent.HideDiv();
+
+        $().ready(function() {
+            $("#formAddZhengce").validate({
+                submitHandler:function(){
+                    vm.SaveClick();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

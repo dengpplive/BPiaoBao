@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B86A3B18-54CD-4CFC-9B03-9A659D34B23B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.Cashbag.Domain</RootNamespace>
+    <AssemblyName>BPiaoBao.Cashbag.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\BankCard.cs" />
+    <Compile Include="Models\AccountInfo.cs" />
+    <Compile Include="Models\BankInfo.cs" />
+    <Compile Include="Models\BillDetail.cs" />
+    <Compile Include="Models\BillList.cs" />
+    <Compile Include="Models\CashOutLog.cs" />
+    <Compile Include="Models\CashCompanyInfo.cs" />
+    <Compile Include="Models\CreditAccount.cs" />
+    <Compile Include="Models\ExpectProfit.cs" />
+    <Compile Include="Models\FeeRuleInfo.cs" />
+    <Compile Include="Models\FinancialAccount.cs" />
+    <Compile Include="Models\CurrentFinancialProduct.cs" />
+    <Compile Include="Models\FinancialLog.cs" />
+    <Compile Include="Models\FinancialProduct.cs" />
+    <Compile Include="Models\BargainLog.cs" />
+    <Compile Include="Models\GrantArray.cs" />
+    <Compile Include="Models\GrantInfo.cs" />
+    <Compile Include="Models\TempCreditInfo.cs" />
+    <Compile Include="Services\IAccountClientProxy.cs" />
+    <Compile Include="Services\IFinancialClientProxy.cs" />
+    <Compile Include="Models\ReadyAccount.cs" />
+    <Compile Include="Models\RechargeLog.cs" />
+    <Compile Include="Models\RepaymentLog.cs" />
+    <Compile Include="Models\ScoreAccount.cs" />
+    <Compile Include="Models\TransferLog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IFundClientProxy.cs" />
+    <Compile Include="Models\RepayInfo.cs" />
+    <Compile Include="Models\ScoreConvertLog.cs" />
+    <Compile Include="Models\BalanceDetail.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

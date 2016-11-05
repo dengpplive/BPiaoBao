@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>卖票宝后台管理</title>
+
+    @Styles.Render("~/easyui/css")
+    @Styles.Render("~/Content/css")
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    @RenderBody()
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/easyui")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/common")
+    @Scripts.Render("~/bundles/jqueryplus") 
+    <script type="text/javascript" src="@Url.Content("~/EnumTypeHandler.ashx?v=3dfsdfsxxssx")"></script>
+    <script type="text/javascript">
+        function SpShow(val,sp)
+        {
+            if (val == null || val == '')
+                return '';
+            var columnHtml = '';
+            var tempArray = val.split(sp);
+            for (var i = 0; i < tempArray.length; i++) {
+                columnHtml += tempArray[i];
+                if (i < (tempArray.length - 1))
+                    columnHtml += '<br/>';
+            }
+            return columnHtml;
+        }
+        function TopCenterMsg(msg)
+        {
+            $.messager.show({
+                title: '操作提示',
+                msg: msg,
+                showType: 'slide',
+                timeout:3000,
+                style: {
+                    right: '',
+                    top: document.body.scrollTop + document.documentElement.scrollTop,
+                    bottom:''
+                }
+            })
+        }
+        $(function () {
+            var array = [];
+            $("[code]").each(function () {
+                array.push($(this).attr("code"));
+            });
+            $.parser.onComplete = function () {
+                window.parent.HideDiv();
+            };
+            $.parser.parse();
+
+        });
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

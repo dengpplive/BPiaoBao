@@ -1,0 +1,31 @@
+﻿<Window x:Class="BPiaoBao.Client.DomesticTicket.View.RelationOrderNoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{DynamicResource CustomWindowStyle}"
+        WindowStartupLocation="CenterOwner"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        Title="关联成人订单号" Height="200" Width="500">
+    <i:Interaction.Triggers>
+        <ei:DataTrigger Binding="{Binding IsDone}" Value="True">
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True" />
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.ColumnSpan="3" TextWrapping="Wrap" FontSize="18" Text="为了保证能够正常出票，请先关联成人订单后再付款！" Width="400" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20,18,0,10" Height="57" Foreground="#FFFD6C01" />
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="17" Text="成人订单号：" Margin="20,0,0,0" />
+        <TextBox x:Name="txtBox" Grid.Row="1" Grid.Column="1" Width="180" Height="25" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="2"
+                      Text="{Binding OrderId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  KeyDown="TxtBox_OnKeyDown"/>
+        <Button Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" HorizontalAlignment="Left" Height="25" Width="90" Content="关联订单" Style="{StaticResource HeadBtn}" Margin="10,0,0,0"
+                     Command="{Binding DataContext.DoneCommand,Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" />
+    </Grid>
+</Window>

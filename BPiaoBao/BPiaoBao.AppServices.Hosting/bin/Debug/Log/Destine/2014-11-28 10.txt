@@ -1,0 +1,78 @@
+Start====================================================================
+时间:2014-11-28 10:44:52.609
+客户端IP:127.0.0.1:50614
+调用方法名:Destine
+内容:预订参数:code=003 
+ Tel=18628368729
+航段1:
+CarrayCode=EU
+FlightNumber=2741
+StartDate=2014/12/30 6:50:00
+EndDate=2014/12/30 8:25:00
+Seat=E
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T2
+ToTerminal=T3
+Discount=50.7900
+FlightModel=319
+TaxFee=50
+RQFee=40.0
+SeatPrice=320.00
+PolicySpecialType=Normal
+SpecialPrice=320.00
+SpecialTax=50
+SpecialFuelFee=40.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=王雪梅
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=510781198507053391
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=15928636274
+Birth=1985/7/5 0:00:00
+乘客2:
+PassengerName=王学超
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=520102197612302037
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=
+Birth=1976/12/30 0:00:00
+乘客3:
+PassengerName=高兵
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=622301198909107528
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=
+Birth=1989/9/10 0:00:00
+乘客4:
+PassengerName=张浩
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=520103196510255657
+ChdBirthday=2002/11/28 0:00:00
+LinkPhone=
+Birth=1965/10/25 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-28 10:44:48.559
+时间2:2014-11-28 10:44:52.094
+结果:
+ 成人Pnr= PNRContent= 
+ PATContent=
+时间3:2014-11-28 10:44:52.095
+异常信息:与航信连接失败，请重新预订！错误信息:由于目标计算机积极拒绝，无法连接。 210.14.138.30:2237
+End=====================================================================
+

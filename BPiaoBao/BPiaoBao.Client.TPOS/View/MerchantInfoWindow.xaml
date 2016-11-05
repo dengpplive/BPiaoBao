@@ -1,0 +1,9 @@
+﻿<Window x:Class="BPiaoBao.Client.TPOS.View.MerchantInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:local="clr-namespace:BPiaoBao.Client.TPOS.View"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="商户详情"  Style="{DynamicResource CustomWindowStyle}" Height="637" Width="652" WindowStartupLocation="CenterOwner">
+    <Grid>
+        <local:MerchantEditInfoControl IsEnabled="False" Tag="商户详情"/>
+    </Grid>
+</Window>

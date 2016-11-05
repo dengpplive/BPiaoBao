@@ -1,0 +1,316 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" x:Class="BPiaoBao.Client.DomesticTicket.View.ReportAnalysisControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="397.5" d:DesignWidth="894.5" Background="White">
+    <UserControl.Resources>
+
+        <Style TargetType="{x:Type GroupItem}" x:Key="containerItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                        <Expander IsExpanded="True"  BorderThickness="1,1,1,1">
+                            <Expander.Header>
+                                <DockPanel>
+                                    <TextBlock FontWeight="Bold" Text="{Binding Name}" Margin="5,0,0,0" Width="100"/>
+                                </DockPanel>
+                            </Expander.Header>
+                            <ItemsPresenter />
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="EmployeeNameTemplate">
+            <Grid Background="#E6EFF3F6">
+                <TextBlock Text="{Binding EmployeeName}" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FF4F9DE8"/>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+        </Style>
+        <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type DataGridCell}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                            <ContentPresenter ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <!--<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>-->
+                    <Setter Property="Background" Value="{DynamicResource DataGridRowSelectedBg}"/>
+                    <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>-->
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <!--
+			<Trigger Property="IsKeyboardFocusWithin" Value="True">
+				<Setter Property="BorderBrush" Value="{StaticResource {ComponentResourceKey ResourceId=FocusBorderBrushKey, TypeInTargetAssembly={x:Type DataGrid}}}"/>
+			</Trigger>
+			-->
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="True"/>
+                        <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                    </MultiTrigger.Conditions>
+                </MultiTrigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="TextBlockStyle" TargetType="{x:Type TextBlock}">
+            <!--<Setter Property="Foreground" Value="#FF4F9DE8" />-->
+            <Setter Property="Foreground" Value="#0C0C0C" />
+            <Setter Property="TextWrapping" Value="NoWrap"/>
+            <Setter Property="TextTrimming" Value="None"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <DataTemplate x:Key="TypeTemplate">
+            <Grid d:DesignWidth="73.25">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+          
+                <TextBlock Grid.Row="0" Text="出票量" Style="{StaticResource TextBlockStyle}" />
+                <Line Grid.Row="1" Stroke="#FFE3EAF2" Stretch="Fill" X2="1" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Text="交易额" Style="{StaticResource TextBlockStyle}"/>
+                <Line Grid.Row="3" Stroke="#FFE3EAF2" Stretch="Fill" X2="1" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Text="佣金" Style="{StaticResource TextBlockStyle}"/>
+            </Grid>
+        </DataTemplate>
+        <ControlTemplate x:Key="dataItemTemplate">
+            <Grid d:DesignWidth="73.25" DataContext="{Binding}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{Binding IssueTicketCount}" Style="{StaticResource TextBlockStyle}" />
+                <Line Grid.Row="1" Stroke="#FFE3EAF2" Stretch="Fill" X2="1" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Text="{Binding TradeTotalMoney}" Style="{StaticResource TextBlockStyle}"/>
+                <Line Grid.Row="3" Stroke="#FFE3EAF2" Stretch="Fill" X2="1" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Text="{Binding CommissionTotalMoney}" Style="{StaticResource TextBlockStyle}"/>
+            </Grid>
+        </ControlTemplate>
+        <DataTemplate x:Key="dataItem1Template">
+            <Control DataContext="{Binding Data[0]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem2Template">
+            <Control DataContext="{Binding Data[1]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem3Template">
+            <Control DataContext="{Binding Data[2]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem4Template">
+            <Control DataContext="{Binding Data[3]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem5Template">
+            <Control DataContext="{Binding Data[4]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem6Template">
+            <Control DataContext="{Binding Data[5]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem7Template">
+            <Control DataContext="{Binding Data[6]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem8Template">
+            <Control DataContext="{Binding Data[7]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem9Template">
+            <Control DataContext="{Binding Data[8]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem10Template">
+            <Control DataContext="{Binding Data[9]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem11Template">
+            <Control DataContext="{Binding Data[10]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem12Template">
+            <Control DataContext="{Binding Data[11]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem13Template">
+            <Control DataContext="{Binding Data[12]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem14Template">
+            <Control DataContext="{Binding Data[13]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem15Template">
+            <Control DataContext="{Binding Data[14]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem16Template">
+            <Control DataContext="{Binding Data[15]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem17Template">
+            <Control DataContext="{Binding Data[16]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem18Template">
+            <Control DataContext="{Binding Data[17]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem19Template">
+            <Control DataContext="{Binding Data[18]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem20Template">
+            <Control DataContext="{Binding Data[19]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem21Template">
+            <Control DataContext="{Binding Data[20]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem22Template">
+            <Control DataContext="{Binding Data[21]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem23Template">
+            <Control DataContext="{Binding Data[22]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem24Template">
+            <Control DataContext="{Binding Data[23]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem25Template">
+            <Control DataContext="{Binding Data[24]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem26Template">
+            <Control DataContext="{Binding Data[25]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem27Template">
+            <Control DataContext="{Binding Data[26]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem28Template">
+            <Control DataContext="{Binding Data[27]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem29Template">
+            <Control DataContext="{Binding Data[28]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem30Template">
+            <Control DataContext="{Binding Data[29]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItem31Template">
+            <Control DataContext="{Binding Data[30]}" Template="{StaticResource dataItemTemplate}" />
+        </DataTemplate>
+        <DataTemplate x:Key="dataItemTotalTemplate">
+            <Grid d:DesignWidth="73.25" DataContext="{Binding Data[31]}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{Binding IssueTicketCount}" Style="{StaticResource TextBlockStyle}" />
+                <Line Grid.Row="1" Stroke="#FFE3EAF2" Stretch="Fill" X2="1" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="2" Text="{Binding TradeTotalMoney}" Style="{StaticResource TextBlockStyle}"/>
+                <Line Grid.Row="3" Stroke="#FFE3EAF2" Stretch="Fill" X2="1" VerticalAlignment="Center"/>
+                <TextBlock Grid.Row="4" Text="{Binding CommissionTotalMoney}" Style="{StaticResource TextBlockStyle}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModel:ReportAnalysisViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="275*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource HeadBg2}">
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextWrapping="Wrap" Text="出票量总汇："/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding DataStatistics.TotalIssueTicketCount, StringFormat=\{0\}张}" Foreground="{DynamicResource OrangeForeground}"/>
+                <TextBlock TextWrapping="Wrap" Text="交易金额汇总：" Margin="28,0,0,0"/>
+                <TextBlock TextWrapping="Wrap" Text="{Binding DataStatistics.TotalTradeTotalMoney, StringFormat=￥\{0\}}" Foreground="{DynamicResource OrangeForeground}"/>
+                <TextBlock TextWrapping="Wrap" Text="佣金汇总:" Margin="28,0,0,0" />
+                <TextBlock TextWrapping="Wrap" Text="{Binding DataStatistics.TotalCommissionTotalMoney, StringFormat=￥\{0\}}" Foreground="{DynamicResource OrangeForeground}" Margin="0,0,15,0"/>
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Left" Margin="15,0,0,0" TextWrapping="Wrap" Text="报表分析" VerticalAlignment="Center" Style="{DynamicResource Head2TextBlock}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="541*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" BorderThickness="2" Background="{StaticResource BlueBorderFillBrush}" Margin="15,13" BorderBrush="{StaticResource BlueBorderBrush}">
+                <WrapPanel VerticalAlignment="Center" Margin="0">
+                    <!--<StackPanel Orientation="Horizontal" Margin="7,0,25,10" VerticalAlignment="Center" Visibility="Collapsed">
+						<TextBlock TextWrapping="Wrap" Text="员工：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+						<ComboBox Width="107" BorderBrush="#FFB4BFC3" Height="22" Background="White" />
+					</StackPanel>-->
+                    <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Horizontal" Margin="10,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="交易时间：" VerticalAlignment="Center" Foreground="{StaticResource BlueForeground}"/>
+                        <ComboBox ItemsSource="{Binding Year}" SelectedValue="{Binding SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0"/>
+                        <TextBlock TextWrapping="Wrap" Text="年" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                        <ComboBox ItemsSource="{Binding Month}" SelectedValue="{Binding SelectedMonth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,0,0"/>
+                        <TextBlock TextWrapping="Wrap" Text="月" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="28,5,0,5">
+                        <Button Click="Button_Click" Content="查询" Margin="0,0,13,0" Width="58" Height="22" Command="{Binding QueryCommand}"/>
+                        <Button Content="导出" Width="58" Height="22" Background="White" Foreground="{StaticResource BlueButtonForeground}" BorderBrush="{StaticResource GrayBorderBrush}" Style="{StaticResource WhiteBtn}" Command="{Binding ExportCommand}"/>
+                    </StackPanel>
+                </WrapPanel>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="2">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" Margin="15,0,15,10">
+                <DataGrid ItemsSource="{Binding DataStatistics.Items}" AutoGenerateColumns="False" IsReadOnly="True" HeadersVisibility="Column" BorderThickness="0" Margin="0,0,5,0" HorizontalGridLinesBrush="#FFCBD2ED" VerticalGridLinesBrush="#FFCBD2ED" Foreground="#FF4F9DE8" CellStyle="{DynamicResource DataGridCellStyle}" Background="White">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn ClipboardContentBinding="{Binding EmployeeName}" Header="员工名" CellTemplate="{StaticResource EmployeeNameTemplate}" />
+                        <DataGridTemplateColumn ClipboardContentBinding="{x:Null}" MinWidth="50" Header="类别" CellTemplate="{StaticResource TypeTemplate}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="1" CellTemplate="{StaticResource dataItem1Template}"  />
+                        <DataGridTemplateColumn MinWidth="50" Header="2" CellTemplate="{StaticResource dataItem2Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="3" CellTemplate="{StaticResource dataItem3Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="4" CellTemplate="{StaticResource dataItem4Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="5" CellTemplate="{StaticResource dataItem5Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="6" CellTemplate="{StaticResource dataItem6Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="7" CellTemplate="{StaticResource dataItem7Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="8" CellTemplate="{StaticResource dataItem8Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="9" CellTemplate="{StaticResource dataItem9Template}" />
+                        <DataGridTemplateColumn ClipboardContentBinding="{Binding Data[9]}" MinWidth="50" Header="10" CellTemplate="{StaticResource dataItem10Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="11" CellTemplate="{StaticResource dataItem11Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="12" CellTemplate="{StaticResource dataItem12Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="13" CellTemplate="{StaticResource dataItem13Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="14" CellTemplate="{StaticResource dataItem14Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="15" CellTemplate="{StaticResource dataItem15Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="16" CellTemplate="{StaticResource dataItem16Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="17" CellTemplate="{StaticResource dataItem17Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="18" CellTemplate="{StaticResource dataItem18Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="19" CellTemplate="{StaticResource dataItem19Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="20" CellTemplate="{StaticResource dataItem20Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="21" CellTemplate="{StaticResource dataItem21Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="22" CellTemplate="{StaticResource dataItem22Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="23" CellTemplate="{StaticResource dataItem23Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="24" CellTemplate="{StaticResource dataItem24Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="25" CellTemplate="{StaticResource dataItem25Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="26" CellTemplate="{StaticResource dataItem26Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="27" CellTemplate="{StaticResource dataItem27Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="28" CellTemplate="{StaticResource dataItem28Template}" />
+                        <DataGridTemplateColumn x:Name="column29" MinWidth="50" Header="29" CellTemplate="{StaticResource dataItem29Template}" />
+                        <DataGridTemplateColumn x:Name="column30" MinWidth="50" Header="30" CellTemplate="{StaticResource dataItem30Template}" />
+                        <DataGridTemplateColumn x:Name="column31" MinWidth="50" Header="31" CellTemplate="{StaticResource dataItem31Template}" />
+                        <DataGridTemplateColumn MinWidth="50" Header="总量" CellTemplate="{StaticResource dataItemTotalTemplate}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </ScrollViewer>
+            <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        </Grid>
+
+    </Grid>
+</UserControl>

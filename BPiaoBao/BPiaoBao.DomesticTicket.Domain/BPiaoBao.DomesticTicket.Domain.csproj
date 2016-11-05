@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D90805CE-CEE6-42A5-87C2-EBF6ECFA94E2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.DomesticTicket.Domain</RootNamespace>
+    <AssemblyName>BPiaoBao.DomesticTicket.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Norm">
+      <HintPath>..\packages\Mongodb\Norm.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebManage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PnrAnalysis\DLL\WebManage.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\AriChang\AirChange.cs" />
+    <Compile Include="Models\AriChang\AirChangeBuilder.cs" />
+    <Compile Include="Models\AriChang\IAirChangeRepository.cs" />
+    <Compile Include="Models\Deduction\DeductionGroup.cs" />
+    <Compile Include="Models\Deduction\IDeductionRepository.cs" />
+    <Compile Include="Models\FrePasser\FrePasser.cs" />
+    <Compile Include="Models\FrePasser\FrePasserBuilder.cs" />
+    <Compile Include="Models\FrePasser\IFrePasserRepository.cs" />
+    <Compile Include="Models\Insurance\IInsuranceConfigRepository.cs" />
+    <Compile Include="Models\Insurance\IInsuranceOrderRepository.cs" />
+    <Compile Include="Models\Insurance\IInsurancePurchaseByBussinessmanRepository.cs" />
+    <Compile Include="Models\Insurance\InsuranceOrderBuilder.cs" />
+    <Compile Include="Models\Insurance\InsuranceConfig.cs" />
+    <Compile Include="Models\Insurance\InsuranceConfigBuilder.cs" />
+    <Compile Include="Models\Insurance\InsuranceDepositLog.cs" />
+    <Compile Include="Models\Insurance\InsuranceDepositLogBuilder.cs" />
+    <Compile Include="Models\Insurance\IInsuranceDepositLogRepository.cs" />
+    <Compile Include="Models\Insurance\InsuranceOrder.cs" />
+    <Compile Include="Models\Insurance\InsurancePurchaseByBussinessman.cs" />
+    <Compile Include="Models\Insurance\InsurancePurchaseByBussinessmanBuilder.cs" />
+    <Compile Include="Models\Insurance\InsuranceRecord.cs" />
+    <Compile Include="Models\Insurance\InsuranceRecordBuilder.cs" />
+    <Compile Include="Models\Insurance\InsuranceSearchRecord.cs" />
+    <Compile Include="Models\Orders\DeductionDetail.cs" />
+    <Compile Include="Models\Orders\IRefundReasonRepository.cs" />
+    <Compile Include="Models\Orders\ITicketRepository.cs" />
+    <Compile Include="Models\Orders\ITicketSumRepository.cs" />
+    <Compile Include="Models\Orders\ModifyOrder.cs" />
+    <Compile Include="Models\Orders\AnnulOrder.cs" />
+    <Compile Include="Models\Orders\Behaviors\AfterSaleApplyBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\CancelOrderBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\CancelIssueTicketBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\CreatePlatformOrderBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\PlatformRefundNotifyBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\QueryPaidStatusBebavior.cs" />
+    <Compile Include="Models\Orders\ChangeOrder.cs" />
+    <Compile Include="Models\Orders\AfterSaleSkyWay.cs" />
+    <Compile Include="Models\Orders\CoordinationLog.cs" />
+    <Compile Include="Models\Orders\CreateInterfaceOrderException.cs" />
+    <Compile Include="Models\Orders\Behaviors\NewSelectPolicyBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\PaidOrderBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\PayOrderBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\TicketsIssueBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\PlatformCancelTicketNotifyBehavior.cs" />
+    <Compile Include="Models\Orders\Behaviors\WaitReimburseWithRepelIssueBahavior.cs" />
+    <Compile Include="Models\Orders\IAfterSaleOrderRepository.cs" />
+    <Compile Include="Models\Orders\IOrderRepository.cs" />
+    <Compile Include="Models\Orders\OrderBuilder.cs" />
+    <Compile Include="Models\Orders\OrderCommException.cs" />
+    <Compile Include="Models\Orders\OrderLog.cs" />
+    <Compile Include="Models\Orders\OrderPay.cs" />
+    <Compile Include="Models\Orders\OrderStatusChangedEvent.cs" />
+    <Compile Include="Models\Orders\Passenger.cs" />
+    <Compile Include="Models\Orders\PayBillDetail.cs" />
+    <Compile Include="Models\Orders\PayInterfaceOrderException.cs" />
+    <Compile Include="Models\Orders\PnrAnalysisFailException.cs" />
+    <Compile Include="Models\Orders\Policy.cs" />
+    <Compile Include="Models\Orders\BounceOrder.cs" />
+    <Compile Include="Models\Orders\RefundReason.cs" />
+    <Compile Include="Models\Orders\SkyWay.cs" />
+    <Compile Include="Models\Orders\Behaviors\BaseOrderBehavior.cs" />
+    <Compile Include="Models\Orders\States\ApplyBabyFailState.cs" />
+    <Compile Include="Models\Orders\States\AutoIssueFailState.cs" />
+    <Compile Include="Models\Orders\States\BaseOrderState.cs" />
+    <Compile Include="Models\Orders\Order.cs" />
+    <Compile Include="Models\Orders\States\CreatePlatformFailState.cs" />
+    <Compile Include="Models\Orders\States\IssueAndCompletedState.cs" />
+    <Compile Include="Models\Orders\States\NewOrderState.cs" />
+    <Compile Include="Models\Orders\States\PayWaitCreatePlatformOrderState.cs" />
+    <Compile Include="Models\Orders\States\WaitAndPaidState.cs" />
+    <Compile Include="Models\Orders\States\WaitChoosePolicyState.cs" />
+    <Compile Include="Models\Orders\States\WaitIssueState.cs" />
+    <Compile Include="Models\Orders\States\WaitReimburseWithPlatformRepelIssueState.cs" />
+    <Compile Include="Models\Orders\States\WaitReimburseWithRepelIssueState.cs" />
+    <Compile Include="Models\Orders\AfterSaleOrder.cs" />
+    <Compile Include="Models\Orders\AfterSalePassenger.cs" />
+    <Compile Include="Models\Orders\TicketSum.cs" />
+    <Compile Include="Models\PlatformPoint\IPlatformPointGroupRepository.cs" />
+    <Compile Include="Models\PlatformPoint\IPlatformPointGroupRuleRepository.cs" />
+    <Compile Include="Models\PlatformPoint\PlatformDeductionParam.cs" />
+    <Compile Include="Models\PlatformPoint\PlatformPointGroup.cs" />
+    <Compile Include="Models\PlatformPoint\PlatformGroupRuleBuilder.cs" />
+    <Compile Include="Models\Policies\ILocalPolicyRepository.cs" />
+    <Compile Include="Models\Policies\LocalPolicy.cs" />
+    <Compile Include="Models\Policies\LocalPolicyBuilder.cs" />
+    <Compile Include="Models\Policies\PolicyParam.cs" />
+    <Compile Include="Models\Policies\SpecialPolicy.cs" />
+    <Compile Include="Models\QueryFlight\AirCarrier.cs" />
+    <Compile Include="Models\QueryFlight\AirplainType.cs" />
+    <Compile Include="Models\QueryFlight\AVHData.cs" />
+    <Compile Include="Models\QueryFlight\BaseCabin.cs" />
+    <Compile Include="Models\QueryFlight\CabinSeat.cs" />
+    <Compile Include="Models\QueryFlight\CityCode.cs" />
+    <Compile Include="Models\QueryFlight\FDData.cs" />
+    <Compile Include="Models\QueryFlight\PolicyCache.cs" />
+    <Compile Include="Models\RefundEvent\RefundTicketEvent.cs" />
+    <Compile Include="Models\RefundEvent\RefundTicketHandler.cs" />
+    <Compile Include="Models\Refunds\IPlatformRefundOrderRepository.cs" />
+    <Compile Include="Models\Refunds\OrderStatusChangedHandler.cs" />
+    <Compile Include="Models\Refunds\PlatformRefundBuilder.cs" />
+    <Compile Include="Models\Refunds\PlatformRefundOrder.cs" />
+    <Compile Include="Models\Refunds\RefundEvent.cs" />
+    <Compile Include="Models\Refunds\RefundHandler.cs" />
+    <Compile Include="Models\TicketSumEvent\TicketEvent.cs" />
+    <Compile Include="Models\TicketSumEvent\TicketHandler.cs" />
+    <Compile Include="Models\TravelPaper\ITravelGrantRecordRepository.cs" />
+    <Compile Include="Models\TravelPaper\ITravelPaperRepository.cs" />
+    <Compile Include="Models\TravelPaper\TravelPaper.cs" />
+    <Compile Include="Models\TravelPaper\TravelGrantRecord.cs" />
+    <Compile Include="Models\TravelPaper\TravelPaperLog.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\IBEService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PidService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ZKInsurance\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Services\AutoTicketService.cs" />
+    <Compile Include="Services\B2BParam\AutoEtdzParam.cs" />
+    <Compile Include="Services\B2BParam\B2BResponse.cs" />
+    <Compile Include="Services\CommLog.cs" />
+    <Compile Include="Services\DataBill.cs" />
+    <Compile Include="Services\DomesticService.cs" />
+    <Compile Include="Services\FlightService.cs" />
+    <Compile Include="Services\IbeService.cs" />
+    <Compile Include="Services\Insurance\InsurancePlatformDomainService.cs" />
+    <Compile Include="Services\Insurance\_IInsurancePlatform.cs" />
+    <Compile Include="Services\Insurance\InsuranceConfigurationSection.cs" />
+    <Compile Include="Services\Insurance\InsuranceDomainService.cs" />
+    <Compile Include="Services\Insurance\InsuranceSection.cs" />
+    <Compile Include="Services\Insurance\_TPRSInsurancePlatform.cs" />
+    <Compile Include="Services\Insurance\_TPRSReturn.cs" />
+    <Compile Include="Services\Insurance\_ZKInsurancePlatform.cs" />
+    <Compile Include="Services\Insurance\_ZKReturn.cs" />
+    <Compile Include="Services\PolicyService.cs" />
+    <Compile Include="Services\QueryFlightService.cs" />
+    <Compile Include="Services\GetFlightBasicData.cs" />
+    <Compile Include="Services\TodayObject\TodayRiseCabinRequest.cs" />
+    <Compile Include="Services\TodayObject\TodayTuiFeiOrderRequest.cs" />
+    <Compile Include="Services\UserRelation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Platform.Plugin\BPiaoBao.DomesticTicket.Platform.Plugin.csproj">
+      <Project>{f1c58e54-417f-4a65-a13e-e872841c544e}</Project>
+      <Name>BPiaoBao.DomesticTicket.Platform.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.SystemSetting.Domain\BPiaoBao.SystemSetting.Domain.csproj">
+      <Project>{3165024d-838d-4d30-a243-645fc51b9f41}</Project>
+      <Name>BPiaoBao.SystemSetting.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PnrAnalysis\PnrAnalysis.csproj">
+      <Project>{8b4c3980-a7b8-4a81-8df2-cffa576fe414}</Project>
+      <Name>PnrAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\DataSources\System.Xml.XmlNode.datasource" />
+    <None Include="Service References\IBEService\WebService1.wsdl" />
+    <None Include="Service References\PidService\BPiaoBao.DomesticTicket.Domain.PidService.FlightData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PidService\PidService.wsdl" />
+    <None Include="Service References\ZKInsurance\JtywInsService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\IBEService\" />
+    <WCFMetadataStorage Include="Service References\PidService\" />
+    <WCFMetadataStorage Include="Service References\ZKInsurance\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\WebService1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IBEService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PidService\PidService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PidService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PidService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PidService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ZKInsurance\JtywInsService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ZKInsurance\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ZKInsurance\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ZKInsurance\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\CustomerInfo\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

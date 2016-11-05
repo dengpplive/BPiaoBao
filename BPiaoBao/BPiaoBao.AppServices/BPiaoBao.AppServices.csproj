@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0831ACE7-562B-4820-9665-18C363F46974}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.AppServices</RootNamespace>
+    <AssemblyName>BPiaoBao.AppServices</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=3.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Net4, Version=3.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AutoMapper.3.1.1\lib\net40\AutoMapper.Net4.dll</HintPath>
+    </Reference>
+    <Reference Include="ChnCharInfo">
+      <HintPath>..\packages\PnrAnalysis\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EtermChar">
+      <HintPath>..\packages\PnrAnalysis\EtermChar.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PublicClass, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PnrAnalysis\PublicClass.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap">
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebManage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\PnrAnalysis\DLL\WebManage.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AuthManager.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="Cashbag\AccountService.cs" />
+    <Compile Include="Cashbag\FinancialService.cs" />
+    <Compile Include="Cashbag\FundService.cs" />
+    <Compile Include="CustomErrorHandler.cs" />
+    <Compile Include="DomesticTicket\MemoryService.cs" />
+    <Compile Include="DomesticTicket\PlatformPointGroupService.cs" />
+    <Compile Include="ExtOperationInterceptorAttribute.cs" />
+    <Compile Include="InitSystemSwitch.cs" />
+    <Compile Include="ExtOperationInvoker.cs" />
+    <Compile Include="QueueLogsManager.cs" />
+    <Compile Include="SystemSetting\DateTimeService.cs" />
+    <Compile Include="DomesticTicket\CityMapper\CityCodeFormatter.cs" />
+    <Compile Include="DomesticTicket\ConsoDeductionGroupService.cs" />
+    <Compile Include="DomesticTicket\ConsoLocalPolicyService.cs" />
+    <Compile Include="DomesticTicket\FlightDestineService.cs" />
+    <Compile Include="DomesticTicket\FrePasserService.cs" />
+    <Compile Include="DomesticTicket\InsuranceService.cs" />
+    <Compile Include="DomesticTicket\OrderConsoService.cs" />
+    <Compile Include="DomesticTicket\OrderMapper.cs" />
+    <Compile Include="DomesticTicket\OrderService.cs" />
+    <Compile Include="DomesticTicket\OrderStationService.cs" />
+    <Compile Include="DomesticTicket\PidService.cs" />
+    <Compile Include="DomesticTicket\PlatformCfgService.cs" />
+    <Compile Include="DomesticTicket\PlatformRefundOrderService.cs" />
+    <Compile Include="DomesticTicket\RiskControlService.cs" />
+    <Compile Include="DomesticTicket\PlatformRefundOrderStationService.cs" />
+    <Compile Include="DomesticTicket\RefundOrderMapper.cs" />
+    <Compile Include="DomesticTicket\TravelPaperService.cs" />
+    <Compile Include="EnableJsonFormatterBehavior.cs" />
+    <Compile Include="EnableJsonFormatterBehaviorElement.cs" />
+    <Compile Include="IocInstanceProvider.cs" />
+    <Compile Include="MessagePushManager.cs" />
+    <Compile Include="NotAuthException.cs" />
+    <Compile Include="LoginService.cs" />
+    <Compile Include="ExtAuthServiceBehavior.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServerMessages\PublisherService.cs" />
+    <Compile Include="ServiceInterpector.cs" />
+    <Compile Include="SystemSetting\ConsoNoticeService.cs" />
+    <Compile Include="SystemSetting\MyMessageService.cs" />
+    <Compile Include="SystemSetting\NoticeService.cs" />
+    <Compile Include="SystemSetting\OperationLogService.cs" />
+    <Compile Include="SystemSetting\StationBehaviorStatService.cs" />
+    <Compile Include="SystemSetting\StationNoticeService.cs" />
+    <Compile Include="SystemSetting\BehaviorStatService.cs" />
+    <Compile Include="SystemSetting\BusinessmanService.cs" />
+    <Compile Include="SystemSetting\ConsoBusinessmanService.cs" />
+    <Compile Include="SystemSetting\ConsoSMSService.cs" />
+    <Compile Include="SystemSetting\LoginEventHandler.cs" />
+    <Compile Include="SystemSetting\StationBusinessmanService.cs" />
+    <Compile Include="SystemSetting\UserLoginHandler.cs" />
+    <Compile Include="ExtNotAuthServiceBehavior.cs" />
+    <Compile Include="TicketEventHelper.cs" />
+    <Compile Include="TPos\TPosService.cs" />
+    <Compile Include="UserBehaviorManage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.ConsoContracts\BPiaoBao.AppServices.ConsoContracts.csproj">
+      <Project>{8a2f936a-7d1f-46e1-adf8-e101573aa3e4}</Project>
+      <Name>BPiaoBao.AppServices.ConsoContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Contracts\BPiaoBao.AppServices.Contracts.csproj">
+      <Project>{e892d14e-df51-47e9-9865-e7269ea15013}</Project>
+      <Name>BPiaoBao.AppServices.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.StationContracts\BPiaoBao.AppServices.StationContracts.csproj">
+      <Project>{d8721be3-0b6c-4128-956a-28d817ef9286}</Project>
+      <Name>BPiaoBao.AppServices.StationContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Cashbag.Domain\BPiaoBao.Cashbag.Domain.csproj">
+      <Project>{b86a3b18-54cd-4cfc-9b03-9a659d34b23b}</Project>
+      <Name>BPiaoBao.Cashbag.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Domain\BPiaoBao.DomesticTicket.Domain.csproj">
+      <Project>{d90805ce-cee6-42a5-87c2-ebf6ecfa94e2}</Project>
+      <Name>BPiaoBao.DomesticTicket.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.EFRepository\BPiaoBao.DomesticTicket.EFRepository.csproj">
+      <Project>{dd879b19-5a18-488f-bddd-2d6c7f0834cc}</Project>
+      <Name>BPiaoBao.DomesticTicket.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Platform.Plugin\BPiaoBao.DomesticTicket.Platform.Plugin.csproj">
+      <Project>{f1c58e54-417f-4a65-a13e-e872841c544e}</Project>
+      <Name>BPiaoBao.DomesticTicket.Platform.Plugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Platforms\BPiaoBao.DomesticTicket.Platforms.csproj">
+      <Project>{337e340f-4c92-4baf-b111-fab0d0373f55}</Project>
+      <Name>BPiaoBao.DomesticTicket.Platforms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.SystemSetting.Domain\BPiaoBao.SystemSetting.Domain.csproj">
+      <Project>{3165024d-838d-4d30-a243-645fc51b9f41}</Project>
+      <Name>BPiaoBao.SystemSetting.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.SystemSetting.EFRepository\BPiaoBao.SystemSetting.EFRepository.csproj">
+      <Project>{2f657692-028d-45a6-8768-688a312181cc}</Project>
+      <Name>BPiaoBao.SystemSetting.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBaoTPos.Domain\BPiaoBaoTPos.Domain.csproj">
+      <Project>{a04224bb-8321-4862-af7e-cde3073446c5}</Project>
+      <Name>BPiaoBaoTPos.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cashbag.Integrated\Cashbag.Integrated.csproj">
+      <Project>{550f0296-ec6b-4b0e-9a36-1b5f33958c4f}</Project>
+      <Name>Cashbag.Integrated</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework.EFRepository\JoveZhao.Framework.EFRepository.csproj">
+      <Project>{be77c3cc-e8a9-444f-9dea-a8f047a050eb}</Project>
+      <Name>JoveZhao.Framework.EFRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PnrAnalysis\PnrAnalysis.csproj">
+      <Project>{8b4c3980-a7b8-4a81-8df2-cffa576fe414}</Project>
+      <Name>PnrAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

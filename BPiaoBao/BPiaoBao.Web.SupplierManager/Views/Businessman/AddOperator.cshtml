@@ -1,0 +1,42 @@
+﻿<div id="AddOperatorDialog" class="easyui-dialog" title="新增员工" data-options="closed:true,closable:false,modal:true,buttons:'#AddOperatorDialog-buttons'" style="width: 450px; height: 330px; padding: 5px 15px;">
+    <form id="OperatorForm">
+        <table class="editTable">
+            <tr>
+                <td>账号：</td>
+                <td>
+                    <input type="text" id="Code" name="Code" class="input required" data-msg-required="请输入操作员帐号" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.Account, visible: $root.action() == 'add'" />
+                    <span data-bind="text: $root.editForm.Account, visible: $root.action() == 'edit'">&nbsp;</span>
+                </td>
+            </tr>
+            <tr>
+                <td>姓名：</td>
+                <td>
+                    <input type="text" id="Realname" name="Realname" class="input required" data-msg-required="请输入操作员姓名" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.Realname" />
+                </td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td>
+                    <input type="text" id="Contact" name="Contact" class="input required" data-msg-required="请输入操作员联系电话" style="width: 200px; height: 24px; line-height: 24px;" data-bind="value: $root.editForm.Phone" />
+                </td>
+            </tr>
+            <tr data-bind="visible:!$root.isAdmin()">
+                <td>角色:</td>
+                <td>
+                    @*<input data-bind="combobox: { valueField: 'ID', textField: 'RoleName',editable:false, url: '/Businessman/RoleList' }, comValue: $root.editForm.RoleID" />*@
+                    <select data-bind="options:roleList,optionsValue:'ID',optionsText:'RoleName',optionsCaption:'请选择...',value:$root.editForm.RoleID" style="width: 200px; height: 24px;" />
+
+                </td>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>  <span>温馨提示：无权限则无法登录系统</span></td>
+            </tr>
+        </table>
+    </form>
+</div> 
+<div id="AddOperatorDialog-buttons" style="text-align: center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.saveClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" data-bind="click: $root.clearClick">取消</a>
+</div>

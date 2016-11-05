@@ -1,0 +1,7 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:BPiaoBao.Client.Account.View" x:Class="BPiaoBao.Client.Account.View.BillDetailWindow"
+        Title="消费记录" Style="{DynamicResource CustomWindowStyle}" WindowStartupLocation="CenterOwner">
+	<local:BillDetailControl HorizontalAlignment="Left" VerticalAlignment="Top"/>
+</Window>

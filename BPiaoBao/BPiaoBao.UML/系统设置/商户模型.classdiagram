@@ -1,0 +1,337 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="0aaf9224-41db-4e24-9373-c28f59f62742" name="商户模型" linkedPackageId="1639e941-dac7-4b4e-9332-323db6738e80" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <packagedElements>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="725ebcde-e01e-433b-8cdb-4448313fb673" name="商户" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="ebd7d951-2bed-402f-a1eb-f9464f831a19" />
+        <targetEnds>
+          <association Id="bddadd51-2cf9-4f5a-b77c-d811398aca93" isDerived="false" sourceEndRoleName="商户" targetEndRoleName="扣点组" isLeaf="false" isAbstract="false">
+            <classMoniker Id="0928737d-836d-4bda-92e3-ba1b33300237" LastKnownName="扣点组" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3f117522-595e-4bc0-a475-dc0abfed624a" name="商户" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="825a87c9-7b6e-4f46-a1f4-14816d61b79f" name="Lower" value="*">
+                      <elementDefinition Id="e2117bd7-f2f2-450d-93ad-58e7e447a508" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="41f0e871-5e23-40d0-aee9-8c49a3131d17" name="Upper" value="*">
+                      <elementDefinition Id="6abed88d-8787-4b28-9a12-24e21736f223" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="848776db-6ac9-486a-ab67-5e766246f1c0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="09f88223-4cf4-4009-851e-19f5f12a2e42" name="扣点组" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6dccbd0e-77ba-4c73-b1ed-5eb65fc58148" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="02e824e5-fc29-4063-a80b-66bb4d712420" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="a4e9a686-227f-4ae9-b6f1-40098a9a4acf" name="商户名" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e2dca7ee-6a26-45f5-ab4d-5fcb0cdf9f58" />
+          </property>
+          <property Id="3c278ba5-ee0d-4c6b-8ebc-205ed19bb9ad" name="创建日期" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c49de12a-b80d-4ffa-8993-f528e749bb0f" />
+          </property>
+          <property Id="ab754354-f8bb-4776-9ac2-c6a7d20ccbf8" name="过期时间" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a2eb11d6-b148-4354-9388-8ce40d40def2" />
+          </property>
+          <property Id="6d6db4da-d873-4d91-a7c8-b948b2cd3b89" name="商户名称" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6701ef26-c9b8-407c-8854-32ccb84eccfc" />
+          </property>
+          <property Id="bb9e7b37-a42e-4d52-8c22-e623e3c2d51b" name="联系方式" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="2d441d8e-75cc-4fb1-bc67-430c2d8cb148" />
+          </property>
+          <property Id="4c71c9e8-9896-45d8-81b9-745f95346c35" name="商户号" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="5ca67891-dffe-4d61-990b-a0608ed44e75" />
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation Id="3ae42e92-3bee-4223-b92a-8eae26b3ecf3" name="查找操作员" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="98a937d1-b2b4-45f1-bc04-54d8f5c7e99b" />
+          </operation>
+          <operation Id="f6f04d19-47e5-4b05-b766-855786f3104c" name="取操作员信息" isLeaf="false" isStatic="false" isAbstract="false" concurrency="Sequential" isQuery="false">
+            <elementDefinition Id="cbb8766b-e594-44b8-bba6-47f8c55c1312" />
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="ee10a7e6-d237-426f-85b2-8a3018b0aabd" name="联系方式" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c7ca19a0-f4b5-4ef5-93cb-43557cd72696" />
+        <targetEnds>
+          <association Id="6e6e50aa-8d03-4cad-8075-539697aeb26e" isDerived="false" sourceEndRoleName="联系方式" targetEndRoleName="商户" isLeaf="false" isAbstract="false">
+            <classMoniker Id="725ebcde-e01e-433b-8cdb-4448313fb673" LastKnownName="商户" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="afea4be2-9b58-4aea-9d7f-b2209bff6131" name="联系方式" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="58294e0f-e77f-4eb8-b0ae-85f19c3704b0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="d4a686ad-eaf0-4310-a566-6d100b57ca64" name="商户" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="6540f13c-c493-4d12-b2c0-59f19420730f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="7c3f60b7-ced8-4419-93c6-be3fa56b0a25" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="659aeddc-3591-4d59-9222-5b4d2f2e1790" name="联系人" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f3cae01b-9742-4c4d-9cb6-b0fafc48d3f2" />
+          </property>
+          <property Id="2eb507b0-9efb-4482-af66-5841fb5e5ace" name="联系电话" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="eccc77a9-7a5a-4388-906b-46f3beb36c47" />
+          </property>
+          <property Id="568be7bf-2004-4c2b-a376-e53852ce7332" name="联系地址" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="4414b80b-946f-40d4-860c-0100cab8b7b1" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f127e948-704c-414f-8010-5a84aca25fc0" name="操作员" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="fb011910-8289-48d1-a0c0-bad354d1f12e" />
+        <targetEnds>
+          <association Id="a92b1f1a-629c-4ab2-9faf-89186c312679" isDerived="false" sourceEndRoleName="操作员" targetEndRoleName="商户" isLeaf="false" isAbstract="false">
+            <classMoniker Id="725ebcde-e01e-433b-8cdb-4448313fb673" LastKnownName="商户" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="55fd0db1-9fee-4cf7-86c6-5d0bd8ec8321" name="操作员" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="d0a65a34-2444-4912-967d-9e56fc491b9c" name="Lower" value="*">
+                      <elementDefinition Id="360d71c3-71a3-4a87-9ad6-a87a5865ab71" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="da5540d4-9e46-498f-a92a-971a85a9821e" name="Upper" value="*">
+                      <elementDefinition Id="d3f47a62-2605-4d64-8ca3-c1019f1eda00" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="ff830ce7-bd48-45fc-9951-9dd34b57af1b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cc71fed5-c675-4175-b389-6489fcd4a700" name="商户" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="e36ae683-f8f2-4f33-9d74-9b8fa8068130" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="8a2e78fa-6c35-4637-9b7e-2c01f8fadb1c" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="56287426-1e13-4f00-8beb-f77641d21d09" name="真实姓名" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="bcb1c198-6c78-4145-87a6-02b55a3aedc1" />
+          </property>
+          <property Id="ad70a721-2c4e-4d1d-b8bc-0438ed0b7c0f" name="账号名" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="32f34cf0-65fe-4a6d-9310-5cdbbb733bef" />
+          </property>
+          <property Id="275749b8-7f77-4a1d-b18b-be1bf4a1ed3b" name="密码" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="c2ece2da-041e-4ccc-b5bf-0458757b2bc3" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="f53ffa20-b416-4738-ac3b-a00b58c76353" name="扣点信息" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f3599786-041f-4e74-94d3-6bf313959c5d" />
+        <targetEnds>
+          <association Id="09c41a6f-9239-4e7b-b5a4-2d27bbf09eb9" isDerived="false" sourceEndRoleName="扣点信息" targetEndRoleName="扣点组" isLeaf="false" isAbstract="false">
+            <classMoniker Id="0928737d-836d-4bda-92e3-ba1b33300237" LastKnownName="扣点组" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="08c84c20-a1ab-4ab6-bbe2-8e6262ac3afe" name="扣点信息" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="e344ec84-9dbb-44c7-a98b-f8f895c14844" name="Lower" value="*">
+                      <elementDefinition Id="85a81b4a-4025-4855-b2cb-eb94b57251de" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="6ae33c38-2fde-4a4b-852d-20b9871b15e0" name="Upper" value="*">
+                      <elementDefinition Id="c9619cf1-1878-40ee-a100-899431ddabd4" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="2cc5c0ee-f64d-49f0-860f-78c274ec2599" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ed303e52-fb7b-4416-9ab8-d1d50f37e99d" name="扣点组" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="185ef6c8-798c-4a1c-be03-9ebfbc4531d3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="49b4383f-e064-4d64-bb2b-1c868cef1bd6" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="78bb6548-700f-49e5-95bb-72c332a29ca1" name="航空公司" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="a53b3118-bdce-424f-85ad-d077dd06e341" />
+          </property>
+          <property Id="62ea7ffb-649d-467a-b84d-0a9f34481119" name="出发城市" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="7ba95152-0f8f-456d-8619-af9cd429fb5e" />
+          </property>
+          <property Id="54846657-d149-4824-a930-42b87750abd0" name="到达城市" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="aed7a593-6c09-4cdc-ad93-74a1d9b8405b" />
+          </property>
+          <property Id="d587c99e-6881-42b0-9c9c-94227e3e0aa6" name="开始时间" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="40c3ac91-9a34-4590-b4be-f5c1bef1e4a5" />
+          </property>
+          <property Id="92709a62-dce2-4933-ba94-8b83f15c178a" name="结束时间" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="acefb1c5-dbeb-41a7-80a3-d1c8164a939e" />
+          </property>
+          <property Id="c0cd6371-d7a0-48b8-8de9-a3a26d5b521b" name="扣点范围" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="3c325122-41d1-4e31-8287-6f4dde0913a1" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="43bbad26-08ee-435a-9ed6-bfbbaf698fe0" name="附件" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f9b05d21-5f09-4ad0-904a-d24e96a21d6c" />
+        <targetEnds>
+          <association Id="2d1e5961-f125-4591-823c-cb59c5dac2cb" isDerived="false" sourceEndRoleName="Class1" targetEndRoleName="商户" isLeaf="false" isAbstract="false">
+            <classMoniker Id="725ebcde-e01e-433b-8cdb-4448313fb673" LastKnownName="商户" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6e6fbdcf-e205-4696-9ef5-e5047ada2dc6" name="Class1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="78d9f9b6-8665-43b0-ac4d-69d84a4ed239" name="Lower" value="*">
+                      <elementDefinition Id="c2243677-87aa-4de5-8d50-2bf09f88f533" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="d50547ca-d532-4993-a260-fc980de9b6c0" name="Upper" value="*">
+                      <elementDefinition Id="e2591e8a-e15d-4bd8-8590-75d3d6d94f51" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="1a76bfa8-2494-4474-bbc2-777d6c0787ac" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="623263fa-13de-48eb-af7d-c40bec1ea670" name="商户" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="9e577d9b-9939-4de6-93db-314cdef5b2d5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="4dbbad58-39f1-48b4-a712-a5825b0a559d" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="9b2b44eb-e5c5-4127-aaec-ee385c6ba588" name="名称" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ab966501-5df4-4fa2-92f0-d9b3bd97dae9" />
+          </property>
+          <property Id="4b4f246c-b057-4595-b1b6-90db0d3c5dbc" name="地址" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="71d362d1-e356-4d1c-99ec-f6acd593ef20" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="a3b5d59f-c0bd-42ec-8b57-7e2c391239ea" name="扣点范围" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="f7e7d7c9-c07d-4136-89d0-07fece7081bd" />
+        <targetEnds>
+          <association Id="cb0c44cd-fc6d-432a-be73-3eccf66c57cf" isDerived="false" sourceEndRoleName="扣点范围" targetEndRoleName="扣点信息" isLeaf="false" isAbstract="false">
+            <classMoniker Id="f53ffa20-b416-4738-ac3b-a00b58c76353" LastKnownName="扣点信息" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ba363d79-edd1-40b8-b94c-b62ffb9b150b" name="扣点范围" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Composite" isComposite="false" isNavigableOwned="false">
+                  <lowerValueInternal>
+                    <literalString Id="7f3d0071-883d-4a54-b815-ef3046aaa9b5" name="Lower" value="*">
+                      <elementDefinition Id="29556362-1894-46ef-9645-e5dfde34e1fa" />
+                    </literalString>
+                  </lowerValueInternal>
+                  <upperValueInternal>
+                    <literalString Id="7e038aaf-e39a-45b4-a3e0-b86993cf84b1" name="Upper" value="*">
+                      <elementDefinition Id="2d6ac8b5-b358-444c-9a8c-4e7160c7666c" />
+                    </literalString>
+                  </upperValueInternal>
+                  <elementDefinition Id="cc03316f-fcdc-4a84-83db-cfc88a6d896c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="260d3664-ca3e-4285-8691-8eb3f1ca26ad" name="扣点信息" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="true">
+                  <elementDefinition Id="3d964318-e890-461a-b758-813480fe2385" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="f98a1846-e8a0-4949-9a77-67c73d3161ef" />
+          </association>
+        </targetEnds>
+        <ownedAttributesInternal>
+          <property Id="c9d38444-1044-4056-b793-ce6a339ce26c" name="起" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="e970466c-e964-434c-9dd5-801abe2021f3" />
+          </property>
+          <property Id="1168f6c4-b3be-4516-818c-3e7c968e96df" name="止" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6bfc70df-5312-4ee8-8718-6b43fa86f394" />
+          </property>
+          <property Id="bc7f7e11-41ae-4faa-bfd5-38b77df210e0" name="点数" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="f559f919-d657-47c7-bb45-f718b9822cb2" />
+          </property>
+          <property Id="680f5999-26c4-4eb6-b459-a13d36cee19d" name="现返" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1a925b35-a7d9-426a-bb24-ea78173ef160" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0928737d-836d-4bda-92e3-ba1b33300237" name="扣点组" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="eec92db0-5653-437d-8da1-612bf36f1495" />
+        <ownedAttributesInternal>
+          <property Id="4afe2824-85f2-44d5-b6c2-eb94a3d12a4a" name="组名" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="1e84edc6-9d7b-4e1b-ae3a-d229a7738c54" />
+          </property>
+          <property Id="2f8c6055-3d29-4079-8cae-f6a01bdce768" name="商户列表" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="4a7fb0f0-7883-4d85-8df6-cd25785dd662" />
+          </property>
+          <property Id="1104e880-c416-4408-8bb8-1e82f78e50ab" name="扣点列表" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="ba2d0d22-a8cc-46a1-9ea0-ec6df63b8248" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+    <logicalClassDesignerModelHasTypes>
+      <class Id="0c108f36-3e2c-43b6-bd76-be24ef0f7352" name="登录历史" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="6bd3a19a-385e-4a9b-b08f-45e33a05a067" />
+        <ownedAttributesInternal>
+          <property Id="c3f63eb6-104c-4839-8479-bc361f60bf2b" name="商户号" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="6afce976-8f78-43fd-9f0d-2566a5d4c9b4" />
+          </property>
+          <property Id="959edca1-7ba2-4edf-906b-abfeb994e9b7" name="操作员" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="9b037e31-040f-4fcb-86dc-be685d49c129" />
+          </property>
+          <property Id="e206ab9b-0df4-4ce8-a498-0375b72608f7" name="登录时间" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="24ceaeb0-5f03-4958-b7b1-4d6ebbcd4a62" />
+          </property>
+          <property Id="def54c63-2dec-4b55-981f-531381efe922" name="登录结果" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+            <elementDefinition Id="27330c4f-2a9e-43b2-a9ab-0b8c498a19a5" />
+          </property>
+        </ownedAttributesInternal>
+      </class>
+    </logicalClassDesignerModelHasTypes>
+  </packagedElements>
+  <package Id="1639e941-dac7-4b4e-9332-323db6738e80" name="BPiaoBao.UML">
+    <elementDefinition Id="00ca177a-161b-48b8-94fa-cc137ab37c1e" />
+    <profileInstances>
+      <packageHasProfileInstances Id="be267d1c-5c95-40d6-bb50-ef9a02f803bf">
+        <profileInstance Id="9cbec09c-24fd-4e82-a319-397f0f4d6201" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="aea3efa0-7e82-45ae-9626-d92167a8b610">
+        <profileInstance Id="0820f5e5-4b46-4c3e-bdba-f8031b68f49d" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</logicalClassDesignerModel>

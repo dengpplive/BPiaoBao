@@ -1,0 +1,77 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:BPiaoBao_Client_UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" x:Class="BPiaoBao.Client.Account.View.RepaymentLogControl" 
+             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel" 
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+             d:DesignHeight="507" d:DesignWidth="577">
+    <UserControl.DataContext>
+        <ViewModel:RepaymentLogViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="60"/>
+			<RowDefinition Height="41"/>
+			<RowDefinition Height="0.834*"/>
+		</Grid.RowDefinitions>
+		<Grid Background="{StaticResource HeadBg1}">
+			<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0">
+				<TextBlock TextWrapping="Wrap" Text="还款记录" d:LayoutOverrides="Width" VerticalAlignment="Center" Style="{DynamicResource HeadTextBlock}"/>
+			</StackPanel>
+		</Grid>
+		<Border Grid.Row="1" Style="{DynamicResource Head2BorderStyle}" >
+			<Grid Background="{StaticResource HeadBg3}">
+				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="记录明细" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0" Style="{DynamicResource Head2TextBlock}"/>
+				<StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="0,0,20,0">
+					<TextBlock TextWrapping="Wrap" Text="日期：" VerticalAlignment="Center"/>
+					<DatePicker VerticalAlignment="Center" Margin="0,0,5,0"  SelectedDate="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22"/>
+					<TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+					<DatePicker VerticalAlignment="Center" Margin="5,0,0,0"  SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22"/>
+					<Button Content="查询" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource QueryBtn}" Margin="20,0,0,0" Command="{Binding QueryCommand}" >
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+				</StackPanel>
+			</Grid>
+		</Border>
+		<Grid Grid.Row="2">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto" MinHeight="40"/>
+			</Grid.RowDefinitions>
+            <DataGrid CanUserSortColumns="False" Margin="20,10" BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding RepaymentLogs}" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="65" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+				<DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding OutTradeNo}" Width="*" Header="交易号"/>
+                    <DataGridTextColumn Binding="{Binding RepaymentTime, StringFormat=yyyy-MM-dd HH:mm:ss}" Width="*"  Header="还款时间"/>
+					<DataGridTextColumn Binding="{Binding BillTime, StringFormat=yyyy-MM-dd HH:mm:ss}" Width="*"  Header="账单时间" Visibility="Collapsed"/>
+					<DataGridTextColumn Binding="{Binding BillAmount,StringFormat={}{0:f2}}"  Width="*"  Header="账单金额" Visibility="Collapsed"/>
+                    <DataGridTextColumn Binding="{Binding TotalAmount,StringFormat={}{0:f2}}"  Width="*"  Header="交易金额"/>
+					<DataGridTextColumn Binding="{Binding RepaymentMoney,StringFormat={}{0:f2}}"  Width="*"  Header="还款金额" Visibility="Collapsed"/>
+					<DataGridTextColumn Binding="{Binding ShouldAmount,StringFormat={}{0:f2}}"  Width="*"  Header="未还金额" Visibility="Collapsed"/>
+                    <DataGridTextColumn Binding="{Binding RepaymentStatus }" Width="*"  Header="状态"/>
+				</DataGrid.Columns>
+			</DataGrid>
+            <WPFSpark:SprocketControl Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <BPiaoBao_Client_UIExt:Pagination Grid.Row="1" VerticalAlignment="Top"
+                                                 PageSize="{Binding PageSize}" 
+                          CurrentPageIndex="{Binding CurrentPageIndex,Mode=TwoWay}"
+                          TotalCount="{Binding TotalCount,Mode=TwoWay}" Margin="20,0" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </BPiaoBao_Client_UIExt:Pagination>
+        </Grid>
+		
+            
+	</Grid>
+</UserControl>

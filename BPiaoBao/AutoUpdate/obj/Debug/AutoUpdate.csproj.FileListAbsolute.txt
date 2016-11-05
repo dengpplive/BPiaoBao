@@ -1,0 +1,12 @@
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\AutoUpdate\Version.txt
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\AutoUpdate\AutoUpdate.exe
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\AutoUpdate\AutoUpdate.pdb
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\MainWindow.baml
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\MainWindow.g.cs
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\App.g.cs
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\AutoUpdate_MarkupCompile.cache
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\AutoUpdate.g.resources
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\AutoUpdate.Properties.Resources.resources
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\AutoUpdate.csproj.GenerateResource.Cache
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\AutoUpdate.exe
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\AutoUpdate\obj\Debug\AutoUpdate.pdb

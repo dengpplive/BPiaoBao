@@ -1,0 +1,291 @@
+﻿@using BPiaoBao.Web.SupplierManager.Models
+@model BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseAfterSaleOrder
+
+<table width="100%" class="tablineheight">
+    <caption class="fontbold2" style="text-align: left;">基本信息</caption>
+    <tr>
+        <td width="80" class="tdfontcoolor m_tdf">支付时间：</td>
+        <td width="180">@Model.OrderPay.PayDateTime</td>
+        <td width="80" class="tdfontcoolor m_tdf">支付方式：</td>
+        <td width="180">
+            @if (Model.OrderPay.PayMethodCode != null && Model.OrderPay.PayMethodCode.ToLower() == "alipay")
+            {
+                <p>支付宝</p>
+            }
+            else if (Model.OrderPay.PayMethodCode != null && Model.OrderPay.PayMethodCode.ToLower() == "tenpay")
+            {
+                <p>财付通</p>
+            }
+            else
+            {
+                if (Model.OrderPay.PayMethod != null && Model.OrderPay.PayMethod == "银行卡")
+                {
+                    <p>财付通(@BankData.GetBankInfoByCode(Model.OrderPay.PayMethodCode).Name)</p>
+                }
+                else
+                {
+                    <p>@Model.OrderPay.PayMethodCode</p>
+                }
+
+            }
+    
+        </td>
+        <td width="80" class="tdfontcoolor m_tdf">售后单号：</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td width="80" class="tdfontcoolor m_tdf">交易号：</td>
+        <td width="180">
+            @if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseChangeOrder)
+            {
+                    
+                @((Model as BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseChangeOrder).OutPayNo)
+            }
+            else
+            {
+                @Model.OrderPay.PaySerialNumber
+            }
+        </td>
+        <td width="80" class="tdfontcoolor m_tdf">支付状态：</td>
+        <td width="180">@Model.OrderPay.PayStatus.ToEnumDesc()</td>
+        <td width="80" class="tdfontcoolor m_tdf">售后类型：</td>
+        <td>@Model.AfterSaleType</td>
+    </tr>
+    <tr>
+        <td width="80" class="tdfontcoolor m_tdf">申请人：</td>
+        <td width="180">@Model.CreateMan</td>
+        <td width="80" class="tdfontcoolor m_tdf">申请时间：</td>
+        <td width="180">@Model.CreateTime</td>
+        <td width="80" class="tdfontcoolor m_tdf">锁定帐号：</td>
+        <td>@Model.LockCurrentAccount</td>
+    </tr>
+    <tr>
+        <td width="80" class="tdfontcoolor m_tdf">原订单号：</td>
+        <td width="180">@Model.OrderID</td>
+        <td width="80" class="tdfontcoolor m_tdf">PNR：</td>
+        <td width="180">@Model.PNR</td>
+        <td width="80" class="tdfontcoolor m_tdf">原订单金额：</td>
+        <td>@Model.TotalMoney</td>
+    </tr>
+    @if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseBounceOrder)
+    { 
+        <tr>
+            <td width="80" class="tdfontcoolor m_tdf">自愿退票：</td>
+            <td>
+                @((Model as BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseBounceOrder).IsVoluntary ? "自愿" : "非自愿")
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+        </tr>
+    }
+    <tr>
+        <td width="80" class="tdfontcoolor m_tdf">申请理由：</td>
+        <td colspan="2" width="180">@Model.Reason</td>
+        
+        <td width="180">&nbsp;</td>
+        <td width="80" class="tdfontcoolor m_tdf">申请备注：</td>
+        <td>@Model.Description</td>
+    </tr>
+</table>
+<table width="100%" class="tablineheight">
+    <caption class="fontbold2" style="text-align: left;">处理信息</caption>
+    <tr>
+        <td width="80" class="tdfontcoolor m_tdf">处理人：</td>
+        <td>@Model.ProcessName</td>
+        <td width="80" class="tdfontcoolor m_tdf">处理时间：</td>
+        <td>@Model.ProcessDate</td>
+    </tr>
+    <tr>
+        <td width="80" class="tdfontcoolor m_tdf">产生金额：</td>
+        <td>
+            @if((int)Model.ProcessStatus>1 && (int)Model.ProcessStatus!=7){
+                <text>@Model.Money</text>
+            }else{
+                <text>--</text>
+            }
+
+        </td>
+        <td width="80" class="tdfontcoolor m_tdf">备注：</td>
+        <td>
+            @if (ViewBag.Process == true)
+            {
+                <text>@Model.Remark</text>
+            }
+            else
+            {
+                <text><textarea id="detail_remark"></textarea></text>
+            }
+        </td>
+    </tr>
+    @if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseBounceOrder || Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseAnnulOrder)
+    {
+        <tr>
+            <td>附件信息：</td>
+            <td colspan="3">
+                @if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseBounceOrder)
+                {
+                    string url = (Model as BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseBounceOrder).AttachmentUrl;
+                    if (!string.IsNullOrEmpty(url))
+                    {
+                    <a href="@url">查看附件</a>
+                    }
+
+                }
+                else if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseAnnulOrder)
+                {
+                    string url = (Model as BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseAnnulOrder).AttachmentUrl;
+                    if (!string.IsNullOrEmpty(url))
+                    {
+                    <a href="@url">查看附件</a>
+                    }
+
+                }
+            </td>
+        </tr>
+    }
+</table>
+<div class="fontbold2" style="text-align: left;">乘机人信息</div>
+<div id="mainDiv" style="margin-top: 8px">
+    <table width="100%" class="easyui-datagrid">
+        <thead>
+            <tr>
+                <th data-options="field:'A'">乘客姓名</th>
+                <th data-options="field:'B'">乘客类型</th>
+                <th data-options="field:'C'">证件号</th>
+                <th data-options="field:'D'">手机号</th>
+                <th data-options="field:'F'">舱位价</th>
+                <th data-options="field:'G'">机建/燃油</th>
+                <th data-options="field:'E'">票号</th>
+                <th data-options="field:'H'">
+                    @if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseChangeOrder)
+                    {
+                        <text>改签手续费</text>
+                    }
+                    else if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseBounceOrder)
+                    { 
+                        <text>退票手续费</text>
+                    }
+                    else if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseAnnulOrder)
+                    { 
+                        <text>废票手续费</text>
+                    }
+                    else
+                    {
+                        <text>手续费</text>
+                    }
+                </th>
+                <th data-options="field:'I'">行程单号</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Passenger)
+            {
+                <tr>
+                    <td>@item.PassengerName</td>
+                    <td>@item.PassengerType.ToEnumDesc()</td>
+                    <td>@item.CardNo</td>
+                    <td>@item.Mobile</td>
+                    <td>@item.SeatPrice</td>
+                    <td>@item.ABFee/@item.RQFee</td>
+                    <td>
+                        @(string.IsNullOrEmpty(item.AfterSaleTravelTicketNum) ? item.TicketNumber : item.AfterSaleTravelTicketNum)
+                    </td>
+                    <td>
+                        @if (ViewBag.Process == true)
+                        {
+                            <text>@item.RetirementPoundage</text>
+                        }
+                        else
+                        {
+                            <text><input type="text" name="RetirementPoundage" data-temp="@item.Id" value="@item.RetirementPoundage" /></text>
+                        }
+                    </td>
+                    <td>
+                        @(string.IsNullOrEmpty(item.AfterSaleTravelNum) ? item.TravelNumber : item.AfterSaleTravelNum)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="fontbold2" style="text-align: left;">航段信息</div>
+<div style="margin-top: 8px">
+<table width="100%" class="easyui-datagrid">
+    <thead>
+        <tr>
+            <th data-options="field:'A'">承运人</th>
+            <th data-options="field:'B'">航班号</th>
+            <th data-options="field:'C'">舱位</th>
+            <th data-options="field:'D'">出发城市</th>
+            <th data-options="field:'E'">到达城市</th>
+            <th data-options="field:'F'">起飞日期</th>
+            <th data-options="field:'G'">到达日期</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SkyWays)
+        {
+            <tr>
+                <td>@item.CarrayCode</td>
+                <td>@item.FlightNumber</td>
+                <td>@item.Seat</td>
+                <td>@item.FromCity</td>
+                <td>@item.ToCity</td>
+                <td>@item.StartDateTime</td>
+                <td>@item.ToDateTime</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model is BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseChangeOrder)
+{
+    <div class="fontbold2" style="text-align: left;">改签信息</div>
+    <table width="100%" class="easyui-datagrid">
+        <thead>
+            <tr>
+                <th data-options="field:'A'">航班号</th>
+                <th data-options="field:'B'">舱位</th>
+                <th data-options="field:'C'">起飞日期</th>
+                <th data-options="field:'D'">到达日期</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in (Model as BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseChangeOrder).SkyWay)
+            {
+                <tr>
+                    <td>@item.NewFlightNumber</td>
+                    <td>@item.NewSeat</td>
+                    <td>@item.NewStartDateTime</td>
+                    <td>@item.NewToDateTime</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+</div>
+<div class="fontbold2" style="text-align: left;">操作日期</div>
+<div style="margin-top: 8px">
+    <table width="100%" class="easyui-datagrid">
+        <thead>
+            <tr>
+                <th data-options="field:'A'">操作人</th>
+                <th data-options="field:'B'">操作时间</th>
+                <th data-options="field:'C'">操作内容</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Logs)
+            {
+                <tr>
+                    <td>@item.OperationPerson</td>
+                    <td>@item.OperationDatetime</td>
+                    <td>@item.OperationContent</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

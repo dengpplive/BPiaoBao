@@ -1,0 +1,326 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "AfterSaleOrderDetail";
+}
+@using BPiaoBao.AppServices.DataContracts.DomesticTicket
+@using BPiaoBao.Web.SupplierManager.Models
+@model BPiaoBao.AppServices.DataContracts.DomesticTicket.ResponseAfterSaleOrder
+<div id="afterorderdetaildiv" style="width: 980px; height: 600px; margin: 0 auto;">
+    <div>
+        <br />
+    </div>
+    <p style="text-align: center;"><span style="font-family: Arial; font-size: 20px; font-weight: bold; font-style: normal; text-decoration: none; color: #333333;">订单详情</span></p>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">订单信息</span>
+    <table class="table_class" cellpadding="0" cellspacing="0">
+        <tr>
+            <th class="a">订单编号：</th>
+            <td class="color_red b" id="OrderId_Detail">@Model.OrderID</td>
+            <th class="a">PNR：</th>
+            <td class="color_blue b" id="PnrCode_Detail"><a href='javascript:searchViewModel.openPNRInfo_Window("@Model.PNRContent")'>@Model.PNR</a></td>
+            <th class="a">订单金额：</th>
+            <td class="color_red b" id="OrderMoney_Detail">@Model.TotalMoney</td>
+        </tr>
+        <tr>
+            <th class="a">支付方式：</th>
+            <td class="b" id="PayMethodCode">
+                
+                @if (Model.OrderPay.PayMethodCode!=null&&Model.OrderPay.PayMethodCode.ToLower() == "alipay")
+                {
+                    <p>支付宝</p>
+                }
+                else if (Model.OrderPay.PayMethodCode != null && Model.OrderPay.PayMethodCode.ToLower() == "tenpay")
+                {
+                    <p>财付通</p>
+                }
+                else
+                {
+                    if (Model.OrderPay.PayMethod != null && Model.OrderPay.PayMethod == "银行卡")
+                    {
+                        <p>财付通(@BankData.GetBankInfoByCode(Model.OrderPay.PayMethodCode).Name)</p>
+                    }
+                    else
+                    {
+                        <p>@Model.OrderPay.PayMethodCode</p>
+                    }
+
+                }
+            </td>
+            <th class="a">交易号：</th>
+            <td class="b" id="PaySerialNumber">
+                @if (Model is ResponseChangeOrder)
+                {
+                    
+                    <text>(Model as ResponseChangeOrder).OutPayNo</text>
+                }
+                else
+                {
+                    @Model.OrderPay.PaySerialNumber
+                }
+            </td>
+            <th class="a">支付状态：</th>
+            <td class="b" id="PayStatus">
+                @if ((int)Model.OrderPay.PayStatus == 1)
+                {
+                    <p>已支付</p>
+                }
+                else
+                {
+                    <p>未支付</p>
+                }
+            </td>
+        </tr>
+        <tr>
+            <th class="a">申请人：</th>
+            <td class="b" id="111111111111111111111111111111111">@Model.CreateMan</td>
+            <th class="a">申请时间：</th>
+            <td class="b" id="OrderStatus_Detail">@Model.CreateTime</td>
+            <th class="a">锁定账号：</th>
+            <td class="b" id="PolicyPoint_Detail">@Model.LockCurrentAccount</td>
+        </tr>
+        <tr>
+            <th class="a">政策来源：</th>
+            <td class="b" id="PlatformCode_Detail">@Model.PolicyFrom</td>
+            @*<th class="a">支付帐号：</th>
+            <td class="b" id="1111111111111111111111111111111"></td>*@
+            @*<th class="a">废、改处理时间：</th>
+            <td class="b" colspan="3" id="TFGTime">@Model.TFGTime</td>*@
+        </tr>
+    </table>
+
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">行程信息</span>
+    <table cellpadding="0" cellspacing="0" class="Trip_box table_class">
+        <tr>
+            <th>起飞城市</th>
+            <th>到达城市</th>
+            <th>起飞日期</th>
+            <th>到达日期</th>
+            <th>承运人</th>
+            <th>航班号</th>
+            <th id="active">舱位</th>
+        </tr>
+        @for (int i = 0; i < Model.SkyWays.Count; i++)
+        { 
+            <tr>
+                <td id="FromCityCode_Detail">@Model.SkyWays[i].FromCity</td>
+                <td id="ToCityCode_Detail">@Model.SkyWays[i].ToCity</td>
+                <td id="StartDateTime_Detail">@Model.SkyWays[i].StartDateTime</td>
+                <td id="ToDateTime_Detail">@Model.SkyWays[i].ToDateTime</td>
+                <td id="CarrayCode_Detail">@Model.SkyWays[i].CarrayCode</td>
+                <td id="FlightNumber_Detail">@Model.SkyWays[i].FlightNumber</td>
+                <td id="Seat_Detail">@Model.SkyWays[i].Seat</td>
+            </tr>
+        }
+    </table>
+    <div>
+        <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">改签信息</span>
+        <table cellpadding="0" cellspacing="0" class="Trip_box table_class">
+            <tr>
+                <th>起飞日期</th>
+                <th>到达日期</th>
+                <th>航班号</th>
+                <th>舱位</th>
+            </tr>
+            @if (Model is ResponseChangeOrder)
+            {
+                for (int i = 0; i < (Model as ResponseChangeOrder).SkyWay.Count; i++)
+                { 
+                <tr>
+                    <td>(@Model as ResponseChangeOrder).SkyWay[i].StartDateTime</td>
+                    <td>(@Model as ResponseChangeOrder).SkyWay[i].ToDateTime</td>
+                    <td>(@Model as ResponseChangeOrder).SkyWay[i].FlightNumber</td>
+                    <td>(@Model as ResponseChangeOrder).SkyWay[i].Seat</td>
+                </tr>
+                }
+            }
+        </table>
+    </div>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">乘客信息</span>
+    <table cellpadding="0" cellspacing="0" class="Passenger_box table_class">
+        <tr>
+            <th style="width: 7%;">乘客姓名</th>
+            <th style="width: 7%;">乘客类型</th>
+            <th style="width: 12%;">证件号</th>
+            <th style="width: 12%;">票号</th>
+            <th style="width: 12%;">手机号</th>
+            <th style="width: 7%;">舱位价</th>
+            <th style="width: 7%;">机建/燃油</th>
+            <th style="width: 7%;">手续费</th>
+            <th style="width: 7%;">行程单号</th>
+        </tr>
+        @for (int i = 0; i < Model.Passenger.Count; i++)
+        {
+            <tr style="align-content: center">
+                <td id="PassengerName_Detail">@Model.Passenger[i].PassengerName</td>
+                <td id="PassengerType_Detail">
+                    @if ((int)Model.Passenger[i].PassengerType == 1)
+                    {
+                        <p>成人</p>
+                    }
+                    else if ((int)Model.Passenger[i].PassengerType == 2)
+                    {
+                        <p>儿童</p>
+                    }
+                    else
+                    {
+                        <p>婴儿</p>
+                    }
+                </td>
+                <td id="CardNo_Detail">@Model.Passenger[i].CardNo</td>
+                <td id="票号">@Model.Passenger[i].TicketNumber</td>
+                <td id="Mobile_Detail">@Model.Passenger[i].Mobile</td>
+                <td id="SeatPrice_Detail">@Model.Passenger[i].SeatPrice</td>
+                <td>@Model.Passenger[i].ABFee/@Model.Passenger[i].RQFee</td>
+                <td>@Model.Passenger[i].RetirementPoundage</td>
+                <td>@Model.Passenger[i].TravelNumber</td>
+            </tr>
+        }
+    </table>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">收支明细</span>
+    <table cellpadding="0" cellspacing="0" class="Balance_box table_class">
+        <tr>
+            <th style="width: 20%;">商户号</th>
+            <th style="width: 20%;">商户名</th>
+            <th style="width: 10%;">交易类型</th>
+            <th style="width: 20%;">金额</th>
+            <th style="width: 10%;">点数</th>
+            <th style="width: 20%;">扣点类型</th>
+        </tr>
+        @if (Model.OrderPay != null)
+        {
+            if (Model.OrderPay.PayBillDetailDtos != null && Model.OrderPay.PayBillDetailDtos.Count > 0)
+            {
+                for (int i = 0; i < Model.OrderPay.PayBillDetailDtos.Count; i++)
+                {
+                    string AdjustType = Model.OrderPay.PayBillDetailDtos[i].AdjustType.ToString() == "Lrish" ? "扣点" : Model.OrderPay.PayBillDetailDtos[i].AdjustType.ToString() == "Leave" ? "留点" : "补点";
+            <tr>
+                <td>@Model.OrderPay.PayBillDetailDtos[i].Code</td>
+                <td>@Model.OrderPay.PayBillDetailDtos[i].Name</td>
+                <td>@Model.OrderPay.PayBillDetailDtos[i].OpType</td>
+                <td>@Model.OrderPay.PayBillDetailDtos[i].Money</td>
+                <td>@Model.OrderPay.PayBillDetailDtos[i].Point</td>
+                <td>@AdjustType</td>
+            </tr>
+                }
+            }
+
+        }
+
+    </table>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">处理信息</span>
+    <table class="table_class" cellpadding="0" cellspacing="0">
+        <tr>
+            <th class="a">处理人：</th>
+            <td class="b">@Model.ProcessName</td>
+            <th class="a">处理时间：</th>
+            <td class="b">@Model.ProcessDate</td>
+            <th class="a">产生金额：</th>
+            <td class="b">@Model.Money</td>
+        </tr>
+    </table>
+    <span style="text-align: left; font-family: Arial; font-size: 13px; font-weight: bold; font-style: normal; text-decoration: none; color: #00b1ff; height: 30px; line-height: 30px;">日志信息</span>
+    <table cellpadding="0" cellspacing="0" class="Balance_box table_class">
+        <tr>
+            <th style="width: 12%;">操作员</th>
+            <th style="width: 20%;">操作时间</th>
+            <th style="width: 20%;">操作内容</th>
+        </tr>
+        @for (int i = 0; i < @Model.Logs.Count; i++)
+        {
+            <tr>
+                <td>@Model.Logs[i].OperationPerson</td>
+                <td>@Model.Logs[i].OperationDatetime</td>
+                <td>@Model.Logs[i].OperationContent</td>
+            </tr>
+        }
+    </table>
+
+</div>
+
+
+
+
+
+
+
+
+<style type="text/css">
+    .table_class {
+        border: 1px solid #bfc4be;
+        width: 979px;
+        margin: 0 auto;
+        border-bottom: none;
+        border-right: none;
+    }
+
+        .table_class tr {
+            line-height: 36px;
+            height: 36px;
+            width: 978px;
+        }
+
+        .table_class th {
+            border-right: 1px solid #bfc4be;
+            border-bottom: 1px solid #bfc4be;
+            text-align: center;
+        }
+
+        .table_class td {
+            border-right: 1px solid #bfc4be;
+            border-bottom: 1px solid #bfc4be;
+            font-size: 12px;
+            text-align: center;
+        }
+
+    .a {
+        width: 12%;
+        background: #ebebeb;
+        text-align: right;
+    }
+
+    .b {
+        width: 21%;
+        background: #fff;
+        text-align: center;
+    }
+
+    .color_red {
+        color: #ae2356;
+    }
+
+    .color_blue {
+        color: #0812ce;
+    }
+
+    .anthor_box th {
+        width: 12%;
+        background: #ebebeb;
+        text-align: right;
+    }
+
+    .anthor_box td {
+        width: 21%;
+        background: #fff;
+        text-align: center;
+    }
+
+
+    .Trip_box th {
+        width: 11%;
+        background: #ebebeb;
+        border-right: none;
+    }
+
+    .Trip_box td {
+        width: 11%;
+        background: #fff;
+    }
+
+    #active {
+        border-right: 1px solid #bfc4be;
+    }
+
+    .Passenger_box th {
+        background: #ebebeb;
+        border-right: none;
+    }
+</style>

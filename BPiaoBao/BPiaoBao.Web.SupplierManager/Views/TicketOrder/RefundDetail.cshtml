@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BPiaoBao.AppServices.StationContracts.StationMap.ResponseBounLine>
+
+<table class="easyui-datagrid">
+    <thead>
+        <tr>
+            <th data-options="field:'A'">操作</th>
+            <th data-options="field:'B'">退票号</th>
+            <th data-options="field:'C'">退款订单号</th>
+            <th data-options="field:'D'">退款金额</th>
+            <th data-options="field:'E'">退款时间</th>
+            <th data-options="field:'F'">状态</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.Status != "退款完成")
+                {
+                    <a href="javascript:void(0)" onclick="vm.QueryRefundStatueClick('@ViewBag.SaleOrderId','@item.ID')">查询退款</a>
+                    <a href="javascript:void(0)" onclick="vm.SignalRefundClick('@ViewBag.SaleOrderId','@item.ID')">退款</a>
+                }
+            </td>
+            <td>
+                @item.ID
+            </td>
+            <td>
+                @item.OrderID
+            </td>
+            <td>
+                @item.RefundMoney
+            </td>
+            <td>
+                @item.RefundTime
+            </td>
+            <td>
+                @item.Status
+            </td>
+        </tr>
+    }
+</table>

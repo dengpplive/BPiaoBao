@@ -1,0 +1,467 @@
+﻿<Window 
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:model="clr-namespace:BPiaoBao.Client.DomesticTicket.Model"
+    xmlns:converter="clr-namespace:BPiaoBao.Client.UIExt.Converter;assembly=BPiaoBao.Client.UIExt"
+    xmlns:converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+	xmlns:utils="clr-namespace:ProjectHelper.Utils;assembly=BPiaoBao.Client.UIExt"
+	xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+    x:Class="BPiaoBao.Client.DomesticTicket.View.TicketBookingWindow" 	mc:Ignorable="d"             
+    Style="{DynamicResource CustomWindowNoCloseButtonStyle}"
+	x:Name="Window"
+    Title="填写机票预订单" xmlns:controls="clr-namespace:BPiaoBao.Client.UIExt.CommonControl;assembly=BPiaoBao.Client.UIExt"
+	Width="1280" Height="700"  WindowStartupLocation="CenterScreen"  >
+    <!--Style="{DynamicResource CustomWindowStyle}"-->
+    <Window.Resources>
+        <converters:NotBooleanConverter x:Key="NotBooleanConverter"/>
+        <converters:DecimalConverter x:Key="DecimalConverter"/>
+        <!--<converter:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>-->
+        <Style x:Key="DataGridRowStyle" TargetType="DataGridRow">
+            <Setter Property="ToolTip">
+                <Setter.Value>
+                    <ToolTip DataContext="{Binding Path=PlacementTarget, RelativeSource={x:Static RelativeSource.Self}}">
+                        <TextBlock Text="{Binding DataContext.ToolTip}" TextWrapping="Wrap" />
+                    </ToolTip>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <ObjectDataProvider x:Key="AgeTypeItems" MethodName="GetEnumKeyValuesPassger" ObjectType="{x:Type utils:EnumHelper}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:AgeType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <!--<ObjectDataProvider x:Key="IDTypeItems" MethodName="GetEnumKeyValuesPassger" ObjectType="{x:Type utils:EnumHelper}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="commonmodel:EnumIDType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>-->
+        <DataTemplate x:Key="PassengerInformationItemsItemTemplate">
+            <Border Background="Transparent" BorderBrush="#FFE1E1E1" BorderThickness="0,1,0,0" Margin="0,6,0,0" >
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="VisualStateGroup">
+                        <VisualState x:Name="ShowChild">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="gridAdult">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="gridChild">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="ShowAdult">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="gridAdult">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="gridChild">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="ShowDate">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="datePick">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="HideDate">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="textBox">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="datePick">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <StackPanel Height="24" Margin="0,3" Orientation="Horizontal" >
+                    <TextBlock  Text="乘客：" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <!--<TextBox Width="120" Text="{Binding Name}" MaxWidth="180" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                    <controls:PassengerPicker 
+                        HorizontalAlignment="Center" 
+                        VerticalAlignment="Center"  
+                        Height="25" 
+                        Width="120" 
+                        BorderBrush="{x:Null}" 
+                        Background="{x:Null}" 
+                        BorderThickness="0" 
+                        SelectedPassenger="{Binding Passer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                        SelectedCommand="{Binding DataContext.SelectedCommand,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"  
+                        SelectedCommandParameter="{Binding Passer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Style="{DynamicResource mustFillTextBlockStyle}" Width="5.46" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock  Text="类型：" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="comboBox" ItemsSource="{Binding DataContext.AgeTypeItems, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" SelectedValue="{Binding AgeType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Value" SelectedValuePath="Key" Width="50"  Margin="3,1,0,1" HorizontalAlignment="Center" VerticalAlignment="Center" IsEnabled="True" TabIndex="99">
+                        <!--<i:Interaction.Behaviors>
+                            <ei:DataStateBehavior Binding="{Binding SelectedValue, ElementName=comboBox}"  Value="{x:Static model:AgeType.Adult}" FalseState="ShowChild" TrueState="ShowAdult"/>
+                        </i:Interaction.Behaviors>-->
+                        <i:Interaction.Behaviors>
+                            <ei:DataStateBehavior Binding="{Binding SelectedValue, ElementName=comboBox,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Value="{x:Static model:AgeType.Baby}" FalseState="ShowAdult" TrueState="ShowChild"/>
+                        </i:Interaction.Behaviors>
+                    </ComboBox>
+                    <TextBlock Style="{DynamicResource mustFillTextBlockStyle}" Width="5.46" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <Grid Width="320" Margin="6,0,0,0">
+                        <Grid x:Name="gridAdult">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="180*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Text="证件号：" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ComboBox x:Name="comboBox2" Grid.Column="1" ItemsSource="{Binding IdTypeItems,Mode=Twoway,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding IdType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Value" SelectedValuePath="Key" Width="110"  HorizontalAlignment="Center" VerticalAlignment="Center" TabIndex="100">
+                                <i:Interaction.Behaviors>
+                                    <ei:DataStateBehavior Binding="{Binding SelectedValue, ElementName=comboBox2,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Value="BirthDate" FalseState="HideDate" TrueState="ShowDate" />
+                                </i:Interaction.Behaviors>
+                            </ComboBox>
+                            <TextBox x:Name="textBox" Visibility="{Binding IsShowTextBox}" Grid.Column="2" Width="160"  Text="{Binding Id,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                            <DatePicker x:Name="datePick" Visibility="{Binding IsShowDatePicker}" Grid.Column="2" Width="160" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedDate="{Binding Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                            <!--<DatePicker x:Name="datePick" Grid.Column="2" Width="160" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DisplayDateStart="{Binding DisplayDateStart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  DisplayDateEnd="{Binding DisplayDateEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedDate="{Binding Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden" />-->
+                        </Grid>
+                        <Grid x:Name="gridChild" Visibility="Hidden">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="119*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock  Text="出生日期：" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <DatePicker  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" SelectedDate="{Binding Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                            <!--<DatePicker  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" DisplayDateStart="{Binding DisplayDateStart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  DisplayDateEnd="{Binding DisplayDateEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" SelectedDate="{Binding Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >-->
+                            </DatePicker>
+                        </Grid>
+                    </Grid>
+                    <!--<ComboBox Grid.Column="1" ItemsSource="{Binding Source={StaticResource IDTypeItems}}" SelectedValue="{Binding IDType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Value" SelectedValuePath="Key" Width="110"  HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                    <!--<ComboBox ItemsSource="{Binding Source={StaticResource IDTypeItems}}" SelectedValue="{Binding IDType}" DisplayMemberPath="Value" SelectedValuePath="Key"  Width="64"  HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                    <!--<TextBlock  Text="性别：" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1" Height="20" ItemsSource="{Binding DataContext.AllInsextypes, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" SelectedValue="{Binding SexType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="50"  Margin="3,1,0,1" DisplayMemberPath="Value" SelectedValuePath="Key" HorizontalAlignment="Center" VerticalAlignment="Center"></ComboBox>-->
+                    <!--<TextBlock Style="{DynamicResource mustFillTextBlockStyle}" Width="5.46" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock  Text="证件号：" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding IDTypeItems,Mode=Twoway,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding IDType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Value" SelectedValuePath="Key" Width="100"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                    </ComboBox>
+                    <TextBox Grid.Column="2" Width="140"  Text="{Binding ID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Style="{DynamicResource mustFillTextBlockStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    <!--<TextBlock Text="出生日期：" Grid.ColumnSpan="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <DatePicker HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="100" DisplayDateStart="{Binding DisplayDateStart,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  DisplayDateEnd="{Binding DisplayDateEnd,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" SelectedDate="{Binding Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                    </DatePicker>-->
+                    <!--<TextBlock Style="{DynamicResource mustFillTextBlockStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center" />-->
+                    <TextBlock  Text="手机：" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                    <TextBox  Text="{Binding Telephone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="90" MaxWidth="180" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <TextBlock Style="{DynamicResource mustFillTextBlockStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    <TextBlock  Text="航空公司卡：" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                    <TextBox  Text="{Binding BusinessCard,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="90" MaxWidth="180" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <CheckBox Margin="5,5,5,5" IsChecked="{Binding IsUsualPassenger,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding DataContext.UnSelectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                    <TextBlock  Text="常旅客" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                    <Button Style="{DynamicResource CloseButtonStyle}"   HorizontalAlignment="Center" VerticalAlignment="Center" Margin="12,0,0,0" Command="{Binding DataContext.RemoveCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding DataContext, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Border}}}"  />
+                    
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <Style x:Key="mustFillTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Text" Value="*"/>
+            <Setter Property="Foreground" Value="Red"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <SolidColorBrush x:Key="RedStrikingBrush" Color="#FFFF3300"/>
+        <Style x:Key="CloseButtonStyle" TargetType="{x:Type Button}" BasedOn="{x:Null}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid x:Name="grid">
+                            <Image x:Name="image" Source="/BPiaoBao.Client.DomesticTicket;component/Image/closed.png" Stretch="None"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Source" TargetName="image" Value="/BPiaoBao.Client.DomesticTicket;component/Image/closed2.png"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="grid" Value="#FF1CFFF5"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Width" Value="23"/>
+            <Setter Property="Height" Value="23"/>
+        </Style>
+        <Style x:Key="AddButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF2267AA"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF5499DC"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF1A66B0"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFDADADA"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFC1C1C1"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF666666"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="Focused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualState x:Name="Valid"/>
+                                    <VisualState x:Name="InvalidFocused"/>
+                                    <VisualState x:Name="InvalidUnfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Chrome" SnapsToDevicePixels="true" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" Background="#FF2267AA" BorderBrush="#FF2072C4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/BPiaoBao.Client.DomesticTicket;component/Image/add.png" Stretch="None" Margin="10,0,5,0"/>
+                                    <TextBlock  x:Name="textBlock" HorizontalAlignment="Left" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center" Text="{TemplateBinding Content}" Grid.Column="1" />
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot" Margin="10" >
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="collapsedVisualState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="sprocketControl">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="152*"/>
+            <RowDefinition MaxHeight="300" Height="233*"/>
+            <RowDefinition Height="110"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <!--<Button x:Name="payBtn" Content="预   订" VerticalAlignment="Center"  Height="28"  Margin="424,7,388,7" Grid.Row="3" HorizontalAlignment="Center" Width="162" Command="{Binding OkCommand, Mode=OneWay}"/>-->
+        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="payBtn" Content="预   订" VerticalAlignment="Center"  Height="28"  Margin="0,7,5,7" Grid.Row="3" HorizontalAlignment="Center" Width="162" Command="{Binding OkCommand, Mode=OneWay}"/>
+            <Button Content="取   消" VerticalAlignment="Center"  Margin="0,7,0,7" Height="28" Width="162" Grid.Row="3" HorizontalAlignment="Center" Style ="{StaticResource CancelButton}" IsEnabled="{Binding DataContext.IsBusy,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource NotBooleanConverter}}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ei:CallMethodAction MethodName="Close" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+        <StackPanel Margin="10,10,0,0" Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Left" Width="449" Height="16" VerticalAlignment="Top">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="联系人信息" VerticalAlignment="Top" Style="{DynamicResource Head2TextBlock}"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="{DynamicResource GrayForeground}"><Run Text="（请准确填写联系人信息，重要信息我们会通过"/><Run Text=" "/><Bold><Run Text="手机短信"/></Bold><Run Text=" "/><Run Text="等方式通知您）"/></TextBlock>
+        </StackPanel>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1">
+                <DataGrid  DataContext="{Binding ''}" RowStyle="{StaticResource DataGridRowStyle}"  AutoGenerateColumns="False" ItemsSource="{Binding Items}" IsReadOnly="True"  Background="{x:Null}" GridLinesVisibility="None" SelectionMode="Single" SelectionUnit="FullRow" >
+                    <DataGrid.Resources>
+
+                        <DataTemplate x:Key="flightImfoDataTemplate">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Text="{Binding CarrayShortName}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding CarrayCode}" FontWeight="Bold"/>
+                                    <TextBlock Text="{Binding FlightNumber}" FontWeight="Bold" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left">
+                                    <TextBlock Text="机型：" FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Model}" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate x:Key="timeAndAirportDataTemplate">
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Orientation="Horizontal" Margin="0,0,0,2"  >
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding StartDateTime, StringFormat=HH:mm}" Width="Auto" />
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding FromAirPortrName}" Width="Auto" Margin="5,0"/>
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding FromTerminal}" Width="Auto"/>
+                                </StackPanel>
+                                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Orientation="Horizontal" Grid.Row="1" TextBlock.Foreground="#FF666666" >
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ToDateTime, StringFormat=HH:mm}" Width="Auto" />
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ToAirPortrName}" Width="Auto" Margin="5,0"/>
+                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ToTerminal}" Width="Auto" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate x:Key="FeeDataTemplate">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding TaxFee, StringFormat=￥\{0:f2\}}" />
+                                <TextBlock Text="/" />
+                                <TextBlock Text="{Binding RQFee, StringFormat=￥\{0:f2\}}" />
+                            </StackPanel>
+
+                        </DataTemplate>
+                        <DataTemplate x:Key="saleDataTemplate">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding SeatCode}" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Discount, StringFormat=/\{0:N0\}折,Converter={StaticResource DecimalConverter}}" FontWeight="Bold"/>
+                                <TextBlock TextWrapping="Wrap" Text="/剩余"/>
+                                <TextBlock Text="{Binding SeatCount}" FontWeight="Bold" Foreground="{DynamicResource RedStrikingBrush}" />
+                            </StackPanel>
+                        </DataTemplate>
+                        <DataTemplate x:Key="SeatPriceDataTemplate">
+                            <Grid>
+                                <TextBlock Text="{Binding SeatPrice, StringFormat=￥\{0:f2\},Converter={StaticResource DecimalConverter}}" Foreground="{DynamicResource RedStrikingBrush}" ></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                        <DataTemplate x:Key="TotalPriceDataTemplate">
+                            <Grid>
+                                <TextBlock Text="{Binding TotalPrice, StringFormat=￥\{0:f2\}}" Foreground="{DynamicResource RedStrikingBrush}" ></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="航班信息" Width="*" CellTemplate="{StaticResource flightImfoDataTemplate}"/>
+                        <DataGridTemplateColumn Header="起降时间/机场" Width="1.2*" CellTemplate="{StaticResource timeAndAirportDataTemplate}"/>
+                        <DataGridTextColumn Header="航空公司" Width="0.8*" Binding="{Binding People}" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="机建/燃油" Width="*" CellTemplate="{StaticResource FeeDataTemplate}"/>
+                        <DataGridTemplateColumn Header="舱位/折扣/座位" Width="1.5*" CellTemplate="{StaticResource saleDataTemplate}"/>
+
+                        <DataGridTemplateColumn Header="舱位价" Width="*" CellTemplate="{StaticResource SeatPriceDataTemplate}"/>
+                        <DataGridTemplateColumn Header="票面价" Width="*" CellTemplate="{StaticResource TotalPriceDataTemplate}" />
+                        <DataGridTextColumn Header="政策点数" Width="0.8*" Binding="{Binding PolicyPoint}" />
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <TextBlock HorizontalAlignment="Left" Margin="3" TextWrapping="Wrap" Text="航程信息" VerticalAlignment="Top" Style="{DynamicResource Head2TextBlock}"/>
+        </Grid>
+        <Canvas Margin="10,47,10,15" Grid.Row="2" Background="#FFF4F4F4">
+            <StackPanel Height="23" Canvas.Left="10" Orientation="Horizontal" Canvas.Top="10" >
+                <TextBlock TextWrapping="Wrap" Text="姓名："/>
+                <TextBox Text="{Binding CurrentUserInfo.OperatorName}" TextWrapping="Wrap" Width="120" IsReadOnly="True"/>
+                <!--<TextBlock Style="{DynamicResource mustFillTextBlockStyle}" />-->
+            </StackPanel>
+            <StackPanel Height="23" Canvas.Left="189" Orientation="Horizontal" Canvas.Top="10">
+                <TextBlock TextWrapping="Wrap" Text="手机号："/>
+                <TextBox Text="{Binding  CurrentUserInfo.Tel}" Width="120"/>
+                <TextBlock Style="{DynamicResource mustFillTextBlockStyle}" />
+            </StackPanel>
+        </Canvas>
+        <Grid  Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel  Orientation="Horizontal"  VerticalAlignment="Bottom" Height="24" Margin="0,5,0,0" >
+                <TextBlock Style="{DynamicResource HeadTextBlock}" Text="乘客信息" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Margin="10,0,0,0" Foreground="{DynamicResource GrayForeground}" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="(请准确填写乘机人信息，以免在购票过程中发生问题，非中文名请在姓和名之间加上【/】，如名字中有 "/><Bold><Run Text="生僻字"/></Bold><Run Text="，请把生僻字及之后汉字使用"/><Bold><Run Text="拼音"/></Bold><Run Text="代替）"/></TextBlock>
+            </StackPanel>
+
+            <!--<DataGrid x:Name="dataGrid" IsReadOnly="True" Margin="0,6,0,21" Grid.Row="1"   ItemsSource="{Binding PassengerInformationItems}"  HeadersVisibility="None" AutoGenerateColumns="False" CurrentItem="{Binding CurrentItem}" >
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn CellTemplate="{StaticResource PassengerInformationItemsItemTemplate}"></DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>-->
+
+            <ItemsControl Margin="0,6,6,10" Grid.Row="2" ItemTemplate="{StaticResource PassengerInformationItemsItemTemplate}" Style="{DynamicResource ItemsControlStyle1}"  ItemsSource="{Binding PassengerInformationItems}"  >
+                <ItemsControl.Resources>
+                    <Style x:Key="ItemsControlStyle1" TargetType="{x:Type ItemsControl}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ItemsControl}">
+                                    <ScrollViewer x:Name="ScrollViewer" >
+                                        <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ItemsControl.Resources>
+            </ItemsControl>
+            <StackPanel   Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center" Height="30" Margin="0,0,521,0">
+                <Button Content="新增乘客" Style="{DynamicResource AddButtonStyle}"  VerticalContentAlignment="Top" HorizontalAlignment="Left" Command="{Binding AddCommand, Mode=OneWay}" Width="96"  Height="29.837" />
+                <!--Background="#FF0173B9"-->
+                <Button x:Name="SearchBtn" Content="选择常旅客" VerticalAlignment="Center"  Height="29.837"  Margin="12,0,0,0" HorizontalAlignment="Center" Width="96" Command="{Binding OpenUsualPassengersCommand, Mode=OneWay}"/>
+                <CheckBox IsChecked="{Binding IsTransform,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Content="允许换编码" Margin="12,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock Text="（温馨提示：换编码或能匹配更好政策）" Foreground="Orange" FontSize="14" Margin="12,0,0,0"  VerticalAlignment="Center"/>
+                <CheckBox Margin="12,0,5,0" IsChecked="{Binding IsLowPrice,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Content="使用低价"/>
+            </StackPanel>
+            <StackPanel  Grid.Row="1" Orientation="Horizontal" Margin="0,3" Visibility="Collapsed" >
+                <RadioButton IsChecked="{Binding IsAdult}" GroupName="group">成人</RadioButton>
+                <RadioButton GroupName="group">儿童</RadioButton>
+                <!--<CheckBox Content="成人" IsChecked="{Binding PnrType, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static domesticTicket:PnrType.Adult}}" ></CheckBox>-->
+                <!--<CheckBox Content="儿童" IsChecked="{Binding PnrType, Converter={StaticResource EnumToBooleanConverter},ConverterParameter={x:Static domesticTicket:PnrType.Child}}" ></CheckBox>-->
+            </StackPanel>
+        </Grid>
+        <!--<xctk:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="正在加载中..."  Grid.RowSpan="19" Grid.ColumnSpan="19" d:IsHidden="True"/>-->
+        <WPFSpark:SprocketControl x:Name="sprocketControl" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="441,59,433,74" Grid.Row="1" />
+    </Grid>
+
+</Window>

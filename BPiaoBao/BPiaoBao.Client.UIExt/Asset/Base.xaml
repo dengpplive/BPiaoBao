@@ -1,0 +1,77 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Converter="clr-namespace:BPiaoBao.Client.UIExt.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
+    xmlns:Model="clr-namespace:BPiaoBao.Client.UIExt.Model">
+    <Model:BankData x:Key="BankDataDataSource"/>
+	<Converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    <Converter:BooleanToUnVisibilityConverter x:Key="BooleanToUnVisibilityConverter"/>
+    <Converter:CommissionConverter x:Key="CommissionConverter"/>
+    <Converter:SubStrConverter x:Key="SubStr"/>
+    <Converter:BankCardConverter x:Key="BankCardConverter" />
+    <Converter:DescriptionConverter x:Key="DescriptionConverter" />
+    <Converter:PassengersConverter x:Key="PassengersConverter"/>
+
+    <!-- 基础颜色定义-->
+	<SolidColorBrush x:Key="BlueBtnBg1" Color="#FF2995EF"/>
+	<SolidColorBrush x:Key="BlueBtnBg2" Color="#FF287CCF"/>
+	<SolidColorBrush x:Key="BlueBtnBg3" Color="#FF3587DB"/>
+	<SolidColorBrush x:Key="OrangeBtnBg" Color="#FFF85B03"/>
+	<SolidColorBrush x:Key="WhiteBtnBg1" Color="#FFF5F9FC"/>
+	<LinearGradientBrush x:Key="WhiteBtnBg2" EndPoint="0.5,1" StartPoint="0.5,0">
+		<GradientStop Color="Black" Offset="0"/>
+		<GradientStop Color="#FFFEFEFE"/>
+		<GradientStop Color="#FFD4E4F5" Offset="1"/>
+	</LinearGradientBrush>
+	<SolidColorBrush x:Key="BlueBtnBorder1" Color="#FF2998F4"/>
+	<SolidColorBrush x:Key="BlueBtnBorder2" Color="#FF195591"/>
+	<SolidColorBrush x:Key="BlueBtnBorder3" Color="#FF2675C4"/>
+	<SolidColorBrush x:Key="OrangeBtnBorder" Color="#FFC64104"/>
+	<SolidColorBrush x:Key="WhiteBtnBorder1" Color="#FFD0D7D9"/>
+	<SolidColorBrush x:Key="WhiteBtnBorder2" Color="#FFC1CCDC"/>
+
+	<SolidColorBrush x:Key="WhiteForeground" Color="White"/>
+	<SolidColorBrush x:Key="LightBlueForeground" Color="#FF2B8ADC"/>
+	<SolidColorBrush x:Key="HeavyBlueForeground" Color="#FF1E73B9"/>	
+	<SolidColorBrush x:Key="GrayForeground" Color="#FF5D5D5D"/>
+	<SolidColorBrush x:Key="GreenForeground" Color="#FF5D881C"/>
+    <SolidColorBrush x:Key="OrangeForeground" Color="#FFF95306"/>
+    <SolidColorBrush x:Key="DataGridRowSelectedBg" Color="DeepSkyBlue"/>
+    <!--<SolidColorBrush x:Key="DataGridRowSelectedBg" Color="#FF97C6F4"/>-->
+	<SolidColorBrush x:Key="HeadBg1" Color="#FFFAFEFF"/>
+	<SolidColorBrush x:Key="HeadBg2" Color="#FFEAEFF3"/>
+	<SolidColorBrush x:Key="HeadBg3" Color="WhiteSmoke"/>
+	<VisualBrush x:Key="HorizontalDashedBrush" Viewport="0,0,44,1" Stretch="None" ViewportUnits="Absolute" TileMode="Tile">  
+		<VisualBrush.Visual>  
+			<Image Source="/BPiaoBao.Client.UIExt;component/Image/horizontal_dashed_line.png"/>  
+		</VisualBrush.Visual>  
+	</VisualBrush>
+    <LinearGradientBrush x:Key="ButtonNormalBackground" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#F3F3F3" Offset="0"/>
+        <GradientStop Color="#EBEBEB" Offset="0.5"/>
+        <GradientStop Color="#DDDDDD" Offset="0.5"/>
+        <GradientStop Color="#CDCDCD" Offset="1"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="ButtonNormalBorder" Color="#FF707070"/>
+    <SolidColorBrush x:Key="BlueBorderBrush" Color="#FFD1DFEA"/>
+    <SolidColorBrush x:Key="BlueBorderFillBrush" Color="#FFF4F8FB"/>
+    <SolidColorBrush x:Key="OrangeBorder" Color="#FFF0CBA1"/>
+    <LinearGradientBrush x:Key="TextBoxBorder" EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+        <GradientStop Color="#ABADB3" Offset="0.05"/>
+        <GradientStop Color="#E2E3EA" Offset="0.07"/>
+        <GradientStop Color="#E3E9EF" Offset="1"/>
+    </LinearGradientBrush>
+
+    <SolidColorBrush x:Key="ModuleHeadGrayBrush" Color="WhiteSmoke"/>
+    <SolidColorBrush x:Key="ModuleHeadBlueBrush" Color="#FFDFEAF0"/>
+    <SolidColorBrush x:Key="BlueForeground" Color="#FF9AADBE"/>
+    <SolidColorBrush x:Key="GrayBorderBrush" Color="#FFBBBBBB"/>
+    <SolidColorBrush x:Key="BlueButtonForeground" Color="#FF2267AA"/>
+    <SolidColorBrush x:Key="DescriptionForeground" Color="#FF666666"/>
+    <Style x:Key="Head2BorderStyle" TargetType="{x:Type Border}">
+    	<Setter Property="BorderThickness" Value="0,1,0,0"/>
+    	<Setter Property="BorderBrush" Value="#FFE7E8EA"/>		
+	</Style>
+</ResourceDictionary>

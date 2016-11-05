@@ -1,0 +1,265 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+	xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:ValidationRules="clr-namespace:BPiaoBao.Client.UIExt.ValidationRules;assembly=BPiaoBao.Client.UIExt"
+	xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+	xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+	mc:Ignorable="d"
+	x:Class="BPiaoBao.Client.TPOS.View.MerchantEditInfoControl"
+    
+	x:Name="UserControl"
+	d:DesignWidth="631" d:DesignHeight="665" Background="White" d:DataContext="{d:DesignData /SampleData/MerchantAddEditViewModelSampleData.xaml}">
+	<i:Interaction.Triggers>
+		<ei:DataTrigger Binding="{Binding IsOk}" Value="True">
+			<ei:ChangePropertyAction PropertyName="DialogResult" Value="True" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+		</ei:DataTrigger>
+	</i:Interaction.Triggers>
+	<Grid x:Name="LayoutRoot">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				
+			</Grid.RowDefinitions>
+			<Border Grid.Row="1" Margin="20,0,20,5" BorderThickness="0,0,0,1" BorderBrush="#FF6B9AC3">
+				<TextBlock TextWrapping="Wrap" Text="基本信息" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13.333" Margin="0,20,0,5"/>
+			</Border>
+			<Grid Grid.Row="2">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>					
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Border Margin="20,0" BorderThickness="0,0,0,1" BorderBrush="#FFECECEC">
+					<Grid Margin="0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="公司名称：" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True" HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="请输入公司名称" VerticalAlignment="Top" Grid.Column="1" Width="200" Height="22" Margin="10,0,0,0" >
+							<i:Interaction.Triggers>
+								<ei:DataTrigger Binding="{Binding IsUpdate}" Value="True">
+									<ei:ChangePropertyAction PropertyName="IsEnabled" Value="False"/>
+								</ei:DataTrigger>
+							</i:Interaction.Triggers>
+							<Binding Path="InputModel.BusinessmanName">
+								<Binding.ValidationRules>
+									<ValidationRules:RequiredValidationRule PropertyDescription="公司名称必填" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0,0,0,1" BorderBrush="#FFECECEC" Grid.Row="1" Margin="20,0">
+					<Grid Margin="0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="公司地址：" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True"  HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="请输入公司地址" VerticalAlignment="Top" Grid.Column="1" Width="200" Height="22" Margin="10,0,0,0">
+							<Binding Path="InputModel.Address">
+								<Binding.ValidationRules>
+									<ValidationRules:RequiredValidationRule PropertyDescription="公司地址必填" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0,0,0,1" BorderBrush="#FFECECEC" Grid.Row="2" Margin="20,0">
+					<Grid Margin="0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="联系人：" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True" HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="请输入联系人" VerticalAlignment="Top" Grid.Column="1" Width="200" Height="22" Margin="10,0,0,0">
+							<Binding Path="InputModel.LinkMan">
+								<Binding.ValidationRules>
+									<ValidationRules:RequiredValidationRule PropertyDescription="联系人必填" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0,0,0,1" BorderBrush="#FFECECEC" Grid.Row="3" Margin="20,0">
+					<Grid Margin="0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition Width="112"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="联系方式：" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3.082" Height="15.836" Width="60"/>
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True" HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="常用手机" VerticalAlignment="Top" Grid.Column="1" Width="100" Height="22" Margin="10,0,0,0" Validation.ErrorTemplate="{StaticResource ErrorTemplate}">
+							<Binding Path="InputModel.LinkPhone">
+								<Binding.ValidationRules>
+                                    <ValidationRules:AtLeastOneValidationRule Key="t1" GroupName="g" PropertyDescription="手机和座机必填一项" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True" HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="固话" VerticalAlignment="Top" Grid.Column="2" Width="100" Height="22" Margin="20,0,0,0">
+							<Binding Path="InputModel.LinkTel">
+								<Binding.ValidationRules>
+                                    <ValidationRules:AtLeastOneValidationRule Key="t2" GroupName="g" PropertyDescription="手机和座机必填一项" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+					</Grid>
+				</Border>
+			</Grid>
+			<Border Grid.Row="3" Margin="20,0,20,5" BorderThickness="0,0,0,1" BorderBrush="#FF6B9AC3" Grid.RowSpan="1">
+				<TextBlock TextWrapping="Wrap" Text="银行卡信息" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13.333" Margin="0,20,0,5"/>
+			</Border>
+			<Grid Grid.Row="4">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>					
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Border Margin="20,0" BorderThickness="0,0,0,1" BorderBrush="#FFECECEC">
+					<Grid Margin="0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="持卡人名：" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True" HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="开户人名" VerticalAlignment="Top" Grid.Column="1" Width="200" Height="22" Margin="10,0,0,0" >
+							<Binding Path="InputModel.Bank.Cardholder">
+								<Binding.ValidationRules>
+									<ValidationRules:RequiredValidationRule PropertyDescription="开户人名必填" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0" BorderBrush="#FFECECEC" Grid.Row="1" Margin="20,0">
+					<Grid Margin="0,10,0,5">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="开户银行：" Margin="0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+						<ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Height="22" Width="200" Margin="10,0,0,0" ItemsSource="{Binding Banks}" SelectedItem="{Binding SelectedBank, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Name"/>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0,0,0,1" BorderBrush="#FFECECEC" Grid.Row="2" Margin="20,0">
+					<Grid Margin="0,5,0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True" HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="输入你的卡号" VerticalAlignment="Top" Grid.Column="1" Width="200" Height="22" Margin="10,0,0,0">
+							<Binding Path="InputModel.Bank.CardNo">
+								<Binding.ValidationRules>
+									<ValidationRules:RequiredValidationRule PropertyDescription="卡号必填" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0" BorderBrush="#FFECECEC" Grid.Row="3" Margin="20,0">
+					<Grid Margin="0,10,0,5">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition Width="94"/>
+							<ColumnDefinition Width="35"/>
+							<ColumnDefinition Width="179*"/>
+							<ColumnDefinition Width="166*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="开户支行：" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3.082" Height="15.836" Width="60"/>
+						<StackPanel Grid.ColumnSpan="3" Grid.Column="1" Margin="10,0,0,0" Orientation="Horizontal">
+                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="80" ItemsSource="{Binding Provinces}" DisplayMemberPath="State" Margin="0,0,20,0">
+                                <ComboBox.SelectedItem>
+                                    <Binding Path="SelectedProvince" Mode="TwoWay">
+                                    <Binding.ValidationRules>
+                                        <ValidationRules:RequiredValidationRule PropertyDescription="开户支行必填" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                                </ComboBox.SelectedItem>
+                            </ComboBox>
+                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Top" Width="80" Height="22" DisplayMemberPath="City" SelectedItem="{Binding SelectedCity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Citys}"/>
+							<WPFSpark:SprocketControl HorizontalAlignment="Right" Height="10" VerticalAlignment="Center" Width="10" Margin="10,0,0,0" Visibility="{Binding IsLoadingCity, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+						</StackPanel>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0,0,0,1" BorderBrush="#FFECECEC" Grid.Row="4" Margin="20,0">
+					<Grid Margin="0,5,0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition/>
+						</Grid.ColumnDefinitions>
+                        <xctk:WatermarkTextBox ValidationRules:ValidationAndInvokeCommandAction.AlwaysTrigger="True" HorizontalAlignment="Left" TextWrapping="Wrap" Watermark="开户支行" VerticalAlignment="Top" Grid.Column="1" Width="200" Height="22" Margin="10,0,0,0">
+							<Binding Path="InputModel.Bank.Address.Subbranch">
+								<Binding.ValidationRules>
+									<ValidationRules:RequiredValidationRule PropertyDescription="开户支行必填" />
+								</Binding.ValidationRules>
+							</Binding>
+						</xctk:WatermarkTextBox>
+					</Grid>
+				</Border>
+			</Grid>
+			<Border Grid.Row="5" Margin="20,0,20,5" BorderThickness="0,0,0,1" BorderBrush="#FF6B9AC3" Grid.RowSpan="1">
+				<TextBlock TextWrapping="Wrap" Text="POS信息" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="13.333" Margin="0,20,0,5"/>
+			</Border>
+			<Grid Grid.Row="6">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>					
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Border Margin="20,0" BorderThickness="0,0,0,1" BorderBrush="#FFECECEC">
+					<Grid Margin="0,10">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="119"/>
+							<ColumnDefinition Width="211"/>
+							<ColumnDefinition Width="272*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock TextWrapping="Wrap" Text="POS商户费率：" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,3.081"/>
+						<xctk:DecimalUpDown Watermark="" VerticalAlignment="Top" Grid.Column="1" Height="22" Margin="10,0,0,0" Value="{Binding InputModel.PosRate}"/>
+						<TextBlock Grid.Column="2" HorizontalAlignment="Left" TextWrapping="Wrap" Text="%" VerticalAlignment="Center" Margin="5,0,0,0"/>
+					</Grid>
+				</Border>
+				<Border BorderThickness="0" BorderBrush="#FFECECEC" Grid.Row="1" Margin="20,0">
+					<Grid Margin="0,20,0,5" Visibility="{Binding IsEnabled, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" MinWidth="119"/>
+							<ColumnDefinition Width="101*"/>
+							<ColumnDefinition Width="382*"/>
+						</Grid.ColumnDefinitions>
+						<Button Content="保存" Grid.Column="1" HorizontalAlignment="Left" Height="28" Margin="10,0,0,0" VerticalAlignment="Center" Width="80" Style="{DynamicResource OkButton}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ValidationRules:ValidationAndInvokeCommandAction Command="{Binding SaveCommand}" TargetObject="{Binding ElementName=UserControl, Mode=OneWay}"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+						<Button Content="取消" Grid.Column="2" HorizontalAlignment="Left" Height="28" Margin="10,0,0,0" VerticalAlignment="Center" Width="80" Style="{DynamicResource CancelButton}">
+							<i:Interaction.Triggers>
+								<i:EventTrigger EventName="Click">
+									<ei:ChangePropertyAction PropertyName="DialogResult" Value="False" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+								</i:EventTrigger>
+							</i:Interaction.Triggers>
+						</Button>
+					</Grid>
+				</Border>
+			</Grid>
+		</Grid>
+		<WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+	</Grid>
+</UserControl>

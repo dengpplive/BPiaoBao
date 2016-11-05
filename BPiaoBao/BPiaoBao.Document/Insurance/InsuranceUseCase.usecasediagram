@@ -1,0 +1,497 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="8fd778d4-6348-490c-acd2-f2d817440249" name="InsuranceUseCase" linkedPackageId="d276dfe9-8a82-485c-9550-c8960f7cc3d5" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="d56ff535-73b1-4cbb-9c72-ae50238c3dc8" name="分销商" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4da61e72-a0f8-4d7a-a3e7-53670d6732cd" />
+        <targetEnds>
+          <association Id="485ac8ed-286f-4b09-9e2e-02e44539af6b" isDerived="false" sourceEndRoleName="分销商" targetEndRoleName="分销商批发保险" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f067a067-91fc-4eb2-8548-7b4321b5c662" LastKnownName="分销商批发保险" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3b35e7de-4165-45a3-9bb5-399b89002d49" name="分销商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e6c8a42a-33b4-411b-ba1c-0ca802459edd" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1850da19-9d31-4953-8fc9-c30c5e7a4622" name="分销商批发保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="7c48dc69-6533-4e14-83c0-40a437f8df55" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="c6c04ad3-e33a-4d56-881d-d18ac911c993" />
+          </association>
+          <association Id="89fba60b-4b12-4125-8a16-45e210a1970f" isDerived="false" sourceEndRoleName="分销商" targetEndRoleName="卖出保险" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1863f9e3-b668-49c1-8d1c-380e5a0614bf" LastKnownName="卖出保险" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="95f0a32f-c7f4-4400-ae25-4bf24be57dd5" name="分销商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="ead3a819-7ebd-45f0-b9bc-2ad7c5060a6d" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ba63dad0-b899-41e4-a323-efc68d140bb3" name="卖出保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ce410890-c413-4658-80d6-3e810c2fbf17" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="364d3e7f-cdac-4ba9-8b38-57e07efbe3ca" />
+          </association>
+          <association Id="b1b88d8e-d555-445d-bc75-84b8b087f98b" isDerived="false" sourceEndRoleName="分销商" targetEndRoleName="查询批发记录" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="0ac8e8d0-3b89-4a5f-a3fe-702726a6b0ba" LastKnownName="查询批发记录" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c0292729-1ffc-498e-a238-b6a1c51bbbc8" name="分销商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="e82ce105-b571-4441-82c2-3d76b23cb621" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="65d24539-3a67-4995-a64a-2d7df9cdea78" name="查询批发记录" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4150e4de-6c58-4dd9-afcc-f20fc016c54a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d4edf681-a57a-4546-9ce1-5ec6bd81ba0b" />
+          </association>
+          <association Id="5bf10313-f2db-4264-9faf-b314be881560" isDerived="false" sourceEndRoleName="分销商" targetEndRoleName="查询售出记录" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="1fb99550-ff24-4131-b3ca-abe6c23924c9" LastKnownName="查询售出记录" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="066dfa2b-ea5f-4794-9e9b-547fb5d61d66" name="分销商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="48295af4-dd11-40a4-ad23-a105d95da4f4" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e5294d64-6dfe-45e3-936e-660ab6567e72" name="查询售出记录" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4f7e8b36-99c9-45ad-b6d6-ac6184bf49da" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b240e206-ec44-42a7-903d-6b3baefe42f3" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="f949d2e8-f6d7-4dbe-b2be-9d04696706cd" name="运营商" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="790e5097-c5eb-4eef-8d10-eca828fd4c65" />
+        <targetEnds>
+          <association Id="5baf6f75-7c1c-4012-afa6-1b08ca9375fe" isDerived="false" sourceEndRoleName="运营商" targetEndRoleName="赠送保险" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="00d735d4-4eac-474d-a731-820c6f2c72fa" LastKnownName="运营商赠送保险" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="537482cd-567c-4797-ad18-4b434e7aff80" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="f05cd74a-45ce-479b-bd74-d8e3231ceb80" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="cf683193-d77d-4d07-b8da-f9784474b904" name="赠送保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="9c4dbc7e-9059-48c2-974a-eab14a07fcf3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d7309f8a-61fe-4c76-b1c6-c407d360f65f" />
+          </association>
+          <association Id="f9c75c9e-8d46-499a-b103-7d787a869a7f" isDerived="false" sourceEndRoleName="运营商" targetEndRoleName="查询批发出售记录" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="f8ac7c3c-5a66-4ddb-b990-30886e7d0e1c" LastKnownName="查询批发出售记录" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f4a060a5-380d-4644-8a41-c46157a4c9f5" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9c9adb49-90c9-483b-8c81-30454ace7ad3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="73a244d4-13ed-4560-82fc-8fa5b3247831" name="查询批发出售记录" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="0831fe3a-72d0-41e7-8e5d-a5d97325bfc1" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a628def5-ce35-4916-96a8-879dbd030559" />
+          </association>
+          <association Id="48ee3976-0d29-49bc-bf72-f4a6871c5d5f" isDerived="false" sourceEndRoleName="运营商" targetEndRoleName="查询批发购买记录" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="5b314bd5-8ff3-4d33-9eac-db58ba02afcb" LastKnownName="查询批发购买记录" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="ab1b9434-92ea-4c20-8175-9da0b5c34116" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4f49f7c4-5ba4-4e3f-82be-88fcb28f05d3" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="32dd1e8c-310e-4b14-a11b-3105d6c64e12" name="查询批发购买记录" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="4d2972da-c36b-48e7-9daf-db555bff7e4c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="923a72d4-c8bd-4c99-be86-3b81393df6da" />
+          </association>
+          <association Id="c3399390-b4cf-4b4a-9eed-a9152f1199b3" isDerived="false" sourceEndRoleName="运营商" targetEndRoleName="查询保单记录" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="386b6bf1-3b21-45a3-ae89-9bff5bf40bee" LastKnownName="查询保单记录" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="984db75d-1582-43d4-8d32-29e1c0c2245b" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7dad9059-66e5-4e3e-8c56-c67b11869e71" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="78b5485c-0e6c-4c57-a4b4-756310208f26" name="查询保单记录" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ae45b0f1-bf16-433d-9fff-aea4cdee09a0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="9995fe7b-46f9-40fb-b1b3-0910b812784e" />
+          </association>
+          <association Id="7cdd1401-4273-461d-ab37-2e19e6eff1e0" isDerived="false" sourceEndRoleName="运营商" targetEndRoleName="配置保险信息" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="5c8b70cb-309c-4481-8cfa-4308543c56d1" LastKnownName="配置保险信息" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="6418b0dd-0ca6-4d94-9958-3973de22356d" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="3fb54e4c-9699-4ad3-ae9d-6189586de48e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b3898715-9fe7-471e-b275-2aef7d88be6b" name="配置保险信息" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="66ce852c-2a0c-4cfd-86c5-5408c0539b6e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0b05aea1-ccb2-4ddd-80e7-10e00ee44542" />
+          </association>
+          <association Id="774a28e4-284a-4193-b74b-5351bffa8351" isDerived="false" sourceEndRoleName="运营商" targetEndRoleName="运营商批发保险" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="d6090fd2-925d-4eff-bb3d-8c7627877bbf" LastKnownName="运营商批发保险" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="36414083-d6ef-4acf-a3f6-e3f5aaba883a" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="7e208c96-9f25-4374-b4c5-1b932ac30b6f" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fa928d55-5df8-48a1-aea6-4ba7dcb60768" name="运营商批发保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="ba630039-7a3c-423a-b050-fdedb6102e2a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1bf8bf19-0a9f-4dcc-ad8e-ab2df2de730d" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="3df3e442-65e3-4b05-b8d1-5c285f833ab3" name="供应链平台" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5b30ba76-362c-411c-8bfe-838217981ee8" />
+        <targetEnds>
+          <association Id="4d745dd5-da96-4aa3-ac2d-942d09fb50cd" isDerived="false" sourceEndRoleName="供应链平台" targetEndRoleName="供应链平台赠送保险" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="a26f9ebf-2510-4616-8c27-e6d693a0f8f0" LastKnownName="供应链平台赠送保险" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f7e4ad74-e203-4dd1-9408-8a11256bd43e" name="供应链平台" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4dafe3f7-c8f5-4f1b-8cf3-5366f297d83e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7095ec93-6230-4872-81f6-73cbb27d55f4" name="供应链平台赠送保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e1df96ed-532e-4cee-8f9a-de46f2ef867a" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ed193bf9-0e38-430d-94aa-09dbfb31380a" />
+          </association>
+          <association Id="44a2016a-82af-42c3-ae92-91625803a750" isDerived="false" sourceEndRoleName="供应链平台" targetEndRoleName="查询运营商批发记录" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="689c8c19-4151-4dc1-b2e4-dbdb8ad249f4" LastKnownName="查询运营商批发记录" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="81e68fae-80e6-492c-b6e3-d2f14de942e9" name="供应链平台" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="07e7277b-ca23-440d-87df-53eec7cf4fa0" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="58cd2c0d-c76d-402f-8468-89f35d69062d" name="查询运营商批发记录" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="994da488-1b99-44c9-adfc-1e59aecc1369" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="b389593d-87fa-488a-871a-7038ce28558f" />
+          </association>
+          <association Id="2d698782-31eb-4ce0-b927-dfcd21d09a8a" isDerived="false" sourceEndRoleName="供应链平台" targetEndRoleName="查询分销商批发记录" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="47fc852c-399b-43dd-9308-75fc82e86280" LastKnownName="查询分销商批发记录" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="7bb5e095-9883-49f3-a3fe-63713060b553" name="供应链平台" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="1c34dc97-f6b5-4a16-9d32-7c146c74a365" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="378ad4c9-082d-4596-bff7-7ce08a2c7791" name="查询分销商批发记录" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e4ba23ee-6bf0-4fc8-9313-4c54e070a669" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="ce921e6d-53d5-449a-8124-c230bc838dfe" />
+          </association>
+          <association Id="9ae4bbbd-3469-4d55-8315-0ce9b04cb4fb" isDerived="false" sourceEndRoleName="供应链平台" targetEndRoleName="配置保险信息" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="5da7cc7e-57c7-43db-863e-6b618fed3797" LastKnownName="配置保险信息" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="b4a14b63-8d52-46ef-9ea4-186826b18da3" name="供应链平台" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="96676f81-46e0-4b9b-9257-286940339d1e" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="de021934-f4eb-4471-a913-2ea9c83a588e" name="配置保险信息" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="825d2149-bf32-4d1c-b139-b88fe00ab5ac" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="2444d387-2948-4469-84bf-8bcfb9a19420" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="0a0bb7bd-98a8-4f22-9cd6-13213b2bdd01" name="保险公司" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="aa16bab5-59a5-47c5-9c7b-ae7570e0f23d" />
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f067a067-91fc-4eb2-8548-7b4321b5c662" name="分销商批发保险" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="7e154ae0-54d5-453c-92cf-76ff69e1a30b" />
+        <targetEnds>
+          <association Id="7eca4ac4-eeb7-4da8-82f3-9ba9a3f0be2e" isDerived="false" sourceEndRoleName="分销商批发保险" targetEndRoleName="运营商" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="f949d2e8-f6d7-4dbe-b2be-9d04696706cd" LastKnownName="运营商" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="374e1ace-7b8d-4869-8b0f-8f19babc3476" name="分销商批发保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="b37e3c8f-7ef3-4fa3-8e25-174894b1afba" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="dc482a16-e829-4de3-8f94-d8f6af8ce1db" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="455d5214-d408-4804-8e2a-f3b8d7181da9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="fc4d13ec-decb-4f0b-bafe-73d45218dd3c" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1863f9e3-b668-49c1-8d1c-380e5a0614bf" name="卖出保险" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="974a53f2-136a-4772-8779-02d391a8335e" />
+        <generalsInternal>
+          <generalization Id="d795a97d-f48a-431f-a2d0-712768c53b2e" isSubstitutable="false">
+            <useCaseMoniker Id="10447c36-a3f7-4269-834f-be07524a2188" LastKnownName="随机票订单售出" />
+            <elementDefinition Id="dfec3957-576a-4844-b07e-3db5dec0c88a" />
+          </generalization>
+          <generalization Id="946e4560-8a55-4d29-83f2-d08692f53b69" isSubstitutable="false">
+            <useCaseMoniker Id="e8b52d94-5566-4bf3-b662-0a061bf5e0f8" LastKnownName="为某机票订单补充购买" />
+            <elementDefinition Id="63dd4416-c5f1-4747-95ef-ab9325742f6e" />
+          </generalization>
+          <generalization Id="3c07533e-a671-44d0-b734-0b25817e4fd1" isSubstitutable="false">
+            <useCaseMoniker Id="680f2c3c-4f9a-42a5-b753-38f0baec43c0" LastKnownName="单独购买" />
+            <elementDefinition Id="b803c291-8f0e-462c-8ada-4cc9ad7e0b60" />
+          </generalization>
+        </generalsInternal>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0ac8e8d0-3b89-4a5f-a3fe-702726a6b0ba" name="查询批发记录" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cef87810-7da8-497c-ac15-21a11bae266f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="1fb99550-ff24-4131-b3ca-abe6c23924c9" name="查询售出记录" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="3ef454a2-913a-48b6-9d4c-e3a4d6c4fbc7" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="10447c36-a3f7-4269-834f-be07524a2188" name="随机票订单售出" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="558b0bb1-1539-4b1a-ade3-89e4c047b6c1" />
+        <targetEnds>
+          <association Id="18d47af7-299d-4c72-a87a-d57b3ba3683d" isDerived="false" sourceEndRoleName="随机票订单售出" targetEndRoleName="保险公司" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="0a0bb7bd-98a8-4f22-9cd6-13213b2bdd01" LastKnownName="保险公司" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="f69fe879-ea43-4bba-83d5-7d21f87368b8" name="随机票订单售出" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0c762c5d-597b-4ba6-801a-bbc68c06b045" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="0c52827b-816f-4ff4-8c00-bfe56ae0ea17" name="保险公司" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="65bb66b3-9c63-46b9-8e10-71f45b7c63ae" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="a2e5694c-7d4c-421d-9324-2351dcf54185" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="e8b52d94-5566-4bf3-b662-0a061bf5e0f8" name="为某机票订单补充购买" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="bb13df87-d39e-46f0-952a-8ed5d6f3c3e8" />
+        <targetEnds>
+          <association Id="23a078b0-8db5-41e7-9497-2e90644e378a" isDerived="false" sourceEndRoleName="为某机票订单补充购买" targetEndRoleName="保险公司" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="0a0bb7bd-98a8-4f22-9cd6-13213b2bdd01" LastKnownName="保险公司" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="68be2b29-e52c-4821-a28f-8fb74e2a1273" name="为某机票订单补充购买" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="8292e748-0075-4ffa-8839-a290d3816bdf" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2c42d615-8eca-4ab6-a486-2069f8d78b3c" name="保险公司" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="d42b88f6-a0e5-498c-96da-d30d5b43d3ae" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="5251ebaf-be4b-4e93-8583-97f6a3164019" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="680f2c3c-4f9a-42a5-b753-38f0baec43c0" name="单独购买" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5fa9d672-c346-4958-92d5-1dc384af9b80" />
+        <targetEnds>
+          <association Id="8b8bfe4c-31c2-4e6f-a688-f02e1ab0508c" isDerived="false" sourceEndRoleName="单独购买" targetEndRoleName="保险公司" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="0a0bb7bd-98a8-4f22-9cd6-13213b2bdd01" LastKnownName="保险公司" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="824800aa-f14e-40a3-ab2b-51e5f9286168" name="单独购买" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0aa6d0fa-4d6e-4103-ab3a-8262f4a52ab8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="fec17e48-5eee-4c94-8dda-38cbea918f95" name="保险公司" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="b303618c-b3f9-4ba7-8609-94883244e2b5" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="dd713fe6-7567-40ef-883c-e0a44c1ecc21" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f8ac7c3c-5a66-4ddb-b990-30886e7d0e1c" name="查询批发出售记录" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="ce15cb0b-44b4-47f6-bd97-5ac43ebad4cc" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="5b314bd5-8ff3-4d33-9eac-db58ba02afcb" name="查询批发购买记录" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9752e121-1bbc-45ca-b034-2c406d15cd5d" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="386b6bf1-3b21-45a3-ae89-9bff5bf40bee" name="查询保单记录" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="fb8b0904-72bb-4f52-b67f-deca5096be10" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="5c8b70cb-309c-4481-8cfa-4308543c56d1" name="配置保险信息" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9ba9bc30-1fa9-4c0c-9779-eec5c52caa2a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="00d735d4-4eac-474d-a731-820c6f2c72fa" name="运营商赠送保险" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="cb389c8e-f5d2-4d35-8430-8c0a937d83e3" />
+        <targetEnds>
+          <association Id="7ad7627d-59c2-42d2-8454-3a482568b20e" isDerived="false" sourceEndRoleName="赠送保险" targetEndRoleName="分销商" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="d56ff535-73b1-4cbb-9c72-ae50238c3dc8" LastKnownName="分销商" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="36bba9be-b39a-44de-a8ad-78cef2314189" name="赠送保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="9d982c89-19a5-459d-9b28-90d6bbf60164" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="8c866aa2-954e-4398-ad32-385282d595b5" name="分销商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="e3a73fdc-d200-4c6f-9723-771d4a075e66" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="d9193e31-7f81-4451-b67c-ee7ec94c16f4" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d6090fd2-925d-4eff-bb3d-8c7627877bbf" name="运营商批发保险" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a25b7698-109f-46e0-998d-34fe55fe0443" />
+        <targetEnds>
+          <association Id="d6d5bf76-0857-4922-b19c-a10504783d3f" isDerived="false" sourceEndRoleName="运营商批发保险" targetEndRoleName="供应链平台" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="3df3e442-65e3-4b05-b8d1-5c285f833ab3" LastKnownName="供应链平台" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="1e43aa2e-b0a6-45ec-8adc-7e36e30c1a28" name="运营商批发保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="25df0ab1-1284-4328-97f6-406eb7696c3b" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="67eec499-3e2f-464d-b8fa-9a9db6fb068d" name="供应链平台" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="6edee123-0ffc-41bb-8a50-43ab9622e126" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="1e40c7f2-6759-4d04-98d5-3aec834280b7" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="a26f9ebf-2510-4616-8c27-e6d693a0f8f0" name="供应链平台赠送保险" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b69103cd-6cba-428b-a468-dc8d925c55c5" />
+        <targetEnds>
+          <association Id="82b4ecb2-08fc-4b07-9a8b-db2e11a1e306" isDerived="false" sourceEndRoleName="供应链平台赠送保险" targetEndRoleName="运营商" isLeaf="false" isAbstract="false">
+            <actorMoniker Id="f949d2e8-f6d7-4dbe-b2be-9d04696706cd" LastKnownName="运营商" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="2dc00d23-9b48-4a5e-98be-adbf73d3f408" name="供应链平台赠送保险" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="0e09eee2-456e-4d83-88b1-aa53318e4c5c" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="35c3f341-38a1-4b96-a41d-32760f766cbb" name="运营商" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="3291a6bd-645f-42ef-adf3-1cf9964fb3a7" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="60c8ee5f-611c-44de-b9a5-39c5648bd24f" />
+          </association>
+        </targetEnds>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="689c8c19-4151-4dc1-b2e4-dbdb8ad249f4" name="查询运营商批发记录" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="c27018bc-f0ed-421d-a1c5-71f2b12eeb47" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="47fc852c-399b-43dd-9308-75fc82e86280" name="查询分销商批发记录" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="b8e83fce-675d-4022-a397-156ef2416a88" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="5da7cc7e-57c7-43db-863e-6b618fed3797" name="配置保险信息" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6e21efb0-a2eb-4b20-9ef6-bf14ca82c3d0" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="d276dfe9-8a82-485c-9550-c8960f7cc3d5" name="BPiaoBao.Document">
+    <elementDefinition Id="2e35733a-8221-4636-8e7d-e7513a97dc2c" />
+    <profileInstances>
+      <packageHasProfileInstances Id="0029669a-dc97-41d3-aa77-2cc38a7c0bf3">
+        <profileInstance Id="880bcf49-a446-4af3-8d6f-e7f5e7f4389d" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="cc349741-2acc-44d3-a0b5-47ac6b3ff2cb">
+        <profileInstance Id="88046485-23ab-4f12-aa3c-9e91a5487d82" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>

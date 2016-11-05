@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB7161F7-2BB5-4ED3-BF0A-268A1182E01C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.Common</RootNamespace>
+    <AssemblyName>BPiaoBao.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Client">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Client.2.1.0\lib\net40\Microsoft.AspNet.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PnrAnalysis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\PnrAnalysis\PnrAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoIssueTicketSet.cs" />
+    <Compile Include="CashbagHelper.cs" />
+    <Compile Include="CashBagPayException.cs" />
+    <Compile Include="CashbagPaymentClientProxy.cs" />
+    <Compile Include="CommanPnrAnalyzer\PnrFormattor.cs" />
+    <Compile Include="CommanPnrAnalyzer\Units.cs" />
+    <Compile Include="DESCrypt\DESCryptHelper.cs" />
+    <Compile Include="EnumCommonHelper.cs" />
+    <Compile Include="EnumModule.cs" />
+    <Compile Include="Enums\DeductionType.cs" />
+    <Compile Include="Enums\EnumAdjustType.cs" />
+    <Compile Include="Enums\EnumAfterSaleOrder.cs" />
+    <Compile Include="Enums\EnumAriChangNotifications.cs" />
+    <Compile Include="Enums\EnumDeductionType.cs" />
+    <Compile Include="Enums\EnumDestineSource.cs" />
+    <Compile Include="Enums\EnumIDType.cs" />
+    <Compile Include="Enums\EnumInsuranceConfigType.cs" />
+    <Compile Include="Enums\EnumInsuranceDepositType.cs" />
+    <Compile Include="Enums\EnumInsurancePayStatus.cs" />
+    <Compile Include="Enums\EnumInsurancePurchaseType.cs" />
+    <Compile Include="Enums\EnumInsureType.cs" />
+    <Compile Include="Enums\EnumInterception.cs" />
+    <Compile Include="Enums\EnumMessageCommand.cs" />
+    <Compile Include="Enums\EnumNotice.cs" />
+    <Compile Include="Enums\EnumOPEN.cs" />
+    <Compile Include="Enums\EnumOrderSource.cs" />
+    <Compile Include="Enums\EnumInsuranceStatus.cs" />
+    <Compile Include="Enums\EnumPassengerType.cs" />
+    <Compile Include="Enums\EnumPlatform.cs" />
+    <Compile Include="Enums\EnumPlatformRefundType.cs" />
+    <Compile Include="Enums\ClientOrderStatus.cs" />
+    <Compile Include="Enums\EnumOrderStatus.cs" />
+    <Compile Include="Enums\EnumPaidStatus.cs" />
+    <Compile Include="Enums\EnumPayMethod.cs" />
+    <Compile Include="Enums\EnumPayStatus.cs" />
+    <Compile Include="Enums\EnumPnrSource.cs" />
+    <Compile Include="Enums\EnumPolicyOwnUserRole.cs" />
+    <Compile Include="Enums\EnumPushCommands.cs" />
+    <Compile Include="Enums\EnumRefuse.cs" />
+    <Compile Include="Enums\EnumSexType.cs" />
+    <Compile Include="Enums\EnumSkyWayType.cs" />
+    <Compile Include="Enums\EnumSmsTemplateType.cs" />
+    <Compile Include="Enums\EnumTfgOrderType.cs" />
+    <Compile Include="Enums\EnumTicketStatus.cs" />
+    <Compile Include="Enums\EnumOperatorState.cs" />
+    <Compile Include="Enums\EnumTripStatus.cs" />
+    <Compile Include="Enums\EnumUserRole.cs" />
+    <Compile Include="Enums\EnumPolicySourceType.cs" />
+    <Compile Include="Enums\PnrImportType.cs" />
+    <Compile Include="Enums\PolicyEnum.cs" />
+    <Compile Include="Enums\TicketNumberOpType.cs" />
+    <Compile Include="ExtHelper.cs" />
+    <Compile Include="FundInfo.cs" />
+    <Compile Include="HttpWebRequestHelper.cs" />
+    <Compile Include="IPaymentClientProxy.cs" />
+    <Compile Include="MessageQueueManager.cs" />
+    <Compile Include="PnrHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueueExt.cs" />
+    <Compile Include="SettingConfigurationSection.cs" />
+    <Compile Include="StringExpend.cs" />
+    <Compile Include="SystemConsoSwitch.cs" />
+    <Compile Include="WebMessageManager.cs" />
+    <Compile Include="XmlSerializerHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

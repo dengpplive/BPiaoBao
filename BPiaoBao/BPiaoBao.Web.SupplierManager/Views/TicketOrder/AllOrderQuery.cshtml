@@ -1,0 +1,491 @@
+﻿@{
+    ViewBag.Title = "AllOrderQuery";
+}
+
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="mainContent">
+            <div class="filterbg">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tablest">
+                    <tr>
+                        <td width="80" class="tdtitle">
+                            <h3>订单查询条件:</h3>
+                        </td>
+                        <td width="60">订单号:</td>
+                        <td width="157">
+                            <input type="text" name="textfield" class="inputStyle" data-bind="value: queryCond.OrderId" /></td>
+                        <td width="60">PNR:</td>
+                        <td width="185">
+                            <input type="text" name="textfield2" class="inputStyle" data-bind="value: queryCond.PNR" /></td>
+                        <td width="60">乘机人:</td>
+                        <td width="169">
+                            <input type="text" name="textfield3" class="inputStyle" data-bind="value: queryCond.PassengerName" /></td>
+                        <td width="60">票号:</td>
+                        <td width="180">
+                            <input type="text" name="textfield4" class="inputStyle" data-bind="value: queryCond.TicketNumber" /></td>
+
+                    </tr>
+                    <tr class="linepadding">
+                        <td class="td_noboder">&nbsp;</td>
+                        <td>出发城市:</td>
+                        <td>
+                            <input type="text" name="textfield5" class="inputStyle" data-bind="value: queryCond.FromCity" /></td>
+                        <td>乘机时间:</td>
+                        <td>
+                            @*<input id="startTime" class="easyui-my97 inpu
+                    tStyle22" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'endTime\',{d:-30});}',maxDate:'#F{$dp.$D(\'endTime\',{d:0});}'})" data-bind="my97value: queryCond.StartDateTime" />-<input id="endTime" class="easyui-my97 inputStyle22" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'startTime\',{d:0});}',maxDate:'#F{$dp.$D(\'startTime\',{d:30});}'})" data-bind="my97value: queryCond.ToDateTime" />*@
+                            <input id="startTime" class="easyui-my97 inputStyle22" data-bind="my97value: queryCond.StartDateTime" />-<input id="endTime" class="easyui-my97 inputStyle22" data-bind="    my97value: queryCond.ToDateTime" />
+                        </td>
+
+                        <td>商户号:</td>
+                        <td>
+                            <input type="text" name="textfield11" class="inputStyle" data-bind="value: queryCond.BusinessmanCode" /></td>
+                        <td>交易号:</td>
+                        <td>
+                            <input type="text" name="textfield11" class="inputStyle" data-bind="value: queryCond.PaySerialNumber" /></td>
+                        @*<td>政策来源:</td>
+                <td>
+                    <select data-bind="value: queryCond.PlatformCode, options: $root.PlatformCode, optionsText: 'text', optionsValue: 'value', optionsCaption: '请选择'"></select>
+                </td>*@
+                    </tr>
+                    <tr class="linepadding">
+                        <td class="td_noboder">&nbsp;</td>
+                        <td>到达城市:</td>
+                        <td>
+                            <input type="text" name="textfield6" class="inputStyle" data-bind="value: queryCond.ToCity" /></td>
+                        <td>创建时间:</td>
+                        <td>
+                            @*<input id="StartCreateTime" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'EndCreateTime\',{d:-30});}',maxDate:'#F{$dp.$D(\'EndCreateTime\',{d:0});}'})" class="easyui-my97 inputStyle22" data-bind="my97value: queryCond.StartCreateTime" />-<input id="EndCreateTime"  onFocus="WdatePicker({minDate:'#F{$dp.$D(\'StartCreateTime\',{d:0});}',maxDate:'#F{$dp.$D(\'StartCreateTime\',{d:30});}'})" class="easyui-my97 inputStyle22" data-bind="my97value: queryCond.EndDateTime" />*@
+                            <input id="StartCreateTime" class="my97value inputStyle22" data-bind="my97value: queryCond.StartCreateTime" />-<input id="EndCreateTime" class="easyui-my97 inputStyle22" data-bind="    my97value: queryCond.EndDateTime" />
+                        </td>
+                        <td>航空公司:</td>
+                        <td>
+                            <input type="text" name="textfield10" class="inputStyle" data-bind="value: queryCond.CarrayCode" /></td>
+                        <td>订单状态:</td>
+                        <td>
+                            <select data-bind="value: queryCond.OrderStatus, options: $root.BTicketOrderStatus, optionsText: 'text', optionsValue: 'value', optionsCaption: '请选择'"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_noboder">&nbsp;</td>
+                        <td colspan="8" class="td_noboder td_noboder2" style="padding-top: 10px;">
+                            <a href="#" class="easyui-linkbutton btnheight0" data-options="toggle:true,group:'g1'" data-bind="click: search">查询</a>
+                            <a href="#" class="easyui-linkbutton btnheight0" data-options="toggle:true,group:'g1'" data-bind="click: resetQueryCond" style="display: none;">重置数据</a>
+                            @*<span class="shuxiang">|</span><a href="#" class="export_a" data-bind="click: exportOrder">导出excel</a>*@
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <table id="dg" title="订单综合查询">
+            <thead data-options="frozen:true">
+                <tr bgcolor="#daeef5">
+                    <th data-options="field:'operate',width:60,formatter:searchViewModel.operationColumnFormatter.Handle">操作</th>
+                    <th data-options="field:'BusinessmanCode',width:80,formatter:formatterCode">商户号</th>
+                    <th data-options="field:'OrderId',width:150">订单号</th>
+                    <th data-options="field:'PnrCode',width:80,formatter:searchViewModel.operationColumnFormatter.PnrCode">PNR</th>
+                </tr>
+            </thead>
+            <thead>
+                <tr bgcolor="#daeef5">
+                    <th data-options="field:'OrderMoney',width:62,formatter:formatterMoney">订单金额</th>
+                    <th data-options="field:'OrderStatus',formatter:searchViewModel.operationColumnFormatter.OrderStatus">订单状态</th>
+                   @* <th data-options="field:'PolicySourceType',width:78,formatter:function(val,row){ return row.Policy.PolicySourceType}">政策来源</th>*@
+                    <th data-options="field:'PolicyType',width:60,formatter:function(val,row){return row.Policy.PolicyType}">机票类型</th>
+                    <th data-options="field:'IssueTicketCode',width:78,formatter:formatterIssueCode">出票方</th>
+                    <th data-options="field:'LockAccount'">锁定帐号</th>
+                    <th data-options="field:'CreateTime',width:80,formatter:function(val){return SpShow(val,' ');}">创建时间</th>
+                    <th data-options="field:'Passengers',width:60,formatter:searchViewModel.operationColumnFormatter.Passengers">乘机人</th>
+                    <th data-options="field:'StartDateTime',width:80,formatter:searchViewModel.operationColumnFormatter.StartDateTime">乘机时间</th>
+                    <th data-options="field:'Route',width:80,formatter:searchViewModel.operationColumnFormatter.Route">航程</th>
+                    <th data-options="field:'FlightNumber',width:78,formatter:searchViewModel.operationColumnFormatter.FlightNumber">航班号</th>
+                    <th data-options="field:'payState',width:70,formatter:searchViewModel.operationColumnFormatter.payState">支付状态</th>
+                    <th data-options="field:'PayMethodCode',width:70,formatter:searchViewModel.operationColumnFormatter.PayMethodCode">支付方式</th>
+                    
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div id="Coordination_Window" class="easyui-window" title="订单协调" style="width: 600px; height: auto; padding: 10px 15px;">
+    <div>
+        <table>
+            <tr>
+                <td>订单号：</td>
+                <td>
+                    <span id="Coordination_DIV_OrderID" data-bind="text: searchViewModel.coordinationOrderDto.orderId"></span>
+                </td>
+                <td>PNR：</td>
+                <td>
+                    <span id="Coordination_DIV_PNR" data-bind="text: searchViewModel.coordinationOrderDto.pnrCode"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>类型：</td>
+                <td>
+                    <select id="Coordination_DIV_Type" data-bind="value: searchViewModel.coordinationOrderDto.type">
+                        <option value="出票">出票</option>
+                        <option value="催单">催单</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </td>
+                <td>处理状态：</td>
+                <td>
+                    <input type="radio" name="IsCompleted" value="true" data-bind="checked: searchViewModel.coordinationOrderDto.isCompleted" />完成&nbsp;&nbsp;
+                    <input type="radio" name="IsCompleted" value="false" data-bind="checked: searchViewModel.coordinationOrderDto.isCompleted" />未完成
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td>协调内容：</td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="CoordinationContent" rows="5" cols="60" id="CoordinationContent" data-bind="value: searchViewModel.coordinationOrderDto.coordinationContent"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+    <span>协调记录：</span>
+    <table border="1" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="250px">时间</th>
+                <th width="100px">操作人</th>
+                <th width="1500px">内容</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:searchViewModel.CoordinationLogs">
+            <tr>
+                <td data-bind="text:AddDatetime"></td>
+                <td data-bind="text:OperationPerson"></td>
+                <td data-bind="text:Content"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <div>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-bind="click: addCoordination">协调订单</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#Coordination_Window').window('close');">取消</a>
+    </div>
+</div>
+<div id="OrderDetail_Window" title="订单详情" class="easyui-window" data-options="resizable:false,maximizable:false,minimizable:false,model:true,collapsible:false,maximized: true,draggable: false" style="width: 1050px; height: 500px; padding: 10px 15px;">
+</div>
+@Html.Partial("OrderPay")
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        function formatterMoney(val, row) {
+            if ((row.CurrentCode!=row.CarrierCode))
+                return row.CPMoney;
+            return val;
+        }
+        function formatterIssueCode(val, row) {
+            if (row.CarrierCode != row.CurrentCode)
+                return '';
+            return row.Policy.Code;
+        }
+        function formatterCode(val, row) {
+            if (row.CurrentCode != row.CarrierCode)
+                return '';
+            return val;
+        }
+
+        $(function () {
+            var mydate = new Date();
+            var mydate1 = new Date();
+            mydate1.setDate(mydate1.getDate() - 7);
+            var M = (mydate.getMonth() + 1) < 10 ? "0" + (mydate.getMonth() + 1) : (mydate.getMonth() + 1);
+            var D = (mydate.getDate() < 10 ? "0" + mydate.getDate() : mydate.getDate());
+            var M1 = (mydate1.getMonth() + 1) < 10 ? "0" + (mydate1.getMonth() + 1) : (mydate1.getMonth() + 1);
+            var D1 = (mydate1.getDate() < 10 ? "0" + mydate1.getDate() : mydate1.getDate());
+            var mydatetime = mydate.getFullYear() + "-" + M + "-" + D;
+            var mydatetime1 = mydate1.getFullYear() + "-" + M1 + "-" + D1;
+            searchViewModel = {
+                queryUrl: '@Url.Action("FindAll")',
+                $datagrid: null,
+                $OrderDetail_Window: null,
+                $Coordination_Window: null,
+                queryCond: {
+                    OrderId: ko.observable(""),
+                    PNR: ko.observable(""),
+                    PassengerName: ko.observable(""),
+                    TicketNumber: ko.observable(""),
+                    FromCity: ko.observable(""),
+
+                    StartDateTime: ko.observable(""),
+                    ToDateTime: ko.observable(""),
+                    BusinessmanCode: ko.observable(""),
+                    FlightNumber: ko.observable(""),
+                    PlatformCode: ko.observable(""),
+
+                    ToCity: ko.observable(""),
+                    StartCreateTime: ko.observable(mydatetime1),
+                    EndDateTime: ko.observable(mydatetime),
+                    CarrayCode: ko.observable(""),
+                    OrderStatus: ko.observable(""),
+                    PaySerialNumber: ko.observable("")
+                },
+                BTicketOrderStatus: [
+                    { text: "新订单，等待选择政策", value: 0 },
+                    { text: "创建平台订单失败", value: 1 },
+                    { text: "新订单，等待支付", value: 2 },
+                    { text: "已支付，等待代付", value: 3 },
+                    { text: "已支付，等待出票", value: 4 },
+                    { text: "订单已取消", value: 5 },
+                    { text: "已经出票，订单完成", value: 6 },
+                    { text: "拒绝出票，等待退款", value: 7 },
+                    { text: "平台拒绝出票，等待退款", value: 8 },
+                    { text: "拒绝出票，订单完成", value: 9 },
+                    { text: "失效的", value: 10 },
+                    { text: "自动复合票号失败", value: 11 },
+                    { text: "拒绝出票,退款中", value: 12 }
+                ],
+                PlatformCode: [
+                    { text: "517", value: "517" },
+                    { text: "51Book", value: "51Book" },
+                    { text: "8000YI", value: "8000YI" },
+                    { text: "百拓", value: "BaiTuo" },
+                    { text: "票盟", value: "PiaoMeng" },
+                    { text: "今日", value: "Today" },
+                    { text: "易行", value: "YeeXing" }
+                ],
+                getText: function (type, value) {
+                    var item = $.grep(type, function (item, index) {
+                        return item.value == value;
+                    }).shift();
+                    if (!item && console && console.warn) {
+                        console.warn("值(" + value + ")不在枚举" + JSON.stringify(type) + "中");
+                        return "未定义";
+                    }
+                    return item.text;
+                },
+                clear: function (obj) {
+                    for (var prop in obj) {
+                        if (obj.hasOwnProperty(prop)) {
+                            if (typeof obj[prop] === "function")
+                                obj[prop](null);
+                            else if (typeof obj[prop] === "object")
+                                ko.clear(obj[prop]);
+                        }
+                    }
+                },
+                lastQueryCond: {},
+                init: function () {
+                    this.$OrderDetail_Window = $("#OrderDetail_Window").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                    this.$Coordination_Window = $("#Coordination_Window").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                    var self = this;
+                    this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                    this.$datagrid = $('#dg').datagrid({
+                        rownumbers: false,
+                        singleSelect: true,
+                        autoRowHeight: true,
+                        pagination: true,
+                        pageSize: 15,
+                        pageList: [15],
+                        toolbar: '#mainContent',
+                        nowrap: false,
+                        fit: true,
+                        url: searchViewModel.queryUrl,
+                        queryParams: this.lastQueryCond
+                    });
+                },
+                search: function () {
+                    var date1 = ko.toJS(searchViewModel.queryCond.StartCreateTime);
+                    var date2 = ko.toJS(searchViewModel.queryCond.EndDateTime);
+                    if (date1 != "" && date2 != "") {
+                        var start = new Date(date1);
+                        var end = new Date(date2);
+                        var times = end.getTime() - start.getTime();
+                        var days = parseInt(times / (1000 * 60 * 60 * 24));
+                        if (days > 30 || days < 0) {
+                            $.messager.alert("提示", "只能查询30天之内的订单！", 'info');
+                        }
+                        else {
+                            this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                            this.$datagrid.datagrid("load", this.lastQueryCond);
+                        }
+                    } else {
+                        $.messager.alert("提示", "请选择创建时间！", 'info');
+                    }
+                },
+                resetQueryCond: function () {
+                    this.clear(this.queryCond);
+                },
+                operationColumnFormatter: {
+                    Handle: function (value, row, rowIndex) {
+                        var tempStr = "<a href='javascript:searchViewModel.openDetailDialog(\"" + row.OrderId + "\")'  >订单详情</a><br/>";
+                        tempStr += "<a href='javascript:searchViewModel.openPassengerInfo(\"" + row.OrderId + "\")'>修改信息</a>";
+                        tempStr += "<br/><a href='javascript:searchViewModel.openCoordinationDialog(\"" + row.OrderId + "\",\"" + row.PnrCode + "\")' >订单协调</a>";
+                        return tempStr;
+                    },
+                    PnrCode: function (value, row, rowIndex) {
+                        var tempStr = "";
+                        var PNRContent = row.PNRContent; 
+                        var PnrSource = row.PnrSource;
+                        if (PnrSource == "0" && row.YdOffice != null && row.YdOffice != "") {
+                            tempStr += "<a href='javascript:searchViewModel.openNewPnrContent(\"" + row.BusinessmanCode + "\",\"" + row.PnrCode + "\",\"" + row.YdOffice + "\")'>" + row.PnrCode + "</a>";
+                        }
+                        else {
+                            PNRContent = PNRContent.replace(/[\r\n]/g, "#");
+                            tempStr += "<a href='javascript:searchViewModel.openPNRInfo_Window(\"" + PNRContent + "\")'>" + row.PnrCode + "</a>";
+                        }
+                        tempStr += "<br/>" + row.PassengerType;
+                        if (row.HasAfterSale) {
+                            tempStr += "<br/>" + "<span style='color: green; font-size: 12px'>退废改</span>";
+                        }
+                        return tempStr;
+                    },
+                    OrderStatus: function (value, row, rowIndex) {
+                        return SpShow(searchViewModel.getText(searchViewModel.BTicketOrderStatus, value), ',');
+                    },
+                    Passengers: function (value, row, rowIndex) {
+                        var temp = "";
+                        for (var i = 0; i < row.Passengers.length; i++) {
+                            temp += row.Passengers[i].PassengerName + "<br/>"
+                        }
+                        temp = temp.substring(0, temp.lastIndexOf("<br/>"));
+                        return temp;
+                    },
+                    StartDateTime: function (value, row, rowIndex) {
+                        var tempStr = "";
+                        var dateNow = new Date();
+                        for (var i = 0; i < row.SkyWays.length; i++) {
+                            var date = new Date(Date.parse(row.SkyWays[i].StartDateTime.replace(/-/g, "/")));
+                            if (date.toLocaleDateString() == dateNow.toLocaleDateString()) {
+                                tempStr += "<span style='color:red'>" + SpShow(row.SkyWays[i].StartDateTime,' ') + "</span>" + "<br/>";
+                            }
+                            else {
+                                tempStr += SpShow(row.SkyWays[i].StartDateTime,' ') + "<br/>";
+                            }
+                        }
+                        tempStr = tempStr.substring(0, tempStr.lastIndexOf("<br/>"));
+                        return tempStr;
+                    },
+                    Route: function (value, row, rowIndex) {
+                        if (row.SkyWays.length == 1) {
+                            return (row.SkyWays[0].FromCity + "-" + row.SkyWays[0].ToCity);
+                        }
+                        if (row.SkyWays.length == 2) {
+                            return (row.SkyWays[0].FromCity + "-" + row.SkyWays[0].ToCity) + "<br/>" + (row.SkyWays[1].FromCity + "-" + row.SkyWays[1].ToCity);
+                        }
+                    },
+                    FlightNumber: function (value, row, rowIndex) {
+                        if (row.SkyWays.length == 1) {
+                            return (row.SkyWays[0].CarrayCode + row.SkyWays[0].FlightNumber);
+                        }
+                        if (row.SkyWays.length == 2) {
+                            return (row.SkyWays[0].CarrayCode + row.SkyWays[0].FlightNumber) + "<br/>" + (row.SkyWays[1].CarrayCode + "-" + row.SkyWays[1].FlightNumber);
+                        }
+                    },
+                    PaidMoney: function (value, row, rowIndex) {
+                        if (row.PayInfo != null) {
+                            return row.PayInfo.PaidMoney;
+                        }
+                    },
+                    PayMethodCode: function (value, row, rowIndex) {
+                        return row.PayInfo.PayMethodCode
+                    },
+                    payState: function (value, row, rowIndex) {
+                        return str = row.PayInfo.PayStatus == 1 ? "已支付" : "未支付";
+                    },
+                    PaySerialNumber: function (value, row, rowIndex) {
+                        return row.PayInfo.PaySerialNumber;
+                    }
+                },
+                openPNRInfo_Window: function (PNRContent) {
+                    $.messager.alert("PNR信息", PNRContent);
+                },
+                openNewPnrContent: function (Code, PNR, officeNo) {
+                    $.post('@Url.Action("GetNewPnrInfo")', { businessCode: Code, Pnr: PNR, Ydoffice: officeNo }, function (data) {
+                        $.messager.alert("PNR信息", data.replace(/[\r\n]/g, "#"));
+                    });
+                },
+                getpnrinfo: function (Code, PNR, officeNo, pnrcontet, pnrsource) {
+                    if (pnrsource == "0" && row.YdOffice != null && row.YdOffice != "") {
+                        searchViewModel.openNewPnrContent(Code, PNR, officeNo);
+                    } else {
+                        searchViewModel.openPNRInfo_Window(pnrcontet.replace(/[\r\n]/g, "#"));
+                    }
+                },
+                openDetailDialog: function (orderID) {
+                    this.$OrderDetail_Window.window({ href: "@Url.Action("OrderDetail", "TicketOrder")?OrderId=" + orderID + "" });
+                    this.$OrderDetail_Window.window("open");
+                },
+                openPassengerInfo: function (orderid) {
+                    searchViewModel.PassengersInfo.removeAll();
+                    $.post('@Url.Action("GetPassengerInfo")', { orderid: orderid }, function (data) {
+                        data = JSON.parse(data);
+                        $.each(data, function () {
+                            searchViewModel.PassengersInfo.push(ko.mapping.fromJS(this));
+                        })
+                        $("#Passenger_Dialog").window("open");
+                    });
+                    searchViewModel.OrderId(orderid);
+                },
+                openCoordinationDialog: function (orderId, pnrCode) {
+                    searchViewModel.CoordinationLogs.removeAll();
+                    searchViewModel.coordinationOrderDto.orderId(orderId).pnrCode(pnrCode).coordinationContent("");
+                    $.post('@Url.Action("GetCoordination")', { orderId: orderId }, function (data) {
+                        data = JSON.parse(data);
+                        $.each(data, function () {
+                            searchViewModel.CoordinationLogs.push(ko.mapping.fromJS(this));
+                        })
+                        $("#Coordination_Window").window("open");
+                    });
+                    searchViewModel.OrderId(orderId);
+                },
+                addCoordination: function () {
+                    $.ajax({
+                        url: '@Url.Action("AddCoordination")',
+                        contentType: 'application/json',
+                        type: 'post',
+                        data: JSON.stringify({
+                            orderid: searchViewModel.coordinationOrderDto.orderId(),
+                            type: searchViewModel.coordinationOrderDto.type(),
+                            coordinationContent: searchViewModel.coordinationOrderDto.coordinationContent(),
+                            isCompleted: searchViewModel.coordinationOrderDto.isCompleted()
+                        })
+                    }).done(function (e, s) {
+                        $("#Coordination_Window").window("close");
+                        searchViewModel.search();
+                    }).fail(function (e) {
+                        var obj = JSON.parse(e.responseText);
+                        window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                    });
+                },
+                coordinationOrderDto: {
+                    orderId: ko.observable(),
+                    pnrCode: ko.observable(),
+                    type: ko.observable(),
+                    coordinationContent: ko.observable(""),
+                    isCompleted: ko.observable("true")
+                },
+                OrderId:ko.observable(),
+                PassengersInfo: ko.observableArray(),
+                CoordinationLogs: ko.observableArray(),
+                SaveClick: function () {
+                    $.ajax({
+                        url: '@Url.Action("UpdatePassenger")',
+                        contentType: 'application/json',
+                        type: 'post',
+                        data: JSON.stringify({ orderid: searchViewModel.OrderId(), list: ko.toJS(searchViewModel.PassengersInfo) })
+                    }).done(function (e, s) {
+                        $("#Passenger_Dialog").window("close");
+                        searchViewModel.search();
+                    }).fail(function (e) {
+                        var obj = JSON.parse(e.responseText);
+                        window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                    });
+                }
+            }
+            searchViewModel.init();
+            ko.applyBindings(searchViewModel);
+        });
+    </script>
+}

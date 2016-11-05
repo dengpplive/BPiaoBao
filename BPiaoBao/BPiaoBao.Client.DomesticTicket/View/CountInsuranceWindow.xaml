@@ -1,0 +1,17 @@
+﻿<Window x:Class="BPiaoBao.Client.DomesticTicket.View.CountInsuranceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  Style="{DynamicResource CustomWindowStyle}"   WindowStartupLocation="CenterOwner"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"  xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        Title="选择保险份数" Height="100" Width="300">
+    <i:Interaction.Triggers>
+        <ei:DataTrigger Binding="{Binding IsDone}" Value="True">
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="保险份数：" VerticalAlignment="Center" Margin="10,0,0,0" FontSize="12"/>
+            <xctk:IntegerUpDown VerticalAlignment="Center" Value="{Binding Count, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="140" Minimum="0" />
+            <Button Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Height="25" Width="80"  Content="确定" Style="{StaticResource HeadBtn}" Margin="5,0,0,0" Command="{Binding DataContext.DoneCommand,Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        </StackPanel>
+    </Grid>
+</Window>

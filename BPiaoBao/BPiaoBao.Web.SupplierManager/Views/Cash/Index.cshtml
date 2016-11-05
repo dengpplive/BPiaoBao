@@ -1,0 +1,118 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="filterbg" data-options="region:'north',border:0">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="65" valign="middle" class="tdtitle td_noboder"><h3>现金账户</h3></td>
+                <td width="auto" valign="middle">
+                    账户余额：<span class="td_noboder fontcolor" style="margin-right: 20px;">￥<i class="fontsize" data-bind="text: $root.readyAccount.TotalBalance"></i></span>
+                @*</td>
+                <td width="auto" valign="bottom">*@
+                    冻结金额:<span class="td_noboder fontcolor" style="margin-right: 20px;">￥<i class="fontsize" data-bind="text: $root.readyAccount.FreezeAmount"></i></span>
+                @*</td>
+                <td width="auto" valign="bottom">*@
+                    可用余额:<span class="td_noboder fontcolor" style="margin-right: 20px;">￥<i class="fontsize" data-bind="text: $root.readyAccount.ReadyBalance"></i></span>
+
+                    @*</td>
+                <td width="auto" valign="bottom">*@
+                    <span>
+                        <a style="margin-right: 20px; width: 50px;" class="easyui-linkbutton"  onclick="javascript:deposit()">充值</a>
+                        @*</td>
+            <td width="auto" valign="bottom">*@
+                        <a style="margin-right: 20px; width: 50px;" class="easyui-linkbutton" onclick="javascript:withdraw()">结算</a>
+                        <a style="margin-right: 20px; width: 50px;" class="easyui-linkbutton" onclick="javascript:transfer()">转账</a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tdtitle td_noboder"></td>
+                <td  class="tdtitle td_noboder fontcolor2">【功能：充值、结算、转账、支付】 现金账户用于存放充值资金，方便您日后的交易购买。</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div id="toolbar" style="padding:5px;height:auto; overflow:hidden;">
+        <div>
+            <div style="float:left">
+                <div class="m_search">
+                    日期 从:
+                    <input type="text" class="easyui-my97" id="myStart" data-bind="my97value:$root.searchForm.startTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd\')}'}" />
+                    到
+                    <input type="text" class="easyui-my97" id="myEnd" data-bind="my97value:$root.searchForm.endTime" data-options="{minDate:'#F{$dp.$D(\'myStart\')}'}" />
+                </div>
+                
+                @*流水号：
+                <input type="text" class="inputStyle" data-bind="value:$root.searchForm.orderNo" />*@
+                <div class="m_search">
+                    交易号：
+                    <input type="text" class="inputStyle" data-bind="value:$root.searchForm.outTradeNo" />
+                </div>
+                <div class="m_search">
+                  <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" style="overflow:hidden;" data-bind="click: $root.searchClick">查询</a>
+                 
+                  <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-white-export" style="overflow:hidden;margin-left: 20px;" onclick="exportCashExcel();">导出</a>
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="tableShow" data-options="region:'center',border:0">
+        <table id="MainTable" data-bind="datagrid: grid" title="账户明细" style="margin:10px">
+
+            <thead>
+                <tr bgcolor="#daeef5">
+                    @*<th data-options="field:'SerialNum',width:150">流水号</th>*@ 
+                    <th data-options="field:'OutTradeNo',width:150">交易号</th> 
+                    <th data-options="field:'CreateAmount',width:150">日期</th>
+                    <th data-options="field:'Amount',width:150,formatter:function(val,row){return val>0?val:''}" >收入(元)</th> 
+                    <th data-options="field:'AmountA',width:150,formatter:function(val,row){return row.Amount<0?row.Amount:''}">支出(元)</th> 
+                    @*<th data-options="field:'PayType',width:150">支付方式</th>*@ 
+                    <th data-options="field:'LeaveAmount',width:150">账户余额(元)</th>
+                    <th data-options="field:'Remark',width:150">备注</th>
+                    @*<th data-options="field:'Remark',width:150">备注</th>*@
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+    @section scripts{
+        <script src="~/my97/WdatePicker.js"></script>
+        <script src="~/easyui/jquery.my97.js"></script>
+        <script type="text/javascript">
+            var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+            var vm = new ViewModel(Fromdata);
+            vm.grid.idField = "OutTradeNo";
+            vm.readyAccount = ko.mapping.fromJS(Fromdata.readyAccount);
+            ko.applyBindings(vm);
+
+            $.get(Fromdata.urls.getOverage, { "time": new Date().getTime() }, function(res) {
+                //ko.mapping.fromJS(JSON.parse(res),vm.readyAccount);
+                res = JSON.parse(res);
+                vm.readyAccount.ReadyBalance(res.ReadyBalance.toFixed(2));
+                vm.readyAccount.FreezeAmount(res.FreezeAmount.toFixed(2));
+                vm.readyAccount.TotalBalance(res.TotalBalance.toFixed(2));
+            });
+
+            function deposit() { 
+                window.location.href = Fromdata.urls.deposit;
+            }
+            function withdraw() {
+                window.location.href = Fromdata.urls.withdraw;
+            }
+            function transfer() {
+                window.location.href = Fromdata.urls.transfer;
+            }
+            function  exportCashExcel() {
+                vm.exportClick("Excel2003");
+
+            }
+ 
+
+        </script>
+    }

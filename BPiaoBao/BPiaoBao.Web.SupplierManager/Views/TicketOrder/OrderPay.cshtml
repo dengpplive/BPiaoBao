@@ -1,0 +1,26 @@
+﻿
+<div id="Passenger_Dialog" class="easyui-dialog" title="乘机人信息修改" data-options="modal:true,closed:true,closable:false,buttons:'#Passenger_buttons'" style="width: 800px; padding: 5px 15px;">
+    <table data-bind="foreach:$root.PassengersInfo">
+        <tr>
+            <td>乘机人:</td>
+            <td data-bind="text:PassengerName">
+            </td>
+            <td>身份证号:</td>
+            <td>
+                <input type="text" data-bind="value:CardNo" />
+            </td>
+            <td>手机号:</td>
+            <td>
+                <input type="text" data-bind="value:Phone" />
+            </td>
+             <td>票号:</td>
+             <td>
+                <input type="text" data-bind="value:TicketNumber" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="Passenger_buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.SaveClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#Passenger_Dialog').dialog('close');">取消</a>
+</div>

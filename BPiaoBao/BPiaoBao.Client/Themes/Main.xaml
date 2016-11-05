@@ -1,0 +1,168 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BPiaoBao.Client.UserControl" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:commonControl="clr-namespace:BPiaoBao.Client.UIExt.CommonControl;assembly=BPiaoBao.Client.UIExt"     
+                    mc:Ignorable="d">
+    <!--<Style TargetType="{x:Type Window}" x:Key="NoBorderWindow">
+    	<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="ResizeMode" Value="NoResize"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="OpacityMask" Value="White"/>
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="BorderBrush" Value="#1F5480"/>
+        <Setter Property="BorderThickness" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border x:Name="Bd" SnapsToDevicePixels="True">
+                        <ContentPresenter Content="{TemplateBinding ContentControl.Content}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+    <Style x:Key="RefreshButton" TargetType="{x:Type Button}">
+    	<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Margin" Value="0,0,5,0"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Image x:Name="PART_IMG" ToolTip="刷新(F5)" Source="../Images/rush1.png" Stretch="Fill" Height="Auto"/>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Source" TargetName="PART_IMG" Value="../Images/rush2.png"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>                
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="WhiteBtn" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="{DynamicResource WhiteBtnBg2}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource WhiteBtnBorder2}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal"/>
+                                <VisualState x:Name="MouseOver">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="MouseOver1">
+                                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Pressed"/>
+                                <VisualState x:Name="Disabled"/>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+                        <Border x:Name="Chrome" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="true" Background="{TemplateBinding Background}" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </Border>
+                        <Border x:Name="MouseOver1" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" CornerRadius="3" Opacity="0.5" Visibility="Collapsed" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}" >
+                            <Grid Background="{TemplateBinding Background}" Visibility="Visible"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="TabCon" TargetType="{x:Type TabControl}">
+    	<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabControl}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="33"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="#abc3cc" Padding="10,0,0,0" BorderThickness="0,0,0,1">
+                            <Border.Background>
+                                <ImageBrush ImageSource="../Images/bbbgg.png" TileMode="Tile" ViewportUnits="Absolute" Viewport="0,0 32,32"/>
+                            </Border.Background>
+                            <Grid>
+                                <Grid.ColumnDefinitions> 
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Button Grid.Column="0"  Style="{StaticResource RefreshButton}" Margin="0" Command="NavigationCommands.Refresh" Width="24" Height="24" VerticalAlignment="Bottom" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+                                <Button Style="{StaticResource WhiteBtn}" ToolTip="全屏显示(ESC退出全屏)" Grid.Column="1" Content="全屏"  Margin="2,0,0,0" Command="NavigationCommands.Zoom" Width="28" Height="24" VerticalAlignment="Bottom" VerticalContentAlignment="Center" HorizontalAlignment="Right"/>
+                                <TabPanel Grid.Column="2" IsItemsHost="True" VerticalAlignment="Bottom"/>
+                            </Grid>
+                        </Border>
+                        <Border Grid.Row="1" BorderThickness="0">
+                            <ContentPresenter ContentSource="SelectedContent" x:Name="PART_SelectedContentHost"/>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="barButton" TargetType="{x:Type Button}">
+        <Border x:Name="Bd" Background="Transparent">
+            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter TargetName="Bd" Property="Background">
+                    <Setter.Value>
+                        <LinearGradientBrush StartPoint="0.2,0" EndPoint="0.2,1">
+                            <GradientStop Color="#23ddff" Offset="0"/>
+                            <GradientStop Color="Transparent" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="IButton"  TargetType="{x:Type local:ImageButton}">
+    	<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:ImageButton}">
+                    <StackPanel Width="50" Orientation="Vertical" VerticalAlignment="Center">
+                        <Border x:Name="Bd" CornerRadius="5" Width="38" Height="30"  Background="#95b2c7">
+                            <Image Source="{TemplateBinding Property=Image}"  Stretch="None"/>
+                        </Border>
+                        <TextBlock x:Name="Tb" Foreground="#95b2c7" Text="{TemplateBinding Property=Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Height="20"/>
+                    </StackPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="Bd" Value="#2e8cdc"/>
+                            <Setter Property="Foreground" TargetName="Tb" Value="#2e8cdc"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <DataTemplate x:Key="PluginList" DataType="{x:Type ListBox}">
+        <Grid x:Name="Grid" Background="Transparent" Width="85">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Image Source="{Binding Icon}" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"
+                    commonControl:PromptAdorner.IsPromptEnabled="{Binding IsShowTip}"
+                                commonControl:PromptAdorner.PromptCount="{Binding DataContext.TipCount,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Mode=TwoWay}"/>
+            <TextBlock Grid.Row="1" Foreground="#FFFFFF" Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

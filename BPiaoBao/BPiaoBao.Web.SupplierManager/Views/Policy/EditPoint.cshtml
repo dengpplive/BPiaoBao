@@ -1,0 +1,61 @@
+﻿<style>
+    .span_paddingright {
+        padding-right: 10px;
+    }
+
+    .divstyle {
+       
+        width: 350px;
+        height: 350px;
+    }
+        .divstyle table { margin:15px;
+        }
+         .divstyle table tr td{
+             line-height:32px;
+            color: #000;
+        }
+
+    .titleStyle2 {
+        color: #666;
+    }
+</style>
+
+<div id="EditPoint" class="easyui-dialog divstyle" title="修改返点" data-options="modal:true,closed:true,closable:false,buttons:'#Point-buttons'">
+    <table >
+        <tr>
+            <td class="titleStyle2" width="70">承运人：</td>
+            <td colspan="3" data-bind="text: $root.EditForm.CarrayCode"></td>
+        </tr>
+        <tr>
+            <td class="titleStyle2">出发城市：</td>
+            <td colspan="3" data-bind="text: $root.EditForm.FromCityCodes"></td>
+        </tr>
+        <tr>
+            <td class="titleStyle2">到达城市：</td>
+            <td colspan="3" data-bind="text: $root.EditForm.ToCityCodes"></td>
+        </tr>
+        <tr>
+            <td class="titleStyle2">舱位：</td>
+            <td colspan="3" data-bind="text: $root.EditForm.Seats" style="word-break:break-all "></td>
+        </tr>
+        <tr>
+            <td class="titleStyle2">行程：</td>
+            <td colspan="3" data-bind="text: $root.EditForm.Seats" style="word-break:break-all "></td>
+        </tr>
+        <tr>
+            <td class="titleStyle2">政策类型：</td>
+            <td colspan="3" data-bind="text: $root.EditForm.LocalPolicyType"></td>
+        </tr>
+
+        <tr>
+            <td class="titleStyle2">本地返点：</td>
+            <td>
+                <input type="text" class="input" style="width: 50px;" data-bind="value: $root.EditForm.LocalPoint" maxlength="4" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="Point-buttons" style="text-align: center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: PartSaveClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#EditPoint').dialog('close');">取消</a>
+</div>

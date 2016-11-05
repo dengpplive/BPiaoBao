@@ -1,0 +1,104 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>欢迎到卖票宝登录</title>
+    @Styles.Render("~/Content/login")
+    @Scripts.Render("~/bundles/jquery")
+    <script type="text/javascript">
+        $(function () {
+            $(document).keydown(function (event) {
+                if (event.keyCode == 13) {
+                    var code = $('#Code').val();
+                    var account = $('#UserName').val();
+                    var pwd = $('#Password').val();
+                    var isLogin = true;
+                    if (code == '') {
+                        $('#Code').focus();
+                        isLogin = false;
+                        alert('请输入登录商户号');
+                    } else if (account == '') {
+                        $('#UserName').focus();
+                        isLogin = false;
+                        alert('请输入登录账号!')
+                    } else if (pwd == '') {
+                        $('#Password').focus();
+                        isLogin = false;
+                        alert('请输入登录密码');
+                    }
+                    if (isLogin == true) {
+                        $('#submit').click();
+                    }
+                }
+            })
+            $("#submit").click(function () {
+                $('#submit').prop("disabled", true);
+                $('#loginTip').show();
+                $.ajax({
+                    url: '/Account/Login',
+                    type: 'POST',
+                    data: $("div.content :input").serialize(),
+                    success: function (data, textStatus) {
+                        window.location.href = data.Url;
+                    },
+                    error: function (e) {
+                        var obj = JSON.parse(e.responseText)
+                        $('#submit').prop("disabled", false);
+                        $('#loginTip').hide();
+                        alert(obj.ErrorMsg);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="mian">
+        <div class="logo">
+            <img src="~/Content/images/logo2.png" width="417" height="60" />
+        </div>
+        <div class="content">
+            <table width="0%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="67" height="45">商户号：</td>
+                    <td width="211" height="45" colspan="2">
+                        <input type="text" name="Code" value="@Model.Code" id="Code" class="inputstyle" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="45">账&nbsp;&nbsp;&nbsp;号：</td>
+                    <td height="45" colspan="2">
+                        <input type="text" name="UserName" value="@Model.UserName" id="UserName" class="inputstyle" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="45">密&nbsp;&nbsp;&nbsp;码：</td>
+                    <td height="45" colspan="2">
+                        <input type="password" name="Password" value="@Model.Password" id="Password" class="inputstyle" />
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2">
+                        <input name="RememberMe" id="RememberMe" type="checkbox" value="true" checked="@(Model.RememberMe ? "" : "checked")" /><span class="checkboxstyle">记住密码</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="60">&nbsp;</td>
+                    <td height="60" width="111">
+                        <button id="submit" type="button" class="submit">登录</button></td>
+                    <td height="60">
+                        <div id="loginTip" style="display:none; height:24px; line-height:24px; padding-left:24px; background:url('@Url.Content("~/Content/images/logining.gif")') 4px 4px no-repeat;">正在登录...</div>
+                    </td>
+                </tr>
+            </table>
+            <p>Copyright © 2006-2014&nbsp;&nbsp;&nbsp;<a href="#">mpb.51cbc.com</a>&nbsp;&nbsp;&nbsp;All Rights Reserved. &nbsp;&nbsp;&nbsp;信誉信息技术有限公司</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Bank Num="10001" Code="BOC" Name="中国银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/BOCB2C.png" />
+  <Bank Num="10002"  Code="ICBC" Name="中国工商银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/ICBCB2C.png"/>
+  <Bank Num="10004"  Code="CMB" Name="招商银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/CMB.png"/>
+  <Bank Num="10005"  Code="CCB" Name="中国建设银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/CCB.png"/>
+  <Bank Num="10007"  Code="ABC" Name="中国农业银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/ABC.png"/>
+  <Bank Num="10009"  Code="SPDB" Name="上海浦东发展银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/SPDB.png"/>
+  <Bank Num="100011"  Code="CIB" Name="兴业银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/CIB.png"/>
+  <Bank Num="100012"  Code="GDB" Name="广东发展银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/GDB.png"/>
+  <Bank Num="100013"  Code="SDB" Name="深圳发展银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/SDB.png"/>
+  <Bank Num="100014"  Code="CMBC" Name="中国民生银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/CMBC.png"/>
+  <Bank Num="100015"  Code="COMM" Name="交通银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/COMM.png"/>
+  <Bank Num="100016"  Code="CITIC" Name="中信银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/CITIC.png"/>
+  <Bank Num="100017"  Code="CEB" Name="光大银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/CEBBANK.png"/>
+  <Bank Num="100018"  Code="NBCB" Name="宁波银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/NBBANK.png"/>
+  <Bank Num="100021"  Code="PAB" Name="平安银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/SPABANK.png"/>
+  <Bank Num="100023"  Code="POSTGC" Name="中国邮政储蓄银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/PSBC-DEBIT.png"/>
+  <Bank Num="100024"  Code="BOB" Name="北京银行" Uri="/BPiaoBao.Client.UIExt;component/Image/BankImages/BJBANK.png"/>
+</Root>

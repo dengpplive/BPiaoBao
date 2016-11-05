@@ -1,0 +1,172 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:BPiaoBao_Client_SystemSetting_ViewModel="clr-namespace:BPiaoBao.Client.SystemSetting.ViewModel" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" x:Class="BPiaoBao.Client.SystemSetting.View.UserSettingControl" 
+             mc:Ignorable="d" d:DesignWidth="819.667" d:DesignHeight="613.167" Background="White" 
+             >
+    <UserControl.Resources>
+        <Style x:Key="updateButtonStyle1" TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#FF2267AA"/>
+            <Setter Property="BorderBrush" Value="#FF2072C4"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{x:Null}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FFD6E0ED"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="Chrome">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF6794CC"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="textBlock">
+                                                <EasingColorKeyFrame KeyTime="0" Value="#FF3886C8"/>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed"/>
+                                    <VisualState x:Name="Disabled"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="Focused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualState x:Name="Valid"/>
+                                    <VisualState x:Name="InvalidFocused"/>
+                                    <VisualState x:Name="InvalidUnfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Chrome" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="3" SnapsToDevicePixels="True" BorderBrush="#FFB6B6B6">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="White" Offset="0"/>
+                                        <GradientStop Color="#FFEDEDED" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <TextBlock x:Name="textBlock"  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" OpacityMask="Black" Text="{TemplateBinding Content}" Background="{x:Null}"/>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="#FFADADAD"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <BPiaoBao_Client_SystemSetting_ViewModel:UserSettingViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="140"/>
+            <RowDefinition Height="0.598*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0,1,0,0">
+            <Rectangle Stroke="Black" StrokeThickness="0" Height="35" Fill="{DynamicResource HeadBg2}"/>
+            <TextBlock Text="个人中心" Margin="31,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{DynamicResource Head2TextBlock}" />
+        </Grid>
+        <Grid Margin="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <Border Height="140" Background="#FFF9F9F9">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.136*"/>
+                        <RowDefinition Height="0.243*"/>
+                        <RowDefinition Height="0.207*"/>
+                        <RowDefinition Height="0.207*"/>
+                        <RowDefinition Height="0.207*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="0.734*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--<TextBlock TextWrapping="Wrap" Text="真实姓名：" VerticalAlignment="Center" Foreground="#FF666666" Grid.Row="2" HorizontalAlignment="Right"/>
+                    <TextBlock TextWrapping="Wrap" Text="登录账号：" Foreground="#FF666666" d:LayoutOverrides="Height" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="联系电话：" Foreground="#FF666666" d:LayoutOverrides="Height" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CurrentUserInfo.OperatorAccount}" FontWeight="Bold" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CurrentUserInfo.OperatorName}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CurrentUserInfo.OperatorPhone}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>-->
+                    <TextBlock TextWrapping="Wrap" Text="真实姓名：" VerticalAlignment="Center" Foreground="#FF666666" Grid.Row="2" HorizontalAlignment="Right"/>
+                    <TextBlock TextWrapping="Wrap" Text="登录帐号：" Foreground="#FF666666" d:LayoutOverrides="Height" HorizontalAlignment="Right" Grid.Row="1" VerticalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="联系电话：" Foreground="#FF666666" d:LayoutOverrides="Height" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="联系手机：" Foreground="#FF666666" d:LayoutOverrides="Height" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OperatorDto.Account}" FontWeight="Bold" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OperatorDto.Realname}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="2" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OperatorDto.Phone}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="3" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding OperatorDto.Tel}" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="4" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="开户联系人：" Foreground="#FF666666" d:LayoutOverrides="Height" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="开户联系电话：" Foreground="#FF666666" d:LayoutOverrides="Height" HorizontalAlignment="Right" Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CurrentUserInfo.Contact}" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="1" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding CurrentUserInfo.Tel}" HorizontalAlignment="Left" Grid.Column="3" Grid.Row="2" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                </Grid>
+            </Border>
+
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="210"/>
+                <RowDefinition Height="0.339*"/>
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="#FFEDDDCC" BorderThickness="1" CornerRadius="5" Background="#FFFFFDF6" Margin="30">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.113*"/>
+                        <RowDefinition Height="0.24*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="0.24*"/>
+                        <RowDefinition Height="0.193*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="129"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="145.824"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="1" TextWrapping="Wrap" Text="登录密码：" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF666666"/>
+                    <TextBlock Grid.Row="3" TextWrapping="Wrap" Text="创建时间：" HorizontalAlignment="Right" Foreground="#FF666666" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="登录买票宝帐户时需要输入的密码" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" TextWrapping="Wrap" Text="{Binding CurrentUserInfo.CreateTime, StringFormat=yyyy-MM-dd HH:mm:ss}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15,0,0,0" FontWeight="Bold"/>
+                    <Button Content="修改登录密码" Grid.Column="2" Grid.Row="1" Margin="20,0" Height="24" VerticalAlignment="Center" Background="#FFFBFBFB" BorderBrush="#FFB6B6B6" Style="{StaticResource updateButtonStyle1}" Foreground="#FF141B21" FontWeight="Bold" Command="{Binding ChangePasswordCommand, Mode=OneWay}"/>
+                    <Grid Grid.ColumnSpan="2" Grid.Column="1" Margin="-60,5.31,20,5.31" Grid.Row="2" Visibility="{Binding HasAdminRight, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <TextBlock Grid.Row="2" TextWrapping="Wrap" Text="支付密码：" HorizontalAlignment="Left" Foreground="#FF666666" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Row="2" TextWrapping="Wrap" Text="在账户资金变动、修改账户信息时需要输入的密码" HorizontalAlignment="Left" Margin="75,0,0,0" VerticalAlignment="Center"/>
+                        <Button Content="设置支付密码" Grid.Row="2" Background="#FFFBFBFB" BorderBrush="#FFB6B6B6" Style="{StaticResource updateButtonStyle1}" Foreground="#FF141B21" FontWeight="Bold" VerticalAlignment="Center" Height="24" Command="{Binding ChangePayPasswordCommand, Mode=OneWay}" HorizontalAlignment="Right" Width="105.824"/>
+                    </Grid>
+                </Grid>
+            </Border>
+            <Border BorderBrush="#FFEDDDCC"  Grid.Row="1" VerticalAlignment="Top"  BorderThickness="1" CornerRadius="5" Background="#FFFFFDF6" Margin="30,0,30,0" Height="200">
+                <StackPanel Orientation="Vertical" Margin="50,20,0,0">
+                    <TextBlock Text="快捷键说明：" HorizontalAlignment="Left" VerticalAlignment="Center" ></TextBlock>
+                    <TextBlock Text="F5：  刷新界面" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,10,0,0"></TextBlock>
+                    <TextBlock Text="F6：  切换舱位价格高、低排序，默认从低到高" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,10,0,0"></TextBlock>
+                    <TextBlock Text="F7：  切换显、隐政策，默认：显示政策" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,10,0,0"></TextBlock>
+                    <TextBlock Text="F9：  显示/隐藏左侧菜单栏" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,10,0,0"></TextBlock>
+                    <TextBlock Text="F11：切换全屏(全屏模式Esc可退出)" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,10,0,0"></TextBlock>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" Margin="0" Grid.Row="1" VerticalAlignment="Center" Width="100" Grid.RowSpan="3" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+    </Grid>
+</UserControl>

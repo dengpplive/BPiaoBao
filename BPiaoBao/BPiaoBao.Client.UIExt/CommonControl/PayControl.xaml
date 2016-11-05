@@ -1,0 +1,241 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" x:Name="userControl" x:Class="BPiaoBao.Client.UIExt.CommonControl.PayControl" 
+             mc:Ignorable="d" 
+             d:DesignHeight="646" d:DesignWidth="1044" Background="White">
+	<UserControl.Resources>
+		<SolidColorBrush x:Key="CheckBoxStroke" Color="#8E8F8F"/>
+		<Style x:Key="CheckRadioFocusVisual">
+			<Setter Property="Control.Template">
+				<Setter.Value>
+					<ControlTemplate>
+						<Rectangle StrokeDashArray="1 2" StrokeThickness="1" Stroke="Black" SnapsToDevicePixels="true" Margin="14,0,0,0"/>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="RadioButtonStyle" TargetType="{x:Type RadioButton}">
+			<Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+			<Setter Property="Background" Value="#F4F4F4"/>
+			<Setter Property="BorderBrush" Value="{StaticResource CheckBoxStroke}"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type RadioButton}">
+						<BulletDecorator Background="Transparent">
+							<BulletDecorator.Bullet>
+								<Themes:BulletChrome BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" IsChecked="{TemplateBinding IsChecked}" IsRound="true" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderPressed="{TemplateBinding IsPressed}"/>
+							</BulletDecorator.Bullet>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="CheckStates">
+									<VisualState x:Name="Checked"/>
+									<VisualState x:Name="Unchecked">
+										<Storyboard>
+											<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter">
+												<EasingDoubleKeyFrame KeyTime="0" Value="0.49"/>
+											</DoubleAnimationUsingKeyFrames>
+										</Storyboard>
+									</VisualState>
+									<VisualState x:Name="Indeterminate"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+						</BulletDecorator>
+						<ControlTemplate.Triggers>
+							<Trigger Property="HasContent" Value="true">
+								<Setter Property="FocusVisualStyle" Value="{StaticResource CheckRadioFocusVisual}"/>
+								<Setter Property="Padding" Value="4,0,0,0"/>
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="false">
+								<Setter Property="Foreground" Value="{StaticResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</UserControl.Resources>
+	<Grid>
+		<VisualStateManager.VisualStateGroups>
+			<VisualStateGroup x:Name="VisualStateGroup">
+				<VisualState x:Name="CashState">
+					<Storyboard>
+						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtCredit">
+							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+						</ObjectAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+				<VisualState x:Name="CreditState">
+					<Storyboard>
+						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtCash">
+							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+						</ObjectAnimationUsingKeyFrames>
+						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="txtCredit">
+							<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+						</ObjectAnimationUsingKeyFrames>
+					</Storyboard>
+				</VisualState>
+			</VisualStateGroup>
+		</VisualStateManager.VisualStateGroups>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="275"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="244"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Border x:Name="bg" Grid.ColumnSpan="2" BorderThickness="0,0,0,1" BorderBrush="#FFE3E3E3" d:IsLocked="True" >
+			<Grid Background="#FFF7F8FA"/>
+		</Border>
+		<Grid Margin="0,0,0,1">
+			<Image Source="/BPiaoBao.Client.UIExt;component/Image/PayControl/ticket.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>			
+		</Grid>
+		<Control x:Name="headContent" Grid.Column="1"/>
+		<Border Grid.Row="1" BorderThickness="0,0,1,0" BorderBrush="#FFE3E3E3">
+			<Grid>
+				<Image Source="/BPiaoBao.Client.UIExt;component/Image/PayControl/ad.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			</Grid>
+
+		</Border>
+		<Grid Grid.Row="1" Grid.Column="1">
+			<TabControl Margin="25,25,50,20" FlowDirection="RightToLeft" ItemContainerStyle="{StaticResource PayTabItem}" BorderThickness="0" Background="#FFF7F8FA" SelectedIndex="3">
+				<TabItem Header="支付平台" Width="110" Height="30" FlowDirection="LeftToRight">
+					<Grid Margin="10">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto"/>
+							<RowDefinition Height="Auto"/>
+						</Grid.RowDefinitions>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="*"/>
+							</Grid.ColumnDefinitions>
+							<ListBox x:Name="listBoxPlatform" DataContext="{Binding Source={StaticResource BankDataDataSource}}" ItemsSource="{Binding PayPlatforms}" Style="{StaticResource PayPlatformsListBoxStyle}" Grid.Column="1" VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource PlatformItemStyle}" BorderBrush="{x:Null}" SelectedValue="{Binding SelectedPlatform, ElementName=userControl}" SelectedValuePath="Code" />
+						</Grid>
+						<Button x:Name="payByPlatformBtn" Content="立即支付" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Style="{StaticResource PayBtn}" Height="28" Click="payByPlatform_Click"/>
+					</Grid>
+				</TabItem>
+				<TabItem Header="银行卡" Width="110" Height="30" FlowDirection="LeftToRight">
+					<ScrollViewer Margin="10" VerticalScrollBarVisibility="Auto">
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+											
+							<ListBox x:Name="listBox" DataContext="{Binding Source={StaticResource BankDataDataSource}}" ItemsSource="{Binding Banks}" Style="{StaticResource BankItemsControl}" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderThickness="0" SelectedValue="{Binding SelectedBankCode, ElementName=userControl, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="Code"  />
+											
+							<Button x:Name="payByBankBtn" Content="立即支付" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Style="{StaticResource PayBtn}" Height="28" Margin="10,10,0,0" Grid.Row="1" Click="payByBankBtn_Click"/>
+						</Grid>
+					</ScrollViewer>
+				</TabItem>
+				<TabItem Header="账户支付" Width="110" Height="30" FlowDirection="LeftToRight">
+					<ScrollViewer>
+						<Grid>
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+							<StackPanel Orientation="Horizontal" Height="50" Margin="35,0,0,0">
+								<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="选择账户：" VerticalAlignment="Center" Foreground="Black"/>
+								<RadioButton x:Name="radioBtnCashbag" IsChecked="True" Background="#FF2E45AE" Style="{StaticResource RadioButtonStyle}">
+									<i:Interaction.Triggers>
+										<i:EventTrigger EventName="Checked">
+											<ei:GoToStateAction StateName="CashState"/>
+										</i:EventTrigger>
+									</i:Interaction.Triggers>
+									<Grid Height="50" Width="190">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto"/>
+											<RowDefinition Height="*"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="50"/>
+											<ColumnDefinition Width="*"/>
+										</Grid.ColumnDefinitions>
+										<Grid Grid.RowSpan="2" Background="#FF2D8CDC" Width="40" Height="35">
+											<Image Source="/BPiaoBao.Client.UIExt;component/Image/PayControl/cash.png" Stretch="None"/>
+										</Grid>
+										<TextBlock Grid.Column="1" Foreground="{StaticResource LightBlueForeground}" Margin="0,3"><Run Text="现金账户"/></TextBlock>
+										<TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource GrayForeground}"><Run Text="该账户是该平台绑定账户所使用可进行的支付"/></TextBlock>
+									</Grid>
+								</RadioButton>
+								<RadioButton x:Name="radioBtnCredit" Style="{StaticResource RadioButtonStyle}" Margin="15,0,0,0">
+									<i:Interaction.Triggers>
+										<i:EventTrigger EventName="Checked">
+											<ei:GoToStateAction StateName="CreditState"/>
+										</i:EventTrigger>
+									</i:Interaction.Triggers>
+									<Grid Height="50" Width="190">
+										<Grid.RowDefinitions>
+											<RowDefinition Height="Auto"/>
+											<RowDefinition Height="*"/>
+										</Grid.RowDefinitions>
+										<Grid.ColumnDefinitions>
+											<ColumnDefinition Width="50"/>
+											<ColumnDefinition Width="*"/>
+										</Grid.ColumnDefinitions>
+										<Grid Grid.RowSpan="2" Background="#FF2D8CDC" Width="40" Height="35">
+											<Image Source="/BPiaoBao.Client.UIExt;component/Image/PayControl/credit.png" Stretch="None"/>
+										</Grid>
+										<TextBlock Grid.Column="1" Foreground="{StaticResource LightBlueForeground}" Margin="0,3"><Run Text="信用账户"/></TextBlock>
+										<TextBlock Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource GrayForeground}"><Run Text="该账户由平台评审授权可用该账户透支使用"/></TextBlock>
+									</Grid>
+								</RadioButton>
+							</StackPanel>
+							<StackPanel Margin="36,0,0,0" Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" Height="50">
+								<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="当前余额：" VerticalAlignment="Center" Margin="0"/>
+								<WPFSpark:SprocketControl HorizontalAlignment="Left" Width="10" Height="10" VerticalAlignment="Center" Margin="0" Visibility="{Binding IsBusy, ElementName=userControl, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+								<TextBlock x:Name="txtCash" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding CashBalance, ElementName=userControl, StringFormat=￥\{0:f2\}}" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}" Margin="0"/>
+								<TextBlock x:Name="txtCredit" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding CreditBalance, ElementName=userControl, StringFormat=￥\{0:f2\}}" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}" Background="#FFF5F6F8" Visibility="Collapsed" Margin="0"/>
+							</StackPanel>
+							<StackPanel Margin="36,0,0,0" Orientation="Horizontal" Grid.Row="2" Height="50">
+								<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="支付密码：" VerticalAlignment="Center" Margin="0"/>
+								<PasswordBox x:Name="passwordBox" VerticalAlignment="Center" HorizontalAlignment="Left" Width="141" Margin="0"/>
+							</StackPanel>
+							<Button x:Name="payBtn" Content="立即支付" VerticalAlignment="Top" Style="{StaticResource PayBtn}" Height="28" Click="payBtn_Click" Margin="36,0,0,0" Grid.Row="3" HorizontalAlignment="Left" Width="80"/>
+						</Grid>
+					</ScrollViewer>
+				</TabItem>
+                <TabItem Header="快捷支付" Width="110" Height="30" FlowDirection="LeftToRight">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="96"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="选择账户：" VerticalAlignment="Center" Grid.Column="0"/>
+                        <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                            <RadioButton  x:Name="ApliPayRadioButton" IsChecked="True" Margin="0,0,0,0" Style="{DynamicResource ApliPayRadioButton}" Width="210">
+                            </RadioButton>
+                        </StackPanel>
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="支付密码：" VerticalAlignment="Center" Grid.Row="1"/>
+                        <Grid Grid.Column="1" Height="40" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" >
+                            <PasswordBox x:Name="aplipaypasswordBox" VerticalAlignment="Center" HorizontalAlignment="Left" Width="141" ToolTip="此密码为买票宝支付密码"/>
+                            <!--<TextBlock TextWrapping="Wrap" Text="此密码为买票宝支付密码" Foreground="{StaticResource GrayForeground}" FontSize="10.667" Margin="0,0,0,-6" VerticalAlignment="Bottom"/>-->
+                        </Grid>
+                        <StackPanel Grid.Column="1" Margin="10,20,0,0" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <Button Content="立即支付"  VerticalAlignment="Center" Style="{StaticResource PayBtn}" Height="28" Click="PayByQuikAliPayBtn_Click" Width="90" 
+                                       x:Name="PayByQuikAliPayBtn"/>
+                            <TextBlock  TextWrapping="Wrap" VerticalAlignment="Center" Margin="0,0,0,0" Foreground="Green"/>
+                        </StackPanel>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="选择支付方式" VerticalAlignment="Top" Margin="42,33.081,0,0"/>
+			<Path Data="M572.33333,56.333333 L463.16698,56.333333" Fill="#FFC9D6DC" HorizontalAlignment="Left" Height="4.904" Margin="25,56.38,0,0" Stretch="Fill" Stroke="#FFC9D6DC" VerticalAlignment="Top" Width="548.333"/>
+		</Grid>
+
+	</Grid>
+</UserControl>

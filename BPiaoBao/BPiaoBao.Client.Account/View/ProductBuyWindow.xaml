@@ -1,0 +1,185 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:BPiaoBao_Client_Account_View_Converter="clr-namespace:BPiaoBao.Client.UIExt.Converter;assembly=BPiaoBao.Client.UIExt" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+    xmlns:converters="clr-namespace:BPiaoBao.Client.Account.View.Converters"
+    mc:Ignorable="d" 
+        x:Class="BPiaoBao.Client.Account.View.ProductBuyWindow"
+        WindowStartupLocation="CenterScreen" 
+        RenderOptions.BitmapScalingMode="NearestNeighbor"
+        Icon="/BPiaoBao.Client.UIExt;component/Image/success.png"
+        Title="确认支付"  Height="600" Width="900" d:DataContext="{d:DesignData /SampleData/ProductBuyViewModelSampleData.xaml}">
+    <Window.Resources>
+        <ResourceDictionary>
+            <converters:ShowBoolTextConverter x:Key="ShowBoolTextConverter"/>
+            <BPiaoBao_Client_Account_View_Converter:FinancialProductAvailableAmountConverter x:Key="FinancialProductAvailableAmountConverter"/>
+            <ControlTemplate x:Key="ToolTipTemplate">
+                <Border Height="113" Width="440" Margin="0" BorderBrush="Black" BorderThickness="1" >
+                    <Grid Background="White" HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Margin="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="#FF5C5959" BorderThickness="0,0,0,1" Margin="0" Grid.RowSpan="1" Grid.ColumnSpan="3"/>
+                        <TextBlock TextWrapping="Wrap" Text="积分预览：生效日期仅供参考，以客服审核通过时间为准" d:LayoutOverrides="Width, Height" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.ColumnSpan="3"/>
+                        <TextBlock TextWrapping="Wrap" Text="生效日" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1"/>
+                        <TextBlock TextWrapping="Wrap" Text="到期日" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1"/>
+                        <TextBlock TextWrapping="Wrap" Text="积分总额" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding Source={x:Static sys:DateTime.Today}, StringFormat=yyyy-MM-dd}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding ToDay, StringFormat=yyyy-MM-dd}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
+                        <TextBlock TextWrapping="Wrap" Text="{Binding GainsPoints, StringFormat=\{0\}}" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Style>
+        <StaticResource ResourceKey="CustomWindowStyle"/>
+    </Window.Style>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="275"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="290"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Background="#F7F8FA" Grid.ColumnSpan="2" Padding="0,20,0,0" BorderBrush="#FFE3E3E3" BorderThickness="0,0,0,1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="192"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Image Source="{Binding CurrentProduct.IconUrl}" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+                <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Hidden">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock  HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="16" Margin="0,0,0,10" Text="{Binding CurrentProduct.Name}"/>
+                        <Line X1="0" X2="600" Y1="0" Y2="0" Stroke="#FF0F0E0E" StrokeDashArray="0.5 3 1 3" StrokeThickness="1"/>
+                        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,12,0,0">
+                                <TextBlock Width="100" Margin="0,0,15,0" Foreground="#666666" TextAlignment="Right" Text="可购买金额:"/>
+                                <TextBlock><Run Text="{Binding CurrentProduct, Converter={StaticResource FinancialProductAvailableAmountConverter}, Mode=OneWay, StringFormat=\{0:f2\}}" Foreground="Orange"/><Run Text=" "/><Run Text="元"/></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,12,0,0">
+                                <TextBlock Width="100" Margin="0,0,15,0" Foreground="#666666" TextAlignment="Right"  Text="年利率:"/>
+                                <TextBlock Text="{Binding CurrentProduct.InterestRate}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,12,0,0">
+                                <TextBlock Width="100" Margin="0,0,15,0" Foreground="#666666" TextAlignment="Right"  Text="是否支持提前转出:"/>
+                                <TextBlock Text="{Binding CurrentProduct.CanSettleInAdvance,Converter={StaticResource ShowBoolTextConverter}}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                    <TextBlock Width="100" Margin="0,0,15,0" Foreground="#666666" TextAlignment="Right"  Text="产品周期:"/>
+                                    <TextBlock Text="{Binding CurrentProduct.Day, StringFormat=\{0\}天}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="41,0,0,0" Visibility="{Binding IsShowCountdown, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                    <TextBlock Width="100" Margin="0,0,15,0" Foreground="#666666" TextAlignment="Right"  Text="产品有效期:"/>
+                                    <TextBlock Text="{Binding Countdown}" Foreground="{DynamicResource OrangeForeground}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,12,0,0">
+                                <TextBlock Width="100" Margin="0,0,15,0" TextAlignment="Right" Foreground="#666666"  Text="产品简介:"/>
+                                <Border BorderBrush="#C2C2C2" BorderThickness="1" Width="505" Padding="5,5,5,24">
+                                    <TextBlock TextWrapping="Wrap" Foreground="#666666" Text="{Binding CurrentProduct.Description}"/>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,12,0,0">
+                                <TextBlock Width="100" Margin="0,0,15,0" TextAlignment="Right" Foreground="#666666"  Text="购买金额:" VerticalAlignment="Center"/>
+                                <xctk:DecimalUpDown Width="125" Value="{Binding BuyPrice, Mode=TwoWay, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}" BorderBrush="#7EA5C4" BorderThickness="1"/>
+                                <TextBlock Text="  元" VerticalAlignment="Center"/>
+                                <TextBlock VerticalAlignment="Center" Margin="10,0,0,0" ToolTipService.InitialShowDelay="10" ToolTipService.ShowDuration="100000">
+                                    <TextBlock.ToolTip>
+                                        <ToolTip Style="{StaticResource ToolTipStyle}">
+                                            <Control Template="{StaticResource ToolTipTemplate}" />
+                                        </ToolTip>
+                                    </TextBlock.ToolTip><Hyperlink><Run Text="积分预览"/></Hyperlink></TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,12,0,0">
+                                <CheckBox IsChecked="{Binding IsAccept, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="18,0,0,0">
+                                    <TextBlock Foreground="#FF666666"><Run Text="我同意 "/><Hyperlink Command="{Binding OpenAgreementCommand}"><Run Text="买票宝服务协议"/></Hyperlink></TextBlock>
+                                </CheckBox>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <Border Grid.Row="1"  BorderThickness="0,0,1,0" BorderBrush="#FFE3E3E3">
+            <Grid>
+                <Image Source="/BPiaoBao.Client.Account;component/Image/ad.png" Stretch="None" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+
+        </Border>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <TabControl Margin="25,25,50,20" FlowDirection="RightToLeft" ItemContainerStyle="{StaticResource PayTabItem}" BorderThickness="0" Background="#FFF7F8FA" SelectedIndex="2">
+                <TabItem Header="支付平台" Width="110" Height="30" FlowDirection="LeftToRight" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="52"/>
+                            <RowDefinition Height="69*"/>
+                            <RowDefinition Height="102*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="10,0">
+                            <ListBox x:Name="listBoxPlatform" DataContext="{Binding Source={StaticResource BankDataDataSource}}" ItemsSource="{Binding PayPlatforms}" Style="{StaticResource PayPlatformsListBoxStyle}" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ItemContainerStyle="{StaticResource PlatformItemStyle}" BorderThickness="1" BorderBrush="{x:Null}" />
+                        </StackPanel>
+                        <Button Content="下一步" Command="{Binding PayPlatformCommand}" CommandParameter="{Binding SelectedItem.Code, ElementName=listBoxPlatform}" HorizontalAlignment="Left" Margin="78,10,0,0" Grid.Row="2" VerticalAlignment="Top" Width="90" Style="{StaticResource PayBtn}" Height="28"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="银行卡" Width="110" Height="30" FlowDirection="LeftToRight" Visibility="Collapsed">
+                    <Grid Margin="2,10,40,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="213*"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <ScrollViewer Margin="10,5">
+                            <ListBox x:Name="listBox" DataContext="{Binding Source={StaticResource BankDataDataSource}}" ItemsSource="{Binding Banks}" Style="{StaticResource BankItemsControl}" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="0" BorderThickness="0"  />
+                        </ScrollViewer>
+                        <Button Content="立即支付" Command="{Binding PayCommand}" CommandParameter="{Binding SelectedItem.Code, ElementName=listBox}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="90" Style="{StaticResource PayBtn}" Height="28" Margin="10,5" Grid.Row="1"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="账户支付" Width="110" Height="30" FlowDirection="LeftToRight">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="96"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40*" />
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="75*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="账户余额：" VerticalAlignment="Center"/>
+                        <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="支付密码：" VerticalAlignment="Center" Grid.Row="1"/>
+                        <StackPanel Grid.Column="1" Margin="10,0,0,0" Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding RecieveMoney, StringFormat=￥\{0:f2\}}" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <TextBlock TextWrapping="Wrap" Margin="15,0,0,0">
+                        		<Hyperlink Command="{Binding OpenRechargeCommand}"><Run Text="立即充值"/></Hyperlink>
+                            </TextBlock>
+                        </StackPanel>
+                        <Grid Grid.Column="1" Height="40" Margin="10,0,0,0" Grid.Row="1" >
+                            <PasswordBox x:Name="PayPwd" VerticalAlignment="Center" HorizontalAlignment="Left" Width="141"/>
+                        </Grid>
+                        <Button Content="立即支付" Command="{Binding PayAccountCommand}" CommandParameter="{Binding ElementName=PayPwd}" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" Width="90" Style="{StaticResource PayBtn}" Height="28" Margin="10,37,0,0"/>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="选择支付方式" VerticalAlignment="Top" Margin="42,33.081,0,0"/>
+            <Path Data="M572.33333,56.333333 L463.16698,56.333333" Fill="#FFC9D6DC" HorizontalAlignment="Left" Height="4.904" Margin="25,56.38,0,0" Stretch="Fill" Stroke="#FFC9D6DC" VerticalAlignment="Top" Width="548.333"/>
+        </Grid>
+    </Grid>
+</Window>

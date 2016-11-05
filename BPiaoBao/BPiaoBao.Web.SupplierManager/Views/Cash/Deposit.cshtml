@@ -1,0 +1,201 @@
+﻿<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="62" valign="bottom" class="tdtitle td_noboder"><h3>现金充值</h3></td>
+                <td width="auto" valign="bottom" class="td_noboder">
+                    余额：
+                    <span class="td_noboder fontcolor">
+                        ￥
+                        <i class="fontsize" data-bind="text:$root.readyBalance"></i>
+                    </span>
+                </td>
+                <td width="18" valign="bottom" class="td_noboder">
+                    <font color="#cccccc">|</font>
+                </td>
+                <td width="888" valign="bottom" class="td_noboder">
+                    <a href="javascript:void(0)" class="jilu" onclick="depositLog()">最近充值记录</a>
+                </td>
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="tableShow">
+        <div style="padding-bottom:10px; font-weight:bold;">充值方式</div>
+        <div class="easyui-tabs" style="height:auto;">
+            <div title="银行卡充值" style="padding:10px; overflow:hidden; padding-top:35px;">
+                <div class="chongzhi">
+                    <p class="pstyle"><strong>充值金额:</strong></p>
+                    <p class="pstyle2">
+                        <input type="text" data-bind="value:$root.money"  min="0.1" precision="2" />
+                    </p>
+                </div>
+
+                <div class="yinhangka">
+                    <p class="pstyle"><strong>储蓄卡银行:</strong></p>
+
+                    <ul class="bankCard" id="ulbankCard"></ul>
+                    <div style=" clear:both; padding-left:78px; padding-top:25px; padding-bottom:20px; margin-left: 8px;">
+                        <a class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick="doPay(1);return  false;">下一步</a><span style=" padding-left:30px; color:#666;">下一步将跳转到相应的网银进行支付</span>
+                    </div>
+                </div>
+            </div>
+            <div title="第三方平台" style="padding:10px; overflow:hidden; padding-top:35px;">
+                <div class="chongzhi">
+                    <p class="pstyle"><strong>充值金额:</strong></p>
+                    <p class="pstyle2">
+                        <input type="text" data-bind="value:$root.money"  min="0.1" precision="2" />
+                    </p>
+                </div>
+
+
+                <div class="yinhangka">
+
+                    <p class="pstyle"><strong>支持的平台:</strong> </p>
+                    <ul class="pingtai">
+
+                        <li style="width: 160px; height: 44px">
+                            <input type="radio" name="channelToken1" id="alipay" value="alipay" checked="checked">
+                            <label for="alipay">
+                                <img src="/Content/images/zhifubaologo.png" style="width:107px;height:44px;">
+                            </label>
+                        </li>
+                        <li style="width: 160px; height: 44px">
+                            <input type="radio" name="channelToken1" id="tenpay" value="tenpay">
+                            <label for="tenpay">
+                                <img src="/Content/images/CaiFuTongLogo.png" style="width:107px;height:44px;">
+                            </label>
+                        </li>
+                    </ul>
+                    <div style=" clear: both; padding-left: 78px; padding-top: 25px; padding-bottom: 20px; margin-left: 8px;">
+                        <a class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick="doPay(2);return  false;">立即进行支付</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="xxdialog2" class="easyui-window" title="支付提示" data-options="modal:true,closed:true,iconCls:'icon-save2'" style="width:600px;height:auto;padding:10px 15px;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:20px; margin-bottom:15px;">
+        <tr>
+            <td width="26%" height="45" align="right" valign="top"><img src="/Content/images/warning.png" width="39" height="39" /></td>
+            <td width="42%" height="45" align="center"><font style="font-size:20px; padding-left:10px; line-height:26px;">请您在新打开的支付页面上完成支付</font></td>
+            <td width="32%" height="45">&nbsp;</td>
+        </tr>
+        <tr>
+            <td height="45" colspan="3" align="center" style=" padding-bottom:15px;">支付完成前请不要关闭此窗口。完成支付后请根据您的情况点击下面的按钮。</td>
+        </tr>
+        <tr>
+            <td height="50" style="border-top:1px solid #ddd;">&nbsp;</td>
+            <td height="50" align="center" style="border-top:1px solid #ddd;">
+                <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick='getReadyBalance()'>已完成支付</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick='$("#xxdialog2").dialog("close")'>付款遇到问题</a>
+            </td>
+            <td height="50" style="border-top:1px solid #ddd;">&nbsp;</td>
+        </tr>
+    </table>
+
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/jquery.tmpl.js"></script>
+
+    <script id="tmplBankList" type="text/x-jquery-tmpl">
+
+        <li style="float: left">
+            <input type="radio" name="channelToken" id="${Num}" value="${Code}">
+            <label for="${Num}">
+                <img src="${Uri}" style="width: 140px; height: 28px" />
+            </label>
+        </li>
+    </script>
+
+    <script type="text/javascript">
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        vm.readyBalance = ko.mapping.fromJS(Fromdata.readyBalance.toFixed(2));
+        vm.money = ko.observable("");
+        ko.applyBindings(vm);
+
+      
+
+        function depositLog() {
+            location.href = Fromdata.urls.depositLog;
+        }
+         
+        function doPay(flag) {
+            if (vm.money() == null || $.trim(vm.money()) == "") {
+                window.parent.$.messager.alert('提示', "请输入充值金额", "warning");
+                return;
+            } else {
+                if (isNaN($.trim(vm.money()))) {
+                    window.parent.$.messager.alert('提示', "充值金额必须为数字", "warning");
+                    return;
+                } else if (parseFloat($.trim(vm.money())) <= 0) {
+                    window.parent.$.messager.alert('提示', "充值金额必须大于0", "warning");
+                    return;
+                }
+            }
+            var url;
+            var code;
+            if (flag == 1) {
+                url = Fromdata.urls.rechargeByBank;
+                code = $('input:radio[name="channelToken"]:checked').val();
+            } else {
+                url = Fromdata.urls.rechargeByPlatform;
+                code = $('input:radio[name="channelToken1"]:checked').val();
+            }
+            $("body").mask("正在提交数据...");
+            $.get(url, { "money": parseFloat($.trim(vm.money())), "code": code }, function(res) {
+                $("body").unmask();
+                $("#xxdialog2").dialog("open");
+                window.open(res.replace('"',"").replace('"',""), "_blank");
+            });
+        }
+
+        function getReadyBalance() {
+            $("#xxdialog2").dialog("close");
+            vm.money("");
+            $.get(Fromdata.urls.getReadyBalance, { "time": new Date().getTime() }, function(res) {
+                ko.mapping.fromJS(parseFloat(res).toFixed(2), vm.readyBalance);
+            });
+        }
+        
+
+        $("#tmplBankList").tmpl(Fromdata.banks).appendTo("#ulbankCard"); 
+        $("#ulbankCard li:first").find("input[type='radio']").attr("checked", true);
+        $("#ulbankCard li:first").css("border", "1px solid #136cc4");
+        $(".pingtai li:first").css("border", "1px solid #136cc4");
+
+        $("#ulbankCard li").each(function() {
+            var lbl = $(this).find("label");
+            lbl.bind("click", function() {
+                $("#ulbankCard li").each(function() {
+                    $(this).css("border", "1px dotted #c9c9c9");
+                });
+                var el = $(this).attr("for");
+                $("#" + el).attr("checked", true);
+                $(this).parent().css("border", "1px solid #136cc4");
+            });
+        });
+
+        $(".pingtai li").each(function() {
+            var lbl = $(this).find("label");
+            lbl.bind("click", function() {
+                $(".pingtai li").each(function() {
+                    $(this).css("border", "1px dotted #c9c9c9");
+                });
+                var el = $(this).attr("for");
+                $("#" + el).attr("checked", true);
+                $(this).parent().css("border", "1px solid #136cc4");
+            });
+        });
+        
+    
+    </script>
+}

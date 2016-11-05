@@ -1,0 +1,138 @@
+Start====================================================================
+时间:2014-11-03 15:28:54.554
+客户端IP:127.0.0.1:58099
+调用方法名:Destine
+内容:预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/30 13:45:00
+EndDate=2014/11/30 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8893
+StartDate=2014/11/30 15:30:00
+EndDate=2014/11/30 18:05:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=PEK
+FromTerminal=T1
+ToTerminal=T3
+Discount=279.8600
+FlightModel=330
+TaxFee=50
+RQFee=110.0
+SeatPrice=4030.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=110.0
+SpecialYPrice=1440.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:27:00.863
+时间1:2014-11-03 15:27:16.941
+时间1:2014-11-03 15:28:39.115
+时间2:2014-11-03 15:28:54.518
+结果:
+ 成人Pnr= PNRContent= 
+ PATContent=
+时间3:2014-11-03 15:28:54.520
+异常信息:与航信连接失败，请重新预订！错误信息:CHECK CONNECTION
+End=====================================================================
+
+Start====================================================================
+时间:2014-11-03 15:29:34.971
+客户端IP:127.0.0.1:58099
+调用方法名:Destine
+内容:预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/30 13:45:00
+EndDate=2014/11/30 15:25:00
+Seat=F
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=300.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=1890.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8893
+StartDate=2014/11/30 15:30:00
+EndDate=2014/11/30 18:05:00
+Seat=F
+FromCityCode=CTU
+ToCityCode=PEK
+FromTerminal=T1
+ToTerminal=T3
+Discount=279.8600
+FlightModel=330
+TaxFee=50
+RQFee=110.0
+SeatPrice=4030.00
+PolicySpecialType=FixedSpecial
+SpecialPrice=300.00
+SpecialTax=50
+SpecialFuelFee=110.0
+SpecialYPrice=1440.00
+乘客1:
+PassengerName=高飞
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 15:29:20.451
+时间2:2014-11-03 15:29:34.920
+结果:
+ 成人Pnr= PNRContent= 
+ PATContent=
+时间3:2014-11-03 15:29:34.920
+异常信息:与航信连接失败，请重新预订！错误信息:CHECK CONNECTION
+End=====================================================================
+

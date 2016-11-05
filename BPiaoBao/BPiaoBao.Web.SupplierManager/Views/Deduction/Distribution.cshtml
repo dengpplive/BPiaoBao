@@ -1,0 +1,35 @@
+﻿<div id="DistributionDialog" class="easyui-dialog" title="分配商户" data-options="iconCls:'icon-add',maximizable:true,closable:false,modal:true,closed:true,buttons:'#DistributionDialog-buttons'" style="width: 800px; height: 380px; padding: 5px;">
+    <table width="100%">
+        <tr>
+            <td>标签:<select data-bind="options: $root.GetLabel, value: $root.QueryDistributionForm.Label, optionsCaption: '请选择...'"></select>
+                商户号:<input type="text" data-bind="value: $root.QueryDistributionForm.Code" />
+                创建时间:<input type="text" class="easyui-my97" data-bind="my97value: $root.QueryDistributionForm.StartTime" />-<input type="text" class="easyui-my97" data-bind="    my97value: $root.QueryDistributionForm.EndTime" />
+                <a href="javascript:void(0)" iconcls="icon-search" class="easyui-linkbutton" data-bind="click: QueryDistributionClick">查询</a>
+            </td>
+        </tr>
+    </table>
+    <div>
+        <h3>查询商户</h3>
+        <div class="neibianjie" style="height:160px;">
+            <!-- ko foreach:UnSelectedDistribution -->
+            <!-- ko if:($index()>=$root.QueryStartIndex() && $index()<$root.QueryEndIndex())-->
+            <div style="width: 180px; float: left; height: 30px; line-height: 30px;">
+                <input type="checkbox" data-bind=" checked: Checked, attr: { 'id': Code }" /><label data-bind="    text: Name, attr: { 'for': Code }"></label>[<span data-bind="    text: DeductionGroupName"></span>]
+            </div>
+            <!-- /ko -->
+            <!-- /ko -->
+        </div>
+        <div class="fenye" class="easyui-pagination" id="pagination" style="border: 1px solid #ddd;"></div>
+    </div>
+    <div>
+        <h3>已分配商户</h3>
+        <div class="neibianjie" style="height:100px;" data-bind="foreach: $root.SelectedDistribution">
+            <div style="width: 180px; float: left; height: 30px; line-height: 30px;">
+                <input type="checkbox" data-bind=" checked: Checked, attr: { 'id': Code }" /><label data-bind="    text: Name, attr: { 'for': Code }"></label></div>
+        </div>
+    </div>
+</div>
+<div id="DistributionDialog-buttons" style=" text-align:center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.DistributionClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" data-bind="click:$root.CancelDistribution">取消</a>
+</div>

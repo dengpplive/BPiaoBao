@@ -1,0 +1,11 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:BPiaoBao.Client.TPOS.View" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" x:Class="BPiaoBao.Client.TPOS.View.MerchantEditWindow"
+        Title="修改商户" Style="{DynamicResource CustomWindowStyle}" Height="697" Width="652" WindowStartupLocation="CenterOwner">
+	<ScrollViewer>
+        
+		<local:MerchantEditInfoControl Tag="修改商户"/>
+        
+	</ScrollViewer>
+</Window>

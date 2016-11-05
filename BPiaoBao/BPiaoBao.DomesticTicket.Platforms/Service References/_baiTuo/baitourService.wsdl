@@ -1,0 +1,1447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.baitour.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.baitour.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.baitour.com/">
+      <s:element name="GetAllCommonPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tripType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCommonPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCommonPolicyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCommonPolicyZIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tripType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCommonPolicyZIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCommonPolicyZIPResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCommonFileStreamPolicyZIP">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tripType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="zip" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllCommonFileStreamPolicyZIPResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllCommonFileStreamPolicyZIPResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlterCommonFileStreamPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tripType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rQStartDateTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlterCommonFileStreamPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlterCommonFileStreamPolicyResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlterCommonPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tripType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ticketType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="agentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rQStartDateTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlterCommonPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlterCommonPolicyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MatchCommonPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MatchCommonPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MatchCommonPolicyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MatchCommonPolicyNew">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MatchCommonPolicyNewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MatchCommonPolicyNewResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAVPolicy">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAVPolicyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAVPolicyResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomesticMatchNormalZRateByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomesticMatchNormalZRateByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDomesticMatchNormalZRateByIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetailCreateOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DetailCreateOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DetailCreateOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RTCreateOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RTCreateOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RTCreateOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChdDetailCreateOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChdDetailCreateOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChdDetailCreateOrderResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AgentCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AgentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AgentPwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OrderID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderInfoResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviders">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AgentCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AgentUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AgentPwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProvidersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvalidationProvidersResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RefundOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RefundOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChangeFlightDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChangeFlightDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChangeFlightDateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAllCommonPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCommonPolicy" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCommonPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyZIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCommonPolicyZIP" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyZIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCommonPolicyZIPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonFileStreamPolicyZIPSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllCommonFileStreamPolicyZIP" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonFileStreamPolicyZIPSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllCommonFileStreamPolicyZIPResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonFileStreamPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlterCommonFileStreamPolicy" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonFileStreamPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlterCommonFileStreamPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlterCommonPolicy" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlterCommonPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:MatchCommonPolicy" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:MatchCommonPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyNewSoapIn">
+    <wsdl:part name="parameters" element="tns:MatchCommonPolicyNew" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyNewSoapOut">
+    <wsdl:part name="parameters" element="tns:MatchCommonPolicyNewResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAVPolicySoapIn">
+    <wsdl:part name="parameters" element="tns:GetAVPolicy" />
+  </wsdl:message>
+  <wsdl:message name="GetAVPolicySoapOut">
+    <wsdl:part name="parameters" element="tns:GetAVPolicyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDomesticMatchNormalZRateByID" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDomesticMatchNormalZRateByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="DetailCreateOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:DetailCreateOrder" />
+  </wsdl:message>
+  <wsdl:message name="DetailCreateOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:DetailCreateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="RTCreateOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:RTCreateOrder" />
+  </wsdl:message>
+  <wsdl:message name="RTCreateOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:RTCreateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChdDetailCreateOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:ChdDetailCreateOrder" />
+  </wsdl:message>
+  <wsdl:message name="ChdDetailCreateOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:ChdDetailCreateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrderInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrderInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProvidersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviders" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProvidersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProvidersResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:RefundOrder" />
+  </wsdl:message>
+  <wsdl:message name="RefundOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:RefundOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeFlightDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChangeFlightDate" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeFlightDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChangeFlightDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyHttpGetIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyZIPHttpGetIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyZIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonFileStreamPolicyZIPHttpGetIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonFileStreamPolicyZIPHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonFileStreamPolicyHttpGetIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="rQStartDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonFileStreamPolicyHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonPolicyHttpGetIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="rQStartDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonPolicyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyNewHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyNewHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAVPolicyHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAVPolicyHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateByIDHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateByIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DetailCreateOrderHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetailCreateOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RTCreateOrderHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RTCreateOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChdDetailCreateOrderHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChdDetailCreateOrderHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpGetIn">
+    <wsdl:part name="AgentCode" type="s:string" />
+    <wsdl:part name="AgentUserName" type="s:string" />
+    <wsdl:part name="AgentPwd" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProvidersHttpGetIn">
+    <wsdl:part name="AgentCode" type="s:string" />
+    <wsdl:part name="AgentUserName" type="s:string" />
+    <wsdl:part name="AgentPwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProvidersHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundOrderHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeFlightDateHttpGetIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeFlightDateHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyHttpPostIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyZIPHttpPostIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonPolicyZIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonFileStreamPolicyZIPHttpPostIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="zip" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllCommonFileStreamPolicyZIPHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonFileStreamPolicyHttpPostIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="rQStartDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonFileStreamPolicyHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonPolicyHttpPostIn">
+    <wsdl:part name="tripType" type="s:string" />
+    <wsdl:part name="ticketType" type="s:string" />
+    <wsdl:part name="agentUserName" type="s:string" />
+    <wsdl:part name="pwd" type="s:string" />
+    <wsdl:part name="rQStartDateTime" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterCommonPolicyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyNewHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MatchCommonPolicyNewHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAVPolicyHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAVPolicyHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateByIDHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateByIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="DetailCreateOrderHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DetailCreateOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RTCreateOrderHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RTCreateOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ChdDetailCreateOrderHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ChdDetailCreateOrderHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpPostIn">
+    <wsdl:part name="AgentCode" type="s:string" />
+    <wsdl:part name="AgentUserName" type="s:string" />
+    <wsdl:part name="AgentPwd" type="s:string" />
+    <wsdl:part name="OrderID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetOrderInfoHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProvidersHttpPostIn">
+    <wsdl:part name="AgentCode" type="s:string" />
+    <wsdl:part name="AgentUserName" type="s:string" />
+    <wsdl:part name="AgentPwd" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProvidersHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundOrderHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RefundOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeFlightDateHttpPostIn">
+    <wsdl:part name="xmlDoc" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetChangeFlightDateHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="BaitourServiceSoap">
+    <wsdl:operation name="GetAllCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonPolicySoapIn" />
+      <wsdl:output message="tns:GetAllCommonPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonPolicyZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonPolicyZIPSoapIn" />
+      <wsdl:output message="tns:GetAllCommonPolicyZIPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonFileStreamPolicyZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonFileStreamPolicyZIPSoapIn" />
+      <wsdl:output message="tns:GetAllCommonFileStreamPolicyZIPSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonFileStreamPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">同步普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterCommonFileStreamPolicySoapIn" />
+      <wsdl:output message="tns:GetAlterCommonFileStreamPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">同步普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterCommonPolicySoapIn" />
+      <wsdl:output message="tns:GetAlterCommonPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:MatchCommonPolicySoapIn" />
+      <wsdl:output message="tns:MatchCommonPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicyNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:MatchCommonPolicyNewSoapIn" />
+      <wsdl:output message="tns:MatchCommonPolicyNewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAVPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AV获取政策政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAVPolicySoapIn" />
+      <wsdl:output message="tns:GetAVPolicySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据普通政策编号获取政策信息</wsdl:documentation>
+      <wsdl:input message="tns:GetDomesticMatchNormalZRateByIDSoapIn" />
+      <wsdl:output message="tns:GetDomesticMatchNormalZRateByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetailCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">详细信息生成百拓订单</wsdl:documentation>
+      <wsdl:input message="tns:DetailCreateOrderSoapIn" />
+      <wsdl:output message="tns:DetailCreateOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RTCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RT详细信息生成百拓订单</wsdl:documentation>
+      <wsdl:input message="tns:RTCreateOrderSoapIn" />
+      <wsdl:output message="tns:RTCreateOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChdDetailCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">儿童机票生成订单</wsdl:documentation>
+      <wsdl:input message="tns:ChdDetailCreateOrderSoapIn" />
+      <wsdl:output message="tns:ChdDetailCreateOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">得到订单的详细信息(采购)</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoSoapIn" />
+      <wsdl:output message="tns:GetOrderInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取黑名单供应商接口（注：只有开通获取全部政策和普通政策变动接口下才可使用）</wsdl:documentation>
+      <wsdl:input message="tns:GetInvalidationProvidersSoapIn" />
+      <wsdl:output message="tns:GetInvalidationProvidersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请退废票接口</wsdl:documentation>
+      <wsdl:input message="tns:RefundOrderSoapIn" />
+      <wsdl:output message="tns:RefundOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeFlightDate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请改期接口</wsdl:documentation>
+      <wsdl:input message="tns:GetChangeFlightDateSoapIn" />
+      <wsdl:output message="tns:GetChangeFlightDateSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BaitourServiceHttpGet">
+    <wsdl:operation name="GetAllCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonPolicyHttpGetIn" />
+      <wsdl:output message="tns:GetAllCommonPolicyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonPolicyZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonPolicyZIPHttpGetIn" />
+      <wsdl:output message="tns:GetAllCommonPolicyZIPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonFileStreamPolicyZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonFileStreamPolicyZIPHttpGetIn" />
+      <wsdl:output message="tns:GetAllCommonFileStreamPolicyZIPHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonFileStreamPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">同步普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterCommonFileStreamPolicyHttpGetIn" />
+      <wsdl:output message="tns:GetAlterCommonFileStreamPolicyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">同步普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterCommonPolicyHttpGetIn" />
+      <wsdl:output message="tns:GetAlterCommonPolicyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:MatchCommonPolicyHttpGetIn" />
+      <wsdl:output message="tns:MatchCommonPolicyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicyNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:MatchCommonPolicyNewHttpGetIn" />
+      <wsdl:output message="tns:MatchCommonPolicyNewHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAVPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AV获取政策政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAVPolicyHttpGetIn" />
+      <wsdl:output message="tns:GetAVPolicyHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据普通政策编号获取政策信息</wsdl:documentation>
+      <wsdl:input message="tns:GetDomesticMatchNormalZRateByIDHttpGetIn" />
+      <wsdl:output message="tns:GetDomesticMatchNormalZRateByIDHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetailCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">详细信息生成百拓订单</wsdl:documentation>
+      <wsdl:input message="tns:DetailCreateOrderHttpGetIn" />
+      <wsdl:output message="tns:DetailCreateOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RTCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RT详细信息生成百拓订单</wsdl:documentation>
+      <wsdl:input message="tns:RTCreateOrderHttpGetIn" />
+      <wsdl:output message="tns:RTCreateOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChdDetailCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">儿童机票生成订单</wsdl:documentation>
+      <wsdl:input message="tns:ChdDetailCreateOrderHttpGetIn" />
+      <wsdl:output message="tns:ChdDetailCreateOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">得到订单的详细信息(采购)</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoHttpGetIn" />
+      <wsdl:output message="tns:GetOrderInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取黑名单供应商接口（注：只有开通获取全部政策和普通政策变动接口下才可使用）</wsdl:documentation>
+      <wsdl:input message="tns:GetInvalidationProvidersHttpGetIn" />
+      <wsdl:output message="tns:GetInvalidationProvidersHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请退废票接口</wsdl:documentation>
+      <wsdl:input message="tns:RefundOrderHttpGetIn" />
+      <wsdl:output message="tns:RefundOrderHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeFlightDate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请改期接口</wsdl:documentation>
+      <wsdl:input message="tns:GetChangeFlightDateHttpGetIn" />
+      <wsdl:output message="tns:GetChangeFlightDateHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BaitourServiceHttpPost">
+    <wsdl:operation name="GetAllCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonPolicyHttpPostIn" />
+      <wsdl:output message="tns:GetAllCommonPolicyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonPolicyZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonPolicyZIPHttpPostIn" />
+      <wsdl:output message="tns:GetAllCommonPolicyZIPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonFileStreamPolicyZIP">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取所有政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAllCommonFileStreamPolicyZIPHttpPostIn" />
+      <wsdl:output message="tns:GetAllCommonFileStreamPolicyZIPHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonFileStreamPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">同步普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterCommonFileStreamPolicyHttpPostIn" />
+      <wsdl:output message="tns:GetAlterCommonFileStreamPolicyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">同步普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterCommonPolicyHttpPostIn" />
+      <wsdl:output message="tns:GetAlterCommonPolicyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:MatchCommonPolicyHttpPostIn" />
+      <wsdl:output message="tns:MatchCommonPolicyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicyNew">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口</wsdl:documentation>
+      <wsdl:input message="tns:MatchCommonPolicyNewHttpPostIn" />
+      <wsdl:output message="tns:MatchCommonPolicyNewHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAVPolicy">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">AV获取政策政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAVPolicyHttpPostIn" />
+      <wsdl:output message="tns:GetAVPolicyHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateByID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据普通政策编号获取政策信息</wsdl:documentation>
+      <wsdl:input message="tns:GetDomesticMatchNormalZRateByIDHttpPostIn" />
+      <wsdl:output message="tns:GetDomesticMatchNormalZRateByIDHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DetailCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">详细信息生成百拓订单</wsdl:documentation>
+      <wsdl:input message="tns:DetailCreateOrderHttpPostIn" />
+      <wsdl:output message="tns:DetailCreateOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RTCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">RT详细信息生成百拓订单</wsdl:documentation>
+      <wsdl:input message="tns:RTCreateOrderHttpPostIn" />
+      <wsdl:output message="tns:RTCreateOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChdDetailCreateOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">儿童机票生成订单</wsdl:documentation>
+      <wsdl:input message="tns:ChdDetailCreateOrderHttpPostIn" />
+      <wsdl:output message="tns:ChdDetailCreateOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">得到订单的详细信息(采购)</wsdl:documentation>
+      <wsdl:input message="tns:GetOrderInfoHttpPostIn" />
+      <wsdl:output message="tns:GetOrderInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviders">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取黑名单供应商接口（注：只有开通获取全部政策和普通政策变动接口下才可使用）</wsdl:documentation>
+      <wsdl:input message="tns:GetInvalidationProvidersHttpPostIn" />
+      <wsdl:output message="tns:GetInvalidationProvidersHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RefundOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请退废票接口</wsdl:documentation>
+      <wsdl:input message="tns:RefundOrderHttpPostIn" />
+      <wsdl:output message="tns:RefundOrderHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeFlightDate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">申请改期接口</wsdl:documentation>
+      <wsdl:input message="tns:GetChangeFlightDateHttpPostIn" />
+      <wsdl:output message="tns:GetChangeFlightDateHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BaitourServiceSoap" type="tns:BaitourServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllCommonPolicy">
+      <soap:operation soapAction="http://www.baitour.com/GetAllCommonPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonPolicyZIP">
+      <soap:operation soapAction="http://www.baitour.com/GetAllCommonPolicyZIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonFileStreamPolicyZIP">
+      <soap:operation soapAction="http://www.baitour.com/GetAllCommonFileStreamPolicyZIP" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonFileStreamPolicy">
+      <soap:operation soapAction="http://www.baitour.com/GetAlterCommonFileStreamPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonPolicy">
+      <soap:operation soapAction="http://www.baitour.com/GetAlterCommonPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicy">
+      <soap:operation soapAction="http://www.baitour.com/MatchCommonPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicyNew">
+      <soap:operation soapAction="http://www.baitour.com/MatchCommonPolicyNew" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAVPolicy">
+      <soap:operation soapAction="http://www.baitour.com/GetAVPolicy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateByID">
+      <soap:operation soapAction="http://www.baitour.com/GetDomesticMatchNormalZRateByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetailCreateOrder">
+      <soap:operation soapAction="http://www.baitour.com/DetailCreateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RTCreateOrder">
+      <soap:operation soapAction="http://www.baitour.com/RTCreateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChdDetailCreateOrder">
+      <soap:operation soapAction="http://www.baitour.com/ChdDetailCreateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <soap:operation soapAction="http://www.baitour.com/GetOrderInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviders">
+      <soap:operation soapAction="http://www.baitour.com/GetInvalidationProviders" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundOrder">
+      <soap:operation soapAction="http://www.baitour.com/RefundOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeFlightDate">
+      <soap:operation soapAction="http://www.baitour.com/GetChangeFlightDate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BaitourServiceSoap12" type="tns:BaitourServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAllCommonPolicy">
+      <soap12:operation soapAction="http://www.baitour.com/GetAllCommonPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonPolicyZIP">
+      <soap12:operation soapAction="http://www.baitour.com/GetAllCommonPolicyZIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonFileStreamPolicyZIP">
+      <soap12:operation soapAction="http://www.baitour.com/GetAllCommonFileStreamPolicyZIP" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonFileStreamPolicy">
+      <soap12:operation soapAction="http://www.baitour.com/GetAlterCommonFileStreamPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonPolicy">
+      <soap12:operation soapAction="http://www.baitour.com/GetAlterCommonPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicy">
+      <soap12:operation soapAction="http://www.baitour.com/MatchCommonPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicyNew">
+      <soap12:operation soapAction="http://www.baitour.com/MatchCommonPolicyNew" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAVPolicy">
+      <soap12:operation soapAction="http://www.baitour.com/GetAVPolicy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateByID">
+      <soap12:operation soapAction="http://www.baitour.com/GetDomesticMatchNormalZRateByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetailCreateOrder">
+      <soap12:operation soapAction="http://www.baitour.com/DetailCreateOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RTCreateOrder">
+      <soap12:operation soapAction="http://www.baitour.com/RTCreateOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChdDetailCreateOrder">
+      <soap12:operation soapAction="http://www.baitour.com/ChdDetailCreateOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <soap12:operation soapAction="http://www.baitour.com/GetOrderInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviders">
+      <soap12:operation soapAction="http://www.baitour.com/GetInvalidationProviders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundOrder">
+      <soap12:operation soapAction="http://www.baitour.com/RefundOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeFlightDate">
+      <soap12:operation soapAction="http://www.baitour.com/GetChangeFlightDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BaitourServiceHttpGet" type="tns:BaitourServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetAllCommonPolicy">
+      <http:operation location="/GetAllCommonPolicy" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonPolicyZIP">
+      <http:operation location="/GetAllCommonPolicyZIP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonFileStreamPolicyZIP">
+      <http:operation location="/GetAllCommonFileStreamPolicyZIP" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonFileStreamPolicy">
+      <http:operation location="/GetAlterCommonFileStreamPolicy" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonPolicy">
+      <http:operation location="/GetAlterCommonPolicy" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicy">
+      <http:operation location="/MatchCommonPolicy" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicyNew">
+      <http:operation location="/MatchCommonPolicyNew" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAVPolicy">
+      <http:operation location="/GetAVPolicy" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateByID">
+      <http:operation location="/GetDomesticMatchNormalZRateByID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetailCreateOrder">
+      <http:operation location="/DetailCreateOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RTCreateOrder">
+      <http:operation location="/RTCreateOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChdDetailCreateOrder">
+      <http:operation location="/ChdDetailCreateOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <http:operation location="/GetOrderInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviders">
+      <http:operation location="/GetInvalidationProviders" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundOrder">
+      <http:operation location="/RefundOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeFlightDate">
+      <http:operation location="/GetChangeFlightDate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BaitourServiceHttpPost" type="tns:BaitourServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetAllCommonPolicy">
+      <http:operation location="/GetAllCommonPolicy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonPolicyZIP">
+      <http:operation location="/GetAllCommonPolicyZIP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllCommonFileStreamPolicyZIP">
+      <http:operation location="/GetAllCommonFileStreamPolicyZIP" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonFileStreamPolicy">
+      <http:operation location="/GetAlterCommonFileStreamPolicy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterCommonPolicy">
+      <http:operation location="/GetAlterCommonPolicy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicy">
+      <http:operation location="/MatchCommonPolicy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchCommonPolicyNew">
+      <http:operation location="/MatchCommonPolicyNew" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAVPolicy">
+      <http:operation location="/GetAVPolicy" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateByID">
+      <http:operation location="/GetDomesticMatchNormalZRateByID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DetailCreateOrder">
+      <http:operation location="/DetailCreateOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RTCreateOrder">
+      <http:operation location="/RTCreateOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChdDetailCreateOrder">
+      <http:operation location="/ChdDetailCreateOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderInfo">
+      <http:operation location="/GetOrderInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviders">
+      <http:operation location="/GetInvalidationProviders" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefundOrder">
+      <http:operation location="/RefundOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangeFlightDate">
+      <http:operation location="/GetChangeFlightDate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BaitourService">
+    <wsdl:port name="BaitourServiceSoap" binding="tns:BaitourServiceSoap">
+      <soap:address location="http://ite.baitour.com/comanage/baitourService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BaitourServiceSoap12" binding="tns:BaitourServiceSoap12">
+      <soap12:address location="http://ite.baitour.com/comanage/baitourService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BaitourServiceHttpGet" binding="tns:BaitourServiceHttpGet">
+      <http:address location="http://ite.baitour.com/comanage/baitourService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BaitourServiceHttpPost" binding="tns:BaitourServiceHttpPost">
+      <http:address location="http://ite.baitour.com/comanage/baitourService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

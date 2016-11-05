@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "分配空白行程单";
+}
+<div id="win" class="easyui-dialog" title="空白行程单分配" data-options="closed:true" style="width: 650px; height: 440px; padding: 5px;">
+    <form id="TravelPaperDialogForm" method="post">
+        <table class="tablestyle0" style=" margin-top:10px;">
+            <tr>
+                <td width="120" >商户号或商户名：</td>
+                <td>
+                    <input type="text" id="Code" name="Code" data-bind="value: $root.editForm.BuyBusinessman" class="inputStyle" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    已选择行程单号：</td>
+                <td>
+                    <input type="text" name="tripCount" id="tripCount" data-bind="value: $root.editForm.tripCount" class="inputStyle" /> 张
+                </td>
+            </tr>
+            <tr>
+                <td>行程单号：</td>
+                <td>
+                    <input type="hidden" id="selTripIds" name="selTripIds" data-bind="value: $root.editForm.selTripIds" />
+                    <textarea id="selTripNum" readonly="readonly" rows="5" cols="50" data-bind="value: $root.editForm.selTripNum"></textarea>
+
+                </td>
+            </tr>
+            <tr>
+                <td>Office号：</td>
+                <td>
+                    <input type="text" id="ffoffice" name="ffoffice" maxlength="6" data-bind="value: $root.editForm.useOffice" class="inputStyle" />
+                </td>
+
+            </tr>
+            <tr>
+                <td>航协号：</td>
+                <td>
+                    <input type="text" name="iataCode" id="iataCode" maxlength="8" data-bind="value: $root.editForm.iataCode" class="inputStyle" />
+                </td>
+            </tr>
+            <tr>
+                <td>填开单位：</td>
+                <td>
+                    <input type="text" id="ticketCompanyName" name="ticketCompanyName" data-bind="value: $root.editForm.ticketCompanyName" class="inputStyle" />
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">备注：</td>
+                <td>
+                    <textarea id="TripRemark" rows="5" cols="50" data-bind="value: $root.editForm.TripRemark"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style=" height:50px;">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: Validate">确认发放</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="javascript:$('#win').dialog('close')">返回</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

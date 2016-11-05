@@ -1,0 +1,63 @@
+﻿<Window x:Class="BPiaoBao.Client.DomesticTicket.View.ChoosePassengersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:BPiaoBao.Client.UIExt.CommonControl;assembly=BPiaoBao.Client.UIExt"
+        xmlns:Converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   Style="{DynamicResource CustomWindowStyle}"   xmlns:utils="clr-namespace:ProjectHelper.Utils;assembly=BPiaoBao.Client.UIExt"   xmlns:model="clr-namespace:BPiaoBao.Client.DomesticTicket.Model"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  WindowStartupLocation="CenterOwner"   xmlns:ViewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel"
+        xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        Title="选择乘客信息" Height="400" Width="600">
+    <Window.Resources>
+        <DataTemplate x:Key="OperaTemplate">
+            <Grid>
+                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Margin="0,0,0,0" Orientation="Horizontal">
+                    <CheckBox x:Name="cbxSelect"  HorizontalAlignment="Stretch" Margin="0,0,0,0"  IsChecked="{Binding IsSelected,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding DataContext.UnSelectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <ei:DataTrigger Binding="{Binding IsDone}" Value="True">
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="270*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" x:Name="dg" ItemsSource="{Binding Passengers}" AutoGenerateColumns="False" Foreground="Black" RowDetailsVisibilityMode="Visible"  BorderThickness="0" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"  GridLinesVisibility="None" HorizontalGridLinesBrush="#FFE0E0E0" IsReadOnly="True" HeadersVisibility="Column" Margin="5"  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn  Width="Auto" ClipboardContentBinding="{x:Null}" Header="选择" CellTemplate="{StaticResource OperaTemplate}" />
+                <!--<DataGridCheckBoxColumn Width="Auto" Header="航意险" Binding="{Binding IsBuyInsurance,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>-->
+                <DataGridTextColumn Width="Auto" Header="保险份数" Binding="{Binding BuyInsuranceCount}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                <!--<DataGridCheckBoxColumn Width="Auto" Header="极速退" Binding="{Binding IsInsuranceRefund,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"/>-->
+                <DataGridTextColumn Width="Auto" Header="姓名" Binding="{Binding PassengerName}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Width="Auto" Header="乘客类型" Binding="{Binding PassengerType, Converter={StaticResource DescriptionConverter}}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Width="Auto" Header="证件号" Binding="{Binding CardNo}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                <DataGridTextColumn Width="Auto" Header="手机号" Binding="{Binding Mobile}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button   Content="确定" Width="75" VerticalAlignment="Center"  Style="{StaticResource HeadBtn}" Height="25" Command="{Binding SaveCommand,Mode=OneWay}" Margin="10,0"/>
+            <Button Content="取消" Width="75" VerticalAlignment="Center"  Margin="5,2.5" Height="25" Style="{StaticResource CancelButton}"  
+                    Command="{Binding DataContext.CancelCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ei:CallMethodAction MethodName="Close" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

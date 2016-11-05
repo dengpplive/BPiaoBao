@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8B4C3980-A7B8-4A81-8DF2-CFFA576FE414}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PnrAnalysis</RootNamespace>
+    <AssemblyName>PnrAnalysis</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChnCharInfo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\ChnCharInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="EtermChar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\EtermChar.dll</HintPath>
+    </Reference>
+    <Reference Include="PidSend, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\PidSend.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WebManage, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>DLL\WebManage.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FormatInsData.cs" />
+    <Compile Include="FormatPNR.cs" />
+    <Compile Include="JZFormat.cs" />
+    <Compile Include="Model\AVHModel.cs" />
+    <Compile Include="Model\BSPParam.cs" />
+    <Compile Include="Model\FDModel.cs" />
+    <Compile Include="Model\GetDetrModel.cs" />
+    <Compile Include="Model\GroupInfo.cs" />
+    <Compile Include="Model\InsModel.cs" />
+    <Compile Include="Model\InsParam.cs" />
+    <Compile Include="Model\LEASEWAIT_Info.cs" />
+    <Compile Include="Model\LegInfo.cs" />
+    <Compile Include="Model\LegStop.cs" />
+    <Compile Include="Model\LogText.cs" />
+    <Compile Include="Model\OtherInfo.cs" />
+    <Compile Include="Model\PassengerInfo.cs" />
+    <Compile Include="Model\PatInfo.cs" />
+    <Compile Include="Model\PatModel.cs" />
+    <Compile Include="Model\PnrModel.cs" />
+    <Compile Include="Model\QT.cs" />
+    <Compile Include="Model\RemarkInfo.cs" />
+    <Compile Include="Model\RePnrObj.cs" />
+    <Compile Include="Model\PnrResource.cs" />
+    <Compile Include="Model\SplitPnrCon.cs" />
+    <Compile Include="Model\SSRInfo.cs" />
+    <Compile Include="Model\TicketInfo.cs" />
+    <Compile Include="Model\TicketNumInfo.cs" />
+    <Compile Include="Model\Tktl.cs" />
+    <Compile Include="Model\TripParam.cs" />
+    <Compile Include="Model\TripPrintData.cs" />
+    <Compile Include="Model\YDInfo.cs" />
+    <Compile Include="PinYingMange.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SendEC.cs" />
+    <Compile Include="SendPID.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DLL\ChineseFEC2.xml" />
+    <Content Include="DLL\ChnCharInfo.dll" />
+    <Content Include="DLL\EtermChar.dll" />
+    <Content Include="DLL\PidSend.dll" />
+    <Content Include="DLL\PublicClass.dll" />
+    <Content Include="DLL\WebManage.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DLL\pinyin.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DLL\aircode.resources" />
+    <EmbeddedResource Include="DLL\city.resources" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

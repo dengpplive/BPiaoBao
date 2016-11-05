@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="BPiaoBao.Client.TPOS.View.TransactionQuery"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+             xmlns:VIEWMODEL="clr-namespace:BPiaoBao.Client.TPOS.ViewModel"
+             xmlns:Pager="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="773" d:DesignWidth="760.3">
+    <UserControl.DataContext>
+        <VIEWMODEL:TransactionQueryViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource HeadBg2}" Height="35" VerticalAlignment="Top">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="POS交易查询" VerticalAlignment="Top" Margin="20,10,0,0" FontWeight="Bold"/>
+
+        </Grid>
+        <Border BorderBrush="#FFD1DFEB" BorderThickness="2" VerticalAlignment="Top" Background="#FFF4F8FA" Grid.Row="1" Margin="20,15,20,0">
+            <Grid Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <WrapPanel>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="刷卡日期：" VerticalAlignment="Center" Margin="30,0,0,10"/>
+                    <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding StartTime,Mode=TwoWay,TargetNullValue=''}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="—" VerticalAlignment="Center" Margin="5,0,5,10" Foreground="#FF999999" FontSize="10.667"/>
+                    <DatePicker SelectedDateFormat="Short" SelectedDate="{Binding EndTime,Mode=TwoWay,TargetNullValue=''}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,10"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="POS终端号：" VerticalAlignment="Center" Margin="15,0,0,10"/>
+                    <TextBox Text="{Binding POSNo}" TextWrapping="Wrap" Width="135" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{DynamicResource BlueTextBoxStyle}" Height="21" Margin="0,0,0,10"/>
+                </WrapPanel>
+                <Border VerticalAlignment="Top" Grid.Row="1" Margin="10,0" BorderThickness="0,0.3,0,0" BorderBrush="#FF999999" >
+                    <StackPanel Height="22" Margin="0,10" Orientation="Horizontal" >
+                        <Button Content="查询" Style="{DynamicResource QueryBtn}" Command="{Binding QueryCommand}" Padding="15,1" Width="56" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="77,0,0,0" Height="22" />
+                        <Button Content="导出EXCEL" Command="{Binding ExportCommand}" HorizontalAlignment="Left" Margin="15,0,0,0" VerticalAlignment="Center" Width="80" Height="22" Style="{DynamicResource ExportBtn}" Padding="10,1" Background="#FF333F49"/>
+                        <TextBlock TextWrapping="Wrap" Text="（此交易查询提供实时查询，最终以清算明细为准）" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="#FF666666" Margin="12,0,0,0"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="2" Margin="20,15,20,0">
+            <DockPanel>
+                <Pager:Pagination DockPanel.Dock="Bottom"
+                          PageSize="{Binding PageSize}" 
+                          CurrentPageIndex="{Binding CurrentPageIndex,Mode=TwoWay}"
+                          TotalCount="{Binding TotalCount,Mode=TwoWay}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PageChanged">
+                            <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Pager:Pagination>
+                <Grid>
+                    <WPFSpark:SprocketControl  Height="100" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                    <DataGrid BorderThickness="0" ScrollViewer.CanContentScroll="True" ItemsSource="{Binding TradeDetailList}"  AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="65" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding PosNo}" Width="*" Header="POS机终端号"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding BusinessmanName}" Width="*" Header="POS商户名"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding TradeTime,StringFormat={}{0:yyyy-MM-dd HH:mm:ss}}" Width="*" Header="交易时间"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding BatchNo}" Width="*" Header="批次号"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding TradeCardNo, Converter={StaticResource BankCardConverter}}" Width="*" Header="刷卡卡号"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding TradeCardType}" Width="*" Header="类型"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding TradeMoney,StringFormat={}{0:f2}}" Width="*" Header="交易金额"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding ReceivMoney,StringFormat={}{0:f2}}" Width="*" Header="收款金额"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding PosRate, Converter={StaticResource PercentageConverter}, StringFormat=\{0:f2\}}" Width="*" Header="POS费率"/>
+                            <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding PosGain}" Width="*" Header="POS收入"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </DockPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

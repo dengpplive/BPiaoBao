@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{617DA60B-7997-418F-A7AA-8BC761E35184}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.Client.DomesticTicket</RootNamespace>
+    <AssemblyName>BPiaoBao.Client.DomesticTicket</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <ExpressionBlendVersion>12.0.41002.1</ExpressionBlendVersion>
+    <Utf8Output>true</Utf8Output>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\BPiaoBao.Client\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\BPiaoBao.Client\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NPOI 2.0\dotnet4\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip">
+      <HintPath>..\packages\NPOI.1.2.5\lib\net40\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFSpark.1.1\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BPiaoBao\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.0.6.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NPOI 2.0\dotnet4\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot, Version=2013.1.52.1, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\OxyPlot.Wpf_NoPCL.2013.1.52.1\lib\NET40\OxyPlot.dll</HintPath>
+    </Reference>
+    <Reference Include="OxyPlot.Wpf, Version=2013.1.52.1, Culture=neutral, PublicKeyToken=75e952ba404cdbb0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\OxyPlot.Wpf_NoPCL.2013.1.52.1\lib\NET40\OxyPlot.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp">
+      <HintPath>..\packages\OxyPlot.Wpf_NoPCL.2013.1.52.1\lib\NET40\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WPFSpark.1.1\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFSpark">
+      <HintPath>..\packages\WPFSpark.1.1\lib\net40\WPFSpark.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LocalUIManager.cs" />
+    <Compile Include="Model\BabyModel.cs" />
+    <Compile Include="Model\BuySingleInsuranceModel.cs" />
+    <Compile Include="Model\ChoosePassengersModel.cs" />
+    <Compile Include="Model\Enums.cs" />
+    <Compile Include="Model\FlightInfoModel.cs" />
+    <Compile Include="Model\FlightTypeEnum.cs" />
+    <Compile Include="Model\InsuranceDetailModel.cs" />
+    <Compile Include="Model\LegStopModel.cs" />
+    <Compile Include="Model\PassengerModel.cs" />
+    <Compile Include="Model\PayInsuranceModel.cs" />
+    <Compile Include="Model\QueryInsuranceModel.cs" />
+    <Compile Include="Model\SendPNRInfo.cs" />
+    <Compile Include="Model\Statistics.cs" />
+    <Compile Include="SharedDictionaryManager.cs" />
+    <Compile Include="ViewModel\AfterSaleInfoViewModel.cs" />
+    <Compile Include="ViewModel\AfterSaleOrderViewModel.cs" />
+    <Compile Include="ViewModel\AfterSalePayViewModel.cs" />
+    <Compile Include="ViewModel\AfterSaleViewModel.cs" />
+    <Compile Include="ViewModel\BuyInsuranceViewModel.cs" />
+    <Compile Include="ViewModel\BuySingleInsuranceViewModel.cs" />
+    <Compile Include="ViewModel\ChooseOrderIdViewModel.cs" />
+    <Compile Include="ViewModel\ChoosePassengersViewModel.cs" />
+    <Compile Include="ViewModel\ChoosePolicyViewModel.cs" />
+    <Compile Include="ViewModel\CoordinationViewModel.cs" />
+    <Compile Include="ViewModel\CountInsuranceViewModel.cs" />
+    <Compile Include="ViewModel\FlightInformationItemViewModel.cs" />
+    <Compile Include="ViewModel\InsuranceDetailViewModel.cs" />
+    <Compile Include="ViewModel\InsuranceManageViewModel.cs" />
+    <Compile Include="ViewModel\InsuranceViewModel.cs" />
+    <Compile Include="ViewModel\PNRViewModel.cs" />
+    <Compile Include="ViewModel\PrintTravelViewModel.cs" />
+    <Compile Include="ViewModel\RelationOrderNoViewModel.cs" />
+    <Compile Include="ViewModel\TicketBookingBackViewModel.cs" />
+    <Compile Include="ViewModel\TicketBookingViewModel.cs" />
+    <Compile Include="ViewModel\KeyValueViewModel.cs" />
+    <Compile Include="ViewModel\OrderInfoViewModel.cs" />
+    <Compile Include="ViewModel\OrderManagerViewModel.cs" />
+    <Compile Include="ViewModel\PassengerInformationViewModel.cs" />
+    <Compile Include="ViewModel\PolicyDetailViewModel.cs" />
+    <Compile Include="ViewModel\ReissueViewModel.cs" />
+    <Compile Include="ViewModel\ReportAnalysisViewModel.cs" />
+    <Compile Include="ViewModel\SendMsgViewModel.cs" />
+    <Compile Include="ViewModel\SkyWayViewModel.cs" />
+    <Compile Include="ViewModel\TicketBookingManagerViewModel.cs" />
+    <Compile Include="ViewModel\TicketBookingQueryViewModel.cs" />
+    <Compile Include="ViewModel\TicketTableViewModel.cs" />
+    <Compile Include="Model\ChartModel.cs" />
+    <Compile Include="ViewModel\TravelViewModel.cs" />
+    <Compile Include="ViewModel\UsualPassengerInfoViewModel.cs" />
+    <Compile Include="ViewModel\UsualPassengersManagerViewModel.cs" />
+    <Compile Include="ViewModel\UsualPassengersViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="View\AfterSaleInfoWindow.xaml.cs">
+      <DependentUpon>AfterSaleInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AfterSaleOrderControl.xaml.cs">
+      <DependentUpon>AfterSaleOrderControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AfterSalePayWindow.xaml.cs">
+      <DependentUpon>AfterSalePayWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\AfterSaleWindow.xaml.cs">
+      <DependentUpon>AfterSaleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BuyInsuranceWindow.xaml.cs">
+      <DependentUpon>BuyInsuranceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BuySingleInsuranceWindow.xaml.cs">
+      <DependentUpon>BuySingleInsuranceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChooseOrderIdWindow.xaml.cs">
+      <DependentUpon>ChooseOrderIdWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChoosePassengersWindow.xaml.cs">
+      <DependentUpon>ChoosePassengersWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChoosePolicyWindow.xaml.cs">
+      <DependentUpon>ChoosePolicyWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Converters\AirlineLogoConverter.cs" />
+    <Compile Include="View\Converters\FlightConverter.cs" />
+    <Compile Include="View\Converters\FlightTypeConverter.cs" />
+    <Compile Include="View\Converters\OrderStatusConverter.cs" />
+    <Compile Include="View\Converters\PayInfoConverter.cs" />
+    <Compile Include="View\Converters\SettlementAmountConverter.cs" />
+    <Compile Include="View\Converters\ShowLinkConverter.cs" />
+    <Compile Include="View\Converters\ShowStatusConverter.cs" />
+    <Compile Include="View\Converters\SinglePriceConverter.cs" />
+    <Compile Include="View\Converters\SkywaysConverter.cs" />
+    <Compile Include="View\CoordinationWindow.xaml.cs">
+      <DependentUpon>CoordinationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CountInsuranceWindow.xaml.cs">
+      <DependentUpon>CountInsuranceWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InsuranceControl.xaml.cs">
+      <DependentUpon>InsuranceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InsuranceDetailWindow.xaml.cs">
+      <DependentUpon>InsuranceDetailWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\InsuranceManageControl.xaml.cs">
+      <DependentUpon>InsuranceManageControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrderInfoWindow.xaml.cs">
+      <DependentUpon>OrderInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OrderManagerControl.xaml.cs">
+      <DependentUpon>OrderManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PayInsuranceAndRefundWindow.xaml.cs">
+      <DependentUpon>PayInsuranceAndRefundWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\PayInsuranceConfirmWindow.xaml.cs">
+      <DependentUpon>PayInsuranceConfirmWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PayInsuranceSecondWindow.xaml.cs">
+      <DependentUpon>PayInsuranceSecondWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\PolicyDetailWindow.xaml.cs">
+      <DependentUpon>PolicyDetailWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PNRControl.xaml.cs">
+      <DependentUpon>PNRControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PrintTravelWindow.xaml.cs">
+      <DependentUpon>PrintTravelWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReissueWindow.xaml.cs">
+      <DependentUpon>ReissueWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RelationOrderNoWindow.xaml.cs">
+      <DependentUpon>RelationOrderNoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReportAnalysisControl.xaml.cs">
+      <DependentUpon>ReportAnalysisControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SendMsgWindow.xaml.cs">
+      <DependentUpon>SendMsgWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TicketBookingBackWindow.xaml.cs">
+      <DependentUpon>TicketBookingBackWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TicketBookingManagerControl.xaml.cs">
+      <DependentUpon>TicketBookingManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TicketBookingQueryControl.xaml.cs">
+      <DependentUpon>TicketBookingQueryControl.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\TicketBookingWindow.xaml.cs">
+      <DependentUpon>TicketBookingWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TicketTableControl.xaml.cs">
+      <DependentUpon>TicketTableControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TravelControl.xaml.cs">
+      <DependentUpon>TravelControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UsualPassengerInfoWindow.xaml.cs">
+      <DependentUpon>UsualPassengerInfoWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UsualPassengersManagerControl.xaml.cs">
+      <DependentUpon>UsualPassengersManagerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UsualPassengersWindow.xaml.cs">
+      <DependentUpon>UsualPassengersWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="ProjectDataSources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml" Condition="'$(DesignTime)'=='true' OR ('$(SolutionPath)'!='' AND Exists('$(SolutionPath)') AND '$(BuildingInsideVisualStudio)'!='true' AND '$(BuildingInsideExpressionBlend)'!='true')">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Compile Include="Main.cs" />
+    <Page Include="View\AfterSaleInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AfterSaleOrderControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AfterSalePayWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AfterSaleWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BuyInsuranceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\BuySingleInsuranceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ChooseOrderIdWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChoosePassengersWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ChoosePolicyWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CoordinationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CountInsuranceWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\InsuranceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\InsuranceDetailWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\InsuranceManageControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\OrderInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OrderManagerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PayInsuranceAndRefundWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PayInsuranceConfirmWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PayInsuranceSecondWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PolicyDetailWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PNRControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PrintTravelWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ReissueWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RelationOrderNoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReportAnalysisControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SendMsgWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TicketBookingBackWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TicketBookingManagerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TicketBookingQueryControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TicketBookingWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\TicketTableControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TravelControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UsualPassengerInfoWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UsualPassengersManagerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UsualPassengersWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\AssemblyInfo.tpl" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Contracts\BPiaoBao.AppServices.Contracts.csproj">
+      <Project>{e892d14e-df51-47e9-9865-e7269ea15013}</Project>
+      <Name>BPiaoBao.AppServices.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.Plugin\BPiaoBao.Client.Module.csproj">
+      <Project>{85df9d0a-c2b1-47ee-bc2a-a63451b8130b}</Project>
+      <Name>BPiaoBao.Client.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.UIExt\BPiaoBao.Client.UIExt.csproj">
+      <Project>{5928c486-5249-4be4-acb3-11718060c66c}</Project>
+      <Name>BPiaoBao.Client.UIExt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PnrAnalysis\PnrAnalysis.csproj">
+      <Project>{8b4c3980-a7b8-4a81-8df2-cffa576fe414}</Project>
+      <Name>PnrAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\module_logo.png" />
+    <Resource Include="Image\order.png" />
+    <Resource Include="Image\pnr.png" />
+    <Resource Include="Image\report.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\ad.png" />
+    <Resource Include="Image\tel_message.png" />
+    <Resource Include="Image\ticket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\cash.png" />
+    <Resource Include="Image\credit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\CCBlogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\toggleBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\add.png" />
+    <Resource Include="Image\bookicon_03.png" />
+    <Resource Include="Image\bookicon_06.png" />
+    <Resource Include="Image\bookicon_09.png" />
+    <Resource Include="Image\bookicon_15.png" />
+    <Resource Include="Image\closed.png" />
+    <Resource Include="Image\closed2.png" />
+    <Resource Include="Image\qiehuan1.png" />
+    <Resource Include="Image\qiehuan2.png" />
+    <Resource Include="Image\select.png" />
+    <Resource Include="Image\select_city_icon.png" />
+    <Resource Include="Image\select_time_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\bookicon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\AirlineLogo\3U.gif" />
+    <Resource Include="Image\AirlineLogo\8L.gif" />
+    <Resource Include="Image\AirlineLogo\9C.gif" />
+    <Resource Include="Image\AirlineLogo\BK.gif" />
+    <Resource Include="Image\AirlineLogo\CA.gif" />
+    <Resource Include="Image\AirlineLogo\CN.gif" />
+    <Resource Include="Image\AirlineLogo\CZ.gif" />
+    <Resource Include="Image\AirlineLogo\EU.gif" />
+    <Resource Include="Image\AirlineLogo\FM.gif" />
+    <Resource Include="Image\AirlineLogo\G5.gif" />
+    <Resource Include="Image\AirlineLogo\GS.gif" />
+    <Resource Include="Image\AirlineLogo\HO.gif" />
+    <Resource Include="Image\AirlineLogo\HU.gif" />
+    <Resource Include="Image\AirlineLogo\JD.gif" />
+    <Resource Include="Image\AirlineLogo\JR.gif" />
+    <Resource Include="Image\AirlineLogo\KN.gif" />
+    <Resource Include="Image\AirlineLogo\ky.gif" />
+    <Resource Include="Image\AirlineLogo\MF.gif" />
+    <Resource Include="Image\AirlineLogo\MU.gif" />
+    <Resource Include="Image\AirlineLogo\NS.gif" />
+    <Resource Include="Image\AirlineLogo\OQ.gif" />
+    <Resource Include="Image\AirlineLogo\PN.gif" />
+    <Resource Include="Image\AirlineLogo\SC.gif" />
+    <Resource Include="Image\AirlineLogo\TV.gif" />
+    <Resource Include="Image\AirlineLogo\ZH.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\AirlineLogo\GJ.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\printbg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\clk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\sms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\short_message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\insurance.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\travel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\baoxian.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="TextFile1.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\AirlineLogo\QW.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\special_h.png" />
+    <Resource Include="Image\special_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\arrow_g.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\te.png" />
+    <Resource Include="Image\tejia.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\tejia_r.png" />
+    <Resource Include="Image\te_r.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\arrow_b.png" />
+    <Resource Include="Image\arrow_t.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\AirlineLogo\UQ.gif" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

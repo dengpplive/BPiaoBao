@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="PolicyOperate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PolicyOperateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyOperateResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PolicyOperate_Test">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlData" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PolicyOperate_TestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PolicyOperate_TestResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PolicyOperateSoapIn">
+    <wsdl:part name="parameters" element="tns:PolicyOperate" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperateSoapOut">
+    <wsdl:part name="parameters" element="tns:PolicyOperateResponse" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperate_TestSoapIn">
+    <wsdl:part name="parameters" element="tns:PolicyOperate_Test" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperate_TestSoapOut">
+    <wsdl:part name="parameters" element="tns:PolicyOperate_TestResponse" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperateHttpGetIn">
+    <wsdl:part name="xmlData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperateHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperate_TestHttpGetIn">
+    <wsdl:part name="xmlData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperate_TestHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperateHttpPostIn">
+    <wsdl:part name="xmlData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperateHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperate_TestHttpPostIn">
+    <wsdl:part name="xmlData" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PolicyOperate_TestHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:portType name="JtywInsServiceSoap">
+    <wsdl:operation name="PolicyOperate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">公共交通工具意外伤害保险投保/退保</wsdl:documentation>
+      <wsdl:input message="tns:PolicyOperateSoapIn" />
+      <wsdl:output message="tns:PolicyOperateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PolicyOperate_Test">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">公共交通工具意外伤害保险投保/退保测试接口</wsdl:documentation>
+      <wsdl:input message="tns:PolicyOperate_TestSoapIn" />
+      <wsdl:output message="tns:PolicyOperate_TestSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JtywInsServiceHttpGet">
+    <wsdl:operation name="PolicyOperate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">公共交通工具意外伤害保险投保/退保</wsdl:documentation>
+      <wsdl:input message="tns:PolicyOperateHttpGetIn" />
+      <wsdl:output message="tns:PolicyOperateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PolicyOperate_Test">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">公共交通工具意外伤害保险投保/退保测试接口</wsdl:documentation>
+      <wsdl:input message="tns:PolicyOperate_TestHttpGetIn" />
+      <wsdl:output message="tns:PolicyOperate_TestHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JtywInsServiceHttpPost">
+    <wsdl:operation name="PolicyOperate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">公共交通工具意外伤害保险投保/退保</wsdl:documentation>
+      <wsdl:input message="tns:PolicyOperateHttpPostIn" />
+      <wsdl:output message="tns:PolicyOperateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PolicyOperate_Test">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">公共交通工具意外伤害保险投保/退保测试接口</wsdl:documentation>
+      <wsdl:input message="tns:PolicyOperate_TestHttpPostIn" />
+      <wsdl:output message="tns:PolicyOperate_TestHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="JtywInsServiceSoap" type="tns:JtywInsServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PolicyOperate">
+      <soap:operation soapAction="http://tempuri.org/PolicyOperate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PolicyOperate_Test">
+      <soap:operation soapAction="http://tempuri.org/PolicyOperate_Test" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JtywInsServiceSoap12" type="tns:JtywInsServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PolicyOperate">
+      <soap12:operation soapAction="http://tempuri.org/PolicyOperate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PolicyOperate_Test">
+      <soap12:operation soapAction="http://tempuri.org/PolicyOperate_Test" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JtywInsServiceHttpGet" type="tns:JtywInsServiceHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="PolicyOperate">
+      <http:operation location="/PolicyOperate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PolicyOperate_Test">
+      <http:operation location="/PolicyOperate_Test" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JtywInsServiceHttpPost" type="tns:JtywInsServiceHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="PolicyOperate">
+      <http:operation location="/PolicyOperate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PolicyOperate_Test">
+      <http:operation location="/PolicyOperate_Test" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JtywInsService">
+    <wsdl:port name="JtywInsServiceSoap" binding="tns:JtywInsServiceSoap">
+      <soap:address location="http://182.131.21.77/OutAPI/JtywInsService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JtywInsServiceSoap12" binding="tns:JtywInsServiceSoap12">
+      <soap12:address location="http://182.131.21.77/OutAPI/JtywInsService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JtywInsServiceHttpGet" binding="tns:JtywInsServiceHttpGet">
+      <http:address location="http://182.131.21.77/OutAPI/JtywInsService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JtywInsServiceHttpPost" binding="tns:JtywInsServiceHttpPost">
+      <http:address location="http://182.131.21.77/OutAPI/JtywInsService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

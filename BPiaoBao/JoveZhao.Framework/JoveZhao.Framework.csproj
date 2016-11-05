@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F01EA778-D03F-44B3-BA3C-998AF3758DC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JoveZhao.Framework</RootNamespace>
+    <AssemblyName>JoveZhao.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Commons, Version=0.4.2.8580, Culture=neutral, PublicKeyToken=44382d1b57473eda">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.84.0.0, Culture=neutral, PublicKeyToken=1b03e6acf1164f73">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.12.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.2\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI 2.0\dotnet4\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="PnrAnalysis">
+      <HintPath>..\packages\PnrAnalysis\PnrAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=2.6.4.0, Culture=neutral, PublicKeyToken=e60ad81abae3c223, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\structuremap.2.6.4.1\lib\net40\StructureMap.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DDD\AggregationFactory.cs" />
+    <Compile Include="Auth\AuthInfoStroageFactory.cs" />
+    <Compile Include="Auth\DefaultTokenBuilder.cs" />
+    <Compile Include="Auth\IAuthInfoStroage.cs" />
+    <Compile Include="Auth\IAuthService.cs" />
+    <Compile Include="Auth\ITokenBuilder.cs" />
+    <Compile Include="Auth\IUserInfo.cs" />
+    <Compile Include="Auth\IUserLogin.cs" />
+    <Compile Include="Auth\MemAuthInfoStroage.cs" />
+    <Compile Include="Auth\TokenBuilderFactory.cs" />
+    <Compile Include="Auth\UserAuthResult.cs" />
+    <Compile Include="BaseElementCollection.cs" />
+    <Compile Include="Cache\CacheConfigurationElement.cs" />
+    <Compile Include="Cache\CacheFactory.cs" />
+    <Compile Include="Cache\ICacheStrategy.cs" />
+    <Compile Include="Cache\LocalCacheStrategy.cs" />
+    <Compile Include="Cache\MemcacheStrategy.cs" />
+    <Compile Include="DDD\IAggregationBuilder.cs" />
+    <Compile Include="Excel\ExportExcelContext.cs" />
+    <Compile Include="Helper\WebHttp.cs" />
+    <Compile Include="HttpServers\DefaultHttpHandler.cs" />
+    <Compile Include="HttpServers\HttpCodeAttribute.cs" />
+    <Compile Include="HttpServers\HttpDistributer.cs" />
+    <Compile Include="HttpServers\HttpRequest.cs" />
+    <Compile Include="HttpServers\HttpServer.cs" />
+    <Compile Include="HttpServers\IHttpHandler.cs" />
+    <Compile Include="DDD\BusinessRule.cs" />
+    <Compile Include="DDD\BootStrapper.cs" />
+    <Compile Include="DDD\DDDConfigurationElement.cs" />
+    <Compile Include="DDD\EntityBase.cs" />
+    <Compile Include="DDD\Events\DomainEvents.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDD\Events\IDomainEvent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDD\Events\IDomainEventHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDD\Events\IDomainEventHandlerFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDD\Events\StructureMapDomainEventHandlerFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DDD\IRepository.cs" />
+    <Compile Include="DDD\ValueObjectBase.cs" />
+    <Compile Include="DDD\ValueObjectIsInvalidException.cs" />
+    <Compile Include="Email\EmailConfigurationSection.cs" />
+    <Compile Include="Email\EmailServiceFactory.cs" />
+    <Compile Include="Email\IEmailService.cs" />
+    <Compile Include="Email\SMTPService.cs" />
+    <Compile Include="Helper\HttpHelper.cs" />
+    <Compile Include="JZFConfigurationSection.cs" />
+    <Compile Include="MemcachedClientLibrary\CRCTool.cs" />
+    <Compile Include="MemcachedClientLibrary\IterIsolate.cs" />
+    <Compile Include="MemcachedClientLibrary\MemCachedClient.cs" />
+    <Compile Include="MemcachedClientLibrary\NativeHandler.cs" />
+    <Compile Include="MemcachedClientLibrary\NetworkStreamIgnoreSeek.cs" />
+    <Compile Include="MemcachedClientLibrary\SockIO.cs" />
+    <Compile Include="MemcachedClientLibrary\SockIOPool.cs" />
+    <Compile Include="Regexes.cs" />
+    <Compile Include="SectionManager.cs" />
+    <Compile Include="Service References\SMSService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SMS\SMSConfigurationElement.cs" />
+    <Compile Include="SMS\SMSServiceFactory.cs" />
+    <Compile Include="SMS\ISMSService.cs" />
+    <Compile Include="SMS\SMSDefaultService.cs" />
+    <Compile Include="SOA\AuthData.cs" />
+    <Compile Include="SOA\AuthProcess.cs" />
+    <Compile Include="SOA\ClientSection.cs" />
+    <Compile Include="SOA\HeartProcess.cs" />
+    <Compile Include="SOA\ICommandProcess.cs" />
+    <Compile Include="SOA\MessageList.cs" />
+    <Compile Include="SOA\Pool.cs" />
+    <Compile Include="SOA\ProcessThread.cs" />
+    <Compile Include="SOA\RequestMessage.cs" />
+    <Compile Include="SOA\ResponseMessage.cs" />
+    <Compile Include="SOA\ServerSection.cs" />
+    <Compile Include="SOA\SoaClient.cs" />
+    <Compile Include="SOA\SoaConfigurationElement.cs" />
+    <Compile Include="SOA\SoaServer.cs" />
+    <Compile Include="CustomException.cs" />
+    <Compile Include="DDD\IAggregationRoot.cs" />
+    <Compile Include="DDD\IReadOnlyRepository.cs" />
+    <Compile Include="DDD\IUnitOfWork.cs" />
+    <Compile Include="DDD\IUnitOfWorkRepository.cs" />
+    <Compile Include="EnumDescAttribute.cs" />
+    <Compile Include="Expand\ExpandCryptography.cs" />
+    <Compile Include="Expand\ExpandIsType.cs" />
+    <Compile Include="Expand\ExpandQueryable.cs" />
+    <Compile Include="Expand\ExpandTypeConvert.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="NotFoundResourcesException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleTask\DailySchedule.cs" />
+    <Compile Include="ScheduleTask\IntervalSchedule.cs" />
+    <Compile Include="ScheduleTask\ISchedule.cs" />
+    <Compile Include="ScheduleTask\ITask.cs" />
+    <Compile Include="ScheduleTask\MonthlySchedule.cs" />
+    <Compile Include="ScheduleTask\OneTimeSchedule.cs" />
+    <Compile Include="ScheduleTask\Schedule.cs" />
+    <Compile Include="ScheduleTask\ScheduleTaskServices.cs" />
+    <Compile Include="ScheduleTask\WeeklySchedule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Service References\SMSService\Service11.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MemcachedClientLibrary\StringMessages.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Commons.dll" />
+    <Content Include="ICSharpCode.SharpZipLib.dll" />
+    <None Include="Service References\SMSService\Service11.disco" />
+    <None Include="Service References\SMSService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\SMSService\configuration.svcinfo" />
+    <None Include="Service References\SMSService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SMSService\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

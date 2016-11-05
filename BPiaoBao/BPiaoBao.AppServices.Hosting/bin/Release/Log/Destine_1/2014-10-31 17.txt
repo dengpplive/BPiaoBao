@@ -1,0 +1,100 @@
+Start====================================================================
+时间:2014-10-31 17:27:56.583
+客户端IP:127.0.0.1:8186
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8555
+StartDate=2015/1/22 7:05:00
+EndDate=2015/1/22 8:25:00
+Seat=Y
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=100.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=630.00
+PolicySpecialType=DiscountOnDiscount
+SpecialPrice=189.0000
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/10/31 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-10-31 17:27:53.119
+时间2:2014-10-31 17:27:56.427
+结果:
+ 成人Pnr=HF72VX PNRContent= 1.杨关 HF72VX   2.  3U8555 Y   TH22JAN  CTUXIY HK1   0705 0825          E T1T3  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0705/22JAN/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.SSR ADTK 1E BY CTU07NOV14/1727 OR CXL 3U8555 Y22JAN   7.OSI 3U CTCM15928636274/P1 8.OSI 3U CTCT15928636274    9.RMK CA/MC9X5W10.CTU186    
+ PATContent=
+时间3:2014-10-31 17:27:56.583
+
+
+End=====================================================================
+
+Start====================================================================
+时间:2014-10-31 17:34:23.338
+客户端IP:127.0.0.1:8243
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8555
+StartDate=2014/11/27 7:05:00
+EndDate=2014/11/27 8:25:00
+Seat=Y
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=100.0000
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=630.00
+PolicySpecialType=DiscountOnDiscount
+SpecialPrice=189.0000
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=杨关
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/10/31 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-10-31 17:34:16.340
+时间2:2014-10-31 17:34:23.257
+结果:
+ 成人Pnr=JP1HVL PNRContent= 1.杨关 JP1HVL   2.  3U8555 Y   TH27NOV  CTUXIY HK1   0705 0825          E T1T3  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0705/27NOV/CTU186  5.SSR FOID 3U HK1 NI420821198710072018/P1   6.SSR ADTK 1E BY CTU07NOV14/1734 OR CXL 3U8555 Y27NOV   7.OSI 3U CTCM15928636274/P1 8.OSI 3U CTCT15928636274    9.RMK CA/NV0NK510.CTU186    
+ PATContent=
+时间3:2014-10-31 17:34:23.338
+
+
+End=====================================================================
+

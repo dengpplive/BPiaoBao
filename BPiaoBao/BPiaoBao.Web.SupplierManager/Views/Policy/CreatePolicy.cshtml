@@ -1,0 +1,222 @@
+﻿@{
+    Layout = null;
+   
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>政策发布</title>
+</head>
+<body>
+    <link href="~/easyui-1.3.6/themes/metro/easyui.css" rel="stylesheet" />
+    <script type="text/javascript" src="@Url.Content("~/EnumTypeHandler.ashx?v=1234")"></script>
+    <script src="~/Scripts/jquery-1.9.0.js"></script>
+    <script src="~/easyui-1.3.6/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.debug.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+    <script src="~/Scripts/AllAirport.js"></script>
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script src="~/Scripts/ko.custombinding.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/register.js"></script>
+    <form id="policyForm" action="/Policy/CreatePolicy" method="post">
+        <input type="hidden" name="ID" data-bind="value: $root.EditForm.ID" />
+        <table>
+            <tbody>
+                <tr>
+                    <td>发布类型：</td>
+                    <td>
+                        <!--ko foreach:ReleaseType-->
+                        <input type="radio" name="ReleaseType" data-bind="value: Value, checked: $root.EditForm.ReleaseType() + ''" /><span data-bind="    text: Description"></span>
+                        <!--/ko-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>行程类型：</td>
+                    <td>
+                        <!--ko foreach:TravelType-->
+                        <input type="radio" data-bind="value: Value, checked: $root.EditForm.TravelType() + ''" name="TravelType" /><span data-bind="    text: Description"></span>
+                        <!--/ko-->
+                        是否低开:<input type="checkbox" value="true" name="Low" data-bind="checked: $root.EditForm.Low() == true" />低开
+                        是否换编码：<input type="checkbox" value="true" name="ChangeCode" data-bind="checked: $root.EditForm.ChangeCode() == true" />换编码
+                    </td>
+                </tr>
+                <tr>
+                    <td>出发城市：</td>
+                    <td>
+                        <input class="easyui-combogrid required" id="FromCityCodes" name="FromCityCodes" style="width: 250px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>到达城市：</td>
+                    <td>
+                        <input class="easyui-combogrid required" id="ToCityCodes" name="ToCityCodes" style="width: 250px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>星期限制：</td>
+                    <td>
+                        <!--ko foreach:WeekLimit-->
+                        <input type="checkbox" name="WeekLimit" data-bind="value: Value, checked: $root.SelectedWeek" /><span data-bind="    text: Description"></span>
+                        <!--/ko-->
+                        （选中为此星期不能使用本条政策）
+                    </td>
+                </tr>
+                <tr>
+                    <td>适用共享航班：</td>
+                    <td>
+                        <input type="radio" name="Share" id="Share_1" value="true" data-bind="checked: $root.EditForm.Share() + ''" /><label for="Share_1">适用</label>
+                        <input type="radio" name="Share" id="Share_2" value="false" data-bind="checked: $root.EditForm.Share() + ''" /><label for="Share_2">不适用</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td rowspan="2">适用航班：</td>
+                    <td>
+                        <!-- ko foreach:Apply-->
+                        <input type="radio" name="Apply" data-bind="value: Value, checked: $root.EditForm.Apply() + ''" /><span data-bind="    text: Description"></span>
+                        <!-- /ko -->
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea name="ApplyFlights" data-bind="value: $root.EditForm.ApplyFlights"></textarea>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>航空公司：</td>
+                    <td>
+                        <select name="CarrayCode" class="required" data-bind="options: Carray, optionsValue: function (item) { return item.Value; }, optionsText: function (item) { return item.Text; }, value: SelectedCarray, optionsCaption: '请选择...'"></select>
+
+                        Office:<input type="text" name="Office" class="required" data-bind="value: $root.EditForm.Office" />
+                        出票方式：
+                    <!--ko foreach:IssueTicketWay-->
+                        <input type="radio" name="IssueTicketWay" data-bind="value: Value, checked: $root.EditForm.IssueTicketWay() + ''" /><span data-bind="    text: Description"></span>
+                        <!--/ko-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>舱位：</td>
+                    <td>
+                        <!--ko foreach:Seats-->
+                        <input type="checkbox" name="Seats" class="required" data-bind="value: Seat, checked: $root.SelectedSeat" /><span data-bind="    text: Seat"></span>
+                        <!--/ko-->
+                    </td>
+                </tr>
+                <tr>
+                    <td>政策类型:</td>
+                    <td>
+                        <select name="LocalPolicyType" class="required" data-bind="options: PolicyType, value: $root.EditForm.LocalPolicyType, optionsCaption: '请选择...'"></select>
+                        本地返点：<input type="text" name="LocalPoint" class="required number" data-bind="value: $root.EditForm.LocalPoint" />
+                        异地返点：<input type="text" name="Different" class="required number" data-bind="value: $root.EditForm.Different" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>乘机日期:</td>
+                    <td>
+                        <input type="text" id="PassengeDate_StartTime" name="PassengeDate.StartTime" data-options="maxDate:'#F{$dp.$D(\'PassengeDate_EndTime\')}',dateFmt:'yyyy-MM-d H:mm:ss'" class="easyui-my97 required" data-bind="my97value: $root.EditForm.PassengeDate.StartTime" />-
+                        <input type="text" id="PassengeDate_EndTime" name="PassengeDate.EndTime" data-options="minDate:'#F{$dp.$D(\'PassengeDate_StartTime\')}',dateFmt:'yyyy-M-d H:mm:ss'" class="easyui-my97  required" data-bind="    my97value: $root.EditForm.PassengeDate.EndTime" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>出票日期：</td>
+                    <td>
+                        <input type="text" id="IssueDate_StartTime" data-options="maxDate:'#F{$dp.$D(\'IssueDate_EndTime\')}',dateFmt:'yyyy-M-d H:mm:ss'" name="IssueDate.StartTime" class="easyui-my97  required" data-bind="my97value: $root.EditForm.IssueDate.StartTime" />-
+                        <input type="text" id="IssueDate_EndTime" data-options="minDate:'#F{$dp.$D(\'IssueDate_StartTime\')}',dateFmt:'yyyy-M-d H:mm:ss'" name="IssueDate.EndTime" class="easyui-my97  required" data-bind="    my97value: $root.EditForm.IssueDate.EndTime" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>政策备注</td>
+                    <td>
+                        <textarea name="Remark" data-bind="value: $root.EditForm.Remark"></textarea>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="submit" value="保存" />
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </form>
+    <script type="text/javascript">
+        $(function () {
+            var ViewModel = function () {
+                var self = this;
+                self.EditForm = ko.mapping.fromJS(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+            self.ReleaseType = ko.observableArray(EnumReleaseType);
+            self.TravelType = ko.observableArray(EnumTravelType);
+            self.IssueTicketWay = ko.observableArray(EnumIssueTicketWay);
+            self.Apply = ko.observableArray(EnumApply);
+            self.Carray = ko.observableArray(CarrayList);
+            self.WeekLimit = ko.observableArray([{ Value: '1', Description: '星期一' }, { Value: '2', Description: '星期二' }, { Value: '3', Description: '星期三' }, { Value: '4', Description: '星期四' }, { Value: '5', Description: '星期五' }, { Value: '6', Description: '星期六' }, { Value: '7', Description: '星期日' }]);
+            self.Seats = ko.observableArray([]);
+            self.PolicyType = ko.observableArray(['B2B', 'BSP']);
+            self.SelectedCarray = ko.observable();
+            self.SelectedWeek = ko.observableArray();
+            self.SelectedSeat = ko.observableArray();
+            self.SelectedCarray.subscribe(function (newValue) {
+                self.Seats.removeAll();
+                //self.SelectedSeat.removeAll();
+                if (newValue == null || newValue == undefined)
+                    return;
+                $.getJSON('/Policy/GetSeats', { carraycode: newValue, date: new Date() }, function (r) {
+                    for (var i = 0; i < r.length; i++) {
+                        self.Seats.push(r[i]);
+                    }
+                });
+            })
+            self.Init = function () {
+                if (self.EditForm.WeekLimit() != null || self.EditForm.WeekLimit() != undefined)
+                    self.SelectedWeek(self.EditForm.WeekLimit().split(','));
+                if (self.EditForm.Seats() != null || self.EditForm.Seats() != undefined)
+                    self.SelectedSeat(self.EditForm.Seats().split(','));
+                if (self.EditForm.CarrayCode() != null || self.EditForm.CarrayCode() != undefined)
+                    self.SelectedCarray(self.EditForm.CarrayCode());
+                $('#FromCityCodes').combogrid({
+                    panelWidth: 300,
+                    panelHeight: 500,
+                    value:self.EditForm.FromCityCodes(),
+                    multiple: true,
+                    idField: 'Code',
+                    textField: 'Code',
+                    data: AllAirport,
+                    fitColumns: true,
+                    columns: [[
+                    { field: 'ck', checkbox: true, width: 20 },
+                    { field: 'Code', title: '三字码', width: 80 },
+                    { field: 'CityName', title: '城市', width: 100 }]]
+                });
+                $('#ToCityCodes').combogrid({
+                    panelWidth: 300,
+                    panelHeight: 500,
+                    value:self.EditForm.ToCityCodes(),
+                    multiple: true,
+                    idField: 'Code',
+                    textField: 'Code',
+                    data: AllAirport,
+                    fitColumns: true,
+                    columns: [[
+                    { field: 'ck', checkbox: true, width: 20 },
+                    { field: 'Code', title: '三字码', width: 80 },
+                    { field: 'CityName', title: '城市', width: 100 }]]
+                });
+                $('#policyForm').validate();
+                window.parent.HideDiv();
+            }
+        }
+            var vm = new ViewModel();
+            vm.Init();
+            ko.applyBindings(vm);
+        });
+    </script>
+</body>
+</html>

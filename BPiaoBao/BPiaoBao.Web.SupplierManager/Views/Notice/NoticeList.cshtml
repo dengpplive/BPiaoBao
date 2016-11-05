@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "NoticeList";
+}
+<style>
+    .filterbg table tr td{ border:0px; padding-bottom:0px;}
+
+
+</style>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+<div id="mainContent">
+    <div class="filterbg" style="border:0px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="40">标题：</td>
+                <td width="150">
+                    <input type="text" name="textfield" class="inputStyle" data-bind="value: queryCond.Title" /></td>
+                <td>
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: search" style="padding:0px 15px; color:#fff;">查询</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<table id="dg" title="公告列表" class="dgShow">
+    <thead>
+        <tr style="background-color: #daeef5">
+            <th data-options="field:'ID', width:120, formatter: searchViewModel.operationColumnFormatter.Handle">基本操作</th>
+            <th data-options="field:'Title',width:140">标题</th>
+            <th data-options="field:'CreateTime',width:80">发布时间</th>
+            <th data-options="field:'CreateName',width:100">发布人</th>
+        </tr>
+    </thead>
+</table>
+        </div></div>
+<div id="NoticeDetailWindow" title="公告详情" class="easyui-window" data-options="resizable:false,maximizable:false,minimizable:false,model:true,collapsible:false,maximized: true,draggable: false" style="width: 950px; height: 500px; padding: 10px 15px;">
+</div>
+@section scripts{
+<script type="text/javascript">
+    $(function () {
+        searchViewModel = {
+            $DataGrid: null,
+            $NoticeDetail_Window: null,
+            queryUrl: '@Url.Action("GetIndustryNoticeList")',
+            queryCond: {
+                Title: ko.observable(),
+                StartTime: ko.observable(),
+                EndTime: ko.observable()
+            },
+            lastQueryCond: {},
+            init: function () {
+                this.$NoticeDetail_Window = $("#NoticeDetailWindow").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                this.$DataGrid = $('#dg').datagrid({
+                    rownumbers: false,
+                    singleSelect: true,
+                    autoRowHeight: false,
+                    pagination: true,
+                    nowrap: false,
+                    pageSize: 10,
+                    toolbar: '#mainContent',
+                    fit: true,
+                    url: searchViewModel.queryUrl,
+                    queryParams: this.lastQueryCond
+                });
+                ko.applyBindings(searchViewModel, $("#mainContent")[0]);
+            },
+            search: function () {
+                this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                this.$DataGrid.datagrid("load",this.lastQueryCond);
+            },
+            operationColumnFormatter: {
+                Handle: function (value, row, rowIndex) {
+                    var tempStr = "<a href='javascript:searchViewModel.openDetailDialog(\"" + value + "\")'  >详情</a>";
+             
+                    return tempStr;
+                }
+            },
+            openDetailDialog: function (id) {
+                
+                //$('#NoticeDetailDialog a').live(function () {
+                //     window.open($(this).attr("href"))
+                //})
+                this.$NoticeDetail_Window.window({ href: "@Url.Action("NoticeDetail", "Notice")?Id=" + id + "" });
+                this.$NoticeDetail_Window.window("open");
+            }
+        };
+        searchViewModel.init();
+    });
+</script>
+}

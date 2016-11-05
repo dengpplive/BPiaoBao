@@ -1,0 +1,119 @@
+﻿@{
+    ViewBag.Title = "SmsIndex";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+               <tr>
+                <td width="100px">短信剩余条数：</td>
+                <td width="100px">
+                    <label data-bind="text: searchViewModel.RemainCount()"></label>
+                </td>
+                   <td>
+                       <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: openModifyDialog">购买短信</a>
+                   </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="ChargeSetWindow" class="easyui-window" title="短信购买" data-options="minimizable:false,model:true,collapsible:false" style="padding: 10px 15px; width:600px;height:auto;">
+    <div class="m_duan">
+            <ul data-bind="foreach: ChargeSetDto.smsbuylist"> 
+             <li> 
+                 <input type="radio" name ="Rcharge" data-bind="value:ID,checked:$root.SmsBuyDto.ChargeSetId"/>
+                 <span data-bind="text: TotalPrice"></span>(元) <span data-bind="text: Count"></span> (条)
+             </li> 
+         </ul> 
+        <table style="padding-top:10px;">
+            <tr>
+                <td>支付密码：</td>
+                <td>
+                     <input type="password" name="textfield" class="inputStyle" maxlength="18" data-bind="value: $root.SmsBuyDto.Pwd" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align:center;padding:10px 0 0 0;">
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: saveChargeSet">购买</a>&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: closeChargeSetAddWindow">取消</a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts{
+<script type="text/javascript">
+    $(function () {
+        searchViewModel = {
+            $ChargeSetWindow: null,
+            RemainCount: ko.observable(),
+            ChargeSetDto: {
+               smsbuylist: ko.observableArray([{
+                    ID: ko.observable(),
+                    TotalPrice: ko.observable(),
+                    Count: ko.observable()
+               }])
+            },
+            SmsBuyDto:{
+                ChargeSetId: ko.observable(),
+                Pwd:ko.observable()
+            },
+            closeChargeSetAddWindow: function () {
+                searchViewModel.$ChargeSetWindow.window("close");
+            },
+            init: function () {
+                this.$ChargeSetWindow = $("#ChargeSetWindow").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                $.post('@Url.Action("GetSmsRemainCount")', {}, function (data) {
+                    var d = JSON.parse(data);
+                    searchViewModel.RemainCount(d);
+                });
+            },
+            openModifyDialog: function (id) {
+               
+                $.post('@Url.Action("GetBuySmsChargeSetList")', {}, function (data) {
+                    var d = JSON.parse(data);
+                    searchViewModel.map(JSON.parse(data), searchViewModel.ChargeSetDto);
+                    searchViewModel.$ChargeSetWindow.window("open");
+                });
+            },
+            saveChargeSet: function () {
+                var SmsBuyDto = ko.toJS(searchViewModel.SmsBuyDto);
+                if (SmsBuyDto.ChargeSetId == undefined || SmsBuyDto.ChargeSetId == '') {
+                    $.messager.alert("提示", "请选择条数！", 'info');
+                    return;
+                }
+                if (SmsBuyDto.Pwd == undefined || SmsBuyDto.Pwd == '') {
+                    $.messager.alert("提示", "请输入密码！", 'info');
+                    return;
+                }
+                $.ajax({
+                    url: '@Url.Action("BuySms")',
+                    type: 'POST',
+                    data: {chargesetid:this.SmsBuyDto.ChargeSetId,pwd:this.SmsBuyDto.Pwd}
+                }).done(function (e, s) {
+                    searchViewModel.closeChargeSetAddWindow();
+                    searchViewModel.init();
+                    $.messager.alert('提示', "购买成功", 'info')
+                }).fail(function (e) {
+                    var obj = JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                });
+            },
+            map: function (obj, obserableObj) {
+                for (var prop in obserableObj) {
+                    if (obserableObj.hasOwnProperty(prop)) {
+                        if (typeof obserableObj[prop] === "function")
+                            obserableObj[prop](obj ? obj[prop] : undefined);
+                        else if (typeof obserableObj[prop] === "object")
+                            searchViewModel.map(obj ? obj[prop] : {}, obserableObj[prop]);
+                    }
+                }
+            }
+        }
+        searchViewModel.init();
+        ko.applyBindings(searchViewModel);
+    });
+</script>
+    }

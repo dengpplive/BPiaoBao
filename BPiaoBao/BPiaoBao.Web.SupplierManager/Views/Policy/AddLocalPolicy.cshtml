@@ -1,0 +1,171 @@
+﻿<style>
+    .span_paddingright {
+        padding-right: 10px;
+    }
+
+    .divstyle {
+        padding-left: 20px;
+        padding-top: 20px;
+    }
+
+        .divstyle table tr td {
+            color: #000;
+        }
+
+    .titleStyle2 {
+        color: #666;
+    }
+    /* .datagrid-view1 {
+         display:none;
+         position:relative;
+         top:0px;
+         left:0px;
+         width:0px;
+
+    }
+    .datagrid-view1 .datagrid-view2 {
+        position: relative;
+        overflow:inherit;
+    }
+     .datagrid-view2 {
+        width: 248px;
+    }
+
+ */
+</style>
+
+<div id="AddLocalPolicy" class="easyui-dialog divstyle" title="政策编辑" data-options="modal:true,closed:true,draggable:false,closable:true,maximized:true,buttons:'#AddLocalPolicy-buttons'">
+    <table border="0" cellpadding="0" cellspacing="0" data-bind="with: $root.FullForm ">
+        <tbody>
+            <tr>
+                <td height="35" class="titleStyle2">发布类型：</td>
+                <td height="35">
+                    <!--ko foreach:ReleaseType-->
+                    <input type="radio" name="A_ReleaseType" data-bind="value: Value, checked: $parent.CustomModel.ReleaseType" /><span data-bind="    text: Description"></span>
+                    <!--/ko-->
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">行程类型：</td>
+                <td height="35">
+                    <!--ko foreach:TravelType-->
+                    <input type="radio" data-bind="value: Value, checked: $parent.CustomModel.TravelType" name="A_TravelType" /><span data-bind="text: Description"></span>
+                    <!--/ko-->
+                </td>
+            </tr>
+            <tr>
+                <td height="20">&nbsp;</td>
+                <td height="20">
+                    <input type="checkbox" value="true" name="A_Low" data-bind="checked:CustomModel.Low" />
+                    是否低开&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="checkbox" value="true" name="A_ChangeCode" data-bind="checked:CustomModel.ChangeCode" />
+                    是否换编码
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">出发城市：</td>
+                <td height="35">
+                    <select id="FromCityCodes" name="A_FromCityCodes" style="width: 250px;"></select> 
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">到达城市：</td>
+                <td height="35">
+                    <select id="ToCityCodes" name="A_ToCityCodes" style="width: 250px;" ></select> 
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">星期限制：</td>
+                <td height="35">
+                    <div style="float: left; padding-right: 10px;">
+                        <!--ko foreach:WeekLimit-->
+                        <input type="checkbox" name="A_WeekLimit" data-bind="value: Value, checked: $parent.SelectedWeek" style="margin-right: 3px;" /><span data-bind="text: Description"></span>
+                        <!--/ko-->
+                    </div>
+                    <span style="float: left;">（选中为此星期不能使用本条政策）</span>
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">适用共享航班：</td>
+                <td height="35">
+                    <input type="radio" name="A_Share" id="Share_1" value="true" data-bind="checked: CustomModel.Share" /><label for="Share_1">适用</label>
+                    <input type="radio" name="A_Share" id="Share_2" value="false" data-bind="checked: CustomModel.Share" /><label for="Share_2">不适用</label>
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">适用航班：</td>
+                <td height="35">
+                    <!-- ko foreach:Apply-->
+                    <div style="float: left; width: 100px; margin-right: 10px;">
+                        <input type="radio" name="A_Apply" data-bind="value: Value, checked: $parent.CustomModel.Apply" style="margin-right: 3px;" /><span data-bind="text: Description"></span>
+                    </div>
+                    <!-- /ko -->
+
+                </td>
+            </tr>
+            <tr>
+                <td height="30"></td>
+                <td height="30">
+                    <textarea name="A_ApplyFlights" data-bind="value: Model.ApplyFlights" style="width: 375px;"></textarea>
+                    (多个航班请以","号分开 如:123455,554321,687906)
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td height="35" class="titleStyle2">航空公司：</td>
+                <td height="35">
+                    <select name="A_CarrayCode" class="required" data-bind="options: Carray, optionsValue: function (item) { return item.Value; }, optionsText: function (item) { return item.Text; }, value: SelectedCarray, optionsCaption: '请选择...'"></select>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    Office:<input type="text" name="A_Office" data-bind="value: Model.Office" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    出票方式：
+                    <!--ko foreach:IssueTicketWay-->
+                    <input type="radio" name="A_IssueTicketWay" data-bind="value: Value, checked: $parent.CustomModel.IssueTicketWay" /><span data-bind="    text: Description"></span>
+                    <!--/ko-->
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">舱位：</td>
+                <td height="35">
+                    <div style="float: left; margin-right: 10px;">
+                        <input type="text" name="A_Seats" data-bind="value: Model.Seats" style="margin-right: 3px;width:300px;" maxlength="30" />(多个舱位请以","号分开 如:H,F,G)
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">政策类型:</td>
+                <td height="35">
+                    <select name="A_LocalPolicyType" class="required" data-bind="options: PolicyType, value: Model.LocalPolicyType, optionsCaption: '请选择...'"></select>&nbsp;&nbsp;&nbsp;&nbsp;
+                    本地返点：<input type="text" name="A_LocalPoint" data-bind="value: Model.LocalPoint" />&nbsp;&nbsp;&nbsp;&nbsp;
+                    异地返点：<input type="text" name="A_Different" data-bind="value: Model.Different" />
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">乘机日期:</td>
+                <td height="35">
+                    <input type="text" id="PassengeDate_StartTime" name="A_PassengeDate.StartTime" data-options="maxDate:'#F{$dp.$D(\'PassengeDate_EndTime\')}'" class="easyui-my97 required" data-bind="my97value: Model.PassengeDate.StartTime" />-
+                    <input type="text" id="PassengeDate_EndTime" name="A_PassengeDate.EndTime" data-options="minDate:'#F{$dp.$D(\'PassengeDate_StartTime\')}'" class="easyui-my97  required" data-bind="    my97value: Model.PassengeDate.EndTime" />
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">出票日期：</td>
+                <td height="35">
+                    <input type="text" id="IssueDate_StartTime" data-options="maxDate:'#F{$dp.$D(\'IssueDate_EndTime\')}'" name="A_IssueDate.StartTime" class="easyui-my97  required" data-bind="my97value: Model.IssueDate.StartTime" />-
+                    <input type="text" id="IssueDate_EndTime" data-options="minDate:'#F{$dp.$D(\'IssueDate_StartTime\')}'" name="A_IssueDate.EndTime" class="easyui-my97  required" data-bind="    my97value: Model.IssueDate.EndTime" />
+                </td>
+            </tr>
+            <tr>
+                <td height="35" class="titleStyle2">政策备注</td>
+                <td height="35">
+                    <div style="margin-top:8px;"><textarea name="A_Remark" data-bind="value: Model.Remark" style="width: 375px;font-size:12px;line-height:18px;padding:0 3px;color:#555;"></textarea></div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+<div id="AddLocalPolicy-buttons" style="text-align: center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.FullForm.SaveClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#AddLocalPolicy').dialog('close')">取消</a>
+</div>

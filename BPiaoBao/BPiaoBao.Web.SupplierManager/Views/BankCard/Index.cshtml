@@ -1,0 +1,197 @@
+﻿<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <table id="MainTable" data-bind="datagrid: grid" title="银行卡管理">
+            <thead >
+                <tr>
+                    <th data-options="field:'Name',width:120">银行名称</th>
+                    <th data-options="field:'BankBranch',width:120">开户行</th>
+                    <th data-options="field:'CardNoShow',width:120">银行卡号</th>
+                    <th data-options="field:'Owner',width:100">开户人</th>
+                    <th data-options="field:'IsDefault',width:80,formatter:stateFormater">状态</th>
+                    <th data-options="field:'Province',width:60">省份</th>
+                    <th data-options="field:'City',width:40">城市</th>
+                    <th data-options="field:'BankId',width:200,formatter:opFormater">操作</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@Html.Partial("Add")
+
+@section scripts{
+    <script type="text/javascript">
+
+        var toolbar = [{
+            text: '添加新的银行卡',
+            iconCls: 'icon-sys-add',
+            handler: function() {
+
+                $('#AddBankCardDialog').dialog('open');
+                $("#AddBankCardDialog").panel("setTitle","添加银行卡"); 
+            }
+        }];
+
+        $("#selPro").bind("change", function() {
+            getCitys();
+        });
+        function getCitys() {
+            $("#AddBankCardDialog").mask("正在获取数据...");
+            var text = $("#selPro option:selected").text();
+            $.getJSON(Fromdata.urls.getCity, { 'areaName': text }, function(res) {
+                vm.city(res);
+                $("#AddBankCardDialog").unmask();
+            });
+        }
+        function stateFormater(value, row, index) {
+            if (value == true) {
+                return "<b><font color='red'>默认卡</font></b>";
+            }
+            return "";
+
+        }
+
+        function opFormater(value, row, index) {
+            if (row["IsDefault"] != true) {
+                return "<a  href=\"javascript:void(0)\" class='easyui-linkbutton l-btn'style='margin-right:10px;color:white'  onclick='javascript:setDefaultBank(" + value + ")'><span class=\"l-btn-left\"><span class=\"l-btn-text\">设为默认</span></span></a>  " +
+                    "<a  href=\"javascript:void(0)\" class='easyui-linkbutton l-btn' style='margin-right:10px;color:white'  onclick='javascript: modifyBank(" + index + ")'><span class=\"l-btn-left\"><span class=\"l-btn-text\">修改</span></span></a>"+
+                    "<a  href=\"javascript:void(0)\" class='easyui-linkbutton l-btn' style='color:white'  onclick='javascript: deleteBank(" + value + "," + row["IsDefault"] + ")'><span class=\"l-btn-left\"><span class=\"l-btn-text\">删除</span></span></a> ";
+            } else {
+                return "<a  href=\"javascript:void(0)\" class='easyui-linkbutton l-btn' style='margin-right:14px;width:56px;color:white' onclick='javascript: modifyBank(" + index + ")'><span class=\"l-btn-left\"><span class=\"l-btn-text\">修改</span></span></a>" +
+                    "<a  href=\"javascript:void(0)\" class='easyui-linkbutton l-btn' style='color:white' onclick='javascript: deleteBank(" + value + "," + row["IsDefault"] + ")'><span class=\"l-btn-left\"><span class=\"l-btn-text\">删除</span></span></a> ";
+            }
+
+        }
+
+        function setDefaultBank(id) {
+            $.ajax({
+                url: Fromdata.urls.setDefaultBankCard,
+                type: 'POST',
+                data: { "id": id },
+                success: function() {
+                    vm.grid.datagrid('reload');
+                }
+            });
+        }
+
+        function deleteBank(id, isDefault) {
+            if (isDefault == true) {
+                window.parent.$.messager.alert("系统提示", "此卡为默认卡，不能删除","warning");
+                return;
+            }
+            $.messager.confirm('系统提示', '确定要删除吗？', function(r) {
+                if (r) {
+                    $.ajax({
+                        url: Fromdata.urls.deleteBank,
+                        type: 'POST',
+                        data: { "id": id },
+                        success: function() {
+                            vm.grid.datagrid('reload');
+                        }
+                    });
+                }
+            });
+        }
+
+        function  modifyBank(index) {
+            
+            var row = vm.grid.datagrid('getRows');
+            var model = row[index];
+            vm.editForm.Name(model.Name);
+            vm.editForm.CardNo(model.CardNo);
+            vm.editForm.BankBranch(model.BankBranch);
+            vm.editForm.Province(model.Province);
+            vm.editForm.BankId(model.BankId);
+            vm.editForm.IsDefault(model.IsDefault);
+            $.getJSON(Fromdata.urls.getCity, { 'areaName': model.Province }, function(res) {
+                vm.city(res);
+                vm.editForm.City(model.City);
+            });
+            $("#AddBankCardDialog").panel("setTitle","修改银行卡");
+            $('#AddBankCardDialog').dialog('open');
+        }
+
+
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        vm.grid.idField = "BankId";
+        vm.grid.pagination = false;
+        vm.grid.toolbar = toolbar;
+
+        vm.otherParas = ko.mapping.fromJS(Fromdata.otherParas);
+        vm.editForm = ko.mapping.fromJS(Fromdata.editForm);
+        delete vm.editForm.__ko_mapping__;
+        vm.city = ko.observableArray([]);
+
+        vm.addClick = function() {
+            var reg = new RegExp("^[0-9]*$");
+            if (vm.editForm.Name() == null || vm.editForm.Name() == "") {
+                window.parent.$.messager.alert('提示', "银行名称不能够为空","warning");
+                return;
+            }
+            if (vm.editForm.CardNo() == null || vm.editForm.CardNo() == "") {
+                window.parent.$.messager.alert('提示', "银行卡号不能够为空","warning");
+                return;
+            }
+
+            if (!reg.test(vm.editForm.CardNo())) {
+                window.parent.$.messager.alert('提示', "请输入正确的银行卡号","warning");
+                return;
+            }else if ($.trim(vm.editForm.CardNo()).length<6) {
+                window.parent.$.messager.alert('提示', "请输入正确的银行卡号","warning");
+                return;
+            }
+
+            if (vm.editForm.City() == null) {
+                window.parent.$.messager.alert('提示', "开户行城市信息不能够为空","warning");
+                return;
+            }
+            if (vm.editForm.BankBranch() == null || vm.editForm.BankBranch() == "") {
+                window.parent.$.messager.alert('提示', "开户行信息不能够为空","warning");
+                return;
+            }
+            $("#AddBankCardDialog").mask("正在提交数据...");
+            var url = Fromdata.urls.add;
+            if (vm.editForm.BankId()!=null&&vm.editForm.BankId() != "") {
+                url = Fromdata.urls.edit;
+            }
+            $.ajax({
+                url: url,
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(ko.toJS(vm.editForm)),
+                success: function(res) {
+                    $("#AddBankCardDialog").unmask();
+                    res = JSON.parse(res);
+                    if (res.Success == 1) {
+                        vm.grid.datagrid('reload');
+                        $('#AddBankCardDialog').dialog('close');
+                        vm.editForm.BankBranch("");
+                        vm.editForm.CardNo("");
+                        vm.editForm.Name("");  
+                        vm.editForm.Province("");
+                        vm.editForm.BankId("");
+                        vm.editForm.IsDefault(false);
+                        InitTextTip();
+                    } else {
+                        window.parent.$.messager.alert('提示', res.Message,"error");
+                    }
+                },
+                error:function(e) {
+                    $("#AddBankCardDialog").unmask();
+                    var obj =JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error');
+                }
+            });
+        };
+
+        ko.applyBindings(vm);
+
+        function InitTextTip() {
+            $("#CardNo").watermark("请输入您的卡号", { useNative: false });
+            $("#BankBranch").watermark("请输入开户行信息", { useNative: false });
+        }
+
+        InitTextTip();
+        getCitys();
+    </script>
+}

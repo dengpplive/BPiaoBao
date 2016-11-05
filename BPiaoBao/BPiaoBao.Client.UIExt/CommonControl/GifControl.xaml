@@ -1,0 +1,12 @@
+﻿<UserControl x:Class="BPiaoBao.Client.UIExt.CommonControl.GifControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:commonControl="clr-namespace:BPiaoBao.Client.UIExt.CommonControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="139" d:DesignWidth="408">
+    <Grid>
+        <commonControl:GifImage Source="pack://application:,,,/BPiaoBao.Client.UIExt;component/Image/Loading.gif"  Stretch="Fill" />
+    </Grid>
+</UserControl>

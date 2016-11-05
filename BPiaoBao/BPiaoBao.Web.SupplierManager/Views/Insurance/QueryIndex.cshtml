@@ -1,0 +1,183 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div id="toolbar" style="padding:10px;height:auto; overflow:hidden;">
+
+        <div style="line-height: 30px;">
+            <div class="m_search">
+                保单号：
+                <input type="text" class="inputStyle" data-bind="value:$root.searchForm.InsuranceNo" />
+            </div>
+            <div class="m_search">
+                订单号：
+                <input type="text" class="inputStyle" data-bind="value:$root.searchForm.OrderId" />
+            </div>
+            <div class="m_search">
+                乘机人：
+                <input type="text" class="inputStyle" data-bind="value:$root.searchForm.PassengerName" />
+            </div>
+            <div class="m_search">
+                手机：
+                <input type="text" class="inputStyle" data-bind="value:$root.searchForm.Mobile" />
+            </div>
+            <div class="m_search">
+                城市对：
+                <input type="text" class="inputStyle2" data-bind="value:$root.searchForm.FlightTripFrom" />-
+                <input type="text" class="inputStyle2" data-bind="value:$root.searchForm.FlightTripTo" />
+            </div>
+            <div class="m_search">
+                购买日期:
+                <input id="myStart1" class="easyui-my97 inputStyle90" data-bind="my97value:$root.searchForm.BuyStartTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd1\')}'}" />-
+                <input id="myEnd1" class="easyui-my97 inputStyle90" data-bind="my97value:$root.searchForm.BuyEndTime" data-options="{minDate:'#F{$dp.$D(\'myStart1\')}'}" />
+            </div>
+            <div class="m_search">
+                起飞日期:
+                <input id="myStart2" class="easyui-my97 inputStyle90" data-bind="my97value:$root.searchForm.FlyStartTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd2\')}'}" />-
+                <input id="myEnd2" class="easyui-my97 inputStyle90" data-bind="my97value:$root.searchForm.FlyEndTime" data-options="{minDate:'#F{$dp.$D(\'myStart2\')}'}" />
+            </div>
+            <div class="m_search">
+                保险期限:
+                <input id="myStart3" class="easyui-my97 inputStyle90" data-bind="my97value:$root.searchForm.InsuranceLimitStartTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd2\')}'}" />-
+                <input id="myEnd2" class="easyui-my97 inputStyle90" data-bind="my97value:$root.searchForm.InsuranceLimitEndTime" data-options="{minDate:'#F{$dp.$D(\'myStart2\')}'}" />
+            </div>
+            <div class="m_search">
+                状态：
+                <select class="inputStyle" data-bind="options:$root.otherParas.InsuranceAllEnumSatus,optionsText: 'Value',optionsValue:'Key',value: $root.searchForm.EnumInsuranceStatus"></select>
+            </div>
+            @*保险公司：
+            <select class="inputStyle" data-bind="options:$root.otherParas.InsuranceAllCompany,optionsText: 'Value',optionsValue:'Key',value: $root.searchForm.InsuranceCompany"></select>*@
+            <div class="m_search">
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search"  data-bind="click:$root.searchClick">查询</a>
+                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-reload" style="margin-left: 20px;" data-bind="click:$root.resetForm">清空</a>
+            </div>
+        </div>
+
+    </div>
+
+ 
+    <div class="tableShow" style="height:370px;" data-options="region:'center',border:0">
+        <table id="dg" title="保单管理" data-bind="datagrid: grid">
+            <thead>
+                <tr bgcolor="#daeef5">
+                    <th data-options="field:'xx',width:60,align:'center',title:'操作',formatter:Handles"></th>
+                    <th data-options="field:'InsuranceNo',width:150">保单号</th>
+                    <th data-options="field:'OrderId',width:270">订单号</th>
+                    <th data-options="field:'BuyTime',width:230">购买时间</th>
+                    <th data-options="field:'BussinessmanName',width:150">所属分销</th>
+                    <th data-options="field:'PassengerName',width:100,formatter:passengerNameFormatter">乘机人</th>
+                    <th data-options="field:'CardNo',width:250,formatter:cardNoFormatter">证件号</th>
+                    <th data-options="field:'Mobile',width:150,formatter:mobileFormatter">手机</th>
+                    <th data-options="field:'FromCity',width:150,formatter:cityFormatter">城市对</th>
+                    <th data-options="field:'StartDateTime',width:150,formatter:flightTimeFormatter">起飞日期</th>
+                    <th data-options="field:'InsuranceLimitStartTime',width:280,formatter:insuranceLimitTimesFormatter">保险期限</th>
+                    @*<th data-options="field:'InsuranceCompany',width:100">保险公司</th>*@
+                    <th data-options="field:'EnumInsuranceStatus',width:80,formatter:statusFormatter">状态</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+         
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        vm.otherParas = Fromdata.otherParas;
+        vm.resetForm=function() {
+            vm.searchForm.InsuranceNo("");
+            vm.searchForm.OrderId("");
+            vm.searchForm.PassengerName("");
+            vm.searchForm.Mobile("");
+            vm.searchForm.FlightTripFrom("");
+            vm.searchForm.FlightTripTo("");
+            vm.searchForm.BuyStartTime("");
+            vm.searchForm.BuyEndTime("");
+            vm.searchForm.FlyStartTime("");
+            vm.searchForm.FlyEndTime("");
+            vm.searchForm.InsuranceLimitStartTime("");
+            vm.searchForm.InsuranceLimitEndTime("");
+            vm.searchForm.InsuranceCompany("");
+            vm.searchForm.EnumInsuranceStatus("0");
+        }
+        vm.GetInsuranceManual=function(insuranceOrderId,recordId){
+            $('body').mask('正在提交数据...');
+            vm.ajax({
+                url: vm.otherParas.GetInsuranceManualUrl,
+                type: 'post',
+                data: { insuranceOrderId: insuranceOrderId, recordId:recordId}
+            }, function () {
+                this.grid.datagrid('reload');
+                $('body').unmask();
+            }, function () {
+                $('body').unmask();
+            })
+        }
+        ko.applyBindings(vm);
+
+        function Handles(val, row) {
+            var html="";
+            if(row.EnumInsuranceStatus=='5'){
+                html = "<a href='javascript:void(0)' onclick='vm.GetInsuranceManual(\"" + row.InsuranceOrderId + "\",\""+row.Id+"\")'>手动出单</a>";
+            }
+            
+            return html;
+        }
+          
+        function passengerNameFormatter(value, row, index) {
+            var passengerName = row["PassengerName"];
+            return passengerName;
+        }
+
+        function cardNoFormatter(value, row, index) {
+            var cardNo = row["CardNo"];
+            return cardNo;
+        }
+
+        function mobileFormatter(value, row, index) {
+            var mobile = row["Mobile"];
+            return mobile;
+        }
+
+        function cityFormatter(value, row, index) {
+            var fromCity = row["FromCity"];
+            var toCity = row["ToCity"];
+            return fromCity + "-" + toCity;
+        }
+
+        function flightTimeFormatter(value, row, index) {
+            var start = getDateString(row["StartDateTime"]);
+            return start;
+
+        }
+
+        function insuranceLimitTimesFormatter(value, row, index) {
+            var start = getDateString(row["InsuranceLimitStartTime"]);
+            var end = getDateString(row["InsuranceLimitEndTime"]);
+            return start + "至" + end;
+
+        }
+
+        function statusFormatter(value) {
+            var result = "";
+            var allStatus = Fromdata.otherParas.InsuranceAllEnumSatus;
+            for (var i in allStatus) {
+                var m = allStatus[i];
+                if (m["Key"] == value) {
+                    result = m["Value"];
+                    break;
+                }
+            }
+            return result;
+        }
+
+        function getDateString(dateStr) {
+            if ($.trim(dateStr) == "") {
+                return "";
+            }
+            return dateStr.split(' ')[0];
+        }
+    </script>
+}

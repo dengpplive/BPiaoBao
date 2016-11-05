@@ -1,0 +1,209 @@
+﻿@{
+    ViewBag.Title = "SmsTemplateList";
+}
+
+<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: OpenTemplateAddPage">添加模板</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<table id="dg" title="短信模板列表">
+    <thead data-options="frozen:true">
+        <tr style="background-color: #daeef5">
+            <th data-options="field:'ID', width:80, formatter: searchViewModel.operationColumnFormatter.Handle">基本操作</th>
+            <th data-options="field:'TemplateType',width:80,formatter:function(val){return EnumSmsTemplateType[val].Description}">模板类型</th>
+            <th data-options="field:'TemplateName',width:140">模板名称</th>
+            <th data-options="field:'SkyWayType',width:80,formatter:function(val){return EnumSkyWayType[val].Description}">航程类型</th>
+        </tr>
+    </thead>
+    <thead>
+        <tr style="background-color: #daeef5">
+            <th data-options="field:'IsSystemTemplate',width:80, formatter: searchViewModel.operationColumnFormatter.TemplateType">是否为系统模板</th>
+            <th data-options="field:'TemplateContents',width:500">模板内容</th>
+            <th data-options="field:'State',width:60, formatter: searchViewModel.operationColumnFormatter.IsEnable">模板状态</th>
+            <th data-options="field:'LastOperTime',width:130">最后操作时间</th>
+        </tr>
+    </thead>
+</table>
+<div id="TemplateWindow" class="easyui-window" title="添加模板" data-options="minimizable:false,model:true,collapsible:false" style="padding: 10px 15px; width:600px;height:auto;">
+    <div>
+        <table>
+
+            <tr>
+                <td width="60px">模板名称：</td>
+                <td>
+                    <input type="text" name="textfield" class="inputStyle" maxlength="20" data-bind="value: TemplateDto.TemplateName,enable: searchViewModel.isModify()" />
+                </td>
+            </tr>
+            <tr>
+                <td>模板内容：</td>
+                <td>
+                    <textarea name="textfield" data-bind="value: TemplateDto.TemplateContents" rows="5" cols="50" maxlength="500"></textarea>
+                </td>
+            </tr>
+            <tr>
+                 <td>模板类型：</td>
+                <td>
+                    <select data-bind="value: TemplateDto.TemplateType">
+                        <option value="0">出票</option>
+                        <option value="1">退票</option>
+                        <option value="2">废票</option>
+                        <option value="3">改签</option>
+                    </select></td>
+            </tr>
+            <tr>
+                 <td>航程类型：</td>
+                <td>
+                    <select data-bind="value: TemplateDto.SkyWayType">
+                        <option value="0">单程</option>
+                        <option value="1">往返</option>
+                        <option value="2">联程</option>
+                    </select></td>
+            </tr>
+            <tr>
+                
+                <td colspan="2">
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: saveTemplate">保存</a>&nbsp;&nbsp;
+                    <a href="#" class="easyui-linkbutton" data-options="toggle:true,group:'g1'" data-bind="click: closeTemplateAddWindow">取消</a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+@section scripts{
+<script src="~/Scripts/Formatter.js"></script>
+<script type="text/javascript">
+    $(function () {
+        searchViewModel = {
+            $TemplateDataGrid: null,
+            $TemplateWindow: null,
+            queryUrl: '@Url.Action("GetSmsTemplateList")',
+            init: function () {
+                this.$TemplateWindow = $("#TemplateWindow").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                this.$TemplateDataGrid = $('#dg').datagrid({
+                    rownumbers: false,
+                    singleSelect: true,
+                    autoRowHeight: false,
+                    pagination: true,
+                    pageSize: 10,
+                    toolbar: '#mainContent',
+                    fit: true,
+                    nowrap:false,
+                    url: searchViewModel.queryUrl
+                });
+            },
+            search: function () {
+                this.$TemplateDataGrid.datagrid("load");
+            },
+            operationColumnFormatter: {
+                Handle: function (value, row, rowIndex) {
+                    var tempStr = "";
+                    if (row.IsSystemTemplate==false) {
+                        tempStr += "<a href='javascript:searchViewModel.openModifyDialog(\"" + value + "\")'  >修改</a>";
+                        if (row.State == 0) {
+                            tempStr += "<br/><a href='javascript:searchViewModel.EnableAndDisable(\"" + value + "\")'  >启用</a>";
+                        } else {
+                            tempStr += "<br/><a href='javascript:searchViewModel.EnableAndDisable(\"" + value + "\")'  >禁用</a>";
+                        }
+                        tempStr += "<br/><a href='javascript:searchViewModel.DeleteSmsTemplate(\"" + value + "\")'  >删除</a>";
+                    }
+                    return tempStr;
+                },
+                TemplateType: function (value, row, rowIndex) {
+                    return str = row.IsSystemTemplate == 1 ? "系统模板" : "自定义模板";
+                },
+                IsEnable: function (value, row, rowIndex) {
+                    return str = row.State == 1 ? "正常" : "禁用";
+                }
+            },
+            isModify: ko.observable(true),
+            EnableAndDisable: function (id) {
+                $.messager.confirm("提示", "是否确认此操作？", function (r) {
+                    if (r) {
+                        $.post('@Url.Action("SmsTemplateEnableOrDisable")', { id: id }, function () {
+                        searchViewModel.search();
+                    });
+                }
+                });
+            },
+            DeleteSmsTemplate: function (id) {
+                $.messager.confirm("提示", "确定删除？", function (r) {
+                    if (r) {
+                        $.post('@Url.Action("DeleteSmsTemplate")', { id: id }, function () {
+                            searchViewModel.search();
+                        });
+                    }
+                });
+            },
+            TemplateDto: {
+                ID: ko.observable(),
+                TemplateName: ko.observable(),
+                TemplateContents: ko.observable(),
+                SkyWayType: ko.observable(),
+                TemplateType:ko.observable()
+            },
+            closeTemplateAddWindow: function () {
+                searchViewModel.$TemplateWindow.window("close");
+            },
+            OpenTemplateAddPage: function () {
+                searchViewModel.isModify(true);
+                searchViewModel.TemplateDto.TemplateName(null).TemplateContents(null);
+                searchViewModel.$TemplateWindow.window("setTitle", "添加模板");
+                searchViewModel.$TemplateWindow.window("open");
+            },
+            openModifyDialog: function (id) {
+                searchViewModel.isModify(false);
+                var self = this;
+                $.post('@Url.Action("GetSmsTemplateById")',{id:id}, function (data) {
+                    searchViewModel.map(JSON.parse(data), searchViewModel.TemplateDto);
+                    searchViewModel.$TemplateWindow.window("setTitle", "修改模板");
+                    searchViewModel.$TemplateWindow.window("open");
+                });
+            },
+            saveTemplate: function () {
+                var TemplateDto = ko.toJS(searchViewModel.TemplateDto);
+                var tname = TemplateDto.TemplateName;
+                var tcontent = TemplateDto.TemplateContents;
+                if (tname == undefined || tname == '') {
+                    $.messager.alert("提示", "请输入模板名！", 'error');
+                    return;
+                }
+                if (tcontent == undefined || tcontent == '') {
+                    $.messager.alert("提示", "请输入模板内容！", 'error');
+                    return;
+                }
+                $.ajax({
+                    url: searchViewModel.isModify() == true ? '@Url.Action("AddSmsTemplate")' : '@Url.Action("EditSmsTemplate")',
+                    type: 'POST',
+                    data: TemplateDto
+                }).done(function (e,s) {
+                    searchViewModel.closeTemplateAddWindow();
+                    searchViewModel.search();
+                }).fail(function (e) {
+                    var obj = JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                });
+            },
+            map: function (obj, obserableObj) {
+                for (var prop in obserableObj) {
+                    if (obserableObj.hasOwnProperty(prop)) {
+                        if (typeof obserableObj[prop] === "function")
+                            obserableObj[prop](obj ? obj[prop] : undefined);
+                        else if (typeof obserableObj[prop] === "object")
+                            searchViewModel.map(obj ? obj[prop] : {}, obserableObj[prop]);
+                    }
+                }
+            }
+        }
+        searchViewModel.init();
+        ko.applyBindings(searchViewModel);
+    });
+</script>
+    }

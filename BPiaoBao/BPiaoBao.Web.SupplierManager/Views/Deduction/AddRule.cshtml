@@ -1,0 +1,72 @@
+﻿<div id="AddRuleDialog" class="easyui-dialog" title="扣点组明细" data-options="closed:true,closable:false,modal:true,buttons:'#AddRuleDialog-buttons',resizable:true" style="width: 520px; height: 420px; padding: 5px;">
+    <table class="editTable" width="480">
+        <colgroup>
+            <col width="60" />
+            <col width="400" align="left" />
+        </colgroup>
+        <tr>
+            <td>名　称：</td>
+            <td>
+                <span data-bind="text: $root.editForm.Name,visible:$root.detail()">&nbsp;</span>
+                <input type="text" class="input" style="width:220px; height:28px; line-height:28px;" data-bind="value: $root.editForm.Name,visible:!$root.detail()" />
+            </td>
+        </tr>
+        <tr>
+            <td>描　述：</td>
+            <td>
+                <span data-bind="text: $root.editForm.Description,visible:$root.detail()">&nbsp;</span>
+                <input type="text" class="input" style="width:220px; height:28px; line-height:28px;" data-bind="value: $root.editForm.Description,visible:!$root.detail()" />
+            </td>
+        </tr>
+        <tr data-bind="visible:!$root.detail()">
+            <td>规　则：</td>
+            <td>
+                <a href="#" data-bind="click: openClick" iconcls="icon-sys-badd" class="easyui-linkbutton">添加规则</a>
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>承运人</th>
+                <th>类型</th>
+                <th>有效时间</th>
+                <th>调整</th>
+                <th data-bind="visible: !$root.detail()">操作</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: $root.editForm.DeductionRules">
+            <tr>
+                <td data-bind="text: CarrCode"></td>
+                <td data-bind="text: DeductionTypeDescription"></td>
+                <td>
+                    <span data-bind="text: $root.GetDatePart(StartTime())"></span>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;<span data-bind="    text: $root.GetDatePart(EndTime())"></span>
+                </td>
+                <td>
+                    <table data-bind="foreach: AdjustDetails">
+                        <tr>
+                            <td data-bind="text: AdjustTypeDescription"></td>
+                            <td>
+                                &nbsp;&nbsp;<span data-bind="text: StartPoint"></span>&nbsp;-&nbsp;<span data-bind="text: EndPoint"></span>^
+                            </td>
+                            <td data-bind="text: Point" style="text-align:center;"></td>
+                        </tr>
+                    </table>
+                </td>
+                <td data-bind="visible: !$root.detail()">
+                    <a href="#" data-bind="click: $root.itemeditClick">修改</a>
+                    <a href="#" data-bind="click: $root.itemdeleteClick">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div data-bind="visible: $root.detail()">
+        <h3>已分配商户</h3>
+        <div class="neibianjie" style="height:100px;" data-bind="foreach: $root.DetailSelected">
+            <div style="width: 180px; float: left; height: 30px; line-height: 30px;" data-bind="text: $data"></div>
+    </div>
+</div>
+<div id="AddRuleDialog-buttons" style=" text-align:center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.addClick,visible:!$root.detail()">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" data-bind="click:$root.closeRule">关闭</a>
+</div>

@@ -1,0 +1,36 @@
+﻿
+<div class="easyui-dialog" id="BuyInsuranceWindow" title="购买保险" style="width:500px;height:auto;padding:10px 15px;"
+     data-options="modal:true,closed:true">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="prdDetails">
+        <tr>
+            
+            <td height="30" align="right" nowrap="nowrap">系统剩余数量：</td>
+            <td height="30" class="rightTd"><i data-bind="text:$root.$Data.buyInsuranceParams.sysCurrentLeaveCount"></i></td>
+        </tr>
+        <tr>
+            <td width="14%" height="30" align="right" nowrap="nowrap">购买数量：</td>
+            <td width="74%" height="30" class="rightTd">
+                <input type="text" class="inputStyle" data-bind="value:$root.$BuyParams.buyCount,event:{change:$root.calTotalPrice}" />
+            </td>
+        </tr>
+        <tr>
+            <td height="30" align="right" nowrap="nowrap">单价：</td>
+            <td height="30" class="rightTd">￥<i  data-bind="text:$root.$BuyParams.singlePrice"></i></td>
+        </tr>
+        <tr>
+            <td height="30" align="right" nowrap="nowrap">总价：</td>
+            <td height="30" class="rightTd">￥<i data-bind="text:$root.$BuyParams.totalPrice"></i></td>
+        </tr>
+        
+    </table>
+    <div style="padding-bottom:10px; font-weight:bold; padding-top:10px; border-top:1px solid #ccc; margin-top:15px;">现金账户</div>
+    <div style=" padding-left: 30px; padding-bottom: 20px;">
+        可用余额：￥<span class="td_noboder fontcolor"><i class="fontsize" data-bind="text:$root.$Data.buyInsuranceParams.readyBalance"></i></span>
+        <div style=" padding-top: 10px;">
+            支付密码：
+            <input id="pwd" type="password" style="height:26px; line-height:26px; background:#f8fbfe; width: 120px; border:1px solid #a9b9c8; padding-right: 20px;" data-bind="value:$root.$BuyParams.pwd" />
+            <a class="easyui-linkbutton"  data-bind="click:$root.buyClick;return false;">立即购买</a>
+        </div>
+    </div>
+</div>

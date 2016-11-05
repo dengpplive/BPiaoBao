@@ -1,0 +1,9 @@
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\bin\Release\PnrAnalysis.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\bin\Release\PnrAnalysis.pdb
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\bin\Release\ChnCharInfo.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\bin\Release\EtermChar.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\bin\Release\PidSend.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\bin\Release\WebManage.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\bin\Release\PublicClass.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\obj\Release\PnrAnalysis.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\PnrAnalysis\obj\Release\PnrAnalysis.pdb

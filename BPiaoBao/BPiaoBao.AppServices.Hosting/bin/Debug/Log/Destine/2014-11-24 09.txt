@@ -1,0 +1,48 @@
+Start====================================================================
+时间:2014-11-24 09:53:32.761
+客户端IP:10.11.3.163:37839
+调用方法名:Destine
+内容:预订参数:code=003 
+ Tel=15528305255
+航段1:
+CarrayCode=HU
+FlightNumber=7147
+StartDate=2015/2/5 7:55:00
+EndDate=2015/2/5 10:55:00
+Seat=Y
+FromCityCode=PEK
+ToCityCode=CTU
+FromTerminal=T1
+ToTerminal=T2
+Discount=100.0
+FlightModel=333
+TaxFee=0
+RQFee=0
+SeatPrice=0
+PolicySpecialType=Normal
+SpecialPrice=0
+SpecialTax=0
+SpecialFuelFee=0
+SpecialYPrice=0
+乘客1:
+PassengerName=张三
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=51372119861127852
+ChdBirthday=0001/1/1 0:00:00
+LinkPhone=18602808274
+Birth=null
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-24 09:53:32.138
+时间2:2014-11-24 09:53:32.722
+结果:
+ 成人Pnr= PNRContent= 
+ PATContent=
+时间3:2014-11-24 09:53:32.725
+异常信息:成人编码生成失败,原因如下:发送指令：NM1张三SS HU7147 Y 05FEB15 PEKCTU 1SSR FOID HU HK/NI51372119861127852/P1OSI HU CTCM18602808274/P1OSI HU CTCT 15528305255TKTL/0755/05FEB/CTU186@，接收返回信息失败，可能通讯断开...
+End=====================================================================
+

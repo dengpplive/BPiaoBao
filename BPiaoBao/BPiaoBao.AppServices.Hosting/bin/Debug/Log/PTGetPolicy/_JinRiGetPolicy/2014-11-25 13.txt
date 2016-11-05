@@ -1,0 +1,215 @@
+Start====================================================================
+记录时间:2014-11-25 13:59:04.052
+内容:开始解析时间:2014-11-25 13:59:01.031
+ 参数:_todayAccout=kjtadmin
+ _todayAccout2=kjtadmin01
+ IsLowerPrice=0
+ PNRContent= 1.安山彤 2.蒋善保 HM8J2F    3.  EU2741 G   MO29DEC  CTUXIY HK2   0700 0825          E T2T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/0700/29DEC/CTU186  6.SSR FOID EU HK1 NI650203198203257453/P2   7.SSR FOID EU HK1 NI420701199310052193/P1   8.OSI EU CTCM13689023177/P1 9.OSI EU CTCM13689023176/P210.OSI EU CTCT18628368729   11.RMK CA/MKHP0Q12.CTU186   
+>PAT:A  01 G FARE:CNY440.00 TAX:CNY50.00 YQ:CNY40.00  TOTAL:530.00   SFC:01    SFN:01   
+
+  解析参数:RTCon= 1.安山彤 2.蒋善保 HM8J2F    3.  EU2741 G   MO29DEC  CTUXIY HK2   0700 0825          E T2T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/0700/29DEC/CTU186  6.SSR FOID EU HK1 NI650203198203257453/P2   7.SSR FOID EU HK1 NI420701199310052193/P1   8.OSI EU CTCM13689023177/P1 9.OSI EU CTCM13689023176/P210.OSI EU CTCT18628368729   11.RMK CA/MKHP0Q12.CTU186   
+ PatCon=>PAT:A  01 G FARE:CNY440.00 TAX:CNY50.00 YQ:CNY40.00  TOTAL:530.00   SFC:01    SFN:01
+ Pnr=HM8J2F
+ Msg=
+   调用接口参数:PnrInfo=O|P|HM8J2F^F^MKHP0Q|2014-12-29|CTU|成都|XIY|西安|EU2741^N||07:00|08:25|G|100||440.00|90.00|2|安山彤@蒋善保|420701199310052193@650203198203257453
+ 请求数据:xml=<?xml version="1.0" encoding="gb2312" ?><JIT-Policy-Request><Request username="kjtadmin" pnr="HM8J2F"  PnrInfo="O|P|HM8J2F^F^MKHP0Q|2014-12-29|CTU|成都|XIY|西安|EU2741^N||07:00|08:25|G|100||440.00|90.00|2|安山彤@蒋善保|420701199310052193@650203198203257453"  PassengerType="A"  Amount="16" /></JIT-Policy-Request>
+返回结果:
+<?xml version="1.0" encoding="gb2312"?><JIT-Policy-Response PnrInfo="O|P|HM8J2F^F^MKHP0Q|2014-12-29|CTU|成都|XIY|西安|EU2741^N||07:00|08:25|G|100||440.00|90.00|2|安山彤@蒋善保|420701199310052193@650203198203257453"><Response PolicyId="27963976" RateId="kpaL7HrtX7Q=" ScityE="CTU" EcityE="XIY" AirComE="EU2741" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="6.2" Sdate="2014-11-01" Edate="2014-12-31" WorkTimeBegin="00:00" WorkTimeEnd="23:59" Rewards="" Remark="" ET="1" WP="0" SP="10" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CTU293/CTU158" RefundTimeBegin="08:30" RefundTimeEnd="23:00" LastModifyTime="2014/11/25 11:50:52" Return="航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%" Change="航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="31977723" RateId="UwsQfxkLSHM=" ScityE="CTU" EcityE="XIY" AirComE="EU2741" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="6.2" Sdate="2014-12-01" Edate="2014-12-31" WorkTimeBegin="08:00" WorkTimeEnd="23:00" Rewards="" Remark="" ET="1" WP="0" SP="4" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CTU197/CTU437" RefundTimeBegin="08:00" RefundTimeEnd="23:00" LastModifyTime="2014/11/21 10:41:37" Return="航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%" Change="航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="29634123" RateId="bhaW26dUM6Y=" ScityE="CTU" EcityE="XIY" AirComE="EU2741" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="6.1" Sdate="2014-12-01" Edate="2014-12-31" WorkTimeBegin="08:00" WorkTimeEnd="22:00" Rewards="" Remark="" ET="3" WP="0" SP="3" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CTU185" RefundTimeBegin="08:00" RefundTimeEnd="22:00" LastModifyTime="2014/11/21 11:36:33" Return="航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%" Change="航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="29287840" RateId="Jb/TqAku2xo=" ScityE="CTU" EcityE="XIY" AirComE="EU2741" NoAirComE="" PolicyType="" Cabin="G" VoyageType="0" UserType="0" RateType="0" Discounts="4.7" Sdate="2014-12-01" Edate="2014-12-31" WorkTimeBegin="08:00" WorkTimeEnd="23:30" Rewards="" Remark="" ET="1" WP="0" SP="6" XF="0" PromotionDiscount="0.00" NewRateNo="" OfficeNum="CTU212" RefundTimeBegin="08:00" RefundTimeEnd="23:30" LastModifyTime="2014/11/17 10:04:55" Return="航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%" Change="航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /><Response PolicyId="2206" RateId="71k/7OH8eW4=" ScityE="" EcityE="" AirComE="EU" NoAirComE="" PolicyType="" Cabin="" VoyageType="" UserType="" RateType="1" Discounts="1.5" Sdate="" Edate="" WorkTimeBegin="" WorkTimeEnd="" Rewards="" Remark="" ET="1" WP="" SP="2" XF="0" PromotionDiscount="0" NewRateNo="" OfficeNum="SYX128" RefundTimeBegin="" RefundTimeEnd="" LastModifyTime="" Return="" Change="" SwitchPNR="" PrintInvoice="" InvoiceMsg="" OutTicketPercent="" ForeignMsg="" RiseCabin="" InvalidMsg="" ChangeMsg="" TPRemark="" RefundRulesWay="" LimitModels="" /></JIT-Policy-Response>
+结束解析时间:2014-11-25 13:59:04.002
+开始获取政策时间:2014-11-25 13:59:04.002
+结束获取政策时间:2014-11-25 13:59:04.035
+开始过滤政策时间:2014-11-25 13:59:04.035
+返回结果:表名:Policy第1行数据:
+PolicyId=27963976
+RateId=kpaL7HrtX7Q=
+ScityE=CTU
+EcityE=XIY
+AirComE=EU2741
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=6.2
+Sdate=2014/11/1 0:00:00
+Edate=2014/12/31 0:00:00
+WorkTimeBegin=00:00
+WorkTimeEnd=23:59
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=10
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CTU293/CTU158
+RefundTimeBegin=08:30
+RefundTimeEnd=23:00
+LastModifyTime=2014/11/25 11:50:52
+Return=航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%
+Change=航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第2行数据:
+PolicyId=31977723
+RateId=UwsQfxkLSHM=
+ScityE=CTU
+EcityE=XIY
+AirComE=EU2741
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=6.2
+Sdate=2014/12/1 0:00:00
+Edate=2014/12/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=23:00
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=4
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CTU197/CTU437
+RefundTimeBegin=08:00
+RefundTimeEnd=23:00
+LastModifyTime=2014/11/21 10:41:37
+Return=航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%
+Change=航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第3行数据:
+PolicyId=29634123
+RateId=bhaW26dUM6Y=
+ScityE=CTU
+EcityE=XIY
+AirComE=EU2741
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=6.1
+Sdate=2014/12/1 0:00:00
+Edate=2014/12/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=22:00
+Rewards=
+Remark=
+ET=3
+WP=0
+SP=3
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CTU185
+RefundTimeBegin=08:00
+RefundTimeEnd=22:00
+LastModifyTime=2014/11/21 11:36:33
+Return=航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%
+Change=航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Policy第4行数据:
+PolicyId=29287840
+RateId=Jb/TqAku2xo=
+ScityE=CTU
+EcityE=XIY
+AirComE=EU2741
+NoAirComE=
+PolicyType=
+Cabin=G
+VoyageType=0
+UserType=0
+RateType=0
+Discounts=4.7
+Sdate=2014/12/1 0:00:00
+Edate=2014/12/31 0:00:00
+WorkTimeBegin=08:00
+WorkTimeEnd=23:30
+Rewards=
+Remark=
+ET=1
+WP=0
+SP=6
+XF=0
+PromotionDiscount=0.00
+NewRateNo=
+OfficeNum=CTU212
+RefundTimeBegin=08:00
+RefundTimeEnd=23:30
+LastModifyTime=2014/11/17 10:04:55
+Return=航班规定离站时间2（含）小时之前,20%  航班规定离站时间2（含）小时之后 30%
+Change=航班规定离站时间2（含）小时之前,收取对应舱位公布运价5%变更费；航班规定离站时间2小时内及起飞后,收取对应舱位公布运价10%变更费；
+SwitchPNR=
+PrintInvoice=
+InvoiceMsg=
+OutTicketPercent=
+ForeignMsg=
+RiseCabin=
+InvalidMsg=
+ChangeMsg=
+TPRemark=
+RefundRulesWay=
+LimitModels=
+JIT-Policy-Response_Id=0
+
+表名:Today第1行数据:
+Pnr=HM8J2F
+Status=T
+Message=获取政策成功
+PnrType=1
+SeatPrice=440.00
+ABFare=50.00
+RQFare=40.00
+TotalPrice=530.00
+INFSeatPrice=0
+INFABFare=0
+INFRQFare=0
+INFTotalPrice=0
+
+结束过滤政策时间:2014-11-25 13:59:04.049
+
+End=====================================================================
+

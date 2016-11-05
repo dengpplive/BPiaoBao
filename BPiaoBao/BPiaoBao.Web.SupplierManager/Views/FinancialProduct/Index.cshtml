@@ -1,0 +1,315 @@
+﻿
+<div class="tableShow">
+    <div class="titleStyle"> <span style="font-size:14px;">可购买理财产品</span></div>
+
+    <table id="divOnSaleList" width="100%" border="0" cellspacing="0" cellpadding="0" class="licaiTable">
+        <tr class="otherTr">
+            <th colspan="2" nowrap="nowrap" bgcolor="#eaf2fa" align="left" width="56%"><span class="prodName">产品名称</span></th>
+            <th width="12%" bgcolor="#eaf2fa" align="left">年利率</th>
+            <th width="10%" bgcolor="#eaf2fa" align="left">购买周期</th>
+            <th width="10%" bgcolor="#eaf2fa" align="left">是否支持提前转出</th>
+            <th width="12%" bgcolor="#eaf2fa" align="left">操作</th>
+        </tr>
+    </table>
+    @*<table id="divOnSaleList" width="100%" border="0" cellspacing="0" cellpadding="0" class="licaiTable"></table>*@
+    <div class="titleStyle" style="margin-top:20px;"> <span style="font-size:14px;">已满额理财产品</span></div>
+
+    <table id="divSaleOutList"  width="100%" border="0" cellspacing="0" cellpadding="0" class="licaiTable">
+        <tr class="otherTr">
+            <th colspan="2" nowrap="nowrap" bgcolor="#eaf2fa" align="left" width="56%"><span class="prodName">产品名称</span></th>
+            <th width="12%" bgcolor="#eaf2fa" align="left">年利率</th>
+            <th width="10%" bgcolor="#eaf2fa" align="left">购买周期</th>
+            <th width="10%" bgcolor="#eaf2fa" align="left">是否支持提前转出</th>
+            <th width="12%" bgcolor="#eaf2fa" align="left">操作</th>
+        </tr>
+
+    </table>
+    @*<table id="divSaleOutList" width="100%" border="0" cellspacing="0" cellpadding="0" class="licaiTable"></table>*@
+</div>
+@Html.Partial("FinancialProductDetails")
+
+
+@section scripts
+{
+
+    <script src="~/Scripts/jquery.tmpl.js"></script>
+    <script type="text/javascript">
+        function ProductViewModel(data) {
+            var self = this;
+            self.onSaleList = ko.observableArray([]);
+            self.saleOutList = ko.observableArray([]);
+            self.visible = ko.observable();
+            self.canBuyMoney = ko.observable();
+            self.sale = ko.mapping.fromJS(data.financialProduct);
+
+            self.readyBalance = ko.mapping.fromJS(Fromdata.readyBalance.toFixed(2));
+            self.buyClick = function() {
+                var readyMoney = self.readyBalance(); //可用金额
+                var money = $.trim(self.sale.Money()); //购买金额
+                var pwd = self.sale.Password();
+                if (money == 0 || money == null || money == "") {
+                    window.parent.$.messager.alert("提示", "请输入购买金额", "warning");
+                    return;
+                }
+                if (parseFloat(money) > parseFloat(readyMoney)) {
+                    window.parent.$.messager.alert("提示", "对不起，您现金账户的可用金额不足，请充值后进行购买", "warning");
+                    return;
+                }
+                if (parseFloat(money) - parseFloat(self.sale.LimitAmount()) < 0) {
+                    window.parent.$.messager.alert("提示", "购买的金额必须大于或者等于当前产品的最低消费额", "warning");
+                    return;
+                }
+                if (parseFloat(money) > parseFloat(self.canBuyMoney())) {
+                    window.parent.$.messager.alert("提示", "购买的金额大于剩余购买额", "warning");
+                    return;
+                }
+
+                if (pwd == null) {
+                    window.parent.$.messager.alert("提示", "请输入支付密码", "warning");
+                    return;
+                }
+                $("#liaiDialog").mask("正在提交数据...");
+                $.ajax({
+                    url: data.urls.buy,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS(self.sale)),
+                    success: function(result) {
+                        $("#liaiDialog").unmask();
+                        result = JSON.parse(result);
+                        if (result.Success == 1) {
+                            window.parent.$.messager.alert("提示", result.Message, "info");
+                            $('#liaiDialog').dialog('close');
+                            //self.sale.Money(0);
+                            //self.sale.Password("");
+                            //$.getJSON("/Cash/GetReadyBalance", { "time": new Date().getTime() }, function(res) {
+                            //    self.readyBalance(res.toFixed(2));
+                            //});
+                            location.reload();
+                        } else {
+                            window.parent.$.messager.alert("提示", result.Message, "error");
+                        }
+
+                    },
+                    error: function(e) {
+                        $("#liaiDialog").unmask();
+                        var obj = JSON.parse(e.responseText);
+                        window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error');
+                    }
+                });
+            };
+        }
+
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ProductViewModel(Fromdata);
+        ko.applyBindings(vm);
+         
+        $("body").mask("正在获取理财产品...");
+        $.getJSON(Fromdata.urls.queryAllFinancialProduct, {}, function(res) {
+            for (var i in res.Sales) {
+                res.Sales[i].BuyRate = (res.Sales[i].CurrentAmount / res.Sales[i].MaxAmount * 100).toFixed(2);
+                if (res.Sales[i].IconUrl == null || res.Sales[i].IconUrl == "") {
+                    res.Sales[i].IconUrl = "/Content/images/product0.png";
+                }
+            }
+            for (var n in res.SalesOut) {
+                res.SalesOut[n].BuyRate = 100;
+                if (res.SalesOut[n].IconUrl == null || res.SalesOut[n].IconUrl == "") {
+                    res.SalesOut[n].IconUrl = "/Content/images/product0.png";
+                }
+            }
+            vm.onSaleList(res.Sales);
+            vm.saleOutList(res.SalesOut);
+           // $("#tmplOnSaleList").tmpl(res.Sales).appendTo('#divOnSaleList');
+           // $("#tmplSaleOutList").tmpl(res.SalesOut).appendTo('#divSaleOutList');
+            //$("#divOnSaleList").html("");
+            //$("#divSaleOutList").html("");
+            //$("#divOnSaleList").html($("#tmplOnSaleList").tmpl(res.Sales));
+            //$("#divSaleOutList").html($("#tmplSaleOutList").tmpl(res.SalesOut));
+            var salesHtml = getHtml(res.Sales, 1);
+            var salesOutHtml = getHtml(res.SalesOut, 2);
+            $("#divOnSaleList").append(salesHtml);
+            $("#divSaleOutList").append(salesOutHtml);
+            $("body").unmask();
+        });
+
+        function OpenDialog(productId, flag) {
+            var arr = null;
+            if (flag == 1) {
+                vm.visible(true);
+                arr = vm.onSaleList();
+            } else {
+                vm.visible(false);
+                arr = vm.saleOutList();
+            }
+            for (var i = 0; i < arr.length; i++) {
+                if (productId == arr[i].ProductId) {
+                    if (arr[i].IconUrl == null || arr[i].IconUrl == "") {
+                        //添加默认图片
+                        arr[i].IconUrl = "/Content/images/product0.png";
+                    }
+                    vm.canBuyMoney(arr[i].MaxAmount - arr[i].CurrentAmount);
+                    vm.sale.Money(vm.sale.LimitAmount());
+                    vm.sale.CanSettleInAdvanceText(arr[i].CanSettleInAdvance == false ? '否' : '是');
+                    ko.mapping.fromJS(arr[i], vm.sale);
+
+                    break;
+                }
+
+            }
+
+            $('#liaiDialog').dialog('open');
+        }
+
+
+        function cutString(str, max) {
+            if (str == null || str == "") {
+                return "";
+            }
+            if (str.length > max) {
+                return str.substring(0, max) + "...";
+            }
+            return str;
+        }
+        function getHtml(arr,type)
+        {
+            var html = "";
+            for (var i in arr) {
+                var isOut = arr[i].CanSettleInAdvance;
+                html += '<tr>';
+                html += ' <td width="6%" valign="top" nowrap="nowrap">';
+                html += '  <img src="'+arr[i].IconUrl+'" width="53" height="53" />';
+                html += ' </td>';
+                html += '<td width="50%" valign="top" nowrap="nowrap">';
+                html += ' <p class="pblock">';
+                html += ' <a href="javascript:void(0)" class="namTile" onclick=" OpenDialog('+arr[i].ProductId+','+type+')">'+arr[i].Name+'</a>';
+                html += '<img src="/Content/images/reparation.png" width="19" height="15" title="全额理赔" class="imgstyle" />';
+                if (isOut) {
+                    html += '<img src="/Content/images/creditCard.png" width="19" height="15" title="随时转出"/>';
+                } else {
+                    html += '<img src="/Content/images/creditCard.png" width="19" height="15" title="随时转出"  style="display:none"/>';
+                }
+              
+                html += '</p>';
+                html += ' <p class="plineheight">'+cutString(arr[i].Description,20)+' <a href="javascript:void(0)" class="xiangqing" onclick=" OpenDialog('+arr[i].ProductId+','+type+')">详情>></a></p>';
+                html += ' <div class="jindu"><span style="margin-right: 6px;">已购买</span><div style="width: 300px; font-size: 10px;">';
+                html += '<div class="easyui-progressbar progressbar" style="width: 248px; height: 13px;" data-options="value: ' + arr[i].BuyRate + '">';
+                html +=  ' <div class="progressbar-text" style="width: 248px; height: 13px; line-height: 13px;">  ' + arr[i].BuyRate + '%</div>';
+                html +=  '<div class="progressbar-value" style="width:  ' + arr[i].BuyRate + '% ; height: 13px ; line-height: 13px ; ">';
+                html +=  '  <div class="progressbar-text" style="width: 248px; height: 13px; line-height: 13px;">  ' + arr[i].BuyRate + '%</div>';
+                html +=  '</div>';
+                html +=  '</div>';
+                html +=  '</div>';
+                html +=  '</div> </td>';
+                html += '  <td width="12%"><i><font class="fontsize2">'+arr[i].InterestRate+'</font>%</i></td>';
+                html += ' <td width="10%"><font class="fontsize2">'+arr[i].Day+'</font>天</td>';
+                if (isOut) {
+                    html += '  <td width="10%"><font>是</font></td>';
+                } else {
+                    html += '  <td width="10%"><font>否</font></td>';
+                }
+                if (type == 1) {
+                    html += '<td width="12%"> <a href="javascript:void(0)" style="width:60px;color:white" class="easyui-linkbutton l-btn" onclick="OpenDialog(' + arr[i].ProductId + ',' + type + ') ">';
+                    html += '  <span class="l-btn-left"><span class="l-btn-text">购买</span></span> </a>';
+                    html += '</td> </tr>';
+                } else {
+                    html += '  <td width="12%"> <span class="graybtn" style="width:60px;color:white">已满额</span> </td>';
+                }
+            }
+            return html;
+        }
+    </script>
+
+    <script id="tmplOnSaleList" type="text/x-jquery-tmpl">
+
+        <tr>
+            <td width="6%" valign="top" nowrap="nowrap">
+                @*<img src="/Content/images/product0.png" width="53" height="53" />*@
+                <img src="${IconUrl}" width="53" height="53" />
+            </td>
+            <td width="50%" valign="top" nowrap="nowrap">
+                <p class="pblock">
+                    <a href="javascript:void(0)" class="namTile" onclick=" OpenDialog(${ProductId},1) ">
+                        ${Name}
+                    </a>
+                    <img src="/Content/images/reparation.png" width="19" height="15" title="全额理赔" class="imgstyle" />
+                    <img src="/Content/images/creditCard.png" width="19" height="15" title="随时转出" style='display:${ CanSettleInAdvance ?"":"none" }' />
+                </p>
+                <p class="plineheight">
+                    ${cutString(Description,20)}
+                    <a href="javascript:void(0)" class="xiangqing" onclick=" OpenDialog(${ProductId},1) ">详情>></a>
+                </p>
+                <div class="jindu">
+                    <span style="margin-right: 6px;">已购买</span>
+                    <div style="width: 300px; font-size: 10px;">
+                        <div class="easyui-progressbar progressbar" style="width: 248px; height: 13px;" data-options="value: ${BuyRate}">
+                            <div class="progressbar-text" style="width: 248px; height: 13px; line-height: 13px;"> ${BuyRate}%</div>
+                            <div class="progressbar-value" style="width: $ {BuyRate}% ; height: 13px ; line-height: 13px ; ">
+                                <div class="progressbar-text" style="width: 248px; height: 13px; line-height: 13px;"> ${BuyRate}%</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
+            <td width="12%"><i><font class="fontsize2">${InterestRate}</font>%</i></td>
+            <td width="10%"><font class="fontsize2">${Day}</font>天</td>
+            <td width="10%"><font>${CanSettleInAdvance?"是":"否"}</td>
+            <td width="12%">
+                <a href="javascript:void(0)" class="easyui-linkbutton l-btn" onclick=" OpenDialog(${ProductId},1) ">
+                    <span class="l-btn-left"><span class="l-btn-text">购买</span></span>
+                </a>
+            </td>
+        </tr>
+
+
+    </script>
+
+    <script id="tmplSaleOutList" type="text/x-jquery-tmpl">
+
+        <tr>
+            <td width="6%" valign="top" nowrap="nowrap">
+                @*<img src="/Content/images/product0.png" width="53" height="53" />*@
+                <img src="${IconUrl}" width="53" height="53" />
+            </td>
+            <td width="50%" valign="top" nowrap="nowrap">
+
+                <p class="pblock">
+                    <a href="#" class="namTile" onclick=" OpenDialog(${ProductId},2) ">
+                        ${Name}
+                    </a>
+                    <img src="/Content/images/reparation.png" width="19" height="15" title="全额理赔" class="imgstyle" />
+                    <img src="/Content/images/creditCard.png" width="19" height="15" title="随时转出" style='display:${ CanSettleInAdvance?"":"none" }' />
+                </p>
+                <p class="plineheight">
+                    ${cutString(Description,20)}
+                    <a href="#" class="xiangqing" onclick=" OpenDialog(${ProductId},2) ">详情>></a>
+                </p>
+                <div class="jindu">
+                    <span style="margin-right: 6px;">已购买</span>
+                    <div style="width: 300px; font-size: 10px;">
+                        <div class="easyui-progressbar progressbar" style="width: 248px; height: 13px;" data-options="value: ${BuyRate}">
+                            <div class="progressbar-text" style="width: 248px; height: 13px; line-height: 13px;"> ${BuyRate}%</div>
+                            <div class="progressbar-value" style="width: $ {BuyRate}% ; height: 13px ; line-height: 13px ; ">
+                                <div class="progressbar-text" style="width: 248px; height: 13px; line-height: 13px;"> ${BuyRate}%</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </td>
+            <td width="12%"><i><font class="fontsize2">${InterestRate}</font></i></td>
+            <td width="10%"><font class="fontsize2">${Day}</font>天</td>
+            <td width="10%"><font>${CanSettleInAdvance?"是":"否"}</td>
+            <td width="12%">
+
+                <span class="graybtn">已满额</span>
+
+            </td>
+        </tr>
+
+
+    </script>
+
+
+}

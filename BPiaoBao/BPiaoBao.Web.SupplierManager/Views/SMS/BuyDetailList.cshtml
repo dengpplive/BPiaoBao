@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "BuyDetailList";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px;">
+                <div class="m_search">
+                 购买时间：<input type="text" name="startTime" class="easyui-my97" style="width: 100px;" id="startTime" data-bind="my97value: $root.searchForm.StartTime" data-options="{maxDate:'#F{$dp.$D(\'endTime\')}'}" />
+                                -
+                                <input type="text" class="easyui-my97" style="width:100px;" name="endTime" id="endTime" data-bind="my97value: $root.searchForm.EndTime" data-options="{minDate:'#F{$dp.$D(\'startTime\')}'}" />
+                </div>
+                <div class="m_search"><a href="#" class="easyui-linkbutton" code="15" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a></div>
+            <div class="both"></div>
+        </div>
+        <table id="MainTable" data-bind="datagrid: grid" title="购买记录列表">
+            <thead>
+                <tr>
+                    <th data-options="field:'BusinessName',width:140">商户</th>
+                    <th data-options="field:'Name',width:140">购买人</th>
+                    <th data-options="field:'BuyTime',width:130">购买时间</th>
+                    <th data-options="field:'Count',width:60">购买条数</th>
+                    <th data-options="field:'PayAmount',width:130">购买金额</th>
+                    <th data-options="field:'BuyState',width:130,formatter: formatBuyState">支付状态</th>
+                    <th data-options="field:'PayWay',width:130,formatter:formatPayWay">支付方式</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    </div>
+ @section scripts{
+     <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+        <script type="text/javascript">
+            var BuyerIndexVM = CC.Create(BaseVM, function (data) {
+                this.urls = data.urls;
+                this.grid.pagination = true;
+                this.grid.nowrap = false;
+            });
+            var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+            ko.applyBindings(vm);
+            function formatBuyState(val, row, index) {
+                return str = row.BuyState == 1 ? "已支付" : "未支付";
+            };
+            function formatPayWay(val, row) {
+                var str = "";
+                switch (row.PayWay) {
+                    case 0:
+                        str = "现金账户";
+                        break;
+                    case 1:
+                        str = "信用账户";
+                        break;
+                    case 2:
+                        str = "银行卡";
+                        break;
+                    case 3:
+                        str = "支付平台";
+                        break;
+                   
+        
+                }
+                return str;
+            };
+        </script>
+    }

@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{78FE02DA-A945-4527-B408-19A4A3509185}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.Client.SystemSetting</RootNamespace>
+    <AssemblyName>BPiaoBao.Client.SystemSetting</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>12.0.41212.0</ExpressionBlendVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\BPiaoBao.Client\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\BPiaoBao.Client\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight.Extras.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.Extras.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.WPF4">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\GalaSoft.MvvmLight.WPF4.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JoveZhao.Framework\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Interactions">
+      <HintPath>..\packages\Microsoft.Expression.Blend.SDK.WPF.4.0.0\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Windows.Shell.3.0.1.0\lib\net40\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibs.4.2.30.0\lib\net40\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WPFSpark">
+      <HintPath>..\packages\WPFSpark.1.1\lib\net40\WPFSpark.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\SystemSettingCommand.cs" />
+    <Compile Include="LocalUIManager.cs" />
+    <Compile Include="Model\SmsChargeModel.cs" />
+    <Compile Include="Validation\BuyCountValidationRule.cs" />
+    <Compile Include="ViewModel\AddOperatorViewModel.cs" />
+    <Compile Include="ViewModel\BulletinDetailsPopViewModel.cs" />
+    <Compile Include="ViewModel\BulletinViewModel.cs" />
+    <Compile Include="ViewModel\BuyDetailViewModel.cs" />
+    <Compile Include="ViewModel\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModel\ChangePayPasswordViewModel.cs" />
+    <Compile Include="ViewModel\ConfirmPwdViewModel.cs" />
+    <Compile Include="ViewModel\GiveDetailViewModel.cs" />
+    <Compile Include="ViewModel\PaySettingViewModel.cs" />
+    <Compile Include="ViewModel\SendDetailViewModel.cs" />
+    <Compile Include="ViewModel\BulletinDetailsViewModel.cs" />
+    <Compile Include="ViewModel\SmsBuyViewModel.cs" />
+    <Compile Include="ViewModel\SMSViewModel.cs" />
+    <Compile Include="ViewModel\UserSettingViewModel.cs" />
+    <Compile Include="View\BulletinControl.xaml.cs">
+      <DependentUpon>BulletinControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BulletinDetailsPopWindow.xaml.cs">
+      <DependentUpon>BulletinDetailsPopWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BulletinDetailsWindow.xaml.cs">
+      <DependentUpon>BulletinDetailsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BuyDetails.xaml.cs">
+      <DependentUpon>BuyDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangePasswordWindow.xaml.cs">
+      <DependentUpon>ChangePasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangePayPasswordWindow.xaml.cs">
+      <DependentUpon>ChangePayPasswordWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ConfirmPwdWindow.xaml.cs">
+      <DependentUpon>ConfirmPwdWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Converter\AccountSelectedConverter.cs" />
+    <Compile Include="View\Converter\IsWaitConverter.cs" />
+    <Compile Include="View\Converter\NoticeTypeConverter.cs" />
+    <Compile Include="View\Converter\OperatorActionConvert.cs" />
+    <Compile Include="View\Converter\OperatorStateConvert.cs" />
+    <Compile Include="View\Converter\PayShow.cs" />
+    <Compile Include="View\Converter\PayStateConvert.cs" />
+    <Compile Include="View\Converter\SMSBuyStateConvert.cs" />
+    <Compile Include="View\Converter\SmsSendStateConvert.cs" />
+    <Compile Include="View\Converter\SubStrConverter.cs" />
+    <Compile Include="View\GiveDetails.xaml.cs">
+      <DependentUpon>GiveDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PaySettingControl.xaml.cs">
+      <DependentUpon>PaySettingControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SendDetails.xaml.cs">
+      <DependentUpon>SendDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SMSManager.xaml.cs">
+      <DependentUpon>SMSManager.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\OperatorViewModel.cs" />
+    <Compile Include="View\SMSPay.xaml.cs">
+      <DependentUpon>SMSPay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserSettingControl.xaml.cs">
+      <DependentUpon>UserSettingControl.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\AddOperator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BulletinControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BulletinDetailsPopWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BulletinDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BuyDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChangePasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ChangePayPasswordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConfirmPwdWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\GiveDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PaySettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SendDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SMSManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\OperatorManager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="View\AddOperator.xaml.cs">
+      <DependentUpon>AddOperator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs" />
+    <Compile Include="View\OperatorManager.xaml.cs">
+      <DependentUpon>OperatorManager.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\SMSPay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserSettingControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\AssemblyInfo.tpl" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\dot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\systemsetting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.Contracts\BPiaoBao.AppServices.Contracts.csproj">
+      <Project>{e892d14e-df51-47e9-9865-e7269ea15013}</Project>
+      <Name>BPiaoBao.AppServices.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.Plugin\BPiaoBao.Client.Module.csproj">
+      <Project>{85df9d0a-c2b1-47ee-bc2a-a63451b8130b}</Project>
+      <Name>BPiaoBao.Client.Module</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Client.UIExt\BPiaoBao.Client.UIExt.csproj">
+      <Project>{5928c486-5249-4be4-acb3-11718060c66c}</Project>
+      <Name>BPiaoBao.Client.UIExt</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\shezhi_01.png" />
+    <Resource Include="Image\shezhi_02.png" />
+    <Resource Include="Image\shezhi_03.png" />
+    <Resource Include="Image\shezhi_04.png" />
+    <Resource Include="Image\shezhi_05.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\sms.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\ad.png" />
+    <Resource Include="Image\caifutong.png" />
+    <Resource Include="Image\CCBlogo.png" />
+    <Resource Include="Image\kuaiqian.png" />
+    <Resource Include="Image\zhifubao.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\short_message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\bankinfo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <DesignData Include="SampleData\OperatorViewModelSampleData.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\notice.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

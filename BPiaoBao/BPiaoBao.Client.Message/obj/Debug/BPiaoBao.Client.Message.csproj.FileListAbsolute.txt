@@ -1,0 +1,14 @@
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\city.xls
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\BPiaoBao.Client.Message.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\bin\Debug\BPiaoBao.Client.Message.pdb
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\BPiaoBao.Client.Message.csprojResolveAssemblyReference.cache
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\View\MessageDetailsWindow.g.cs
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\View\MessageControl.g.cs
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\GeneratedInternalTypeHelper.g.cs
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\BPiaoBao.Client.Message_MarkupCompile.cache
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\BPiaoBao.Client.Message_MarkupCompile.lref
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\View\MessageDetailsWindow.baml
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\View\MessageControl.baml
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\BPiaoBao.Client.Message.g.resources
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\BPiaoBao.Client.Message.dll
+E:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client.Message\obj\Debug\BPiaoBao.Client.Message.pdb

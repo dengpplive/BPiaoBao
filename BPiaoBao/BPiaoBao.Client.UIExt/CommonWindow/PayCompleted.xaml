@@ -1,0 +1,18 @@
+﻿<Window x:Class="BPiaoBao.Client.UIExt.CommonWindow.PayCompleted"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+        Style="{StaticResource CustomWindowStyle}"
+        Title="支付" Height="220" Width="440">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="80"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="请您在新打开的支付页面进行支付，支付完成前请不要关闭该窗口。" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button Content="已完成支付" Style="{StaticResource OkButton}" Margin="5" Click="Btn_OK_Click" HorizontalAlignment="Center"/>
+            <Button Content="遇到问题重新支付" Style="{StaticResource CancelButton}" Width="120" Margin="5" Click="Btn_Error_Click" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

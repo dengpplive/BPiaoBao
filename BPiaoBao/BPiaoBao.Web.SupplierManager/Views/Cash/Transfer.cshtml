@@ -1,0 +1,143 @@
+﻿<div id="mainContent">
+    <div class="filterbg">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="62" valign="bottom" class="tdtitle td_noboder">
+                    <h3>转账</h3>
+                </td>
+                <td width="342" valign="bottom" class="td_noboder">现金账户余额：
+                    <span class="td_noboder fontcolor">￥
+                        <i class="fontsize" data-bind="text:$root.readyBalance"></i></td>
+                <td width="12" valign="bottom" class="td_noboder"><font color="#cccccc">|</font></td>
+                <td width="718" valign="bottom" class="td_noboder">
+                    <a href="javascript:void(0)" class="jilu" onclick="transferLog()">最近转账记录</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="tableShow">
+        <div style="padding-bottom: 10px; font-weight: bold; border-bottom: 1px solid #e5e5e5; margin-bottom: 35px;">转到他人账户</div>
+        <div class="tixianTable">
+            <table width="0%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td class="fontcolor3">收款方：</td>
+                    <td width="300">
+                        <input name="code" id="code" type="text" style="width: 150px; height: 25px; line-height: 25px;" data-bind="value:$root.tranferParas.code,event:{change:$root.showName}"/>
+                        <span id="codename"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="fontcolor3">转账金额：</td>
+                    <td>
+                        <input id="money" type="text" style="height: 24px;" data-bind="value:$root.tranferParas.money" class="easyui-numberbox" min="0" precision="2" />
+                        元
+                    </td>
+                </tr>
+                <tr>
+                    <td class="fontcolor3">支付密码：</td>
+                    <td>
+                        <input id="pwd" type="password" style="height: 26px; line-height: 26px; background: #f8fbfe; border: 1px solid #a9b9c8;" data-bind="value:$root.tranferParas.password" /></td>
+                </tr>
+                <tr>
+                    <td class="fontcolor3">备注：</td>
+                    <td>
+                        <textarea id="remark" style="height: 26px; width:150px; line-height: 26px; background: #f8fbfe; border: 1px solid #a9b9c8;" data-bind="value:$root.tranferParas.notes"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td style="height: 80px;">
+                        <a class="easyui-linkbutton" data-options="toggle:true,group:'g1'" onclick="DoTransfer();return false;">确定</a>&nbsp;&nbsp;<a href="javascript:history.back()" class="easyui-linkbutton" data-options="toggle:true,group:'g1'">返 回</a>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+@section scripts{
+
+    <script type="text/javascript">
+
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        vm.readyBalance = ko.mapping.fromJS(Fromdata.readyBalance.toFixed(2));
+        vm.tranferParas = ko.mapping.fromJS(Fromdata.tranferParas);
+        delete vm.tranferParas.__ko_mapping__;
+        vm.tranferParas = ko.mapping.fromJS(Fromdata.tranferParas);
+        vm.showName = function() {       
+            $.ajax({
+                url: Fromdata.urls.getName,
+                dataType: 'json',                    
+                type: 'POST',
+                data: {"code":vm.tranferParas.code()},
+                success: function(result) {
+                    if (result != "") {
+                        $("#codename").text(result)
+                    }
+
+                },
+                error:function(e) {
+                    var obj = JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error');
+                }
+            });
+        }
+        ko.applyBindings(vm);
+        /*
+        跳转到转账记录页面
+        */
+        function transferLog() {
+            location.href = Fromdata.urls.transferLog;
+        }
+        /*
+        转账
+        */
+        function DoTransfer() {
+            var code = $.trim(vm.tranferParas.code());
+            var money = $.trim(vm.tranferParas.money());
+            var amoney = vm.readyBalance();
+            if (code == "") {
+                window.parent.$.messager.alert("提示", "请输入商户号","warning");
+                return;
+            }
+            if (money==""||parseFloat(money)==0){
+                window.parent.$.messager.alert("提示", "请输入转账金额","warning");
+                return;
+            }
+            if (parseFloat(money) > parseFloat(amoney)) {
+                window.parent.$.messager.alert("提示", "您最高可转账金额：" + amoney + "元","warning");
+                return;
+            }
+            if (vm.tranferParas.password() == "") {
+                window.parent.$.messager.alert("提示", "请输入支付密码","warning");
+                return;
+            }
+            $("#mainContent").mask("正在提交数据...");
+            //转账
+            $.ajax({
+                url: Fromdata.urls.transferMoney,
+                dataType: 'json',
+                contentType: 'application/json',
+                type: 'POST',
+                data: JSON.stringify(ko.toJS(vm.tranferParas)),
+                success: function(result) {
+                    $("#mainContent").unmask();
+                    window.parent.$.messager.alert("提示", result.Message,"info");
+                    if (result.Success == 1) {
+                        location.reload();
+                    }
+
+                },
+                error:function(e) {
+                    $("#mainContent").unmask();
+                    var obj =JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error');
+                }
+            });
+        }
+
+    </script>
+}

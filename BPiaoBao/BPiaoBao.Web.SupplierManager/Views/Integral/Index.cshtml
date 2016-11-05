@@ -1,0 +1,144 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="filterbg" data-options="region:'north',border:0">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td width="72" valign="bottom" class="tdtitle td_noboder"><h3>积分账户</h3></td>
+                <td width="100" valign="bottom">积分总额：<span class="td_noboder fontcolor" data-bind="text:$root.financialScore"></span></td>
+                <td valign="bottom">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" style="height:25px; overflow:hidden; line-height:25px;width: 80px;" onclick="javascript: $('#ScoreDialog').dialog('open')">积分兑换</a>
+                    @*<a href="javascript:void(0)" class="easyui-linkbutton"  style="height:25px; overflow:hidden; line-height:25px; margin-left: 10px;" data-bind="click:$root.goScoreLogIndex">兑换日志</a>*@
+                </td>
+                <td width="20"></td>
+            </tr>
+            <tr>
+                <td class="tdtitle td_noboder"></td>
+                <td class="tdtitle td_noboder fontcolor2" colspan="3">该账户主要用于累计用户购买理财产品所产生收益。</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:5px;height:auto; overflow:hidden;">
+            <div>
+                <div style="float:left">
+                    <div class="m_search">
+                        日期 从:
+                        <input type="text" class="easyui-my97" id="myStart" data-bind="my97value:$root.searchForm.startTime" data-options="{maxDate:'#F{$dp.$D(\'myEnd\')}'}" />
+                        到
+                        <input type="text" class="easyui-my97" id="myEnd" data-bind="my97value:$root.searchForm.endTime" data-options="{minDate:'#F{$dp.$D(\'myStart\')}'}" />
+                    </div>
+                    <div class="m_search">
+                        交易号：
+                        <input type="text" class="inputStyle" data-bind="value:$root.searchForm.outTradeNo" />
+                    </div>
+                    <div class="m_search">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-search" style="overflow:hidden;" data-bind="click: $root.searchClick">查询</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <table id="dg" title="账户明细" data-bind="datagrid: grid" data-options="fit:true">
+            <thead>
+                <tr bgcolor="#daeef5">
+                    @*<th data-options="field:'SerialNum',width:200">流水号</th>*@
+                    <th data-options="field:'OutTradeNo',width:200">交易号</th>
+                    <th data-options="field:'CreateAmount',width:200">日期</th>
+                    <th data-options="field:'Amount',width:150">收支(分)</th>
+                    <th data-options="field:'OperationType',width:150">交易类型</th>
+                    <th data-options="field:'LeaveAmount',width:150">积分总额(分)</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div id="ScoreDialog" class="easyui-dialog" title="积分兑换"  data-options="modal:true,closed:true,buttons:'#ScoreDialog-buttons'"
+     style="width: 350px; height: auto; padding: 10px 15px;">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td width="30%" height="45" align="right">积分总额：</td>
+            <td height="45" style="font-weight:bold; color:#333;">
+                <label data-bind="text:$root.financialScore"></label> 分
+            </td>
+        </tr>
+        <tr>
+            <td width="30%" height="45" align="right">兑换：</td>
+            <td height="45">
+                <input type="text" class="inputStyle" data-bind="value: $root.score" />
+            </td>
+        </tr>
+    </table>
+</div>
+<div id="ScoreDialog-buttons" style="padding:10px 0px; text-align:center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: exchangeScore;return false;">确定</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="javascript: $('#ScoreDialog').dialog('close')">取消</a>
+</div>
+
+
+
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        var Fromdata = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model));
+        var vm = new ViewModel(Fromdata);
+        vm.grid.idField = "SerialNum";
+        vm.financialScore = ko.observable(Fromdata.financialScore);
+        vm.score = ko.observable(Fromdata.financialScore);
+        vm.exchangeScore = function() {
+            var score = vm.score();
+            if (score == null | score == "") {
+                window.parent.$.messager.alert('提示', "请输入积分", 'warning');
+                return;
+            }
+            if (isNaN(score)) {
+                window.parent.$.messager.alert('提示', "积分只能够为数字", 'warning');
+                return;
+            }
+            if (parseInt(score) < 0 || parseInt(score) > vm.financialScore()) {
+                window.parent.$.messager.alert('提示', "最大积分兑换额：" + vm.financialScore() + "分", 'warning');
+                return;
+            }
+            var self = this;
+            $("#ScoreDialog").mask("正在提交数据...");
+            $.ajax({
+                url: Fromdata.urls.exchangeScore,
+                type: 'POST', 
+                data: {"score":parseInt(score)},
+                success: function (res) {
+                    $("#ScoreDialog").unmask();
+                    res = JSON.parse(res);
+                    if (res.Success == 1) {
+                        self.getFinancialScore();
+                        self.grid.datagrid("reload");
+                        $("#ScoreDialog").dialog("close");
+                    } else {
+
+                        window.parent.$.messager.alert('提示', res.Message, "error");
+                    }
+                },
+                error: function (e) {
+                    $("#ScoreDialog").unmask();
+                    var obj =JSON.parse(e.responseText);
+                    window.parent.$.messager.alert('提示', obj.ErrorMsg + '<br/>' + obj.ErrorCode, 'error');
+                    
+                }
+            });
+        };
+        vm.getFinancialScore = function() {
+            var self = this;
+            $.get(Fromdata.urls.getFinancialScore, {"time": new Date().getTime() }, function(res) {
+                res = parseInt(res);
+                self.financialScore(res);
+                self.score(res);
+            });
+        };
+        vm.goScoreLogIndex = function() {
+            location.href = Fromdata.urls.ScoreConvertLogIndex;
+        };
+        ko.applyBindings(vm);
+
+    </script>
+}

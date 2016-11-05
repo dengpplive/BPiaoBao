@@ -1,0 +1,83 @@
+2014-11-28 10:12:48,747 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 96
+2014-11-28 10:45:03,959 - 与航信连接失败，请重新预订！错误信息:由于目标计算机积极拒绝，无法连接。 210.14.138.30:2237
+2014-11-28 13:55:12,991 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 96
+2014-11-28 15:58:28,973 - 队列错误
+System.InvalidOperationException: 此计算机上尚未安装消息队列。
+   在 System.Messaging.Interop.SafeNativeMethods.MQPathNameToFormatName(String pathName, StringBuilder formatName, Int32& count)
+   在 System.Messaging.MessageQueue.ResolveFormatNameFromQueuePath(String queuePath, Boolean throwException)
+   在 System.Messaging.MessageQueue.Exists(String path)
+   在 BPiaoBao.AppServices.Hosting.BootStrapper.ReviceMessage() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices.Hosting\BootStrapper.cs:行号 96
+2014-11-28 16:48:58,364 - 定时任务让超时的订单失效
+StructureMap.StructureMapException: StructureMap Exception Code:  207
+Internal exception while creating Instance 'b19e2a02-aab8-4d56-b66c-a52470e015e1' of PluginType BPiaoBao.AppServices.Contracts.DomesticTicket.IOrderService.  Check the inner exception for more details. ---> System.Data.Entity.Core.EntityCommandExecutionException: An error occurred while executing the command definition. See the inner exception for details. ---> System.Data.SqlClient.SqlException: Timeout 时间已到。在操作完成之前超时时间已过或服务器未响应。 ---> System.ComponentModel.Win32Exception: 等待的操作过时。
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   在 System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   在 System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   在 System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   在 System.Data.SqlClient.SqlDataReader.get_MetaData()
+   在 System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean asyncWrite)
+   在 System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   在 System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<>c__DisplayClassb.<Reader>b__8()
+   在 System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TInterceptionContext,TResult](Func`1 operation, TInterceptionContext interceptionContext, Action`1 executing, Action`1 executed)
+   在 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   在 System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   在 System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass3.<GetResults>b__2()
+   在 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass3.<GetResults>b__1()
+   在 System.Data.Entity.SqlServer.DefaultSqlExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   在 System.Lazy`1.CreateValue()
+   在 System.Lazy`1.LazyInitValue()
+   在 System.Lazy`1.get_Value()
+   在 System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   在 System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   在 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.<GetElementFunction>b__1[TResult](IEnumerable`1 sequence)
+   在 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.ExecuteSingle[TResult](IEnumerable`1 query, Expression queryRoot)
+   在 System.Data.Entity.Core.Objects.ELinq.ObjectQueryProvider.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   在 System.Data.Entity.Internal.Linq.DbQueryProvider.Execute[TResult](Expression expression)
+   在 System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   在 BPiaoBao.DomesticTicket.Domain.Services.FlightService..ctor(IBusinessmanRepository businessmanRepository, CurrentUserInfo currentUser) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.DomesticTicket.Domain\Services\FlightService.cs:行号 47
+   在 BPiaoBao.AppServices.DomesticTicket.OrderService..ctor(IOrderRepository orderRepository, IBusinessmanRepository businessmanRepository, DomesticService service, IAfterSaleOrderRepository afterSaleOrderRepository, ITicketSumRepository ticketSumRepository, IPidService pidService, IInsuranceOrderRepository iInsuranceOrderRepository, ILocalPolicyRepository localPolicyRepository, ITicketRepository ticketRepository, IAriChangeRepository ariChangeRepository, IMyMessageRepository MyMessageRepository, IRefundReasonRepository RefundReasonRepository) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\DomesticTicket\OrderService.cs:行号 80
+   在 lambda_method(Closure , IArguments )
+   在 StructureMap.Construction.BuilderCompiler.FuncCompiler`1.<>c__DisplayClass2.<CreateBuilder>b__0(IArguments args) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Construction\BuilderCompiler.cs:行号 56
+   在 StructureMap.Construction.InstanceBuilder.BuildInstance(IArguments args) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Construction\InstanceBuilder.cs:行号 34
+   在 StructureMap.Pipeline.ConstructorInstance.Build(Type pluginType, BuildSession session, IInstanceBuilder builder) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ConstructorInstance.cs:行号 233
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 StructureMap.Pipeline.ConstructorInstance.Build(Type pluginType, BuildSession session, IInstanceBuilder builder) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ConstructorInstance.cs:行号 245
+   在 StructureMap.Pipeline.ConstructorInstance.build(Type pluginType, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ConstructorInstance.cs:行号 218
+   在 StructureMap.Pipeline.SmartInstance`1.build(Type pluginType, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\SmartInstance.cs:行号 156
+   在 StructureMap.Pipeline.Instance.createRawObject(Type pluginType, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\Instance.cs:行号 103
+   在 StructureMap.Pipeline.Instance.Build(Type pluginType, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\Instance.cs:行号 69
+   在 StructureMap.Pipeline.ObjectBuilder.ConstructNew(Type pluginType, Instance instance, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ObjectBuilder.cs:行号 39
+   在 StructureMap.Pipeline.ObjectBuilder.Resolve(Type pluginType, Instance instance, BuildSession session) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Pipeline\ObjectBuilder.cs:行号 27
+   在 StructureMap.BuildSession.CreateInstance(Type pluginType, Instance instance) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\BuildSession.cs:行号 176
+   在 StructureMap.BuildSession.<>c__DisplayClass3.<.ctor>b__1() 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\BuildSession.cs:行号 36
+   在 StructureMap.BuildSession.CreateInstance(Type pluginType) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\BuildSession.cs:行号 215
+   在 StructureMap.Container.GetInstance(Type pluginType) 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Container.cs:行号 265
+   在 StructureMap.Container.GetInstance[T]() 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\Container.cs:行号 155
+   在 StructureMap.ObjectFactory.GetInstance[PLUGINTYPE]() 位置 c:\BuildAgent\work\767273992e840853\src\StructureMap\ObjectFactory.cs:行号 132
+   在 BPiaoBao.AppServices.OrderTimeSendMessage.Execute() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.AppServices\MessagePushManager.cs:行号 306
+   在 JoveZhao.Framework.ScheduleTask.ScheduleTaskServices.<>c__DisplayClassb.<_callBack>b__5(Object q) 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\JoveZhao.Framework\ScheduleTask\ScheduleTaskServices.cs:行号 58

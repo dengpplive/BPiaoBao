@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="gb2312"?>
+<ArrayOfQTSetting xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <QTSetting>
+        <Code>ctuadmin</Code>
+        <Timeout>00:03:00</Timeout>
+        <QTStartTime>00:00:00</QTStartTime>
+        <QTEndTime>20:00:00</QTEndTime>
+        <IsOpen>true</IsOpen>
+    </QTSetting>
+    <QTSetting>
+        <Code>gysadmin</Code>
+        <Timeout>00:10:00</Timeout>
+        <QTStartTime>00:00:00</QTStartTime>
+        <QTEndTime>23:00:00</QTEndTime>
+        <IsOpen>true</IsOpen>
+    </QTSetting>
+</ArrayOfQTSetting>

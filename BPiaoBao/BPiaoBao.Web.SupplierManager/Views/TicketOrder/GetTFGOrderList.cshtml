@@ -1,0 +1,762 @@
+﻿@{
+    ViewBag.Title = "退废改订单列表";
+}
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="mainContent">
+            <div class="filterbg">
+                <div style="margin: 10px;">
+                    <table>
+                        <tr>
+                            <td width="50">订单号:</td>
+                            <td width="140">
+                                <input type="text" name="textfield" class="inputStyle" data-bind="value: queryCond.OrderId" /></td>
+                            <td width="50">PNR:</td>
+                            <td width="140">
+                                <input type="text" name="textfield2" class="inputStyle" data-bind="value: queryCond.PNR" /></td>
+                            <td width="50">商户号:</td>
+                            <td width="140">
+                                <input type="text" name="textfield11" class="inputStyle" data-bind="value: queryCond.BusinessmanCode" /></td>
+                           @* <td width="60">政策来源:</td>
+                            <td width="90">
+                                <select data-bind="value: queryCond.PlatformCode, options: $root.PlatformCode, optionsText: 'text', optionsValue: 'value', optionsCaption: '请选择'"></select>
+                            </td>*@
+                            <td width="60">处理状态:</td>
+                            <td width="100">
+                                <select data-bind="value: queryCond.ProcessStatus, options: $root.ProcessStatus, optionsText: 'text', optionsValue: 'value', optionsCaption: '请选择'"></select>
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>交易号:</td>
+                            <td>
+                                <input type="text" name="textfield11" class="inputStyle" data-bind="value: queryCond.PaySerialNumber" /></td>
+                            <td>乘机人:</td>
+                            <td>
+                                <input type="text" name="textfield12" class="inputStyle" data-bind="value: queryCond.PassengerName" /></td>
+                            <td colspan="4" style="padding-top: 10px;">
+                                <a href="#" class="easyui-linkbutton btnheight0" data-options="toggle:true,group:'g1'" data-bind="click: $root.search">查询</a>
+                                <a href="#" class="easyui-linkbutton btnheight0" data-options="toggle:true,group:'g1'" data-bind="click: resetQueryCond" style="display: none;">重置数据</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @*<div class="tableShow">
+</div>*@
+        <table id="dg" title="售后订单列表">
+            <thead data-options="frozen:true">
+                <tr>
+                    <th data-options="field:'handle',width:60,align:'center',formatter:searchViewModel.operationColumnFormatter.Handle">操作</th>
+                    <th data-options="field:'Code',width:80,formatter:formatCode">商户号</th>
+                    <th data-options="field:'OrderID',width:145,formatter:searchViewModel.operationColumnFormatter.OrderId">原订单号</th>
+                    <th data-options="field:'PNR',width:60,formatter:searchViewModel.operationColumnFormatter.PnrCode">PNR</th>
+                </tr>
+            </thead>
+            <thead>
+                <tr bgcolor="#daeef5">
+                    <th data-options="field:'Id'">售后单号</th>
+                    @*<th data-options="field:'PolicyFrom'">政策来源</th>*@
+                    <th data-options="field:'Passenger',formatter:searchViewModel.operationColumnFormatter.Passengers">乘机人</th>
+                    <th data-options="field:'StartDateTime',formatter:searchViewModel.operationColumnFormatter.StartDateTime">起飞时间</th>
+                    <th data-options="field:'Route',formatter:searchViewModel.operationColumnFormatter.Route">行程</th>
+                    <th data-options="field:'FlightNumber',formatter:searchViewModel.operationColumnFormatter.FlightNumber">航班号</th>
+                    <th data-options="field:'TicketDate'">出票日期</th>
+                    <th data-options="field:'AfterSaleType'">申请类型</th>
+                    <th data-options="field:'ProcessStatus',formatter:searchViewModel.operationColumnFormatter.ProcessStatus">处理状态</th>
+                    <th data-options="field:'Money',formatter:formatMoney">产生金额</th>
+                    <th data-options="field:'TotalMoney',formatter:formatTotalMoney">总金额</th>
+                    @*<th data-options="field:'CreateMan'">申请人</th>
+                    <th data-options="field:'Reason'">申请理由</th>
+                    <th data-options="field:'Description'">申请备注</th>
+                    <th data-options="field:'CreateTime'">申请时间</th>
+                    <th data-options="field:'ProcessName'">处理人</th>
+                    <th data-options="field:'ProcessDate'">处理时间</th>
+                    <th data-options="field:'Remark'">处理备注</th>*@
+                    <th data-options="field:'LockCurrentAccount'">锁定帐号</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+<div id="OldOrderDetail_Window" class="easyui-window" data-options="minimizable:false,model:true,collapsible:false" title="原订单详情" style="width: 1050px; height: 500px; padding: 10px 15px;">
+</div>
+
+<div id="OrderDetail_Window" class="easyui-window" data-options="resizable:false,maximizable:false,minimizable:false,model:true,collapsible:false,maximized: true,draggable: false" title="售后详情" style="width: 1000px; height: 600px; padding: 10px 15px;">
+    <div>
+        <div class="orderdetail">
+            <div class="orderdetailtitle fontbold2">基本信息</div>
+            <table class="tablineheight" width="100%">
+                <tr>
+                    <td class="tdfontcoolor" width="80">支付时间：</td>
+                    <td width="200">
+                        <span id="lblPayTime" data-bind="text: orderInfo.OrderPay.PayDateTime"></span>
+                    </td>
+                    <td class="tdfontcoolor" width="80">支付方式：</td>
+                    <td width="200">
+                        <span id="lblPayMeth" data-bind="text: orderInfo.OrderPay.PayMethod"></span>
+                    </td>
+                    <td class="tdfontcoolor" width="80">售后单号</td>
+                    <td width="200"><span id="shdh" data-bind="text: orderInfo.Id"></span></td>
+                </tr>
+                <tr>
+                    <td class="tdfontcoolor">交易号：</td>
+                    <td>
+                        <span id="lblPaySerialNumber" data-bind="text: orderInfo.AfterSaleType()!='改签'?orderInfo.OrderPay.PaySerialNumber:orderInfo.OutPayNo"></span>
+                    </td>
+                    <td class="tdfontcoolor">支付状态：</td>
+                    <td>
+                        <span id="lblPayStatus" data-bind="text: orderInfo.OrderPay.PayStatus() == '1' ? '已支付' : '未支付'"></span>
+                    </td>
+                    <td class="tdfontcoolor">售后类型：</td>
+                    <td>
+                        <span id="shlx" data-bind="text: orderInfo.AfterSaleType"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdfontcoolor">申请人:</td>
+                    <td>
+                        <span id="lblCreateMan" data-bind="text: orderInfo.CreateMan"></span>
+                    </td>
+                    <td class="tdfontcoolor">申请时间:</td>
+                    <td>
+                        <span id="lblCreateTime" data-bind="text: orderInfo.CreateTime"></span>
+                    </td>
+                    <td class="tdfontcoolor">锁定帐号:</td>
+                    <td>
+                        <span id="lblLockCurrentAccount" data-bind="text: orderInfo.LockCurrentAccount"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdfontcoolor">原订单号:</td>
+                    <td>
+                        <span id="lblOrderID" data-bind="text: orderInfo.OrderID"></span>
+                    </td>
+                    <td class="tdfontcoolor">PNR:</td>
+                    <td>
+                        <span id="lblPNR" data-bind="text: orderInfo.PNR"></span>
+                    </td>
+                    <td class="tdfontcoolor">原订单金额:</td>
+                    <td>
+                        <span id="lblTotalMoney" data-bind="text: orderInfo.TotalMoney"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdfontcoolor">申请备注:</td>
+                    <td colspan="5">
+                        <span id="Description" data-bind="text: orderInfo.Description"></span>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+        <div class="orderdetail">
+            <div class="orderdetailtitle fontbold">
+                乘机人信息
+            </div>
+            <table id="OrderPassengers">
+                <thead>
+                    <tr bgcolor="#daeef5">
+                        <th data-options="field:'PassengerName',width:'80'">乘客姓名</th>
+                        <th data-options="field:'PassengerType',width:'80',formatter: function(value,row,index){return str = row.PassengerType==1?'成人': row.PassengerType==2?'儿童':'婴儿'}">乘客类型</th>
+                        <th data-options="field:'CardNo',width:'130'">证件号</th>
+                        <th data-options="field:'Mobile',width:'100'">手机号</th>
+                        <th data-options="field:'TicketNumber',width:'80'">票号</th>
+                        <th data-options="field:'SeatPrice',width:'80'">舱位价</th>
+                        <th data-options="field:'TaxFee',width:'80',formatter: function(value,row,index){return row.ABFee+'/'+row.RQFee}">机建/燃油</th>
+                        <th data-options="field:'RetirementPoundage',width:'80',formatter:searchViewModel.operationColumnFormatter.HandlingCharge">退票手续费</th>
+                        <th data-options="field:'TravelNumber',width:'80'">行程单号</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="orderdetail">
+            <div class="orderdetailtitle fontbold">航段信息</div>
+            <table id="OrderSkyWays">
+                <thead>
+                    <tr bgcolor="#daeef5">
+                        <th data-options="field:'CarrayCode',width:'80'">承运人</th>
+                        <th data-options="field:'FlightNumber',width:'80'">航班号</th>
+                        <th data-options="field:'Seat',width:'80'">舱位</th>
+                        <th data-options="field:'FromCity',width:'100'">起飞城市</th>
+                        <th data-options="field:'ToCity',width:'100'">到达城市</th>
+                        <th data-options="field:'StartDateTime',width:'120'">起飞日期</th>
+                        <th data-options="field:'ToDateTime',width:'120'">到达日期</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="orderdetail">
+            <div class="orderdetailtitle fontbold3" id="otherDiv">其他信息</div>
+            <div id="showDiv">
+                <div id="tpDiv">
+                    是否自愿:<span id="lblIsVoluntary" data-bind="text: orderInfo.IsVoluntary"></span>&nbsp;&nbsp;<a href="#" target="_blank" id="tpAttachment">附件</a>
+                </div>
+                <div id="fpDiv">
+                    <a href="#" id="fpAttachment" target="_blank">附件</a>
+                </div>
+                <div id="gqDiv">
+                    <table id="gqSkyWays">
+                        <thead>
+                            <tr>
+                                <th data-options="field:'NewFlightNumber',width:'80'">航班号</th>
+                                <th data-options="field:'NewSeat',width:'80'">舱位</th>
+                                <th data-options="field:'NewStartDateTime',width:'120'">起飞日期</th>
+                                <th data-options="field:'NewToDateTime',width:'120'">到达日期</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="orderdetail">
+            <div class="orderdetailtitle fontbold3" id="otherShowDiv">处理信息</div>
+            <table>
+                <tr>
+                    <td width="60">处理人：</td>
+                    <td width="160">
+                        <span id="lblProcessName" data-bind="text: orderInfo.ProcessName"></span>
+                    </td>
+                    <td width="60">处理时间：</td>
+                    <td>
+                        <span id="lblProcessDate" data-bind="text: orderInfo.ProcessDate"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>产生金额：</td>
+                    <td>
+                        <span id="lblProcessMoney" data-bind="text: orderInfo.Money"></span>
+                    </td>
+                    <td>备注：</td>
+                    <td><span id="spanRemark" data-bind="text: orderInfo.Remark"></span></td>
+                </tr>
+            </table>
+        </div>
+        <div class="orderdetail">
+            <div class="orderdetailtitle fontbold">操作日志</div>
+            <table id="OrderLogs">
+                <thead>
+                    <tr>
+                        <th data-options="field:'OperationPerson',width:'120'">操作人</th>
+                        <th data-options="field:'OperationDatetime',width:'130'">操作时间</th>
+                        <th data-options="field:'OperationContent',width:'1000'">操作内容</th>
+                        @*<th data-options="field:'Remark',width:'220'">备注</th>*@
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="RefoundDetail_DIV" title="退款明细">
+    <table id="RefoundDetail" class="easyui-datagrid" data-options="minimizable:false,model:true,collapsible:false" style="height: 200px; width: 600px">
+        <thead>
+            <tr>
+                <th data-options="field:'ID',width:'150'">退款单号</th>
+                <th data-options="field:'RefundMoney',width:'100'">退款金额</th>
+                <th data-options="field:'RefundTime',width:'130'">退款时间</th>
+                <th data-options="field:'RefundType',width:'90'">退款类型</th>
+                <th data-options="field:'Status',width:'120'">状态</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<div id="Coordination_Window" class="easyui-window" title="订单协调" style="width: 600px; height: auto; padding: 10px 15px;">
+    <div>
+        <table>
+            <tr>
+                <td>订单号：</td>
+                <td>
+                    <span id="Coordination_DIV_OrderID" data-bind="text: searchViewModel.coordinationOrderDto.orderId"></span>
+                </td>
+                <td>PNR：</td>
+                <td>
+                    <span id="Coordination_DIV_PNR" data-bind="text: searchViewModel.coordinationOrderDto.pnrCode"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>类型：</td>
+                <td>
+                    <select id="Coordination_DIV_Type" data-bind="value: searchViewModel.coordinationOrderDto.type">
+                        <option value="出票">出票</option>
+                        <option value="催单">催单</option>
+                        <option value="其他">其他</option>
+                    </select>
+                </td>
+                <td>处理状态：</td>
+                <td>
+                    <input type="radio" name="IsCompleted" value="true" data-bind="checked: searchViewModel.coordinationOrderDto.isCompleted" />完成&nbsp;&nbsp;
+                    <input type="radio" name="IsCompleted" value="false" data-bind="checked: searchViewModel.coordinationOrderDto.isCompleted" />未完成
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table>
+            <tr>
+                <td>协调内容：</td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea name="CoordinationContent" rows="5" cols="60" id="CoordinationContent" data-bind="value: searchViewModel.coordinationOrderDto.coordinationContent"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br />
+    <span>协调记录：</span>
+    <table border="1" cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="250px">时间</th>
+                <th width="100px">操作人</th>
+                <th width="1500px">内容</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach:searchViewModel.CoordinationLogs">
+            <tr>
+                <td data-bind="text:AddDatetime"></td>
+                <td data-bind="text:OperationPerson"></td>
+                <td data-bind="text:Content"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <div>
+        <a href="javascript:void(0)" class="easyui-linkbutton" data-bind="click: addCoordination">协调订单</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="$('#Coordination_Window').window('close');">取消</a>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script type="text/javascript">
+        function formatMoney(val, row) {
+            if (row.AfterSaleType == "改签")
+                return val;
+            if (row.CurrentCode != row.Order_CarrierCode)
+                return row.SMoney;
+            return val;
+        }
+        function formatTotalMoney(val, row) {
+            if (row.CurrentCode != row.Order_CarrierCode)
+                return row.XCPMoney;
+            return val;
+        }
+        function formatCode(val, row) {
+            if (row.CurrentCode != row.Order_CarrierCode)
+                return '';
+            return val;
+        }
+        $(function () {
+            searchViewModel = {
+                queryUrl: '@Url.Action("GetRefund_Abolish_ChangeOrderList")',
+                $datagrid: null,
+                $OrderDetail_Window: null,
+                $OldOrderDetail_Window:null,
+                $CurrentOrderDetailWindow: null,
+                $Coordination_Window: null,
+                $OrderSkyWays_dg: null,
+                $OrderPassengers_dg: null,
+                $OrderLogs_dg: null,
+                $otherDiv: null,
+                $otherInfo_refund: null,
+                $otherInfo_crap: null,
+                $otherInfo_change: null,
+                $otherInfo_change_SkyWay_dg: null,
+                $otherShowDiv: null,
+                $operationTable: null,
+                $RefoundDetail_DIV: null,
+                $RefoundDetailgrid: null,
+                queryCond: {
+                    OrderId: ko.observable(""),
+                    PNR: ko.observable(""),
+                    BusinessmanCode: ko.observable(""),
+                    PlatformCode: ko.observable(""),
+                    ProcessStatus: ko.observable(),
+                    OrderType: ko.observable(),
+                    PaySerialNumber: ko.observable(""),
+                    PassengerName: ko.observable("")
+                },
+                ProcessStatus: [
+                   { text: "未处理", value: 0 },
+                   { text: "处理中", value: 1 },
+                   { text: "已处理,等待退款", value: 2 },
+                   { text: "已处理,等待支付", value: 3 },
+                   { text: "退款中", value: 4 },
+                   { text: "已支付等待出票", value: 5 },
+                   { text: "处理完成", value: 6 },
+                   { text: "拒绝处理", value: 7 }
+                ],
+                PlatformCode: [
+                    { text: "517", value: "517" },
+                    { text: "51Book", value: "51Book" },
+                    { text: "8000YI", value: "8000YI" },
+                    { text: "百拓", value: "BaiTuo" },
+                    { text: "票盟", value: "PiaoMeng" },
+                    { text: "今日", value: "Today" },
+                    { text: "易行", value: "YeeXing" }
+                ],
+                BpbTicketStatus: [
+                      { text: "出票", value: 0 },
+                      { text: "退票", value: 2 },
+                      { text: "废票", value: 5 },
+                      { text: "改签", value: 3 }
+                ],
+                clear: function (obj) {
+                    for (var prop in obj) {
+                        if (obj.hasOwnProperty(prop)) {
+                            if (typeof obj[prop] === "function")
+                                obj[prop](null);
+                            else if (typeof obj[prop] === "object")
+                                ko.clear(obj[prop]);
+                        }
+                    }
+                },
+                getText: function (type, value) {
+                    var item = $.grep(type, function (item, index) {
+                        return item.value == value;
+                    }).shift();
+                    if (!item && console && console.warn) {
+                        console.warn("值(" + value + ")不在枚举" + JSON.stringify(type) + "中");
+                        return "未定义";
+                    }
+                    return item.text;
+                },
+                lastQueryCond: {},
+                init: function () {
+                    this.$OrderDetail_Window = $("#OrderDetail_Window").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                    this.$CurrentOrderDetailWindow = $("#OrderDetail_Window").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                    this.$OldOrderDetail_Window = $("#OldOrderDetail_Window").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                    this.$Coordination_Window = $("#Coordination_Window").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                    var self = this;
+                    this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                    this.$datagrid = $('#dg').datagrid({
+                        rownumbers: false,
+                        singleSelect: true,
+                        autoRowHeight: true,
+                        pagination: true,
+                        pageSize: 15,
+                        pageList: [15],
+                        toolbar: '#mainContent',
+                        fit: true,
+                        url: searchViewModel.queryUrl,
+                        queryParams: this.lastQueryCond
+                    });
+                    this.$OrderSkyWays_dg = $('#OrderSkyWays').datagrid({
+                        rownumbers: false,
+                        singleSelect: false,
+                        autoRowHeight: false,
+                        pagination: false
+                    });
+                    this.$OrderPassengers_dg = $('#OrderPassengers').datagrid({
+                        rownumbers: false,
+                        singleSelect: false,
+                        autoRowHeight: false,
+                        pagination: false
+                    });
+                    this.$OrderLogs_dg = $('#OrderLogs').datagrid({
+                        rownumbers: false,
+                        singleSelect: false,
+                        autoRowHeight: false,
+                        pagination: false
+                    });
+
+                    this.$otherDiv = $("#otherDiv");
+                    this.$otherInfo_refund = $("#tpDiv");
+                    this.$otherInfo_crap = $("#fpDiv");
+                    this.$otherInfo_change = $("#gqDiv");
+                    this.$otherInfo_change_SkyWay_dg = $("#gqSkyWays").datagrid({
+                        rownumbers: false,
+                        singleSelect: false,
+                        autoRowHeight: false,
+                        pagination: false
+                    });
+
+                    this.$otherShowDiv = $("#otherShowDiv");
+                    this.$operationTable = $("#operationTable");
+                    this.$RefoundDetailgrid = $('#RefoundDetail').datagrid({
+                        rownumbers: false,
+                        singleSelect: true,
+                        autoRowHeight: false,
+                        pagination: false
+                    });
+                    this.$RefoundDetail_DIV = $("#RefoundDetail_DIV").window({ modal: true, closed: true, iconCls: 'icon-save2' });
+                },
+                orderInfo: {
+                    Id: ko.observable(),
+                    OrderPay: {
+                        PayDateTime: ko.observable(),
+                        PayMethod: ko.observable(),
+                        PaySerialNumber: ko.observable(),
+                        PayStatus: ko.observable(),
+                        SystemFee: ko.observable(),
+                    },
+                    OutPayNo: ko.observable(),
+                    CreateMan: ko.observable(),
+                    CreateTime: ko.observable(),
+                    LockCurrentAccount: ko.observable(),
+                    OrderID: ko.observable(),
+                    PNR: ko.observable(),
+                    TotalMoney: ko.observable(),
+                    Description: ko.observable(),
+                    AfterSaleType: ko.observable(),
+                    ProcessName: ko.observable(),
+                    ProcessDate: ko.observable(),
+                    Money: ko.observable(),
+                    Remark: ko.observable()
+
+                },
+                search: function () {
+                    this.lastQueryCond = ko.toJS(searchViewModel.queryCond);
+                    this.$datagrid.datagrid("load", this.lastQueryCond);
+                },
+                resetQueryCond: function () {
+                    this.clear(this.queryCond);
+                },
+                operationColumnFormatter: {
+                    Handle: function (value, row, rowIndex) {
+                        var tempStr = "<a href='javascript:searchViewModel.openCurrentOrderDetailWindow(\"" + row.Id + "\")'  >订单详情</a>";
+                        if ((row.ProcessStatus == 4 || row.ProcessStatus == 6) && (row.AfterSaleType == "退票" || row.AfterSaleType == "废票")) {
+                            //tempStr += "<br/><a href='#' onclick='searchViewModel.RefundDetails(" + row.Id + ");'>退款明细</a>";
+                        }
+                        tempStr += "<br/><a href='javascript:searchViewModel.openCoordinationDialog(\"" + row.Id + "\",\"" + row.PNR + "\")' >订单协调</a>";
+                        return tempStr;
+                    },
+                    PnrCode: function (value, row, rowIndex) {
+                        var tempStr = "";
+                        var PNRContent = row.PNRContent;
+                        var PnrSource = row.PnrSource;
+                        if (PnrSource == "0" && row.YdOffice != null && row.YdOffice != "") {
+                            tempStr += "<a href='javascript:searchViewModel.openNewPnrContent(\"" + row.BusinessmanCode + "\",\"" + row.PNR + "\",\"" + row.YdOffice + "\")'>" + row.PNR + "</a>";
+                        }
+                        else {
+                            PNRContent = PNRContent.replace(/[\r\n]/g, "#");
+                            tempStr += "<a href='javascript:searchViewModel.openPNRInfo_Window(\"" + PNRContent + "\")'>" + row.PNR + "</a>";
+                        }
+
+                        //if (row.HasAfterSale) {
+                        //    tempStr += "<br/>" + "<span style='color: green; font-size: 12px'>有申请退废改</span>";
+                        //}
+                        return tempStr;
+                    },
+                    ProcessStatus: function (value, row, rowIndex) {
+                        return SpShow(searchViewModel.getText(searchViewModel.ProcessStatus, value), ',');
+                    },
+                    Passengers: function (value, row, rowIndex) {
+                        var temp = "";
+                        for (var i = 0; i < row.Passenger.length; i++) {
+                            temp += row.Passenger[i].PassengerName + "<br/>"
+                        }
+                        temp = temp.substring(0, temp.lastIndexOf("<br/>"));
+                        return temp;
+                    },
+                    StartDateTime: function (value, row, rowIndex) {
+                        var tempStr = "";
+                        var dateNow = new Date();
+                        for (var i = 0; i < row.SkyWays.length; i++) {
+                            var date = new Date(Date.parse(row.SkyWays[i].StartDateTime.replace(/-/g, "/")));
+                            if (date.toLocaleDateString() == dateNow.toLocaleDateString()) {
+                                tempStr += "<span style='color:red'>" +SpShow(row.SkyWays[i].StartDateTime,' ') + "</span>" + "<br/>";
+                            }
+                            else {
+                                tempStr += SpShow(row.SkyWays[i].StartDateTime,' ') + "<br/>";
+                            }
+                        }
+                        tempStr = tempStr.substring(0, tempStr.lastIndexOf("<br/>"));
+                        return tempStr;
+                    },
+                    Route: function (value, row, rowIndex) {
+                        if (row.SkyWays.length == 1) {
+                            return (row.SkyWays[0].FromCity + "-" + row.SkyWays[0].ToCity);
+                        }
+                        if (row.SkyWays.length == 2) {
+                            return (row.SkyWays[0].FromCity + "-" + row.SkyWays[0].ToCity) + "<br/>" + (row.SkyWays[1].FromCity + "-" + row.SkyWays[1].ToCity);
+                        }
+                    },
+                    FlightNumber: function (value, row, rowIndex) {
+                        if (row.SkyWays.length == 1) {
+                            return (row.SkyWays[0].CarrayCode + row.SkyWays[0].FlightNumber);
+                        }
+                        if (row.SkyWays.length == 2) {
+                            return (row.SkyWays[0].CarrayCode + row.SkyWays[0].FlightNumber) + "<br/>" + (row.SkyWays[1].CarrayCode + "-" + row.SkyWays[1].FlightNumber);
+                        }
+                    },
+                    OrderId: function (value, row, rowIndex) {
+                        return str = "<a href='javascript:searchViewModel.openOldOrderDetail(\"" + value + "\")'>" + value + "</a>";
+                    },
+                    PayMethodCode: function (value, row, rowIndex) {
+                        return row.OrderPay.PayMethodCode;
+                    },
+                    payState: function (value, row, rowIndex) {
+                        return str = row.OrderPay.PayStatus == 1 ? "已支付" : "未支付";
+                    },
+                    PaySerialNumber: function (value, row, rowIndex) {
+                        return row.OrderPay.PaySerialNumber;
+                    }
+                },
+                openPNRInfo_Window: function (PNRContent) {
+                    $.messager.alert("PNR信息", PNRContent);
+                },
+                openNewPnrContent: function (Code, PNR, officeNo) {
+                    $.post('@Url.Action("GetNewPnrInfo")', { businessCode: Code, Pnr: PNR, Ydoffice: officeNo }, function (data) {
+                        $.messager.alert("PNR信息", data.replace(/[\r\n]/g, "#"));
+                    });
+                },
+                getpnrinfo: function (Code, PNR, officeNo, pnrcontet, pnrsource) {
+                    if (pnrsource == "0" && row.YdOffice != null && row.YdOffice != "") {
+                        searchViewModel.openNewPnrContent(Code, PNR, officeNo);
+                    } else {
+                        searchViewModel.openPNRInfo_Window(pnrcontet.replace(/[\r\n]/g, "#"));
+                    }
+                },
+                openCurrentOrderDetailWindow: function (id) {
+                    function fn() {
+                        searchViewModel.$operationTable.hide();
+                        searchViewModel.$otherShowDiv.show();
+                        searchViewModel.$CurrentOrderDetailWindow.window("open");
+                    }
+                    this.bindDetailData(id, fn);
+                },
+                map: function (obj, obserableObj) {
+                    for (var prop in obserableObj) {
+                        if (obserableObj.hasOwnProperty(prop)) {
+                            if (typeof obserableObj[prop] === "function")
+                                obserableObj[prop](obj ? obj[prop] : undefined);
+                            else if (typeof obserableObj[prop] === "object")
+                                searchViewModel.map(obj ? obj[prop] : {}, obserableObj[prop]);
+                        }
+                    }
+                },
+                bindDetailData: function (id, fn) {
+                   @* $.ajax({
+                         type:'post',
+                         url: '@Url.Action("AfterSaleOrderDetail", "TicketOrder")',
+                         data: { Id: id },
+                         success: function (response) {
+                             
+                             var data = ko.toJS(response);
+                         }
+                     });*@
+                    $.post('@Url.Action("AfterSaleOrderDetail")', { Id: id }, function (data) {
+
+                        var data = JSON.parse(data);
+                        searchViewModel.map(data.Detail, searchViewModel.orderInfo);
+                        searchViewModel.$OrderSkyWays_dg.datagrid("loadData", data.Detail.SkyWays);
+                        searchViewModel.$OrderPassengers_dg.datagrid("loadData", data.Detail.Passenger);
+                        searchViewModel.$OrderLogs_dg.datagrid("loadData", data.Detail.Logs);
+
+                        if (data.Type == 1) {//退
+
+                            searchViewModel.$otherInfo_refund.show();
+                            searchViewModel.$otherInfo_crap.hide();
+                            searchViewModel.$otherInfo_change.hide();
+                            searchViewModel.$otherDiv.html("退票信息");
+                            $("#lblIsVoluntary").text(data.IsVoluntary ? "是" : "否");
+                            $("#tpAttachment").attr("href", data.Detail.AttachmentUrl);
+                        }
+                        else if (data.Type == 2) {//废
+
+                            searchViewModel.$otherInfo_refund.hide();
+                            searchViewModel.$otherInfo_crap.show();
+                            searchViewModel.$otherInfo_change.hide();
+                            $("#otherDiv").html("废票信息");
+                            $("#fpAttachment").attr("href", data.Detail.AttachmentUrl);
+                        }
+                        else if (data.Type == 3) {//改
+
+                            searchViewModel.$otherInfo_refund.hide();
+                            searchViewModel.$otherInfo_crap.hide();
+                            searchViewModel.$otherInfo_change.show();
+                            $("#otherDiv").html("改签信息");
+                            if (data.Detail.SkyWay && data.Detail.SkyWay.length > 0) {
+                                var gqskywayData = {
+                                    total: data.Detail.SkyWay.length,
+                                    rows: data.Detail.SkyWay
+                                };
+                                searchViewModel.$otherInfo_change_SkyWay_dg.datagrid("loadData", data.Detail.SkyWay);
+                            }
+                        }
+                        fn();
+                    });
+                },
+                HandlingChargeChange: function () {
+                    $(".HandlingCharge").each(function () {
+                        var HandlingCharge = parseInt($(this).attr("SeatPrice")) * parseFloat($("#HandlingCharge_Select").val());
+                        $(this).val(HandlingCharge.toFixed(0));
+                    });
+                },
+                openDetailDialog: function (id) {
+                    @*  $("#afterorderdetaildiv").remove();
+                    $.ajax({
+                        url: '@Url.Action("AfterSaleOrderDetail", "TicketOrder")',
+                        dataType: 'html',
+                        data: { Id: id },
+                        success: function (response) {
+                            $('body').append(response);
+                            $.parser.parse("#afterorderdetaildiv");
+                        }
+                    });*@
+                    this.$OrderDetail_Window.window({ href: "@Url.Action("AfterSaleOrderDetail", "TicketOrder")?Id=" + id + "" });
+                    this.$OrderDetail_Window.window("open");
+
+                },
+                openOldOrderDetail: function (orderID) {
+                    this.$OldOrderDetail_Window.window({ href: "@Url.Action("OrderDetail", "TicketOrder")?OrderId=" + orderID + "" });
+                    this.$OldOrderDetail_Window.window("open");
+                },
+                openCoordinationDialog: function (orderId, pnrCode) {
+                    searchViewModel.CoordinationLogs.removeAll();
+                    searchViewModel.coordinationOrderDto.orderId(orderId).pnrCode(pnrCode).coordinationContent("");
+                    $.post('@Url.Action("GetCoordinationAfterSale")', { orderId: orderId }, function (data) {
+                        data = JSON.parse(data);
+                        $.each(data, function () {
+                            searchViewModel.CoordinationLogs.push(ko.mapping.fromJS(this));
+                        })
+                        $("#Coordination_Window").window("open");
+                    });
+                },
+                addCoordination: function () {
+                    $.ajax({
+                        url: '@Url.Action("AddCoordinationAfterSale")',
+                        contentType: 'application/json',
+                        type: 'post',
+                        data: JSON.stringify({
+                            orderid: searchViewModel.coordinationOrderDto.orderId(),
+                            type: searchViewModel.coordinationOrderDto.type(),
+                            coordinationContent: searchViewModel.coordinationOrderDto.coordinationContent(),
+                            isCompleted: searchViewModel.coordinationOrderDto.isCompleted()
+                        })
+                    }).done(function (e, s) {
+                        $("#Coordination_Window").window("close");
+                        searchViewModel.search();
+                    }).fail(function (e) {
+                        var obj = JSON.parse(e.responseText);
+                        window.parent.$.messager.alert('提示', obj.ErrorMsg, 'error');
+                    });
+                },
+                coordinationOrderDto: {
+                    orderId: ko.observable(),
+                    pnrCode: ko.observable(),
+                    type: ko.observable(),
+                    coordinationContent: ko.observable(""),
+                    isCompleted: ko.observable("true")
+                },
+                CoordinationLogs: ko.observableArray(),
+                RefundDetails: function (id) {
+                    $.post('@Url.Action("GetRefundDetails")', { id: id }, function (data) {
+                        var data = JSON.parse(data);
+                        searchViewModel.$RefoundDetailgrid.datagrid("loadData", data);
+                        searchViewModel.$RefoundDetail_DIV.window("open");
+
+                    });
+                }
+            };
+            searchViewModel.init();
+            ko.applyBindings(searchViewModel);
+        });
+    </script>
+}

@@ -1,0 +1,44 @@
+﻿<Window x:Class="BPiaoBao.Client.SystemSetting.View.ConfirmPwdWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:converter="clr-namespace:BPiaoBao.Client.UIExt.Converter;assembly=BPiaoBao.Client.UIExt"
+        xmlns:wpfSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+        Style="{StaticResource CustomWindowNoCloseButtonStyle}"
+        WindowStartupLocation="CenterOwner"
+        Title="" Height="200" Width="400">
+    <Window.Resources>
+        <converter:NotBooleanConverter x:Key="NotBooleanConverter"/>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <ei:DataTrigger Binding="{Binding IsDone}" Value="True">
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Text="支付密码：" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="70,0,0,0"></TextBlock>
+        <PasswordBox Grid.Row="0" Grid.Column="1" x:Name="AplipaypasswordBox" VerticalAlignment="Center" HorizontalAlignment="Left" Width="200" ToolTip="请输入买票宝支付密码" />
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center">
+            <Button Margin="0,0,10,0" Content="确认" Width="100" VerticalAlignment="Center" Height="25" Click="Button_OnClick" 
+                         IsEnabled="{Binding DataContext.IsDoing,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource NotBooleanConverter}}"/>
+            <Button Content="取消" Width="100" VerticalAlignment="Center"  Margin="5,2.5" Height="25" Style ="{StaticResource CancelButton}" 
+                         IsEnabled="{Binding DataContext.IsDoing,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},Converter={StaticResource NotBooleanConverter}}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ei:CallMethodAction MethodName="Close" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+        <wpfSpark:SprocketControl HorizontalAlignment="Center" Height="100" Margin="0" Grid.Row="0" VerticalAlignment="Center" Width="100" Grid.ColumnSpan="2" Grid.RowSpan="2" Visibility="{Binding IsDoing, Converter={StaticResource BooleanToVisibilityConverter}, Mode=OneWay}"/>
+    </Grid>
+</Window>

@@ -1,0 +1,199 @@
+﻿@{
+    ViewBag.Title = "行程单分配记录";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar">
+            <div style="margin: 10px; overflow: hidden;">
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" onclick="$('#AddTravelPaperDialog').dialog('open')">分配行程单</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" onclick="UrlRed()">分配空白行程单</a><br />
+                <div style="padding-top: 5px;">
+                    <table>
+                        <tr>
+                            <td height="30">分配时间：</td>
+                            <td height="30" width="220">
+                                <input type="text" name="startTime" class="easyui-my97" style="width: 90px;" id="startTime" data-bind="my97value: $root.searchForm.StartTime" data-options="{maxDate:'#F{$dp.$D(\'endTime\')}'}" />
+                                -
+                                <input type="text" class="easyui-my97" style="width: 90px;" name="endTime" id="endTime" data-bind="my97value: $root.searchForm.EndTime" data-options="{minDate:'#F{$dp.$D(\'startTime\')}'}" /></td>
+                            <td height="30">商户名称：</td>
+                            <td height="30" width="165">
+                                <input type="text" name="businessmanCode" id="businessmanCode" data-bind="value: $root.searchForm.Name" class="inputStyle" /></td>
+                            <td height="30">Office号：</td>
+                            <td height="30" width="155">
+                                <input type="text" name="office" id="office" data-bind="value: $root.searchForm.Office" class="inputStyle" /></td>
+                            <td height="30"><a href="#" class="easyui-linkbutton btnheight m_refer" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a></td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+        @Html.Partial("AddTravelPaper")
+        <table id="TableList" title="行程单分配记录" data-bind="datagrid:grid">
+            <thead>
+                <tr>
+                    <th data-options="field:'UseBusinessmanName',width:150,align:'center'">商户名称</th>
+                    <th data-options="field:'UseBusinessmanCode',width:100,align:'center'">商户号</th>
+                    <th data-options="field:'Office',width:80,align:'center'">Office号</th>
+                    <th data-options="field:'TripScope',width:160,align:'center',formatter:showScope">行程单范围</th>
+                    <th data-options="field:'TripCount',width:100,align:'center'">行程单张数</th>
+                    <th data-options="field:'GrantTime',width:120,align:'center',formatter:formatDatebox">分配时间</th>
+                    <th data-options="field:'TripRemark',width:200,align:'center'">备注</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script src="~/Scripts/knockout-3.1.0.debug.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.debug.js"></script>
+    <script src="~/Scripts/ko.custombinding.js"></script>
+    <script src="~/Scripts/jsDate.js"></script>
+    <script src="~/Scripts/commonViewModel.js?a=@(new Random().Next(0, 9999999).ToString())"></script>
+    <script type="text/javascript">
+        function UrlRed()
+        {
+            window.location.href='/TravelPaper/TravelPaper1';
+        }
+        var TravelPaperVM = CC.Create(BaseVM, function (data) {
+            this.editForm = ko.mapping.fromJS(data.editForm);
+            this.urls = data.urls;
+            delete this.editForm.__ko_mapping__;
+        }, {
+            addClick: function () {
+                $.ajax({
+                    url: this.urls.add,
+                    contentType: 'application/json',
+                    type: 'POST',
+                    data: JSON.stringify(ko.toJS(this.editForm)),
+                    success: function (d) {
+                        try {                       
+                            var Msg = null;
+                            var rowCount = -1;
+                            var State = null;
+                            for (var i in d) {
+                                if (i == "State") {
+                                    State = d[i];
+                                } else if (i == "rowCount") {
+                                    rowCount = d[i];
+                                } else if (i == "Msg") {
+                                    Msg = d[i];
+                                }
+                            }                      
+                            if (State != null) {
+                                if (State == true) {
+                                    $.messager.alert("提示", Msg, "info", function () {
+                                        $('#AddTravelPaperDialog').dialog('close')
+                                    });
+                                } else {                              
+                                    $.messager.alert("提示",Msg , "info");
+                                }
+                            } else {
+                                $.messager.alert("提示", "操作成功", "info", function () {
+                                    $('#AddTravelPaperDialog').dialog('close')
+                                });
+                            }
+                        } finally  {
+                            window.parent.HideDiv();
+                        }                       
+                    }
+                });
+            },
+            reload:function()
+            {
+                this.grid.datagrid('load', ko.toJS(this.searchForm));
+            }
+        });
+
+
+        var Fromdata =@Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model))
+        var vm=new TravelPaperVM(Fromdata);
+        ko.applyBindings(vm);
+
+        function formatDatebox(val, row, index) {
+            try {
+                if (val == null || val == '' || val == undefined) {
+                    return '';
+                }
+                eval('var d=new Date(' + val.replace(/\/Date\((-?\d+)\)\//, '$1') + ");d.setMonth(d.getMonth()+1);");
+                val = d.format("yyyy-MM-dd HH:mm:ss");
+                if (val == "1900-01-01 00:00:00" ||val == "1900-00-01 00:00:00"|| val == "1-00-01 08:00:00"||val=="1-01-01 08:00:00") {
+                    val = "";
+                }
+            } catch (e) {
+                //alert(e.message);
+            }
+            return val;
+        }
+        function showScope(val, row, index)
+        {
+            if(val!=null&& val.length>23)val=val.substring(0,23)+"...";
+            return val; 
+        }
+
+        $("#startTripNumber,#endTripNumber").blur(function () {
+            var startTripNumber = $.trim($("#startTripNumber").val());
+            var endTripNumber = $.trim($("#endTripNumber").val());
+            if (startTripNumber.length != 10 || endTripNumber.length != 10) {
+                //
+                $("#tripCount").val(0);
+            } else {
+                var start = parseInt(startTripNumber.substring(6), 10);
+                var end = parseInt(endTripNumber.substring(6), 10);
+
+                if (end < start) {
+                    $("#tripCount").val(0);
+                } else {
+                    $("#tripCount").val((end - start+1));
+                }
+            }
+        });
+
+        function Validate() {
+            try {
+                var msg = "";
+                var Code = $.trim($("#Code").val());
+                if (Code == "") {
+                    msg = "商户号或商户名不能为空！";
+                }
+                if (msg == "") {
+                    var startTripNumber = $.trim($("#startTripNumber").val());
+                    var endTripNumber = $.trim($("#endTripNumber").val());
+                    if (startTripNumber.length != 10 || endTripNumber.length != 10) {
+                        msg = "行程单号段输入错误！";
+                    } else {
+                        var start = parseInt(startTripNumber.substring(6, 4), 10);
+                        var end = parseInt(endTripNumber.substring(6, 4), 10);
+                        if (end < start) {
+                            msg = "行程单号段范围输入错误！";
+                        } else {
+                            $("#tripCount").val((end - start));
+                        }
+                    }
+                }
+                if (msg == "") {
+                    var office = $.trim($("#ffoffice").val());
+                    var iataCode = $.trim($("#iataCode").val());
+                    var ticketCompanyName = $.trim($("#ticketCompanyName").val());
+                    //alert(office+"|"+iataCode+"|"+ticketCompanyName);
+                    if (office == "" || iataCode == "" || ticketCompanyName=="") {
+                        msg = "Office号,航协号,填开单位不能为空！";
+                    }
+                }
+                if (msg == "") {
+                    vm.addClick();
+                    window.parent.ShowDiv();
+                } else {
+                    $.messager.alert("提示", msg, "info");
+                }
+            } catch (e) {
+                // alert(e.message);
+            }
+        }
+    </script>
+}
+

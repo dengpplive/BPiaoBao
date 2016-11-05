@@ -1,0 +1,25 @@
+﻿<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css" />
+<div id="OperatorRoleDialog" class="easyui-dialog" title="角色浏览" data-options="closed:true,modal:true"
+     style="width: 300px; height: 450px; padding: 20px 0 0 20px;">
+    <input type="hidden" id="AuthNodes" data-bind="value: $root.editForm.AuthNodes" />
+    <table width="100%" class="m_yuan">
+        <colgroup>
+            <col width="80" />
+            <col align="left" />
+        </colgroup>
+        <tr>
+            <td>角色名称：</td>
+            <td> 
+                <span data-bind="text: $root.roleForm.RoleName">&nbsp;</span>
+            </td>
+        </tr>
+        <tr>
+            <td>描述：</td>
+            <td>
+                <span data-bind="text: $root.roleForm.Description">&nbsp;</span> 
+            </td>
+        </tr>
+    </table>
+    <ul id="authGrid" class="easyui-tree m_terr" data-options="url: '/Businessman/GetJsonDate',animate:true,checkbox: true,cascadeCheck:true"></ul>
+</div>
+ 

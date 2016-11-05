@@ -1,0 +1,158 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" mc:Ignorable="d" x:Class="BPiaoBao.Client.TPOS.View.AssignPosWindow"
+        Title="分配POS机" Height="322" Width="430" Style="{DynamicResource CustomWindowStyle}" WindowStartupLocation="CenterOwner">
+	<Window.Resources>
+	
+		<Style x:Key="ListBoxItemStyle1" TargetType="{x:Type ListBoxItem}">
+			<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+			<Setter Property="Background" Value="Transparent"/>
+			<Setter Property="Padding" Value="2,0,0,0"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type ListBoxItem}">
+						<Grid Height="Auto" Width="Auto">
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup x:Name="SelectionStates">
+									<VisualState x:Name="Unselected"/>
+									<VisualState x:Name="Selected"/>
+									<VisualState x:Name="SelectedUnfocused"/>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+							<Border x:Name="Bd" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true" BorderBrush="#00F87120" BorderThickness="2" d:LayoutOverrides="Width, Height">
+								<CheckBox Content="{Binding PosNo}" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" CommandParameter="{Binding Mode=OneWay}" Command="{Binding DataContext.CheckCommand, Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+							</Border>
+						</Grid>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsSelected" Value="true"/>
+							<MultiTrigger>
+								<MultiTrigger.Conditions>
+									<Condition Property="IsSelected" Value="true"/>
+									<Condition Property="Selector.IsSelectionActive" Value="false"/>
+								</MultiTrigger.Conditions>
+								<Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+							</MultiTrigger>
+							<Trigger Property="IsEnabled" Value="false">
+								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<Style x:Key="PageButton" TargetType="{x:Type Button}">
+			<Setter Property="Cursor" Value="Hand"/>
+			<Setter Property="Foreground" Value="Black"/>
+			<Setter Property="BorderBrush" Value="#CCCDCC"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="BorderThickness" Value="1"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="5,2,5,2"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type Button}">
+						<Border Padding="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" Margin="2,0,2,0">
+							<ContentPresenter Content="{TemplateBinding Content}"/>
+						</Border>
+						<ControlTemplate.Triggers>
+							<Trigger Property="IsMouseOver" Value="true">
+								<Setter Property="Background" Value="#FFE8BF"/>
+								<Setter Property="Foreground" Value="#D0838B"/>
+								<Setter Property="BorderBrush" Value="#AF7048"/>
+							</Trigger>
+							<Trigger Property="IsEnabled" Value="false">
+								<Setter Property="BorderBrush" Value="#CCCCCE"/>
+								<Setter Property="Foreground" Value="#CCCCCE"/>
+							</Trigger>
+						</ControlTemplate.Triggers>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+		<UIExt:PageIndexConvert x:Key="PageConvert"/>
+		<Style x:Key="PaginationStyle1" TargetType="{x:Type UIExt:Pagination}">
+			<Setter Property="Height" Value="30"/>
+			<Setter Property="BorderBrush" Value="#E7ECF0"/>
+			<Setter Property="BorderThickness" Value="0,1,0,0"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Background" Value="White"/>
+			<Setter Property="Template">
+				<Setter.Value>
+					<ControlTemplate TargetType="{x:Type UIExt:Pagination}">
+						<WrapPanel Background="{TemplateBinding Background}" Height="{TemplateBinding Height}">
+							<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" VerticalAlignment="Center">
+								<Label Content="当前第"/>
+								<Label Content="{TemplateBinding CurrentPageIndex}" HorizontalAlignment="Center"/>
+								<Label Content="/"/>
+								<Label Content="{TemplateBinding TotalPage}"/>
+								<Label Content="页 共"/>
+								<Label Content="{TemplateBinding TotalCount}" HorizontalAlignment="Center"/>
+								<Label Content="条记录 每页"/>
+								<Label Content="{TemplateBinding PageSize}"/>
+								<Label Content="条"/>
+							</StackPanel>
+							<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+								<Button  Style="{StaticResource PageButton}" Content="首页" Command="NavigationCommands.FirstPage"/>
+								<Button  Style="{StaticResource PageButton}" Content="上一页" Command="NavigationCommands.PreviousPage"/>
+								<Button  Style="{StaticResource PageButton}" Content="下一页" Command="NavigationCommands.NextPage"/>
+								<Button  Style="{StaticResource PageButton}" Content="末页" Command="NavigationCommands.LastPage"/>
+								<TextBox x:Name="PART_Tb" BorderBrush="#CCCDCC" BorderThickness="1" Width="40" HorizontalContentAlignment="Center" Text="{TemplateBinding CurrentPageIndex, Converter={StaticResource PageConvert}}"/>
+							</StackPanel>
+						</WrapPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+	<i:Interaction.Triggers>
+		<ei:DataTrigger Binding="{Binding IsOk}" Value="True">
+			<ei:ChangePropertyAction PropertyName="DialogResult" Value="True" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+		</ei:DataTrigger>
+	</i:Interaction.Triggers>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<StackPanel Margin="30,20,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="POS商户：" VerticalAlignment="Center"/>
+			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Merchant.BusinessmanName}" VerticalAlignment="Top" FontWeight="Bold"/>
+        
+		</StackPanel>
+		<Grid Margin="30,10" Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<UIExt:Pagination
+				PageSize="{Binding PageSize}" 
+				CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay}"
+				TotalCount="{Binding TotalCount, Mode=TwoWay}" Height="Auto" Margin="0,5,0,0" Grid.Row="1" Style="{DynamicResource PaginationStyle1}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="PageChanged">
+						<i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</UIExt:Pagination>
+			<ListBox ItemsSource="{Binding POSList}" ItemContainerStyle="{DynamicResource ListBoxItemStyle1}"/>
+		</Grid>
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Margin="30,10,0,10" VerticalAlignment="Top" HorizontalAlignment="Left">
+			<Button Content="分配" HorizontalAlignment="Left" Height="28" VerticalAlignment="Top" Width="80" Style="{DynamicResource OkButton}" Margin="0" Command="{Binding AssignCommand}"/>
+			<Button Content="取消" HorizontalAlignment="Left" Height="28" Margin="15,0,0,0" VerticalAlignment="Top" Width="80" Style="{DynamicResource CancelButton}">
+				<i:Interaction.Triggers>
+					<i:EventTrigger EventName="Click">
+						<ei:ChangePropertyAction PropertyName="DialogResult" Value="False" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+					</i:EventTrigger>
+				</i:Interaction.Triggers>
+			</Button>
+        
+		</StackPanel>
+        
+		<WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" Grid.RowSpan="2" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        
+	</Grid>
+</Window>

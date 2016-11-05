@@ -1,0 +1,104 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   Style="{DynamicResource CustomWindowStyle}"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" mc:Ignorable="d" x:Class="BPiaoBao.Client.DomesticTicket.View.ChoosePolicyWindow"
+        Title="确认政策" Height="549" Width="1124" d:DataContext="{d:DesignData /SampleData/ChoosePolicyViewModelSampleData.xaml}" WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Converters:SinglePriceConverter x:Key="SinglePriceConverter"/>
+        <Converters:SpecialBooleanToVisibilityConverter x:Key="SpecialBooleanToVisibilityConverter" />
+        <Converters:LocalPolicyBooleanToVisibilityConverter x:Key="LocalPolicyBooleanToVisibilityConverter"/>
+        <DataTemplate x:Key="OperaDataTemplate">
+            <Grid>
+                <Button Content="选择" HorizontalAlignment="Left" VerticalAlignment="Top" Width="58" Height="24" Command="{Binding DataContext.ChoosePolicyCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="FeeDataTemplate">
+            <StackPanel>
+                <TextBlock><Run Text="{Binding ABFee, StringFormat=￥\{0:f2\}}" /><Run Text=" "/><Run Text="/" /><Run Text="{Binding RQFee, StringFormat=￥\{0:f2\}}" /></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="TypeDataTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding PolicyType}" />
+                <TextBlock Text="换编码出票" Foreground="Orange" Visibility="{Binding IsChangePNRCP,Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <TextBlock Text="(本地)"  Visibility="{Binding PolicySourceType,Converter={StaticResource LocalPolicyBooleanToVisibilityConverter}}"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="SeatPriceDataTemplate">
+            <StackPanel Orientation="Vertical">
+                <Image Stretch="None" HorizontalAlignment="Left" Source="../Image/tejia_r.png" Visibility="{Binding PolicySpecialType,Converter={StaticResource SpecialBooleanToVisibilityConverter}}"/>
+                <TextBlock Text="{Binding SeatPrice, StringFormat=￥\{0\}}" />
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="TicketPriceDataTemplate">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Text="{Binding TicketPrice, StringFormat=￥\{0\}}" ToolTip="票面价" />
+            </StackPanel>
+        </DataTemplate>
+        <Style x:Key="CbShowHideButtonConStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <Grid x:Name="templateRoot" Background="Transparent" SnapsToDevicePixels="True">
+
+                            <Border x:Name="bdExtend" Padding="5" BorderBrush="#FF979595" BorderThickness="1" CornerRadius="3"  >
+                                <StackPanel Orientation="Horizontal">
+
+                                    <TextBlock x:Name="textBlock" VerticalAlignment="Center" 
+        								TextWrapping="Wrap" Margin="4,0" Foreground="#FF63A5F3" Width="auto" 
+        								Text="{TemplateBinding Content}" 
+        								HorizontalAlignment="Center"/>
+
+
+                                </StackPanel>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="BorderBrush" TargetName="bdExtend" Value="#FF979595"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" TargetName="bdExtend" Value="AliceBlue"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+
+
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        </Window.Resources>
+     
+        <Grid>
+        <Grid.RowDefinitions> 
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<CheckBox Content="隐" x:Name="cbSH" Height="30" Width="30" Grid.Row="0"  HorizontalAlignment="Right" Checked="ToggleButton_OnChecked" Unchecked="ToggleButton_OnUnchecked" Style="{StaticResource CbShowHideButtonConStyle}"  Margin="20,0" >
+
+        </CheckBox>-->
+        <DataGrid Grid.Row="0" x:Name="dg" ItemsSource="{Binding Policys}" AutoGenerateColumns="False" Foreground="Black" RowDetailsVisibilityMode="Visible" RowDetailsTemplate="{StaticResource PolicyRowDetailDataTemplate}" BorderThickness="0" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" RowHeight="50" GridLinesVisibility="None" HorizontalGridLinesBrush="#FFE0E0E0" IsReadOnly="True" HeadersVisibility="Column" Margin="0" Grid.RowSpan="2" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="返点/佣金" MinWidth="145"  Width="*" CellTemplate="{StaticResource PolicyCommissionTemplate}"/>       
+                <DataGridTemplateColumn Header="舱位价" Width="*" CellTemplate="{StaticResource SeatPriceDataTemplate}"/>
+                <DataGridTemplateColumn Header="机建/燃油"  MinWidth="120"  Width="*" CellTemplate="{StaticResource FeeDataTemplate}"/>
+                <DataGridTextColumn Binding="{Binding PlatformName}" Header="平台名称" Width="*" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Visibility="Collapsed"/>
+                <DataGridTemplateColumn Header="票面价" Width="*" CellTemplate="{StaticResource TicketPriceDataTemplate}"/>
+                <DataGridTextColumn Header="单人支付金额" Width="*" Binding="{Binding Converter={StaticResource SinglePriceConverter}, StringFormat={}￥{0:f2},Mode=OneWay}" />
+                <DataGridTemplateColumn Header="类型" Width="*" CellTemplate="{StaticResource TypeDataTemplate}"/>
+                <DataGridTextColumn Binding="{Binding IssueSpeed}" Header="出票速度" Width="*" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Binding="{Binding WorkTime}" Header="上班时间" Width="*"/>
+                <DataGridTextColumn Binding="{Binding TFGTime}" Header="废票改签时间" Width="*"/>
+                <DataGridTemplateColumn CellTemplate="{StaticResource OperaDataTemplate}" Header="操作" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}" Margin="341,153.955,341,203" Grid.Row="1"/>
+
+    </Grid>
+</Window>

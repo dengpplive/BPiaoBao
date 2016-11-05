@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://policy.jinri.cn/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://policy.jinri.cn/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://policy.jinri.cn/">
+      <s:element name="GetRateList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRateListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRateListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRateListByPNR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRateListByPNRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRateListByPNRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRateByPolicyID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRateByPolicyIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRateByPolicyIDResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetRateListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRateList" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRateListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListByPNRSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRateListByPNR" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListByPNRSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRateListByPNRResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRateByPolicyIDSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRateByPolicyID" />
+  </wsdl:message>
+  <wsdl:message name="GetRateByPolicyIDSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRateByPolicyIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListHttpGetIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListByPNRHttpGetIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListByPNRHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateByPolicyIDHttpGetIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateByPolicyIDHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListHttpPostIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListByPNRHttpPostIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateListByPNRHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateByPolicyIDHttpPostIn">
+    <wsdl:part name="data" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetRateByPolicyIDHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="JinRiRateServerSoap">
+    <wsdl:operation name="GetRateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取政策数据集</wsdl:documentation>
+      <wsdl:input message="tns:GetRateListSoapIn" />
+      <wsdl:output message="tns:GetRateListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRateListByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据Pnr获取政策数据集</wsdl:documentation>
+      <wsdl:input message="tns:GetRateListByPNRSoapIn" />
+      <wsdl:output message="tns:GetRateListByPNRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRateByPolicyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据政策ID获取政策详情</wsdl:documentation>
+      <wsdl:input message="tns:GetRateByPolicyIDSoapIn" />
+      <wsdl:output message="tns:GetRateByPolicyIDSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JinRiRateServerHttpGet">
+    <wsdl:operation name="GetRateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取政策数据集</wsdl:documentation>
+      <wsdl:input message="tns:GetRateListHttpGetIn" />
+      <wsdl:output message="tns:GetRateListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRateListByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据Pnr获取政策数据集</wsdl:documentation>
+      <wsdl:input message="tns:GetRateListByPNRHttpGetIn" />
+      <wsdl:output message="tns:GetRateListByPNRHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRateByPolicyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据政策ID获取政策详情</wsdl:documentation>
+      <wsdl:input message="tns:GetRateByPolicyIDHttpGetIn" />
+      <wsdl:output message="tns:GetRateByPolicyIDHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JinRiRateServerHttpPost">
+    <wsdl:operation name="GetRateList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取政策数据集</wsdl:documentation>
+      <wsdl:input message="tns:GetRateListHttpPostIn" />
+      <wsdl:output message="tns:GetRateListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRateListByPNR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据Pnr获取政策数据集</wsdl:documentation>
+      <wsdl:input message="tns:GetRateListByPNRHttpPostIn" />
+      <wsdl:output message="tns:GetRateListByPNRHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRateByPolicyID">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">根据政策ID获取政策详情</wsdl:documentation>
+      <wsdl:input message="tns:GetRateByPolicyIDHttpPostIn" />
+      <wsdl:output message="tns:GetRateByPolicyIDHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="JinRiRateServerSoap" type="tns:JinRiRateServerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRateList">
+      <soap:operation soapAction="http://policy.jinri.cn/GetRateList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateListByPNR">
+      <soap:operation soapAction="http://policy.jinri.cn/GetRateListByPNR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateByPolicyID">
+      <soap:operation soapAction="http://policy.jinri.cn/GetRateByPolicyID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiRateServerSoap12" type="tns:JinRiRateServerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRateList">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetRateList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateListByPNR">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetRateListByPNR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateByPolicyID">
+      <soap12:operation soapAction="http://policy.jinri.cn/GetRateByPolicyID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiRateServerHttpGet" type="tns:JinRiRateServerHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="GetRateList">
+      <http:operation location="/GetRateList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateListByPNR">
+      <http:operation location="/GetRateListByPNR" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateByPolicyID">
+      <http:operation location="/GetRateByPolicyID" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiRateServerHttpPost" type="tns:JinRiRateServerHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="GetRateList">
+      <http:operation location="/GetRateList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateListByPNR">
+      <http:operation location="/GetRateListByPNR" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRateByPolicyID">
+      <http:operation location="/GetRateByPolicyID" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JinRiRateServer">
+    <wsdl:port name="JinRiRateServerSoap" binding="tns:JinRiRateServerSoap">
+      <soap:address location="http://ws.jinri.cn/JinRiRateServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiRateServerSoap12" binding="tns:JinRiRateServerSoap12">
+      <soap12:address location="http://ws.jinri.cn/JinRiRateServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiRateServerHttpGet" binding="tns:JinRiRateServerHttpGet">
+      <http:address location="http://ws.jinri.cn/JinRiRateServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiRateServerHttpPost" binding="tns:JinRiRateServerHttpPost">
+      <http:address location="http://ws.jinri.cn/JinRiRateServer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

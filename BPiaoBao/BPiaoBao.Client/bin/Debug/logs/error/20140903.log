@@ -1,0 +1,8 @@
+2014-09-03 15:00:18,246 - 未将对象引用设置到对象的实例。
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 BPiaoBao.Client.ViewModel.MainViewModel.Initialize() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 94
+   在 BPiaoBao.Client.ViewModel.MainViewModel..ctor() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 61
+2014-09-03 15:00:18,270 - 未将对象引用设置到对象的实例。
+System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 BPiaoBao.Client.ViewModel.MainViewModel.Initialize() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 94
+   在 BPiaoBao.Client.ViewModel.MainViewModel..ctor() 位置 e:\工程项目\V3.0\BTicket（客户端）\BTicket(2014-05-29)\BPiaoBao\BPiaoBao\BPiaoBao.Client\ViewModel\MainViewModel.cs:行号 61

@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.baitour.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://www.baitour.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.baitour.com/">
+      <s:element name="GetAlterDomesticCabinZRateByParam">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TripType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ProviderOfficeId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TicketType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CoServerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CoAgentOffice" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CoUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CoPwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RQType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RQDateTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="IntervalTime" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RQStartDateTime" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlterDomesticCabinZRateByParamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlterDomesticCabinZRateByParamResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlterDomesticCabinZRateByXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAlterDomesticCabinZRateByXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAlterDomesticCabinZRateByXmlResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomesticMatchNormalZRate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomesticMatchNormalZRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDomesticMatchNormalZRateResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomesticMatchNormalZRateStr">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDomesticMatchNormalZRateStrResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDomesticMatchNormalZRateStrResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviderOfficeNoList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInvalidationProviderOfficeNoListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvalidationProviderOfficeNoListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviderList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CoUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CoPwd" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="AgentCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviderListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvalidationProviderListResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviderListXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviderListXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvalidationProviderListXMLResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviderListSTR">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xmlDoc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvalidationProviderListSTRResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvalidationProviderListSTRResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetAlterDomesticCabinZRateByParamSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlterDomesticCabinZRateByParam" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterDomesticCabinZRateByParamSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlterDomesticCabinZRateByParamResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterDomesticCabinZRateByXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAlterDomesticCabinZRateByXml" />
+  </wsdl:message>
+  <wsdl:message name="GetAlterDomesticCabinZRateByXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAlterDomesticCabinZRateByXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDomesticMatchNormalZRate" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDomesticMatchNormalZRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateStrSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDomesticMatchNormalZRateStr" />
+  </wsdl:message>
+  <wsdl:message name="GetDomesticMatchNormalZRateStrSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDomesticMatchNormalZRateStrResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderOfficeNoListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderOfficeNoList" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderOfficeNoListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderOfficeNoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderList" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderListXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderListXML" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderListXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderListXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderListSTRSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderListSTR" />
+  </wsdl:message>
+  <wsdl:message name="GetInvalidationProviderListSTRSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInvalidationProviderListSTRResponse" />
+  </wsdl:message>
+  <wsdl:portType name="AirWsCoManageSoap">
+    <wsdl:operation name="GetAlterDomesticCabinZRateByParam">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询普通政策变动政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterDomesticCabinZRateByParamSoapIn" />
+      <wsdl:output message="tns:GetAlterDomesticCabinZRateByParamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterDomesticCabinZRateByXml">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">查询普通政策变动政策接口</wsdl:documentation>
+      <wsdl:input message="tns:GetAlterDomesticCabinZRateByXmlSoapIn" />
+      <wsdl:output message="tns:GetAlterDomesticCabinZRateByXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口(国内)</wsdl:documentation>
+      <wsdl:input message="tns:GetDomesticMatchNormalZRateSoapIn" />
+      <wsdl:output message="tns:GetDomesticMatchNormalZRateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateStr">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">匹配普通政策接口(国内)</wsdl:documentation>
+      <wsdl:input message="tns:GetDomesticMatchNormalZRateStrSoapIn" />
+      <wsdl:output message="tns:GetDomesticMatchNormalZRateStrSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderOfficeNoList">
+      <wsdl:input message="tns:GetInvalidationProviderOfficeNoListSoapIn" />
+      <wsdl:output message="tns:GetInvalidationProviderOfficeNoListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderList">
+      <wsdl:input message="tns:GetInvalidationProviderListSoapIn" />
+      <wsdl:output message="tns:GetInvalidationProviderListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderListXML">
+      <wsdl:input message="tns:GetInvalidationProviderListXMLSoapIn" />
+      <wsdl:output message="tns:GetInvalidationProviderListXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderListSTR">
+      <wsdl:input message="tns:GetInvalidationProviderListSTRSoapIn" />
+      <wsdl:output message="tns:GetInvalidationProviderListSTRSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AirWsCoManageSoap" type="tns:AirWsCoManageSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAlterDomesticCabinZRateByParam">
+      <soap:operation soapAction="http://www.baitour.com/GetAlterDomesticCabinZRateByParam" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterDomesticCabinZRateByXml">
+      <soap:operation soapAction="http://www.baitour.com/GetAlterDomesticCabinZRateByXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRate">
+      <soap:operation soapAction="http://www.baitour.com/GetDomesticMatchNormalZRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateStr">
+      <soap:operation soapAction="http://www.baitour.com/GetDomesticMatchNormalZRateStr" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderOfficeNoList">
+      <soap:operation soapAction="http://www.baitour.com/GetInvalidationProviderOfficeNoList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderList">
+      <soap:operation soapAction="http://www.baitour.com/GetInvalidationProviderList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderListXML">
+      <soap:operation soapAction="http://www.baitour.com/GetInvalidationProviderListXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderListSTR">
+      <soap:operation soapAction="http://www.baitour.com/GetInvalidationProviderListSTR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="AirWsCoManageSoap12" type="tns:AirWsCoManageSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetAlterDomesticCabinZRateByParam">
+      <soap12:operation soapAction="http://www.baitour.com/GetAlterDomesticCabinZRateByParam" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlterDomesticCabinZRateByXml">
+      <soap12:operation soapAction="http://www.baitour.com/GetAlterDomesticCabinZRateByXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRate">
+      <soap12:operation soapAction="http://www.baitour.com/GetDomesticMatchNormalZRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDomesticMatchNormalZRateStr">
+      <soap12:operation soapAction="http://www.baitour.com/GetDomesticMatchNormalZRateStr" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderOfficeNoList">
+      <soap12:operation soapAction="http://www.baitour.com/GetInvalidationProviderOfficeNoList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderList">
+      <soap12:operation soapAction="http://www.baitour.com/GetInvalidationProviderList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderListXML">
+      <soap12:operation soapAction="http://www.baitour.com/GetInvalidationProviderListXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvalidationProviderListSTR">
+      <soap12:operation soapAction="http://www.baitour.com/GetInvalidationProviderListSTR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AirWsCoManage">
+    <wsdl:port name="AirWsCoManageSoap" binding="tns:AirWsCoManageSoap">
+      <soap:address location="http://ite5.baitour.com/CoManage/AirWsCoManage.asmx" />
+    </wsdl:port>
+    <wsdl:port name="AirWsCoManageSoap12" binding="tns:AirWsCoManageSoap12">
+      <soap12:address location="http://ite5.baitour.com/CoManage/AirWsCoManage.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

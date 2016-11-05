@@ -1,0 +1,47 @@
+﻿<div id="AddDetailWindow" class="easyui-window" title="扣点组明细查看" data-options="iconCls:'icon-sys-add',closed:true,modal:true,buttons:'#AddDetailWindow-buttons'" style="width: 380px; height: 450px;  padding: 5px;">
+    <table class="editTable">
+        <tr>
+            <td>名称：</td>
+            <td data-bind="text:$root.editForm.Name">
+            </td>
+        </tr>
+        <tr>
+            <td>描述：</td>
+            <td data-bind="text: $root.editForm.Description">
+            </td>
+        </tr>
+    </table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>承运人</th>
+                <th>类型</th>
+                <th>有效时间</th>
+                <th>调整</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: $root.editForm.DeductionRules">
+            <tr>
+                <td data-bind="text: CarrCode"></td>
+                <td data-bind="text: DeductionTypeDescription"></td>
+                <td>
+                    <span data-bind="text: StartTime"></span>-<span data-bind="text: EndTime"></span>
+                </td>
+                <td>
+                    <table data-bind="foreach: AdjustDetails">
+                        <tr>
+                            <td data-bind="text: AdjustTypeDescription"></td>
+                            <td>
+                                <span data-bind="text: StartPoint"></span>-<span data-bind="    text: EndPoint"></span>
+                            </td>
+                            <td data-bind="text: Point"></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div id="AddDetailWindow-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#AddDetailWindow').window('close')">关闭</a>
+</div>

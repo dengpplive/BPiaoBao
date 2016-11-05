@@ -1,0 +1,68 @@
+Start====================================================================
+时间:2014-11-03 16:02:17.468
+客户端IP:127.0.0.1:58363
+调用方法名:Destine
+内容:预订参数:code=004 
+ Tel=15928636274
+航段1:
+CarrayCode=3U
+FlightNumber=8556
+StartDate=2014/11/29 13:45:00
+EndDate=2014/11/29 15:25:00
+Seat=B
+FromCityCode=XIY
+ToCityCode=CTU
+FromTerminal=T3
+ToTerminal=T1
+Discount=0
+FlightModel=320
+TaxFee=50
+RQFee=50.0
+SeatPrice=0
+PolicySpecialType=DynamicSpecial
+SpecialPrice=0
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+航段2:
+CarrayCode=3U
+FlightNumber=8803
+StartDate=2014/11/29 21:30:00
+EndDate=2014/11/29 22:55:00
+Seat=B
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T1
+ToTerminal=T3
+Discount=0
+FlightModel=319
+TaxFee=50
+RQFee=50.0
+SeatPrice=0
+PolicySpecialType=DynamicSpecial
+SpecialPrice=0
+SpecialTax=50
+SpecialFuelFee=50.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=高阳
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=UnKnown
+CardNo=420821198710072018
+ChdBirthday=2002/11/3 0:00:00
+LinkPhone=15928636274
+Birth=1987/10/7 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-03 16:02:01.075
+时间2:2014-11-03 16:02:15.462
+结果:
+ 成人Pnr=JX80LG PNRContent= 1.高阳 JX80LG   2.  3U8556 B   SA29NOV  XIYCTU HK1   1345 1525          E T3T1  3.  3U8803 B   SA29NOV  CTUXIY HK1   2130 2255          E T1T3  4.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    5.TL/1345/29NOV/CTU186  6.SSR FOID 3U HK1 NI420821198710072018/P1   7.OSI 3U CTCM15928636274/P1 8.OSI 3U CTCT15928636274    9.RMK CA/NEBRTN10.CTU186    
+ PATContent=没有符合条件的运价, 请使用手工处理  
+时间3:2014-11-03 16:02:17.415
+异常信息:成人编码JX80LG 没有P到价格信息！错误信息:没有符合条件的运价, 请使用手工处理  
+End=====================================================================
+

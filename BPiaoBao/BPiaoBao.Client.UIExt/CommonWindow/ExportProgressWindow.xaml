@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="window" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" mc:Ignorable="d" x:Class="BPiaoBao.Client.UIExt.CommonWindow.ExportProgressWindow"
+        Title="ExportProgressWindow" Height="221" Width="300" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" d:DataContext="{d:DesignData /SampleData/ExportProgressViewModelSampleData.xaml}" WindowStyle="None" ShowInTaskbar="False">
+	<i:Interaction.Triggers>
+		<ei:DataTrigger Binding="{Binding IsClose}" Value="True">
+			<ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+		</ei:DataTrigger>
+	</i:Interaction.Triggers>
+	<Border BorderThickness="1" BorderBrush="Black">
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50*"/>
+				<RowDefinition Height="59*"/>
+				<RowDefinition Height="83*"/>
+			</Grid.RowDefinitions>
+			<ProgressBar Grid.Row="1" Margin="10" Maximum="{Binding Maximum, Mode=OneWay}" Value="{Binding Value, Mode=OneWay}"/>
+			<TextBlock Grid.Row="2" TextWrapping="Wrap" Text="{Binding Message}" VerticalAlignment="Top" Height="15.24" HorizontalAlignment="Center"/>
+            <Button Content="{Binding AbortText}" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Bottom" Width="75" Margin="0,0,0,27" Command="{Binding AbortCommand}" />
+        
+		</Grid>
+	</Border>
+</Window>

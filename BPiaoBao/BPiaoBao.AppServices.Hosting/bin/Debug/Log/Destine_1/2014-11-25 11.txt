@@ -1,0 +1,50 @@
+Start====================================================================
+时间:2014-11-25 11:07:52.939
+客户端IP:127.0.0.1:22612
+调用方法名:Destine_1
+内容:预订编码:
+预订参数:code=003 
+ Tel=18628368729
+航段1:
+CarrayCode=EU
+FlightNumber=2741
+StartDate=2014/12/30 7:00:00
+EndDate=2014/12/30 8:25:00
+Seat=Y
+FromCityCode=CTU
+ToCityCode=XIY
+FromTerminal=T2
+ToTerminal=T3
+Discount=100.0000
+FlightModel=319
+TaxFee=50
+RQFee=40.0
+SeatPrice=630.00
+PolicySpecialType=Normal
+SpecialPrice=630.00
+SpecialTax=50
+SpecialFuelFee=40.0
+SpecialYPrice=630.00
+乘客1:
+PassengerName=蒋善保
+MemberCard=
+PassengerType=1
+IdType=NormalId
+SexType=Male
+CardNo=650203198203257453
+ChdBirthday=2002/11/25 0:00:00
+LinkPhone=13689023176
+Birth=1982/3/25 0:00:00
+ ServerIP=210.14.138.30
+ ServerPort=2237
+ Office=CTU186
+时间1:2014-11-25 11:07:50.462
+时间2:2014-11-25 11:07:52.926
+结果:
+ 成人Pnr=HF9TX4 PNRContent= 1.蒋善保 HF9TX4 2.  EU2741 Y   TU30DEC  CTUXIY HK1   0700 0825          E T2T3  3.CTU/T CTU/T 028-85512345/CTU HUA LONG AIR SERVICE CO.,LTD/YANGHONG ABCDEFG    4.TL/0700/30DEC/CTU186  5.SSR FOID EU HK1 NI650203198203257453/P1   6.OSI EU CTCM13689023176/P1 7.OSI EU CTCT18628368729    8.RMK CA/NZ6LXJ 9.CTU186    
+ PATContent=>PAT:A  01 Y FARE:CNY630.00 TAX:CNY50.00 YQ:CNY40.00  TOTAL:720.00   SFC:01    SFN:01   
+时间3:2014-11-25 11:07:52.939
+
+
+End=====================================================================
+

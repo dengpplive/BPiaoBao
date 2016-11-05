@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="AutoPayOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="xml" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AutoPayOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AutoPayOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AutoPayOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:AutoPayOrder" />
+  </wsdl:message>
+  <wsdl:message name="AutoPayOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:AutoPayOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="AutoPayOrderHttpGetIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AutoPayOrderHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AutoPayOrderHttpPostIn">
+    <wsdl:part name="xml" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AutoPayOrderHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="JinRiAutoPayServerSoap">
+    <wsdl:operation name="AutoPayOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">代扣支付订单</wsdl:documentation>
+      <wsdl:input message="tns:AutoPayOrderSoapIn" />
+      <wsdl:output message="tns:AutoPayOrderSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JinRiAutoPayServerHttpGet">
+    <wsdl:operation name="AutoPayOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">代扣支付订单</wsdl:documentation>
+      <wsdl:input message="tns:AutoPayOrderHttpGetIn" />
+      <wsdl:output message="tns:AutoPayOrderHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="JinRiAutoPayServerHttpPost">
+    <wsdl:operation name="AutoPayOrder">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">代扣支付订单</wsdl:documentation>
+      <wsdl:input message="tns:AutoPayOrderHttpPostIn" />
+      <wsdl:output message="tns:AutoPayOrderHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="JinRiAutoPayServerSoap" type="tns:JinRiAutoPayServerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AutoPayOrder">
+      <soap:operation soapAction="http://tempuri.org/AutoPayOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiAutoPayServerSoap12" type="tns:JinRiAutoPayServerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AutoPayOrder">
+      <soap12:operation soapAction="http://tempuri.org/AutoPayOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiAutoPayServerHttpGet" type="tns:JinRiAutoPayServerHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AutoPayOrder">
+      <http:operation location="/AutoPayOrder" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="JinRiAutoPayServerHttpPost" type="tns:JinRiAutoPayServerHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AutoPayOrder">
+      <http:operation location="/AutoPayOrder" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="JinRiAutoPayServer">
+    <wsdl:port name="JinRiAutoPayServerSoap" binding="tns:JinRiAutoPayServerSoap">
+      <soap:address location="http://ws.jinri.cn/JinRiAutoPayServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiAutoPayServerSoap12" binding="tns:JinRiAutoPayServerSoap12">
+      <soap12:address location="http://ws.jinri.cn/JinRiAutoPayServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiAutoPayServerHttpGet" binding="tns:JinRiAutoPayServerHttpGet">
+      <http:address location="http://ws.jinri.cn/JinRiAutoPayServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="JinRiAutoPayServerHttpPost" binding="tns:JinRiAutoPayServerHttpPost">
+      <http:address location="http://ws.jinri.cn/JinRiAutoPayServer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

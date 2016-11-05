@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "航变设置";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="mainContent">
+            <div class="m_filterbg" style="height:500px">
+                <table>
+                    <tr>
+                        <td width="100px">qt开始时间：</td>
+                        <td>
+                            <select id="QTStartTime" style="width: 150px; height: 20px;" data-bind="options: optionDate.QTStartTime, value: opDate.QTStartTime"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100px">qt结束时间：</td>
+                        <td>
+                            <select id="QTEndTime" style="width: 150px; height: 20px;" data-bind="options: optionDate.QTEndTime, value: opDate.QTEndTime"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100px">qt设置时间间隔：</td>
+                        <td>
+                            <select id="TimeOut" style="width: 150px; height: 20px;" data-bind="options: optionDate.TimeOut, value: opDate.TimeOut"></select> 分钟
+                        </td>
+                    </tr>
+                     <tr>
+                        <td></td>
+                        <td>
+                            <input type="checkbox" value="true "   data-bind="checked:opDate.IsOpen" />开启航变提醒
+                        </td>
+                     </tr>
+                    <tr>
+                        <td></td>
+                        <td><a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: saveInfo" style="color:#fff">保存</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            var VM = {
+                optionDate: {
+                    QTStartTime: ko.observableArray(['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']),
+                    QTEndTime: ko.observableArray(['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']),
+                    TimeOut: ko.observableArray(['10', '30', '60', '90', '120', '150', '180', '240', '300', '360', '420', '480', '540', '600', '1440']),
+                },
+                opDate: {
+                    QTStartTime: ko.observable(),
+                    QTEndTime: ko.observable(),
+                    TimeOut: ko.observable(),
+                    IsOpen:ko.observable()
+                },
+                saveInfo: function () {
+                    var Begin = VM.opDate.QTStartTime().substring(0, 2);
+                    var End = VM.opDate.QTEndTime().substring(0, 2);
+                    if (Begin > End) {
+                        alert("开始时间不能大于结束时间");
+                        return false;
+                    }
+                    $.ajax({
+                        url: '@Url.Action("AirChaneTimeOut")',
+                        type: 'Post',
+                        data: { qtBeginTime: VM.opDate.QTStartTime() + ":00", qtEndTime: VM.opDate.QTEndTime() + ":00", qtTimeOut: VM.opDate.TimeOut(), IsOpen: VM.opDate.IsOpen()+"" },
+                        success: function () {
+                            alert("设置成功");
+                        }
+                    })
+                },
+                init: function () {
+                    $.ajax({
+                        url: '@Url.Action("TimeOurInfo")',
+                        type: 'Post',
+                        success: function (r) {
+                            if (r != null && r != "") {
+                                var data = eval("(" + r + ")");
+                                VM.opDate.QTStartTime(data.QTStartTime.substring(0, 5));
+                                VM.opDate.QTEndTime(data.QTEndTime.substring(0, 5));
+                                VM.opDate.TimeOut(GetMin(data.Timeout));
+                                VM.opDate.IsOpen(data.IsOpen);
+                                //alert(VM.opDate.IsOpen());
+                            }
+                        }
+                    })
+                },
+                map: function (obj, obserableObj) {
+                    for (var prop in obserableObj) {
+                        if (obserableObj.hasOwnProperty(prop)) {
+                            if (typeof obserableObj[prop] === "function")
+                                obserableObj[prop](obj ? obj[prop] : undefined);
+                            else if (typeof obserableObj[prop] === "object")
+                                searchViewModel.map(obj ? obj[prop] : {}, obserableObj[prop]);
+                        }
+                    }
+                }
+            };
+            ko.applyBindings(VM);
+            VM.init();
+        })
+        function GetMin(date)
+        {
+            var hour = date.substring(0, 2);
+            var min = date.substring(3, 5);
+            if (min != "00")  
+                return parseInt(hour * 60) + parseInt(min);
+            else
+                return hour * 60;
+        }
+    </script>
+}

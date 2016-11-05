@@ -1,0 +1,109 @@
+﻿<div id="PartSupplierDialog" class="easyui-dialog" title="供应商编辑" data-options="modal:true,draggable:false,closed:true,closable:true,maximized:true,buttons:'#PartSupplierDialog-buttons'" style="margin-left:40px; margin-top:15px;">
+    <div data-bind="with:$root.editForm" style="height:auto; overflow:hidden;">
+        <table border="0" cellpadding="0" cellspacing="0" class="gongyingshang">
+            <tr>
+                <td colspan="2"><h3>商户信息</h3></td>
+            </tr>
+            <tr>
+                <td width="100">商户号：</td>
+                <td><input type="text" class="input" data-bind="value: Model.Code, enable: Status" /></td>
+            </tr>
+            <tr>
+                <td>商户名称：</td>
+                <td><input type="text" class="input" data-bind="value: Model.Name,enable:Status" /></td>
+            </tr>
+            <tr>
+                <td>本地费率：</td>
+                <td><input type="text" class="input" data-bind="value: Model.SupRate" maxlength="5" /></td>
+            </tr>
+                        <tr>
+                <td>异地费率：</td>
+                <td><input type="text" class="input" data-bind="value: Model.SupRemoteRate"  maxlength="5" /></td>
+            </tr>
+        </table>
+
+
+
+
+        <table border="0" cellpadding="0" cellspacing="0" class="gongyingshang">
+            <tr>
+                <td colspan="2" style="padding-top:20px;"><h3>基本信息</h3></td>
+            </tr>
+            <tr>
+                <td width="100">联系人：</td>
+                <td><input type="text" class="input" data-bind="value: Model.ContactWay.Contact" /></td>
+            </tr>
+            <tr>
+                <td>联系电话：</td>
+                <td><input type="text" class="input" data-bind="value: Model.ContactWay.Tel" /></td>
+            </tr>
+            <tr>
+                <td>联系地址：</td>
+                <td>
+                    <select data-bind="options: Province, optionsText: 'loca', value: selectedProvince, optionsCaption: '请选择...'"></select>
+                    <select data-bind="options: City, value: Model.ContactWay.City, optionsCaption: '请选择...'"></select>
+                    <input type="text" class="input" data-bind="value: Model.ContactWay.Address" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>客户经理：</td>
+                <td> <input type="text" class="input" data-bind="value: Model.ContactName" /></td>
+            </tr>
+            <tr>
+                <td>客户经理电话：</td>
+                <td><input type="text" class="input" data-bind="value: Model.Phone" /></td>
+            </tr>
+        </table>
+
+
+        <table border="0" cellspacing="0" cellpadding="0" class="gongyingshang" >
+            <tr>
+                <td colspan="7">
+                    <h3 style=" width: 100px; float: left; display: block; margin-top: 22px; margin-bottom:15px;">配置信息</h3>
+                    <span style="float: left; margin-top: 20px; margin-bottom: 15px;"><input type="button" value="添加配置" data-bind="click: AddPidClick" style="padding:2px 10px;"/></span>
+                </td>
+            </tr>
+            <!-- ko foreach:Model.Pids-->
+            <tr class="trbgcolor">
+                <td>IP：</td>
+                <td><input type="text" class="input" data-bind="value:IP" /></td>
+                <td>端口：</td>
+                <td><input type="text" class="input" data-bind="value:Port" /></td>
+                <td>Office号：</td>
+                <td><input type="text" class="input" data-bind="value: Office" /></td>
+                <td><a href="#" data-bind="click: $parent.RemovePidClick" class="delet_a">删除</a></td>
+            </tr>
+            <!--/ko-->
+        </table>
+
+
+        <table border="0" cellspacing="0" cellpadding="0" class="gongyingshang" >
+            <tr>
+                <td colspan="9">
+                    <h3 style="width: 150px; float: left; display: block; margin-top: 22px; margin-bottom: 15px; ">航空公司使用Office</h3>
+                    <span style="float: left; margin-top: 20px; margin-bottom: 15px;">
+                    <input type="button" value="添加" data-bind="click: AddCarrierSettings" style="padding:2px 10px;" /></span>
+                </td>
+            </tr>
+            <!--ko foreach:Model.CarrierSettings-->
+            <tr class="trbgcolor">
+                <td>航空公司：</td>
+                <td><select data-bind="options: $parent.AllAirCode, optionsValue: 'Value', optionsText: 'Text', value: CarrayCode, optionsCaption: '请选择...'" style="margin-right: 15px;"></select></td>
+                <td>预定编码Office：</td>
+                <td><input type="text" data-bind="value: YDOffice" class="input" /></td>
+                <td>出票Office：</td>
+                <td><input type="text" data-bind="value: CPOffice" class="input" /></td>
+                <td>打票机号：</td>
+                <td><input type="text" data-bind="value: PrintNo" class="input" /></td>
+                <td><a href="#" data-bind="click: $parent.RemoveCarrierSettings" class="delet_a">删除</a></td>
+            </tr>
+            <!--/ko-->
+        </table>
+    </div>
+
+</div>
+<div id="PartSupplierDialog-buttons" style="text-align: center;">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: $root.editForm.SaveClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="$('#PartSupplierDialog').dialog('close')">取消</a>
+</div>

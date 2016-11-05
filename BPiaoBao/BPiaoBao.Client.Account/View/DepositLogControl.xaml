@@ -1,0 +1,113 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:BPiaoBao_Client_UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" 
+             x:Class="BPiaoBao.Client.Account.View.DepositLogControl" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+           xmlns:ViewModel="clr-namespace:BPiaoBao.Client.Account.ViewModel" 
+           xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark"
+             mc:Ignorable="d" 
+             d:DesignHeight="466" d:DesignWidth="717">
+    <UserControl.DataContext>
+        <ViewModel:DepositLogViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="60"/>
+			<RowDefinition Height="41"/>
+            <!--<RowDefinition Height="0.834*"/>-->
+            <RowDefinition Height="Auto" MinHeight="65"/>
+            <RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid Background="{StaticResource HeadBg1}">
+			<StackPanel HorizontalAlignment="Left" Orientation="Horizontal" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0">
+				<TextBlock TextWrapping="Wrap" Text="充值记录" d:LayoutOverrides="Width" VerticalAlignment="Center" UseLayoutRounding="False" Style="{DynamicResource HeadTextBlock}"/>
+				<!--<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Margin="40,0,0,0"><Run Text="充值总金额："/><Run Foreground="#FFFF4E00" FontSize="14.667" Text="￥12312312312"/></TextBlock>-->
+			</StackPanel>
+		</Grid>
+		<Border Grid.Row="1" BorderBrush="#FFE7E8EA" BorderThickness="0,1,0,0" Style="{DynamicResource Head2BorderStyle}" >
+			<Grid Background="{StaticResource HeadBg3}">
+				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="记录明细" d:LayoutOverrides="Height" VerticalAlignment="Center" Margin="20,0,0,0" Style="{DynamicResource Head2TextBlock}"/>
+				<!--<StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Horizontal" Margin="20,0,20,0">
+                    <TextBlock TextWrapping="Wrap" Text="交易号：" VerticalAlignment="Center"/>
+                    <TextBox Height="23" TextWrapping="Wrap" Width="240" Text="{Binding OutTradeNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"/>
+                    <TextBlock TextWrapping="Wrap" Text="日期：" VerticalAlignment="Center" />
+					<DatePicker VerticalAlignment="Center" Margin="0,0,10,0" SelectedDate="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
+					<TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+					<DatePicker VerticalAlignment="Center" Margin="10,0,0,0" SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="180"/>
+					<Button Content="查询" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource QueryBtn}" Margin="20,0,0,0" Command="{Binding QueryCommand}" >
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+				</StackPanel>-->
+			</Grid>
+		</Border>
+        <Grid Grid.Row="2">
+            <Border Grid.ColumnSpan="2" BorderThickness="2" Background="{StaticResource BlueBorderFillBrush}" Margin="20,10" BorderBrush="{StaticResource BlueBorderBrush}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel VerticalAlignment="Center">
+                        <StackPanel Height="24" Orientation="Horizontal" Margin="20,5,0,5">
+                            <TextBlock TextWrapping="Wrap" Text="交易号：" VerticalAlignment="Center"/>
+                            <TextBox Height="22" TextWrapping="Wrap" Width="240" Text="{Binding OutTradeNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,0,10,0"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="20,5,0,5">
+                            <TextBlock TextWrapping="Wrap" Text="日期：" VerticalAlignment="Center"/>
+                            <DatePicker VerticalAlignment="Center" Margin="10,0,5,0"  SelectedDate="{Binding StartTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22"/>
+                            <TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="5,0,0,0"  SelectedDate="{Binding EndTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22"/>
+                        </StackPanel>
+                    </WrapPanel>
+                    <WrapPanel Grid.Column="1" VerticalAlignment="Center">
+                        <Button Content="查询" Width="68" VerticalAlignment="Center" Height="23" Style="{StaticResource QueryBtn}" Margin="20,0,0,0"  Command="{Binding QueryCommand}" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                    </WrapPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="3">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto" MinHeight="40"/>
+			</Grid.RowDefinitions>
+            <DataGrid CanUserSortColumns="False" Margin="20,10" ScrollViewer.CanContentScroll="True" BorderThickness="0" ItemsSource="{Binding DepositLogs}" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="65" HorizontalGridLinesBrush="{StaticResource HorizontalDashedBrush}" HeadersVisibility="Column" IsReadOnly="True" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+				<DataGrid.Columns>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" ClipboardContentBinding="{x:Null}" Binding="{Binding OutTradeNo}"  Width="*" Header="交易号"/>
+                    <DataGridTextColumn ElementStyle="{StaticResource WrappedCenteredTextBlock}" ClipboardContentBinding="{x:Null}" Binding="{Binding RechargeTime, StringFormat=yyyy-MM-dd HH:mm:ss}"  Width="*"  Header="充值日期"/>
+                    <DataGridTextColumn Binding="{Binding CashSource}"  Width="*"  Header="资金来源" Visibility="Collapsed"/>
+                    <DataGridTextColumn Binding="{Binding TypeName}"  Width="*"  Header="充值类型" Visibility="Collapsed"/>
+                    <DataGridTextColumn Binding="{Binding RechargeMoney,StringFormat={}{0:f2}}"  Width="Auto"  Header="金额（元）"/>
+                    <DataGridTextColumn Binding="{Binding CashSource}"  Width="*"  Header="摘要"/>
+                    <DataGridTextColumn Binding="{Binding RechargeStatus}" Width="*"  Header="状态"/>
+				</DataGrid.Columns>
+			</DataGrid>
+            <WPFSpark:SprocketControl Height="100" HorizontalAlignment="Center" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+            <BPiaoBao_Client_UIExt:Pagination Grid.Row="1" VerticalAlignment="Top"
+                                                 PageSize="{Binding PageSize}" 
+                          CurrentPageIndex="{Binding CurrentPageIndex,Mode=TwoWay}"
+                          TotalCount="{Binding TotalCount,Mode=TwoWay}" Margin="20,0" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </BPiaoBao_Client_UIExt:Pagination>
+        </Grid>
+		
+            
+	</Grid>
+</UserControl>

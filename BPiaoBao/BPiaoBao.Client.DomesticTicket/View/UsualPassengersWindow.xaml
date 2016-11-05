@@ -1,0 +1,127 @@
+﻿<Window x:Class="BPiaoBao.Client.DomesticTicket.View.UsualPassengersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:BPiaoBao.Client.UIExt.CommonControl;assembly=BPiaoBao.Client.UIExt"
+        xmlns:Converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"   Style="{DynamicResource CustomWindowStyle}"   xmlns:utils="clr-namespace:ProjectHelper.Utils;assembly=BPiaoBao.Client.UIExt"   xmlns:model="clr-namespace:BPiaoBao.Client.DomesticTicket.Model"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  WindowStartupLocation="CenterOwner"   xmlns:ViewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel"
+        xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        Title="选择常旅客" Height="700" Width="900" >
+    <Window.Resources>
+        <DataTemplate x:Key="OperaTemplate">
+            <Grid>
+                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Margin="0,0,0,0" Orientation="Horizontal">
+                    <CheckBox x:Name="cbxSelect"  HorizontalAlignment="Stretch" Margin="0,0,0,0" IsChecked="{Binding IsSelected}" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Checked">
+                                <i:InvokeCommandAction Command="{Binding DataContext.SelectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="Unchecked">
+                                <i:InvokeCommandAction Command="{Binding DataContext.UnSelectCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" CommandParameter="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </CheckBox>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <ObjectDataProvider x:Key="AgeTypeItems" MethodName="GetEnumKeyValues" ObjectType="{x:Type utils:EnumHelper}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:AgeType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="IDTypeItems" MethodName="GetEnumKeyValues" ObjectType="{x:Type utils:EnumHelper}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:IDType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <ei:DataTrigger Binding="{Binding IsSelected}" Value="True">
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <!--<Window.DataContext>
+        <ViewModel:UsualPassengersViewModel/>
+    </Window.DataContext>-->
+
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="360*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+
+        <Border BorderThickness="2" Background="{StaticResource BlueBorderFillBrush}" Margin="5" BorderBrush="{StaticResource BlueBorderBrush}" Grid.Row="0">
+            <Grid MinHeight="52">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition MinHeight="35"></RowDefinition>
+                </Grid.RowDefinitions>
+                <WrapPanel VerticalAlignment="Center" Orientation="Horizontal" Margin="10,10,10,10">
+                    <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                        <TextBlock Margin="5,0,0,0" Text="姓名：" VerticalAlignment="Center"/>
+                        <!--<controls:PassengerPicker Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center"  Height="25" Width="250" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0" SelectedPassenger="{Binding SelectedPassenger, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+                        <TextBox Width="170" Height="22" Margin="5,0,0,0" Text="{Binding QueryFrePasser.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                        <TextBlock Margin="5,0,0,0" Text="乘客类型：" VerticalAlignment="Center"/>
+                        <ComboBox Width="170" Height="22" ItemsSource="{Binding Source={StaticResource AgeTypeItems}}" SelectedValue="{Binding AgeType,Mode=TwoWay}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                        <TextBlock Margin="5,0,0,0" Text="证件类型：" VerticalAlignment="Center"/>
+                        <ComboBox Width="170" Height="22" ItemsSource="{Binding Source={StaticResource IDTypeItems}}" SelectedValue="{Binding IDType,Mode=TwoWay}" DisplayMemberPath="Value" SelectedValuePath="Key"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                        <TextBlock Margin="5,0,0,0" Text="证件号：" VerticalAlignment="Center"/>
+                        <TextBox Width="170" Height="22" Margin="5,0,0,0" Text="{Binding QueryFrePasser.CertificateNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                        <TextBlock Margin="0,0,0,0" Text="手机号：" VerticalAlignment="Center"/>
+                        <TextBox Width="170" Height="22" Margin="5,0,0,0" Text="{Binding QueryFrePasser.Mobile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                        <TextBlock Margin="5,0,0,0" Text="航空公司卡号：" VerticalAlignment="Center"/>
+                        <TextBox Width="170" Height="22" Margin="5,0,0,0" Text="{Binding QueryFrePasser.AirCardNo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </WrapPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5,5,25,5">
+                    <Button Content="查询" Width="68" VerticalAlignment="Center"  Margin="5,2.5" Style ="{StaticResource HeadBtn}" Height="22" Command="{Binding QueryCommand,Mode=OneWay}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <DataGrid Grid.Row="1" x:Name="dg" ItemsSource="{Binding Passengers}" AutoGenerateColumns="False" Foreground="Black" RowDetailsVisibilityMode="Visible"  BorderThickness="0" BorderBrush="{x:Null}" Background="{x:Null}" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"  GridLinesVisibility="None" HorizontalGridLinesBrush="#FFE0E0E0" IsReadOnly="True" HeadersVisibility="Column" Margin="5"  >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn  Width="Auto" ClipboardContentBinding="{x:Null}" Header="选择" CellTemplate="{StaticResource OperaTemplate}" />
+                <DataGridTextColumn Width="Auto" Header="姓名" Binding="{Binding Name}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Width="Auto" Header="乘客类型" Binding="{Binding PasserType}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Width="Auto" Header="性别" Binding="{Binding SexType}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Width="Auto" Header="证件类型" Binding="{Binding CertificateType}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Width="Auto" Header="证件号" Binding="{Binding CertificateNo}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                <DataGridTextColumn Width="Auto" Header="手机号" Binding="{Binding Mobile}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                <DataGridTextColumn Width="Auto" Header="出生日期" Binding="{Binding Birth, StringFormat=yyyy-MM-dd}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                <DataGridTextColumn Width="Auto" Header="航空公司卡号" Binding="{Binding AirCardNo}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                <DataGridTextColumn Width="Auto" Header="备注" Binding="{Binding Remark}" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="50" VerticalAlignment="Center" Width="50" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"  Grid.Row="1"/>
+        <UIExt:Pagination Grid.Row="2" CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TotalCount="{Binding TotalCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="5,0,5,0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="PageChanged">
+                    <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </UIExt:Pagination>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button   Content="保存" Width="75" VerticalAlignment="Center"  Style="{StaticResource HeadBtn}" Height="25" Command="{Binding SaveCommand,Mode=OneWay}" Margin="10,0"/>
+            <Button Content="取消" Width="75" VerticalAlignment="Center"  Margin="5,2.5" Height="25" Style="{StaticResource CancelButton}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ei:CallMethodAction MethodName="Close" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

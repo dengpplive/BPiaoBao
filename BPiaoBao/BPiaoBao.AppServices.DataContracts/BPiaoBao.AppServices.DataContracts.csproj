@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{17662823-C8CB-4B83-8786-EFF3B70007CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.AppServices.DataContracts</RootNamespace>
+    <AssemblyName>BPiaoBao.AppServices.DataContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Cashbag\AccountInfoDto.cs" />
+    <Compile Include="Cashbag\BalanceDetailDto.cs" />
+    <Compile Include="Cashbag\BankCardDto.cs" />
+    <Compile Include="Cashbag\BankCardManageDto.cs" />
+    <Compile Include="Cashbag\BankDto.cs" />
+    <Compile Include="Cashbag\BankInfoDto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Cashbag\BargainLogDto.cs" />
+    <Compile Include="Cashbag\BillDetailListDto.cs" />
+    <Compile Include="Cashbag\BillListDto.cs" />
+    <Compile Include="Cashbag\CashCompanyInfoDto.cs" />
+    <Compile Include="Cashbag\CashOutLogDto.cs" />
+    <Compile Include="Cashbag\CreditAccountDto.cs" />
+    <Compile Include="Cashbag\CurrentFinancialProductDto.cs" />
+    <Compile Include="Cashbag\ExpectProfitDto.cs" />
+    <Compile Include="Cashbag\FeeRuleInfoDto.cs" />
+    <Compile Include="Cashbag\FinancialAccountDto.cs" />
+    <Compile Include="Cashbag\FinancialLogDto.cs" />
+    <Compile Include="Cashbag\FinancialOrderDto.cs" />
+    <Compile Include="Cashbag\FinancialProductDto.cs" />
+    <Compile Include="Cashbag\GrantArrayDto.cs" />
+    <Compile Include="Cashbag\GrantInfoDto.cs" />
+    <Compile Include="Cashbag\QuickPayDto.cs" />
+    <Compile Include="Cashbag\ReadyAccountDto.cs" />
+    <Compile Include="Cashbag\RechargeLogDto.cs" />
+    <Compile Include="Cashbag\RePayDetailListDto.cs" />
+    <Compile Include="Cashbag\RepayInfoDto.cs" />
+    <Compile Include="Cashbag\RepaymentLogDto.cs" />
+    <Compile Include="Cashbag\ScoreAccountDto.cs" />
+    <Compile Include="Cashbag\ScoreConvertLogDto.cs" />
+    <Compile Include="Cashbag\TempCreditInfoDto.cs" />
+    <Compile Include="Cashbag\TransferAccountsLogDto.cs" />
+    <Compile Include="Cashbag\TransferLogDto.cs" />
+    <Compile Include="DataPack.cs" />
+    <Compile Include="DomesticTicket\ApplyBabyDataObject.cs" />
+    <Compile Include="DomesticTicket\ContactWayDto.cs" />
+    <Compile Include="DomesticTicket\PIDInfo.cs" />
+    <Compile Include="DomesticTicket\CoordinationLogDto.cs" />
+    <Compile Include="DomesticTicket\CoordinationDto.cs" />
+    <Compile Include="DomesticTicket\DataObject\AirChangeCoordionDto.cs" />
+    <Compile Include="DomesticTicket\DataObject\CabinData.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestBuyInsuranceManually.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestOfferInsuranceToBuyer.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestOfferInsuranceToCarrier.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestPurchaseFromCarrier.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestQueryInsurancePurchaseByBussinessman.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestInsurance.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestInsuranceConfig.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestInsuranceDepositLog.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestQueryInsuranceDepositLog.cs" />
+    <Compile Include="DomesticTicket\DataObject\RequestQueryInsurance.cs" />
+    <Compile Include="DomesticTicket\DataObject\ResponeAirChange.cs" />
+    <Compile Include="DomesticTicket\DataObject\ResponseCurrentCarrierInsurance.cs" />
+    <Compile Include="DomesticTicket\DataObject\ResponseInsurancePurchaseByBussinessman.cs" />
+    <Compile Include="DomesticTicket\DeductionDetailDto.cs" />
+    <Compile Include="DomesticTicket\FlightResponse.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DomesticTicket\OpenTicketResponse.cs" />
+    <Compile Include="DomesticTicket\PnrImportParam.cs" />
+    <Compile Include="DomesticTicket\DataObject\InsuranceConfigData.cs" />
+    <Compile Include="DomesticTicket\DataObject\ResponseInsuranceDepositLog.cs" />
+    <Compile Include="DomesticTicket\DataObject\ResponseInsurance.cs" />
+    <Compile Include="DomesticTicket\QTResponse.cs" />
+    <Compile Include="DomesticTicket\QueryFrePasser.cs" />
+    <Compile Include="DomesticTicket\FrePasserDto.cs" />
+    <Compile Include="DomesticTicket\NotTakeOffTicketDto.cs" />
+    <Compile Include="DomesticTicket\PayBillDetailDto.cs" />
+    <Compile Include="DomesticTicket\PidParam.cs" />
+    <Compile Include="DomesticTicket\PlatformCfgDto.cs" />
+    <Compile Include="DomesticTicket\RareResponse.cs" />
+    <Compile Include="DomesticTicket\ReponseTicketSum.cs" />
+    <Compile Include="DomesticTicket\RequestAfterSaleOrder.cs" />
+    <Compile Include="DomesticTicket\CreateOrderParam.cs" />
+    <Compile Include="DomesticTicket\RequestSplitPnrInfo.cs" />
+    <Compile Include="DomesticTicket\ResponseAfterSaleOrder.cs" />
+    <Compile Include="DomesticTicket\Current15DayDataDto.cs" />
+    <Compile Include="DomesticTicket\DataStatisticsDto.cs" />
+    <Compile Include="DomesticTicket\OrderDetailDto.cs" />
+    <Compile Include="DomesticTicket\OrderDto.cs" />
+    <Compile Include="DomesticTicket\OrderLogDto.cs" />
+    <Compile Include="DomesticTicket\OrderPayDto.cs" />
+    <Compile Include="DomesticTicket\PassengerDto.cs" />
+    <Compile Include="DomesticTicket\PassengerTicketDto.cs" />
+    <Compile Include="DomesticTicket\PolicyDto.cs" />
+    <Compile Include="SystemSetting\StationBuyerGroupDto.cs" />
+    <Compile Include="TPos\ResponseBusinessMan.cs" />
+    <Compile Include="DomesticTicket\ResponseInsuranceSaleSum.cs" />
+    <Compile Include="DomesticTicket\ResponseInsuranceUse.cs" />
+    <Compile Include="DomesticTicket\ResponseOrder.cs" />
+    <Compile Include="DomesticTicket\ResponseOrderDetail.cs" />
+    <Compile Include="DomesticTicket\ResponsePlatformRefundOrder.cs" />
+    <Compile Include="DomesticTicket\SkyWayDto.cs" />
+    <Compile Include="DomesticTicket\SsrUpdateRequest.cs" />
+    <Compile Include="DomesticTicket\TicketBusniessStaticsDto.cs" />
+    <Compile Include="DomesticTicket\TicketDataInfoDto.cs" />
+    <Compile Include="DomesticTicket\TicketInformationDetailDto.cs" />
+    <Compile Include="DomesticTicket\TicketInformationSummaryDto.cs" />
+    <Compile Include="DomesticTicket\TicketInfoSummaryEntity.cs" />
+    <Compile Include="DomesticTicket\TicketQueryEntity.cs" />
+    <Compile Include="DomesticTicket\TicketSalesStatisticsDto.cs" />
+    <Compile Include="DomesticTicket\TicketSalesStatisticsEntity.cs" />
+    <Compile Include="DomesticTicket\TicketSumDetailDto.cs" />
+    <Compile Include="DomesticTicket\TicketSuppendRequest.cs" />
+    <Compile Include="DomesticTicket\TravelAppRequrst.cs" />
+    <Compile Include="DomesticTicket\TravelGrantRecordDto.cs" />
+    <Compile Include="DomesticTicket\TravelPaperDto.cs" />
+    <Compile Include="DomesticTicket\TravelPaperLogDto.cs" />
+    <Compile Include="DomesticTicket\TravelPaperStaticsDto.cs" />
+    <Compile Include="DomesticTicket\UserFlow.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemSetting\AttachmentDto.cs" />
+    <Compile Include="SystemSetting\BusinessmanDataObject.cs" />
+    <Compile Include="SystemSetting\BusinessmanDto.cs" />
+    <Compile Include="SystemSetting\BuyDetailDto.cs" />
+    <Compile Include="SystemSetting\CurrentUserInfoDto.cs" />
+    <Compile Include="SystemSetting\CustomerDto.cs" />
+    <Compile Include="SystemSetting\GiveDetailDto.cs" />
+    <Compile Include="SystemSetting\LevelDto.cs" />
+    <Compile Include="SystemSetting\MyMessageDto.cs" />
+    <Compile Include="SystemSetting\NoticeAttachmentDto.cs" />
+    <Compile Include="SystemSetting\NoticeDto.cs" />
+    <Compile Include="SystemSetting\OperatorDto.cs" />
+    <Compile Include="SystemSetting\SendDetailDto.cs" />
+    <Compile Include="SystemSetting\SMSChargeSetDto.cs" />
+    <Compile Include="SystemSetting\SMSTemplateDto.cs" />
+    <Compile Include="TPos\AccountStatDataObject.cs" />
+    <Compile Include="TPos\BusinessmanReportDataObject.cs" />
+    <Compile Include="TPos\BusinessmanTradeDataObject.cs" />
+    <Compile Include="TPos\PosAssignLogDataObject.cs" />
+    <Compile Include="TPos\PosInfoDataObject.cs" />
+    <Compile Include="TPos\RequestBusinessmanInfo.cs" />
+    <Compile Include="TPos\ResponseBusinessmanInfo.cs" />
+    <Compile Include="TPos\TradeDetailDataObject.cs" />
+    <Compile Include="TPos\TradeStatDataObject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JoveZhao.Framework\JoveZhao.Framework.csproj">
+      <Project>{f01ea778-d03f-44b3-ba3c-998af3758dc7}</Project>
+      <Name>JoveZhao.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PnrAnalysis\PnrAnalysis.csproj">
+      <Project>{8b4c3980-a7b8-4a81-8df2-cffa576fe414}</Project>
+      <Name>PnrAnalysis</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

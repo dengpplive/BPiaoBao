@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D8721BE3-0B6C-4128-956A-28D817EF9286}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BPiaoBao.AppServices.StationContracts</RootNamespace>
+    <AssemblyName>BPiaoBao.AppServices.StationContracts</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DomesticTicket\DomesticMap\ResponseBus.cs" />
+    <Compile Include="DomesticTicket\DomesticMap\ResponseTicketSaleSum.cs" />
+    <Compile Include="DomesticTicket\IMemoryService.cs" />
+    <Compile Include="DomesticTicket\IStationPlatformCfgService.cs" />
+    <Compile Include="DomesticTicket\IStationPlatformPointGroupService.cs" />
+    <Compile Include="DomesticTicket\IStationPlatformRefundOrderService.cs" />
+    <Compile Include="DomesticTicket\IStationOrderService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StationMap\AirLine.cs" />
+    <Compile Include="StationMap\DataPack.cs" />
+    <Compile Include="StationMap\OrderDataObject.cs" />
+    <Compile Include="StationMap\PlatformPointGroupDataObject.cs" />
+    <Compile Include="StationMap\ResponseBounLine.cs" />
+    <Compile Include="SystemSetting\IStationBehaviorStatService.cs" />
+    <Compile Include="SystemSetting\IStationBusinessmanService.cs" />
+    <Compile Include="SystemSetting\IStationNoticeService.cs" />
+    <Compile Include="SystemSetting\SystemMap\AddStationBuyerGroupRequest.cs" />
+    <Compile Include="SystemSetting\SystemMap\QueryBehaviorStatQuery.cs" />
+    <Compile Include="SystemSetting\SystemMap\RequestCarrier.cs" />
+    <Compile Include="SystemSetting\SystemMap\RequestNotice.cs" />
+    <Compile Include="SystemSetting\SystemMap\RequestOPENScan.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseRefundInfo.cs" />
+    <Compile Include="SystemSetting\SystemMap\SetBuyerToStationBuyerGroupRequest.cs" />
+    <Compile Include="SystemSetting\SystemMap\SetStationBuyerGroupInfoRequest.cs" />
+    <Compile Include="SystemSetting\SystemMap\STRequestSupplier.cs" />
+    <Compile Include="SystemSetting\SystemMap\SupplierDataObj.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseBehaviorStat.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseBusinessman.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseDetailCarrier.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseListBuyer.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseListCarrier.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseOPENScan.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseSMSSaleSum.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseSMSSendSum.cs" />
+    <Compile Include="SystemSetting\SystemMap\ResponseSMSSum.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BPiaoBao.AppServices.DataContracts\BPiaoBao.AppServices.DataContracts.csproj">
+      <Project>{17662823-c8cb-4b83-8786-eff3b70007cc}</Project>
+      <Name>BPiaoBao.AppServices.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.Common\BPiaoBao.Common.csproj">
+      <Project>{eb7161f7-2bb5-4ed3-bf0a-268a1182e01c}</Project>
+      <Name>BPiaoBao.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BPiaoBao.DomesticTicket.Platform.Plugin\BPiaoBao.DomesticTicket.Platform.Plugin.csproj">
+      <Project>{f1c58e54-417f-4a65-a13e-e872841c544e}</Project>
+      <Name>BPiaoBao.DomesticTicket.Platform.Plugin</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,21 @@
+﻿<ViewModel:OperatorViewModel xmlns:ViewModel="clr-namespace:BPiaoBao.Client.SystemSetting.ViewModel" xmlns:SystemSetting="clr-namespace:BPiaoBao.AppServices.DataContracts.SystemSetting;assembly=BPiaoBao.AppServices.DataContracts" xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.WPF4" IsInDesignMode="True" IsInDesignModeStatic="False" IsBusy="False" SearchRealName="Vestibulum cras class adipiscing curabitur" ShowHidden="True" SearchAccount="Parturient curae">
+	<ViewModel:OperatorViewModel.CurrentOperator>
+		<SystemSetting:OperatorDto Account="Porttitor metus tincidunt" CreateDate="03/07/2014 17:42:48" Id="84" OperatorState="Normal" Password="Ultrices laoreet vestibulum dis morbi" Phone="Neque netus posuere" Realname="Odio vehicula orci natoque"/>
+	</ViewModel:OperatorViewModel.CurrentOperator>
+	<ViewModel:OperatorViewModel.InitializeCommand>
+		<Command:RelayCommand/>
+	</ViewModel:OperatorViewModel.InitializeCommand>
+	<ViewModel:OperatorViewModel.OpList>
+		<SystemSetting:OperatorDto Account="Aliquam aenean donec" CreateDate="03/07/2014 17:42:48" Id="95" OperatorState="Frozen" Password="Phasellus maecenas integer praesent mauris" Phone="Eleifend consequat etiam duis fusce" Realname="Accumsan bibendum nullam dictumst aptent"/>
+		<SystemSetting:OperatorDto Account="Auctor nunc convallis" CreateDate="03/07/2014 17:42:48" Id="53" OperatorState="Frozen" Password="Nam sed facilisi dis" Phone="Dignissim morbi elementum" Realname="Lorem amet faucibus"/>
+		<SystemSetting:OperatorDto Account="Facilisis ante quisque habitant nulla" CreateDate="03/07/2014 17:42:48" Id="32" OperatorState="Normal" Password="Vestibulum vivamus congue est" Phone="Aliquet fermentum parturient dictum" Realname="Vestibulum aliquam cursus adipiscing"/>
+		<SystemSetting:OperatorDto Account="Arcu vestibulum diam" CreateDate="03/07/2014 17:42:48" Id="17" OperatorState="Frozen" Password="Inceptos proin interdum blandit" Phone="Augue dolor hac" Realname="Lectus libero lobortis nascetur"/>
+		<SystemSetting:OperatorDto Account="Commodo ligula vestibulum pharetra" CreateDate="03/07/2014 17:42:48" Id="50" OperatorState="Frozen" Password="Conubia fringilla leo" Phone="Luctus felis ipsum dapibus eget" Realname="Litora fames cubilia adipiscing"/>
+		<SystemSetting:OperatorDto Account="Mus elit justo" CreateDate="03/07/2014 17:42:48" Id="83" OperatorState="Frozen" Password="Habitasse magnis" Phone="Mattis mauris non" Realname="Parturient nec enim"/>
+		<SystemSetting:OperatorDto Account="Erat vestibulum" CreateDate="03/07/2014 17:42:48" Id="14" OperatorState="Frozen" Password="Lacus vestibulum per placerat adipiscing" Phone="Vestibulum hendrerit" Realname="Parturient sed"/>
+		<SystemSetting:OperatorDto Account="Lorem sem mollis himenaeos" CreateDate="03/07/2014 17:42:48" Id="96" OperatorState="Normal" Password="Egestas euismod" Phone="Eros adipiscing" Realname="Pulvinar vestibulum montes"/>
+		<SystemSetting:OperatorDto Account="Nibh sagittis nostra sit" CreateDate="03/07/2014 17:42:48" Id="61" OperatorState="Frozen" Password="Feugiat gravida senectus magna imperdiet" Phone="Penatibus ornare nam sociosqu parturient" Realname="Massa vel malesuada"/>
+		<SystemSetting:OperatorDto Account="Suscipit platea primis iaculis nisi" CreateDate="03/07/2014 17:42:48" Id="89" OperatorState="Frozen" Password="Nisl vestibulum" Phone="Lacinia semper sociis sed" Realname="Nunc rutrum torquent sapien"/>
+	</ViewModel:OperatorViewModel.OpList>
+	
+</ViewModel:OperatorViewModel>

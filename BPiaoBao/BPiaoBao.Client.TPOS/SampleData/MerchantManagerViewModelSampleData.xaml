@@ -1,0 +1,66 @@
+﻿<ViewModel:MerchantManagerViewModel xmlns:ViewModel="clr-namespace:BPiaoBao.Client.TPOS.ViewModel" xmlns:Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.WPF4" xmlns:TPos="clr-namespace:BPiaoBao.AppServices.DataContracts.TPos;assembly=BPiaoBao.AppServices.DataContracts" xmlns:System="clr-namespace:System;assembly=mscorlib" CurrentPageIndex="24" InputName="Cras maecenas" IsInDesignMode="False" IsInDesignModeStatic="True" InputPosNo="Aliquam class" IsBusy="True" PageSize="88" TotalCount="74">
+	<ViewModel:MerchantManagerViewModel.AddCommand>
+		<Command:RelayCommand/>
+	</ViewModel:MerchantManagerViewModel.AddCommand>
+	<ViewModel:MerchantManagerViewModel.InitializeCommand>
+		<Command:RelayCommand/>
+	</ViewModel:MerchantManagerViewModel.InitializeCommand>
+	<ViewModel:MerchantManagerViewModel.Merchants>
+		<TPos:ResponseBusinessmanInfo Address="Curabitur phasellus curae sed" BankName="Ante convallis vestibulum" BankId="Auctor consequat est" BusinessmanName="Duis aenean praesent accumsan vestibulum" CreateTime="02/28/2014 15:13:39" City="Faucibus arcu habitant" CardNo="Donec etiam eleifend" Cardholder="Aliquam hac amet dictumst parturient" Id="Integer nam" LinkMan="Quisque mauris dis" LinkPhone="Bibendum adipiscing aptent" LinkTel="Nunc vivamus nullam" Province="Vestibulum facilisi dignissim" Subbranch="Adipiscing congue elementum fusce" TotalPosCount="11">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Blandit habitasse diam parturient interdum" BankName="Placerat pulvinar lectus elit" BankId="Morbi nascetur" BusinessmanName="Fermentum leo lorem fringilla" CreateTime="02/28/2014 15:13:39" City="Litora vestibulum hendrerit" CardNo="Libero parturient" Cardholder="Eget pharetra nec dictum" Id="Inceptos aliquet facilisis" LinkMan="Mus commodo" LinkPhone="Lobortis adipiscing" LinkTel="Cursus conubia vestibulum vestibulum" Province="Non sagittis vestibulum ligula" Subbranch="Adipiscing parturient nulla" TotalPosCount="15">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Suscipit torquent" BankName="Volutpat dolor feugiat sem" BankId="Nibh euismod" BusinessmanName="Proin sociosqu augue erat" CreateTime="02/28/2014 15:13:39" City="Sed dis penatibus porttitor" CardNo="Nisi sit nisl" Cardholder="Vehicula sed" Id="Cubilia enim senectus" LinkMan="Vestibulum himenaeos imperdiet" LinkPhone="Per ultrices dapibus egestas eros" LinkTel="Vestibulum adipiscing luctus" Province="Malesuada vel nam nunc" Subbranch="Magnis gravida tincidunt" TotalPosCount="75">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Maecenas parturient est" BankName="Vestibulum vulputate lacus" BankId="Accumsan quis laoreet" BusinessmanName="Odio orci" CreateTime="02/28/2014 15:13:39" City="Posuere dictumst eleifend nec" CardNo="Adipiscing curabitur phasellus leo" Cardholder="Bibendum ultricies hac venenatis" Id="Mattis iaculis" LinkMan="Fames felis pede ipsum tristique" LinkPhone="Lacinia justo" LinkTel="Quam vestibulum mauris praesent" Province="Natoque mollis mus urna consequat" Subbranch="Convallis facilisi non montes cras" TotalPosCount="93">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Potenti dignissim lorem magna" BankName="Pretium vestibulum" BankId="Morbi arcu" BusinessmanName="Nostra nunc" CreateTime="02/28/2014 15:13:39" City="Aliquam eget" CardNo="Sed lobortis sem fringilla rhoncus" Cardholder="Facilisis vestibulum diam fermentum per" Id="Parturient duis faucibus" LinkMan="Habitant inceptos amet" LinkPhone="Ornare platea" LinkTel="Massa elementum ante interdum metus" Province="Nascetur sit sodales pharetra viverra" Subbranch="Neque elit vel primis rutrum" TotalPosCount="78">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Nulla quisque nam" BankName="Dis hendrerit" BankId="Aliquam pulvinar vestibulum aliquet" BusinessmanName="Netus sapien" CreateTime="02/28/2014 15:13:39" City="Senectus sociis sociosqu est vestibulum" CardNo="Himenaeos eros" Cardholder="Blandit sagittis commodo" Id="Placerat enim adipiscing integer" LinkMan="Parturient sed porta semper" LinkPhone="Habitasse purus" LinkTel="Vivamus erat vestibulum" Province="Adipiscing parturient" Subbranch="Suscipit risus imperdiet velit" TotalPosCount="81">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Tellus nisl tempor parturient conubia" BankName="Penatibus dapibus pede" BankId="Class volutpat tortor turpis" BusinessmanName="Ultrices vestibulum vitae nisi adipiscing" CreateTime="02/28/2014 15:13:39" City="Leo tincidunt" CardNo="Curae aenean" Cardholder="Orci vestibulum varius malesuada" Id="Torquent nibh taciti" LinkMan="Vehicula tempus" LinkPhone="Odio hac" LinkTel="Nunc cubilia" Province="Mauris donec vestibulum porttitor" Subbranch="Tristique quam adipiscing ultricies" TotalPosCount="68">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Etiam aptent fusce" BankName="Bibendum dictum curabitur lectus" BankId="Nulla cursus urna adipiscing parturient" BusinessmanName="Mus venenatis quis vestibulum" CreateTime="02/28/2014 15:13:39" City="Proin per lacinia laoreet" CardNo="Phasellus non libero" Cardholder="Gravida cras praesent accumsan nec" Id="Nullam parturient egestas vestibulum" LinkMan="Euismod feugiat" LinkPhone="Morbi vulputate auctor congue" LinkTel="Lorem maecenas" Province="Iaculis vestibulum" Subbranch="Vestibulum adipiscing duis" TotalPosCount="85">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Augue consequat natoque" BankName="Arcu luctus facilisis fermentum" BankId="Rhoncus amet dignissim ante" BusinessmanName="Facilisi sem" CreateTime="02/28/2014 15:13:39" City="Viverra sed aliquam felis integer" CardNo="Fames nam" Cardholder="Dolor faucibus elementum" Id="Parturient dictumst eleifend sed" LinkMan="Ligula nunc sit" LinkPhone="Convallis pretium vestibulum" LinkTel="Posuere litora vestibulum vel potenti" Province="Fringilla sodales" Subbranch="Diam dis habitasse magnis adipiscing" TotalPosCount="25">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+		<TPos:ResponseBusinessmanInfo Address="Vestibulum habitant himenaeos" BankName="Primis lacus lorem magna" BankId="Vestibulum ornare mus" BusinessmanName="Hac hendrerit ipsum" CreateTime="02/28/2014 15:13:39" City="Rutrum tincidunt non parturient per" CardNo="Adipiscing inceptos" Cardholder="Nec platea vestibulum porttitor" Id="Mattis est mauris mollis parturient" LinkMan="Vestibulum montes imperdiet" LinkPhone="Quisque parturient leo penatibus" LinkTel="Adipiscing justo eget nostra malesuada" Province="Massa interdum" Subbranch="Elit lobortis vivamus aliquam nascetur" TotalPosCount="36">
+			<TPos:ResponseBusinessmanInfo.PosRate>
+				<System:Decimal/>
+			</TPos:ResponseBusinessmanInfo.PosRate>
+		</TPos:ResponseBusinessmanInfo>
+	</ViewModel:MerchantManagerViewModel.Merchants>
+	<ViewModel:MerchantManagerViewModel.PageLoadCommand>
+		<Command:RelayCommand/>
+	</ViewModel:MerchantManagerViewModel.PageLoadCommand>
+	<ViewModel:MerchantManagerViewModel.QueryCommand>
+		<Command:RelayCommand/>
+	</ViewModel:MerchantManagerViewModel.QueryCommand>
+</ViewModel:MerchantManagerViewModel>

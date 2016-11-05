@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "行程单分配";
+}
+<div id="AddTravelPaperDialog" class="easyui-dialog" title="行程单分配" data-options="closed:true" style="height: auto; padding: 15px 20px; overflow:hidden; width:560px;">
+    <form id="TravelPaperDialogForm" method="post">
+        <div>
+            <table width="100%" style="background: #f7fbff;">
+                <tr>
+                    <td width="100" height="30">商户号或商户名：</td>
+                    <td colspan="3"><input type="text" id="Code" name="Code" data-bind="value: $root.editForm.BuyBusinessman" class="inputStyle" style="width:196px;" /></td>                   
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3" style="color:#999999;">（注：输入行程单的发放号段必须为整数，编号结束号码大于起始号码）</td>
+                </tr>
+                <tr>
+                    <td height ="30">输入发放号段：</td>
+                    <td width="210"><input type="text" style="width: 90px; height: 20px; line-height: 20px;" id="startTripNumber" maxlength="10" name="startTripNumber" data-bind="value: $root.editForm.startTripNumber" /> - <input type="text" name="endTripNumber" id="endTripNumber" style="width: 90px; height: 20px; line-height: 20px;" maxlength="10" data-bind="value: $root.editForm.endTripNumber" /></td>
+                    <td width="20">共</td>
+                    <td><input type="text" name="tripCount" id="tripCount" style="width: 50px;" data-bind="value: $root.editForm.tripCount" /> 张</td>
+                </tr>
+            </table>
+
+            <table width="100%" > 
+                <tr>
+                    <td height="30"><span style="width:100px; display:block;">Office号：</span></td>
+                    <td height="30">
+                        <input type="text" id="ffoffice" name="ffoffice" maxlength="6" data-bind="value: $root.editForm.useOffice" class="inputStyle" style="width:196px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height ="30">行程单航协号：</td>
+                    <td height="30">
+                        <input type="text" name="iataCode" id="iataCode" maxlength="8" data-bind="value: $root.editForm.iataCode" class="inputStyle" style="width:196px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="30">行程单填开单位：</td>
+                    <td height="30">
+                        <input type="text" id="ticketCompanyName" name="ticketCompanyName" data-bind="value: $root.editForm.ticketCompanyName" class="inputStyle" style="width:196px;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top" height="30">备注：</td>
+                    <td height="30"><textarea id="TripRemark" rows="5" style=" width:390px;" data-bind="value: $root.editForm.TripRemark"></textarea></td>
+                </tr>
+                <tr>
+                    <td height="60"></td>
+                    <td height="60">
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-ok" data-bind="click: Validate">确认发放</a>
+                        <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-sys-cancel" onclick="javascript:$('#AddTravelPaperDialog').dialog('close')">返回</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</form>
+</div>

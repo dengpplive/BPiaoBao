@@ -1,0 +1,233 @@
+﻿<UserControl x:Class="BPiaoBao.Client.DomesticTicket.View.AfterSaleOrderControl"
+             xmlns:Converters="clr-namespace:BPiaoBao.Client.DomesticTicket.View.Converters" 
+             xmlns:Converter="clr-namespace:BPiaoBao.Client.UIExt.Converter;assembly=BPiaoBao.Client.UIExt" 
+             xmlns:ViewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel" 
+             xmlns:WPFSpark="clr-namespace:WPFSpark;assembly=WPFSpark" 
+             xmlns:UIExt="clr-namespace:BPiaoBao.Client.UIExt;assembly=BPiaoBao.Client.UIExt" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" 
+             mc:Ignorable="d" 
+             d:DesignHeight="1147" d:DesignWidth="1249" Width="Auto" Height="Auto" d:DataContext="{d:DesignData /SampleData/OrderManagerViewModelSampleData.xaml}" >
+    <UserControl.Resources>
+        <Converter:PassengersConverter x:Key="PassengersConverter"/>
+        <Converters:SkywaysConverter x:Key="SkywaysConverter"/>
+        <Converters:ShowSendSmSbtnConverter x:Key="ShowSendSMSbtnConverter"/>
+        <Style x:Key="OrangeTextBoxStyle" TargetType="{x:Type TextBox}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="AllowDrop" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Themes:ListBoxChrome x:Name="Bd" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" RenderMouseOver="{TemplateBinding IsMouseOver}" RenderFocused="{TemplateBinding IsKeyboardFocusWithin}" SnapsToDevicePixels="true" BorderBrush="{DynamicResource OrangeBorder}">
+                            <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                        </Themes:ListBoxChrome>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="SkyWayTemplate">
+            <Grid>
+                <ItemsControl Height="Auto" VerticalAlignment="Stretch" Width="Auto" ItemsSource="{Binding SkyWays, Mode=OneWay}" ItemTemplate="{StaticResource SkywayItemTemplate}"/>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="OperaTemplate">
+            <Grid>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="LayoutUpdated">
+                        <i:Interaction.Behaviors>
+                            <ei:ConditionBehavior>
+                                <ei:ConditionalExpression>
+                                    <!--<ei:ComparisonCondition LeftOperand="{Binding CanSendSMS}" RightOperand="true"/>-->
+                                    <ei:ComparisonCondition LeftOperand="{Binding Path=.,Converter={StaticResource ShowSendSMSbtnConverter}}" RightOperand="true"></ei:ComparisonCondition>
+                                </ei:ConditionalExpression>
+                            </ei:ConditionBehavior>
+                        </i:Interaction.Behaviors>
+                        <ei:GoToStateAction StateName="SendSMSState"/>
+                    </i:EventTrigger>
+                    <i:EventTrigger EventName="LayoutUpdated">
+                        <i:Interaction.Behaviors>
+                            <ei:ConditionBehavior>
+                                <ei:ConditionalExpression>
+                                    <!--<ei:ComparisonCondition LeftOperand="{Binding CanSendSMS}" RightOperand="false"/>-->
+                                    <ei:ComparisonCondition LeftOperand="{Binding Path=.,Converter={StaticResource ShowSendSMSbtnConverter}}" RightOperand="false"></ei:ComparisonCondition>
+                                </ei:ConditionalExpression>
+                            </ei:ConditionBehavior>
+                        </i:Interaction.Behaviors>
+                        <ei:GoToStateAction StateName="NotSendSMSState"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="VisualStateGroup">
+                        <VisualState x:Name="SendSMSState">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="btnSendMsg">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="NotSendSMSState">
+                            <Storyboard>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="btnSendMsg">
+                                    <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <StackPanel HorizontalAlignment="Stretch" Height="Auto" VerticalAlignment="Stretch" Width="Auto" Margin="0,5,0,2">
+                    <Button x:Name="btnPay" Content="立即支付" HorizontalAlignment="Stretch" Style="{StaticResource PayBtn}" Width="57" Height="21" Margin="0,0,0,3" Command="{Binding DataContext.PayCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" Visibility="Visible" >
+                        <i:Interaction.Triggers>
+                            <ei:DataTrigger Binding="{Binding ProcessStatus}" Comparison="NotEqual" Value="ProcessingWaitPay ">
+                                <ei:ChangePropertyAction PropertyName="Visibility">
+                                    <ei:ChangePropertyAction.Value>
+                                        <Visibility>Collapsed</Visibility>
+                                    </ei:ChangePropertyAction.Value>
+                                </ei:ChangePropertyAction>
+                            </ei:DataTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button x:Name="btnSendMsg" Content="发送短信" HorizontalAlignment="Stretch" Width="57" Height="21" Margin="0,0,0,3" Command="{Binding DataContext.OpenSendMsgCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" Visibility="Collapsed" />
+                    <Button x:Name="btnOrderInfo" Content="订单详情" Margin="0,0,0,3" Style="{StaticResource LinkBtn}" Command="{Binding DataContext.OpenOrderInfoCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}}" CommandParameter="{Binding Mode=OneWay}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="TypeColumnDataTemplate">
+            <Grid>
+                <StackPanel Height="Auto" VerticalAlignment="Stretch" Width="Auto">
+                    <TextBlock Text="{Binding AfterSaleType}" VerticalAlignment="Center" Style="{StaticResource WrappedCenteredTextBlock}" />
+                    <TextBlock Text="{Binding Voluntary}" VerticalAlignment="Center" Style="{StaticResource WrappedCenteredTextBlock}"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModel:AfterSaleOrderViewModel/>
+    </UserControl.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="Auto" MaxHeight="180"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Background="{DynamicResource HeadBg2}">
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="条件查找" VerticalAlignment="Center" Margin="15,0,0,0" Style="{DynamicResource Head2TextBlock}"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="541*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.ColumnSpan="2" BorderThickness="2" BorderBrush="{StaticResource OrangeBorder}" Background="#FFFFF9F1" Margin="15,13">
+                <Grid MinHeight="52">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <WrapPanel VerticalAlignment="Center" Margin="0">
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="原订单号：" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource OrangeTextBoxStyle}" Text="{Binding OrderId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="PNR编号：" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource OrangeTextBoxStyle}" Text="{Binding PnrCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="订单状态：" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <ComboBox Width="170" BorderBrush="{StaticResource OrangeBorder}" Height="22" Background="White" ItemsSource="{Binding AllOrderStatus}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedOrderStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="订单类型：" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <ComboBox Width="170" BorderBrush="{StaticResource OrangeBorder}" Height="22" Background="White" ItemsSource="{Binding AllOrderType}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedOrderType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="申请日期：" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="0,0,5,0"  SelectedDate="{Binding StartCreateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22" />
+                            <TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="5,0,0,0"  SelectedDate="{Binding EndCreateTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" Width="110" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="航班日期：" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="0,0,5,0"  SelectedDate="{Binding StartFlightTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="110" Height="22" />
+                            <TextBlock TextWrapping="Wrap" Text="一" VerticalAlignment="Center" Style="{DynamicResource HorizontalLineTextBlock}"/>
+                            <DatePicker VerticalAlignment="Center" Margin="5,0,0,0"  SelectedDate="{Binding EndFlightTime, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" Width="110" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5,5,25,5" VerticalAlignment="Center">
+                            <TextBlock TextWrapping="Wrap" Text="交易号：" VerticalAlignment="Center" Foreground="{StaticResource OrangeForeground}"/>
+                            <TextBox Height="22" TextWrapping="Wrap" Width="170" Style="{StaticResource OrangeTextBoxStyle}" Text="{Binding PayNum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </WrapPanel>
+                    <Button Content="查询" HorizontalAlignment="Center" VerticalAlignment="Center" Width="57" Style="{DynamicResource OrangeBtn}" Foreground="Black" Height="22" Grid.Column="1" Margin="0,0,48,0" Command="{Binding QueryCommand}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <ei:ChangePropertyAction PropertyName="CurrentPageIndex" Value="1" TargetObject="{Binding Mode=OneWay}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </Grid>
+            </Border>
+        </Grid>
+        <Grid Margin="15,0,15,15" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="390*"/>
+                <RowDefinition Height="31*"/>
+            </Grid.RowDefinitions>
+            <DataGrid ScrollViewer.CanContentScroll="True" BorderThickness="0" ItemsSource="{Binding Orders}" AutoGenerateColumns="False" GridLinesVisibility="Horizontal" Background="{x:Null}" MinRowHeight="65" HorizontalGridLinesBrush="#7FA6C3E3" HeadersVisibility="Column" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" CanUserAddRows="False" CanUserDeleteRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="交易号" Binding="{Binding PayNum}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTextColumn Width="*" Header="原订单号" Binding="{Binding OrderID}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <!--<DataGridTemplateColumn Width="*" Header="订单号"  CellTemplate="{StaticResource OrderIDColumnDataTemplate}"/>-->
+                    <DataGridTextColumn Binding="{Binding AfterSaleType}" Width="*" Header="申请类型" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTemplateColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="申请类型" CellTemplate="{StaticResource TypeColumnDataTemplate}"/>
+                    <DataGridTextColumn Binding="{Binding Reason}" Width="*" Header="申请理由" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <DataGridTextColumn Binding="{Binding CreateTime, StringFormat=yyyy-MM-dd HH:mm}" Width="*" Header="申请时间" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <DataGridTextColumn Binding="{Binding CreateMan}" Width="*" Header="申请人" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <DataGridTextColumn Width="*" Header="乘机人" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding Passenger, Converter={StaticResource PassengersConverter}}" />
+                    <DataGridTemplateColumn ClipboardContentBinding="{Binding SkyWays, Converter={StaticResource SkywaysConverter}}"  Width="*" Header="行程" CellTemplate="{StaticResource SkyWayTemplate}"/>
+                    <DataGridTextColumn Binding="{Binding PayMethod}" Width="*" Header="支付方式" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTextColumn Binding="{Binding Money, StringFormat=￥\{0:f2\}}" Width="*" Header="产生金额" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <DataGridTextColumn Width="*" Header="申请状态" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding ProcessStatus, Converter={StaticResource DescriptionConverter}}" />
+                    <DataGridTemplateColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="操作" CellTemplate="{StaticResource OperaTemplate}"/>
+                    <!--<DataGridTextColumn Width="auto" Header="交易号" Binding="{Binding PayNum}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTextColumn Width="auto" Header="原订单号" Binding="{Binding OrderID}" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTemplateColumn  Width="auto" ClipboardContentBinding="{x:Null}" Header="申请类型" CellTemplate="{StaticResource TypeColumnDataTemplate}"/>
+                    <DataGridTextColumn Binding="{Binding CreateTime, StringFormat=yyyy-MM-dd HH:mm}" Width="auto" Header="申请时间" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <DataGridTextColumn Width="auto" Header="乘机人" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding Passenger, Converter={StaticResource PassengersConverter}}" />
+                    <DataGridTemplateColumn ClipboardContentBinding="{Binding SkyWays, Converter={StaticResource SkywaysConverter}}"  Width="auto" Header="行程" CellTemplate="{StaticResource SkyWayTemplate}"/>
+                    <DataGridTextColumn Binding="{Binding PayMethod}" Width="auto" Header="支付方式" ElementStyle="{StaticResource WrappedCenteredTextBlock}"/>
+                    <DataGridTextColumn Binding="{Binding Money, StringFormat=￥\{0:f2\}}" Width="auto" Header="产生金额" ElementStyle="{StaticResource WrappedCenteredTextBlock}" />
+                    <DataGridTextColumn Width="auto" Header="申请状态" ElementStyle="{StaticResource WrappedCenteredTextBlock}" Binding="{Binding ProcessStatus, Converter={StaticResource DescriptionConverter}}" />
+                    <DataGridTemplateColumn  Width="auto" ClipboardContentBinding="{x:Null}" Header="操作" CellTemplate="{StaticResource OperaTemplate}"/>-->
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <WPFSpark:SprocketControl HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="100" Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+            <UIExt:Pagination Grid.Row="1" CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PageSize="{Binding PageSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TotalCount="{Binding TotalCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="PageChanged">
+                        <i:InvokeCommandAction Command="{Binding QueryCommand}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </UIExt:Pagination>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

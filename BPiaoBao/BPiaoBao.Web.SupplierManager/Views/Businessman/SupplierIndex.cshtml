@@ -1,0 +1,166 @@
+﻿@{
+    ViewBag.Title = "供应商管理";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 0;">
+            <div>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-sys-add" plain="true" data-bind="click: $root.AddClick">新增商户</a>
+            </div>
+            <div style="margin: 10px;">
+                <div class="m_search">商户号：<input type="text" class="input" data-bind="value: $root.searchForm.code" /></div>
+                <div class="m_search">商户名称：<input type="text" class="input" data-bind="value: $root.searchForm.businessmanName" /></div>
+               <div class="m_search">创建时间：<input type="text" class="easyui-my97" data-bind="my97value: $root.searchForm.startTime" />-<input type="text" class="easyui-my97" data-bind="    my97value: $root.searchForm.endTime" /></div>
+               <div class="m_search"> <a href="#" class="easyui-linkbutton" code="15" iconcls="icon-search" data-bind="click: $root.searchClick">查询</a></div>
+            </div>
+            <div class="both"></div>
+        </div>
+        <table id="MainTable" data-bind="datagrid: grid">
+            <thead>
+                <tr>
+                    <th data-options="field:'Action',formatter:actionFormatter">操作</th>
+                    <th data-options="field:'Code',width:100">商户号</th>
+                    <th data-options="field:'Name',width:150">商户名称</th>
+                    <th data-options="field:'Contact',width:100,formatter:function(val,row){return row.ContactWay.Contact;}">联系人</th>
+                    <th data-options="field:'Tel',width:120,formatter:function(val,row){return row.ContactWay.Tel}">手机号码</th>
+                    <th data-options="field:'Address',width:200,formatter:function(val,row){return row.ContactWay.Province+row.ContactWay.City+row.ContactWay.Address}">联系地址</th>
+                    <th data-options="field:'ContactName',width:80">客户经理</th>
+                    <th data-options="field:'Phone',width:80">客户经理手机</th>
+                    <th data-options="field:'IsEnable',width:60,formatter:function(val){ if(val==true){return '正常'}else{ return '禁用'}}">状态</th>
+                    <th data-options="field:'CreateTime',width:120">创建时间</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@Html.Partial("AddPartSupplier")
+<div class="easyui-dialog" id="showdetail_dialog" title="供应商详情" data-options="modal:true,closed:true,draggable:false,maximized:true">
+    <div id="Content"></div>
+</div>
+@section scripts{
+    <script type="text/javascript" src="~/my97/WdatePicker.js"></script>
+    <script src="~/easyui/jquery.my97.js"></script>
+    <script src="~/Scripts/ProvinceCity.js"></script>
+    <script type="text/javascript">
+        function actionFormatter(val, row) {
+            var html = "<a href='javascript:void(0)' onclick='vm.editForm.EditClick(\"" + row.Code + "\")'>修改</a>";
+            html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='ShowDetail(\"" + row.Code + "\")'>详细</a>";
+            if (row.IsEnable == true)
+                html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='vm.setEnableClick(\"" + row.Code + "\",false)'>禁用</a>";
+            else
+                html += "&nbsp;&nbsp;<a href='javascript:void(0)' onclick='vm.setEnableClick(\"" + row.Code + "\",true)'>启用</a>";
+
+            return html;
+        }
+        function ShowDetail(code) {
+            $('#Content').load('/Businessman/SupplierDetail', { code: code });
+            $('#showdetail_dialog').dialog('open');
+        }
+        var BuyerIndexVM = CC.Create(BaseVM, function (data) {
+            this.urls = data.urls;
+            this.grid.title = "供应商管理";
+            this.initForm = data.editForm;
+            this.grid.pagination = false;
+            this.editForm = {
+                AllAirCode: ko.observableArray(CarrayList),
+                Province: ko.observableArray(where),
+                selectedProvince: ko.observable(),
+                City: ko.observableArray(),
+                Status: ko.observable(true),
+                Model: ko.mapping.fromJS(data.editForm),
+                SaveClick: function () {
+                    //alert(vm.editForm.Model.SupRate());
+                    $('#PartSupplierDialog').mask('正在保存数据...');
+                    vm.ajax({
+                        url: vm.editForm.Status() == true ? vm.urls.add : vm.urls.edit,
+                        type: 'post',
+                        contentType: 'application/json',
+                        data: JSON.stringify(ko.toJS(vm.editForm.Model))
+                    }, function () {
+                        $('#PartSupplierDialog').dialog('close').unmask();
+                        vm.grid.datagrid('reload');
+                    }, function () {
+                        $('#PartSupplierDialog').unmask();
+                    })
+                },
+                EditClick: function (code) {
+                    vm.editForm.Status(false);
+                    vm.ajax({
+                        url: vm.urls.editinfo,
+                        type: 'POST',
+                        data: { code: code },
+                        dataType: 'json'
+                    }, function (r, s) {
+                        $.each(vm.editForm.Province(), function () {
+                            if (this.loca == r.ContactWay.Province) {
+                                vm.editForm.selectedProvince(this);
+                                return false;
+                            }
+                        });
+                        ko.mapping.fromJS(r, vm.editForm.Model);
+                        $('#PartSupplierDialog').dialog('open');
+                    })
+                },
+                AddPidClick: function () {
+                    this.Model.Pids.push({
+                        IP: ko.observable(),
+                        Port: ko.observable(),
+                        Office: ko.observable()
+                    });
+                },
+                RemovePidClick: function () {
+                    vm.editForm.Model.Pids.remove(this);
+                },
+                AddCarrierSettings: function () {
+                    this.Model.CarrierSettings.push({
+                        CarrayCode: ko.observable(),
+                        YDOffice: ko.observable(),
+                        CPOffice: ko.observable(),
+                        PrintNo: ko.observable()
+                    })
+                },
+                RemoveCarrierSettings: function () {
+                    vm.editForm.Model.CarrierSettings.remove(this);
+                }
+            };
+        }, {
+            initForm: null,
+            editForm: null,
+            AddClick: function () {
+                this.editForm.Status(true);
+                ko.mapping.fromJS(this.initForm, this.editForm.Model);
+                this.editForm.Model.SupRemoteRate("");
+                this.editForm.Model.SupRate("");
+                $('#PartSupplierDialog').dialog('open');
+            },
+            init: function () {
+
+            },
+            setEnableClick: function (code, isenable) {
+                var $this = this;
+                this.confirm('确定此操作吗?', function () {
+                    $this.ajax({
+                        url: $this.urls.setenable,
+                        type: 'POST',
+                        data: { code: code, isEnable: isenable }
+                    }, function () {
+                        $this.grid.datagrid('reload');
+                    })
+                })
+            }
+        });
+        var vm = new BuyerIndexVM(@(Html.Raw(ExpandTypeConvert.ToJson(Model))));
+        vm.editForm.selectedProvince.subscribe(function (newValue) {
+            vm.editForm.City.removeAll();
+            if (newValue != null && newValue != "") {
+                vm.editForm.Model.ContactWay.Province(newValue.loca);
+                $.each(newValue.locacity.split('|'), function () {
+                    vm.editForm.City.push(this);
+                });
+            }
+        });
+        ko.applyBindings(vm);
+    </script>
+}
+

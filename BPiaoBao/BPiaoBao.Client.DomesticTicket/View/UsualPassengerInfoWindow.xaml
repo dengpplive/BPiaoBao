@@ -1,0 +1,80 @@
+﻿<Window x:Class="BPiaoBao.Client.DomesticTicket.View.UsualPassengerInfoWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Style="{DynamicResource CustomWindowStyle}"
+        WindowStartupLocation="CenterOwner" xmlns:model="clr-namespace:BPiaoBao.Client.DomesticTicket.Model" xmlns:utils="clr-namespace:ProjectHelper.Utils;assembly=BPiaoBao.Client.UIExt"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        Title="编辑乘客信息" Height="400" Width="400" >
+    <!--<Window.DataContext>
+        <viewMoel:UsualPassengerInfoViewModel/>
+    </Window.DataContext>-->
+    <Window.Resources>
+
+        <ObjectDataProvider x:Key="AgeTypeItems" MethodName="GetEnumKeyValuesPassger" ObjectType="{x:Type utils:EnumHelper}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:AgeType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <!--<ObjectDataProvider x:Key="IDTypeItems" MethodName="GetEnumKeyValuesPassger" ObjectType="{x:Type utils:EnumHelper}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="model:IDType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>-->
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <ei:DataTrigger Binding="{Binding IsDone}" Value="True">
+            <ei:ChangePropertyAction TargetObject="{Binding ElementName=window}" PropertyName="DialogResult" Value="True"/>
+        </ei:DataTrigger>
+    </i:Interaction.Triggers>
+    <Grid Margin="50,10,50,0" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="姓名：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <TextBox Grid.Column="1" Grid.Row="0" Height="20" Text="{Binding Name,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="1" Text="性别：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <ComboBox Grid.Column="1" Grid.Row="1" Height="20" ItemsSource="{Binding AllInsextypes,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedValue="{Binding SelectedSexType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="Value" SelectedValuePath="Key"></ComboBox>
+        <!--<StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left"    VerticalAlignment="Center" Orientation="Horizontal">
+            <RadioButton GroupName="Gender" IsChecked="{Binding Gender,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">男</RadioButton>
+            <RadioButton GroupName="Gender" Margin="20,0">女</RadioButton>
+        </StackPanel>-->
+        <TextBlock Grid.Row="2" Text="乘客类型：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <ComboBox Grid.Column="1" Grid.Row="2" Height="20" ItemsSource="{Binding Source={StaticResource AgeTypeItems}}" SelectedValue="{Binding AgeType,Mode=TwoWay}" DisplayMemberPath="Value" SelectedValuePath="Key"></ComboBox>
+        <TextBlock Grid.Row="3" Text="证件类型：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <ComboBox Grid.Column="1" Grid.Row="3" Height="20" ItemsSource="{Binding IdTypeItems,Mode=TwoWay}" SelectedValue="{Binding IdType,Mode=TwoWay}" DisplayMemberPath="Value" SelectedValuePath="Key" />
+        <TextBlock Grid.Row="4" Text="证件号：" VerticalAlignment="Center" HorizontalAlignment="Right"  />
+        <TextBox Grid.Column="1" Grid.Row="4" Height="20" Text="{Binding CertificateNo,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding CertificateNoIsEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Grid.Row="5"  Text="出生日期：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <DatePicker Grid.Column="1" Grid.Row="5" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  DisplayDateStart="{Binding DisplayDateStart, Mode=OneWay}"  DisplayDateEnd="{Binding DisplayDateEnd, Mode=OneWay}"  SelectedDate="{Binding Birthday}" IsEnabled="{Binding DateIsEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="6" Text="手机：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <TextBox Grid.Column="1" Grid.Row="6" Height="20" Text="{Binding Mobile,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="7" Text="航空公司卡：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <TextBox Grid.Column="1" Grid.Row="7" Height="20" Text="{Binding AirCardNo,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="8"  Text="备注：" VerticalAlignment="Center" HorizontalAlignment="Right" />
+        <TextBox Grid.Column="1" Grid.Row="8" Grid.RowSpan="2"  TextWrapping="Wrap" Text="{Binding Remark,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel Grid.Column="1" Grid.Row="10" Orientation="Horizontal">
+            <Button Margin="0,0,5,0" Content="保存" Width="75" VerticalAlignment="Center" Height="25" Command="{Binding SaveCommand,Mode=OneWay}"/>
+            <Button Content="取消" Width="75" VerticalAlignment="Center"  Margin="5,2.5" Height="25" Style ="{StaticResource CancelButton}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <ei:CallMethodAction MethodName="Close" TargetObject="{Binding Mode=OneWay, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

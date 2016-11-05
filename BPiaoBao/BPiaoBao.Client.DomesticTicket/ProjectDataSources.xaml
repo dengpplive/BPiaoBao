@@ -1,0 +1,9 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:ViewModel="clr-namespace:BPiaoBao.Client.DomesticTicket.ViewModel" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+	<!-- 应该在此定义资源字典条目。-->
+    <ViewModel:ViewModelLocator x:Key="TicketVMLocatorDataSource" d:IsDataSource="True"/>
+</ResourceDictionary>

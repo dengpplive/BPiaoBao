@@ -1,0 +1,146 @@
+﻿@{
+    ViewBag.Title = "政策发布";
+}
+<table>
+    <tr>
+        <td>发布类型：</td>
+        <td>
+            <input type="radio" name="rtype" id="rtype1" /><label for="rtype1">出港</label>
+            <input type="radio" name="rtype" id="rtype2" /><label for="rtype2">入港</label>
+            <input type="radio" name="rtype" id="rtype3" /><label for="rtype3">全国</label>
+        </td>
+    </tr>
+    <tr>
+        <td>出发城市：</td>
+        <td>
+            <select class="easyui-combogrid" style="width: 250px" data-options=""></select>
+        </td>
+    </tr>
+    <tr>
+        <td>到达城市：</td>
+        <td>
+            <select class="easyui-combogrid" style="width: 250px" data-options=""></select>
+        </td>
+    </tr>
+    <tr>
+        <td>政策返点</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>本地返点：</td>
+        <td>
+            <input type="text" />
+        </td>
+        <td>异地返点：</td>
+        <td>
+            <input type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>行程类型：</td>
+        <td>
+            <input type="radio" name="xctype" id="xctype1" /><label for="xctype1">单程</label>
+            <input type="radio" name="xctype" id="xctype2" /><label for="xctype2">往返</label>
+            <input type="radio" name="xctype" id="xctype3" /><label for="xctype3">单程/往返</label>
+            <input type="radio" name="xctype" id="xctype4" /><label for="xctype4">联程</label>
+        </td>
+    </tr>
+    <tr>
+        <td>政策类型：</td>
+        <td>
+            <input type="radio" name="policytype" id="policytype1" /><label for="policytype1">B2B</label>
+            <input type="radio" name="policytype" id="policytype2" /><label for="policytype2">BSP</label>
+        </td>
+    </tr>
+    <tr>
+        <td>是否低开：</td>
+        <td>
+            <input type="checkbox" name="dk" id="dk" /><label for="dk">低开</label>
+        </td>
+    </tr>
+    <tr>
+        <td>是否换编码：</td>
+        <td>
+            <input type="checkbox" name="hbm" id="hbm" /><label for="hbm">换编码</label>
+        </td>
+    </tr>
+    <tr>
+        <td>OFFICE号：</td>
+        <td>
+            <input type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>班期限制：</td>
+        <td>
+            <input type="checkbox" name="week" id="week1" /><label for="week1">周一</label>
+            <input type="checkbox" name="week" id="week2" /><label for="week2">周二</label>
+            <input type="checkbox" name="week" id="week3" /><label for="week3">周三</label>
+            <input type="checkbox" name="week" id="week4" /><label for="week4">周四</label>
+            <input type="checkbox" name="week" id="week5" /><label for="week5">周五</label>
+            <input type="checkbox" name="week" id="week6" /><label for="week6">周六</label>
+            <input type="checkbox" name="week" id="week7" /><label for="week7">周日</label>
+        </td>
+    </tr>
+    <tr>
+        <td>共享航班：</td>
+        <td>
+            <input type="radio" name="gx" id="gx1" /><label for="gx1">适用</label>
+            <input type="radio" name="gx" id="gx2" /><label for="gx2">不适用</label>
+        </td>
+    </tr>
+    <tr>
+        <td>乘机日期：</td>
+        <td>
+            <input type="text" />至<input type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>出票日期：</td>
+        <td>
+            <input type="text" />至<input type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>提前天数：</td>
+        <td>
+            <input type="text" />
+        </td>
+    </tr>
+    <tr>
+        <td>出票方式：</td>
+        <td>
+            <input type="radio" name="cptype" id="cptype1" /><label for="cptype1">手动</label>
+            <input type="radio" name="cptype" id="cptype2" /><label for="cptype2">自动</label>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2">政策使用航班：</td>
+        <td>
+            <input type="radio" name="sycode" id="sycode1" /><label for="sycode1">使用以下航班</label>
+            <input type="radio" name="sycode" id="sycode2" /><label for="sycode2">不使用以下航班</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <textarea ></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td>政策备注：</td>
+        <td>
+            <textarea></textarea>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <input type="checkbox" value="" />默认审核</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" value="保存" />
+        </td>
+    </tr>
+</table>

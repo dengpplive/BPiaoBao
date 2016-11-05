@@ -1,0 +1,9 @@
+﻿<div id="SetLabelDialog" class="easyui-dialog" title="分配标签" data-options="modal:true,closed:true,buttons:'#SetLabelDialog-buttons'" style="width: 450px; height: 400px; padding: 5px;">
+        <div data-bind="foreach:$root.labelForm.CarrierLabel">
+            <div style="width:180px; float:left; height:30px; line-height:30px;"><input type="checkbox"  data-bind="value:$data, checked: $root.labelForm.BuyerLabelArray" /><label data-bind="    text: $data"></label></div>
+        </div>
+</div>
+<div id="SetLabelDialog-buttons">
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-sys-ok" data-bind="click: $root.setLabelClick">保存</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-sys-cancel" onclick="$('#SetLabelDialog').dialog('close')">取消</a>
+</div>

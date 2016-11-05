@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "导入政策";
+}
+<link href="/Content/css/ticket.css" rel="stylesheet" type="text/css"/>
+<div class="easyui-layout" data-options="fit:true">
+    <div class="tableShow" data-options="region:'center',border:0">
+        <div id="toolbar" style="padding:10px 5px;">
+            <form id="upload" name="upload" action="/Policy/ImportPolicy" method="post" enctype="multipart/form-data" style="float:left;">
+                选择Excel:<input id="file" type="file" name="file" onchange="fileSumbit()" style="border:1px solid #ccc;" />
+                <button type="button" id="import" class="easyui-linkbutton" iconcls="icon-search" style="color: #fff; font-weight: 600;">导入政策</button>
+            </form>
+            <div style="float:left; padding-left:25px;">
+                <div style=" line-height: 32px; float: left; background: url(../easyui/themes/icons/ico_down11.png) 0 center no-repeat; padding-left: 20px;"> @Html.ActionLink("政策模版下载", "TemplateDown", new { }, new { @class = "m_dian" })</div>
+                <span style="float:left; padding:7px 15px;color:#ccc;">|</span>
+                <div style="line-height: 32px; float: left; background: url(../easyui/themes/icons/ico_down11.png) 0 center no-repeat; padding-left: 20px; ">@Html.ActionLink("特价政策模版下载", "SpecialTemplateDown", new { }, new { @class = "m_dian" })</div>
+                <span style="float:left; padding:7px 15px;color:#ccc;">|</span>
+                <div style="line-height: 32px; float: left; background: url(../easyui/themes/icons/ico_07.png) 0 center no-repeat; padding-left: 20px; "><a id="remark" style="color: #bb3e00; cursor:pointer;">导入政策须知</a></div>
+            </div>
+            <div id="remind" style="cursor: pointer; clear:both;">
+                <div class="m_notice">
+                    <p>1、选择政策后请在20分钟内导入</p>
+                    <p>2、发布类型：【0，出港】【1，入港】【2，全国】默认出港</p>
+                    <p>3、行程类型：【0，全部】【1，单程】【2，往返】【3，单程/往返】【4，联程】默认全部</p>
+                    <p>4、【低开，换编码,适用共享航班】默认都是否【0，否】【1，是】</p>
+                    <p>5、班期限制：1-7为星期，多个请以逗号分割如：限制周三，周五【3,5】</p>
+                    <p>6、适用航班【0，适用所有航班】【1，仅适用以下航班】【2，不适用以下航班】默认适用所有航班</p>
+                    <p>7、航班:即适用航班为1，2的限制航班 多个请已逗号分割如：8441,8669</p>
+                    <p>8、舱位：适用舱位多个请以逗号分割如：M,K</p>
+                    <p>9、政策类型：【BSP,B2B】请选填一个</p>
+                    <p>10、【乘机日期，出票日期】：默认当前时间开始一年截至</p>
+                    <p>11、出票方式:【0，手动】【1，自动】默认手动</p>
+                    <p>12、如为特价政策,请加入以下内容</p>
+                    <p>13、特价类型:【0，动态特价】【1，固定特价】,请选填一个;若同时导入普通和特价政策,不填则表示为普通政策</p>
+                    <p>14、固定特价类型:若已选特价类型为固定特价类型,则请选【0，固定价格】【1，直降】【2，折上折】,反之不填</p>
+                    <p>15、特价金额:折上折类型则输入范围在0-100之间</p>               
+                </div>
+            </div>
+        </div>
+        <table id="tt" class="easyui-datagrid" title="政策导入" data-options="singleSelect:true,fit:true,collapsible:false,url:'/Policy/PreViewPolicy',method:'post',toolbar:'#toolbar'">
+            <thead>
+                <tr id="tr">
+                    <th data-options="field:'发布类型',title:'发布类型',formatter:function(val){if(val == null) {val =0;}return EnumReleaseType[val].Description;}"></th>
+                    <th data-options="field:'行程类型',title:'行程类型',formatter:function(val){if(val == null) {val =0;}return EnumTravelType[val].Description;}"></th>
+                    <th data-options="field:'出发城市',title:'出发城市'"></th>
+                    <th data-options="field:'到达城市',title:'到达城市'"></th>
+                    <th data-options="field:'是否低开',title:'低开',formatter:function(val){return val!=0?'是':'否';}"></th>
+                    <th data-options="field:'换编码',title:'换编码',formatter:function(val){return val!=0?'是':'否';}"></th>
+                    <th data-options="field:'适用共享航班',title:'适用共享航班',formatter:function(val){return val!=0?'适用':'不适用';}"></th>
+                    <th data-options="field:'班期限制',title:'班期限制'"></th>
+                    <th data-options="field:'适用航班',title:'适用航班',formatter:function(val){return EnumApply[val].Description;}"></th>
+                    <th data-options="field:'航班',title:'航班'"></th>
+                    <th data-options="field:'航空公司',title:'航空公司'"></th>
+                    <th data-options="field:'舱位',title:'舱位'"></th>
+                    <th data-options="field:'Office',title:'Office'"></th>
+                    <th data-options="field:'政策类型',title:'政策类型'"></th>
+                    <th data-options="field:'本地返点',title:'本地返点'"></th>
+                    <th data-options="field:'异地返点',title:'异地返点'"></th>
+                    <th data-options="field:'乘机开始日期',title:'乘机开始日期',formatter:function(val){return val.split(' ')[0];}"></th>
+                    <th data-options="field:'乘机结束日期',title:'乘机结束日期',formatter:function(val){return val.split(' ')[0];}"></th>
+                    <th data-options="field:'出票开始日期',title:'出票开始日期',formatter:function(val){return val.split(' ')[0];}"></th>
+                    <th data-options="field:'出票结束日期',title:'出票结束日期',formatter:function(val){return val.split(' ')[0];}"></th>
+                    <th data-options="field:'特价类型',title:'特价类型',formatter:function(val){if(val !=null& val != '' )return val==0?'动态特价':'固定特价';}"></th>
+                    <th data-options="field:'固定特价类型',title:'固定特价类型',formatter:function(val){if(val !=null & val != ''){return FixedOnSaleType[val].Description;}}"></th>
+                    <th data-options="field:'特价金额',title:'特价金额'"></th>
+                    <th data-options="field:'政策备注',title:'政策备注'"></th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        function fileSumbit() {
+            var path = $('#file').val();
+            if (path == null || path == '')
+                return;
+            var fileName = path.substring(path.lastIndexOf('.'), path.length);
+            if (fileName != '.xls' && fileName != '.xlsx') {
+                $.messager.alert('操作提示', '请选择excel进行导入');
+                return;
+            }
+            $('#upload').form("submit", {
+                success: function (e) {
+                    $('#tt').datagrid('reload');
+                },
+                onLoadError: function (e) {
+                    $.messager.alert('操作提示', e);
+                }
+            });
+        }
+        $(function () {
+            $('#remark').click(function () {
+                if ($(this).hasClass('open')) {
+                    $(this).removeClass('open');
+                    $("#remind").children('div').hide();
+                }
+                else {
+                    $(this).addClass('open');
+                    $("#remind").children('div').show();
+                }
+
+            });
+            $('#import').click(function () {
+                $.ajax({
+                    url: '/Policy/Import',
+                    type: 'post'
+                }).done(function () {
+                    $.messager.alert('提示', '政策已导入成功!');
+                    $('#tt').datagrid('reload');
+                }).fail(function (e) {
+                    $.messager.alert('提示', JSON.parse(e.responseText).ErrorMsg);
+                });
+            });
+        })
+    </script>
+}
+
